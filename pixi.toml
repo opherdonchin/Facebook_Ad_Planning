@@ -1,0 +1,13 @@
+[project]
+name = "grist-export"
+version = "0.1.0"
+description = "Export Grist documents with all data, formulas, and attachments"
+channels = ["conda-forge"]
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+
+[dependencies]
+python = ">=3.8"
+requests = ">=2.31.0"
+
+[tasks]
+run = "python grist_export.py"
