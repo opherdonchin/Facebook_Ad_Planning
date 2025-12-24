@@ -322,23 +322,25 @@ class GristExtractor:
 if __name__ == "__main__":
     # Load configuration from config.json
     config_file = "config.json"
-    
+
     if not os.path.exists(config_file):
         print(f"Error: {config_file} not found!")
-        print("Please copy config.example.json to config.json and add your credentials.")
+        print(
+            "Please copy config.example.json to config.json and add your credentials."
+        )
         exit(1)
-    
+
     with open(config_file, "r") as f:
         config = json.load(f)
-    
+
     DOC_ID = config.get("doc_id")
     API_KEY = config.get("api_key")
     SERVER = config.get("server", "https://docs.getgrist.com")
-    
+
     if not DOC_ID or not API_KEY:
         print("Error: doc_id and api_key must be set in config.json")
         exit(1)
-    
+
     # Create extractor and export
     extractor = GristExtractor(DOC_ID, API_KEY, SERVER)
 
