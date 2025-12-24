@@ -34,7 +34,7 @@ pixi run run
 
 ```bash
 pip install requests
-python facebook_ad_planning.py
+python grist_export.py
 ```
 
 ## Configuration
@@ -66,7 +66,7 @@ For self-hosted Grist instances, change the `server` field to your instance URL.
 ### Basic Export
 
 ```python
-from facebook_ad_planning import GristExtractor
+from grist_export import GristExtractor
 
 extractor = GristExtractor(DOC_ID, API_KEY)
 extractor.save_to_json(

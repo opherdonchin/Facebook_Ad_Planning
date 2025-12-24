@@ -10,4 +10,4 @@ python = ">=3.8"
 requests = ">=2.31.0"
 
 [tasks]
-run = "python facebook_ad_planning.py"
+run = "python grist_export.py"
