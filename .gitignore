@@ -1,3 +1,13 @@
+# Configuration files with sensitive data
+config.json
+
+# Export output files
+grist_export.json
+attachments_manifest.json
+attachments.tar
+attachments.tar.gz
+attachments/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

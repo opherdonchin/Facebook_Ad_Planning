@@ -320,17 +320,27 @@ class GristExtractor:
 
 # Example usage:
 if __name__ == "__main__":
-    # Configuration
-    DOC_ID = "c5dzrhUn5QHF"  # From your Grist document URL
-    API_KEY = (
-        "eaa7ac30d29bd1a81816e6c5cf365b31428ee574"  # From your Grist profile settings
-    )
-
-    # You can also use a self-hosted Grist server:
-    # SERVER = "https://your-grist-server.com"
-
+    # Load configuration from config.json
+    config_file = "config.json"
+    
+    if not os.path.exists(config_file):
+        print(f"Error: {config_file} not found!")
+        print("Please copy config.example.json to config.json and add your credentials.")
+        exit(1)
+    
+    with open(config_file, "r") as f:
+        config = json.load(f)
+    
+    DOC_ID = config.get("doc_id")
+    API_KEY = config.get("api_key")
+    SERVER = config.get("server", "https://docs.getgrist.com")
+    
+    if not DOC_ID or not API_KEY:
+        print("Error: doc_id and api_key must be set in config.json")
+        exit(1)
+    
     # Create extractor and export
-    extractor = GristExtractor(DOC_ID, API_KEY)
+    extractor = GristExtractor(DOC_ID, API_KEY, SERVER)
 
     # Export everything including attachments
     data = extractor.save_to_json(
