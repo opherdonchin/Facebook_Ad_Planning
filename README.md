@@ -1,4 +1,4 @@
-# Grist Export
+# Facebook Ad Planning
 
 A Python tool to export complete Grist documents including all data, formulas, metadata, and file attachments via the Grist API.
 
@@ -70,7 +70,7 @@ from grist_export import GristExtractor
 
 extractor = GristExtractor(DOC_ID, API_KEY)
 extractor.save_to_json(
-    output_file="grist_export.json",
+    output_file="performance_data.json",
     download_attachments=True,
     attachments_dir="attachments",
     manifest_file="attachments_manifest.json",
@@ -82,7 +82,7 @@ extractor.save_to_json(
 
 The script generates:
 
-1. **`grist_export.json`**: Complete database export including:
+1. **`performance_data.json`**: Complete database export including:
    - Document metadata
    - All table structures and columns
    - All record data
@@ -140,8 +140,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 After running the export on a Grist document with "Creatives" and "Media" tables:
 
 ```
-Grist_Export/
-├── grist_export.json          # Complete data export
+Facebook_Ad_Planning/
+├── performance_data.json      # Complete data export
 ├── attachments_manifest.json  # Attachment metadata
 ├── attachments.tar            # Compressed attachments
 └── attachments/

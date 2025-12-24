@@ -289,7 +289,7 @@ class GristExtractor:
 
     def save_to_json(
         self,
-        output_file: str = "grist_export.json",
+        output_file: str = "performance_data.json",
         download_attachments: bool = True,
         attachments_dir: str = "attachments",
         manifest_file: str = "attachments_manifest.json",
@@ -346,7 +346,7 @@ if __name__ == "__main__":
 
     # Export everything including attachments
     data = extractor.save_to_json(
-        output_file="grist_export.json",
+        output_file="performance_data.json",
         download_attachments=True,
         attachments_dir="attachments",
         manifest_file="attachments_manifest.json",

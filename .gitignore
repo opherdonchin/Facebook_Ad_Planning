@@ -2,7 +2,7 @@
 config.json
 
 # Export output files
-grist_export.json
+performance_data.json
 attachments_manifest.json
 attachments.tar
 attachments.tar.gz
