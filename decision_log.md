@@ -1,12 +1,8 @@
 # Weekly Decision Log
 
-## Week
+## Week 2025-W51 2025-12-24
 
-2025‑W51 (W51 provisional)
-
----
-
-## Context snapshot
+Context snapshot
 
 * Men’s and Women’s lead campaigns running at ~30 ILS/day each.
 * At start of week, active creatives were:

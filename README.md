@@ -1,6 +1,8 @@
 # Facebook Ad Planning
 
-A Python tool to export complete Grist documents including all data, formulas, metadata, and file attachments via the Grist API.
+A repository for data and planning history on facebook advertising campaigns. Used primarily for Isshin Aikido in Beer Sheva
+
+Includes (and originallys started as a repository for) a Python tool to export complete Grist documents including all data, formulas, metadata, and file attachments via the Grist API.
 
 ## Features
 
@@ -40,11 +42,12 @@ python grist_export.py
 ## Configuration
 
 1. Copy the example configuration file:
+
    ```bash
    cp config.example.json config.json
    ```
-
 2. Edit `config.json` with your credentials:
+
    ```json
    {
      "doc_id": "your_document_id",
@@ -54,6 +57,7 @@ python grist_export.py
    ```
 
 **Finding your credentials:**
+
 - **Document ID**: Found in your Grist document URL: `https://docs.getgrist.com/doc/YOUR_DOC_ID`
 - **API Key**: Generate from your Grist profile settings → API section
 
@@ -83,20 +87,19 @@ extractor.save_to_json(
 The script generates:
 
 1. **`performance_data.json`**: Complete database export including:
+
    - Document metadata
    - All table structures and columns
    - All record data
    - Formula definitions
    - Attachment references
-
 2. **`attachments/`**: Directory containing all downloaded files organized by table
-
 3. **`attachments_manifest.json`**: Detailed manifest of all attachments including:
+
    - File paths and names
    - SHA256 checksums
    - Source table and record information
    - Original filenames and content types
-
 4. **`attachments.tar` or `attachments.tar.gz`**: Compressed archive of all attachments
 
 ## API Reference
@@ -120,6 +123,7 @@ GristExtractor(doc_id: str, api_key: str, server: str = "https://docs.getgrist.c
 ## File Naming Logic
 
 Attachments are intelligently named using the following pattern:
+
 - Single attachment: `{Name}__{Variant}.ext`
 - Multiple attachments: `{Name}__{Variant}__1.ext`, `{Name}__{Variant}__2.ext`, etc.
 - Fallback: `{table}_{record_id}.ext` if Name field is empty
