@@ -11,3 +11,4 @@ requests = ">=2.31.0"
 
 [tasks]
 run = "python grist_export.py"
+sync_leads = "python grist_leads_source.py --fb-export"
