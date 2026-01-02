@@ -1,5 +1,23 @@
 {
-  "doc_id": "your_document_id_here",
-  "api_key": "your_api_key_here",
-  "server": "https://docs.getgrist.com"
+  "ad_planning": {
+    "doc_id": "your_ad_planning_document_id_here",
+    "api_key": "your_api_key_here",
+    "server": "https://docs.getgrist.com"
+  },
+  "leads": {
+    "doc_id": "your_leads_document_id_here",
+    "api_key": "your_api_key_here",
+    "server": "https://docs.getgrist.com",
+    "table_id": "Leads",
+    "columns": {
+      "phone": "Phone",
+      "email": "Email",
+      "name_en": "English name",
+      "name_he": "Hebrew name",
+      "date": "Date",
+      "campaign": "Campaign",
+      "ad_name": "Ad name",
+      "platform": "Platform"
+    }
+  }
 }

@@ -333,12 +333,16 @@ if __name__ == "__main__":
     with open(config_file, "r") as f:
         config = json.load(f)
 
-    DOC_ID = config.get("doc_id")
-    API_KEY = config.get("api_key")
-    SERVER = config.get("server", "https://docs.getgrist.com")
+    # Read from ad_tracking section
+    ad_config = config.get("ad_tracking", {})
+    DOC_ID = ad_config.get("doc_id")
+    API_KEY = ad_config.get("api_key")
+    SERVER = ad_config.get("server", "https://docs.getgrist.com")
 
     if not DOC_ID or not API_KEY:
-        print("Error: doc_id and api_key must be set in config.json")
+        print(
+            "Error: config.json must include ad_tracking.doc_id and ad_tracking.api_key"
+        )
         exit(1)
 
     # Create extractor and export

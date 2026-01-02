@@ -10,5 +10,6 @@ python = ">=3.8"
 requests = ">=2.31.0"
 
 [tasks]
-run = "python grist_export.py"
+export_ads = "python export_ads.py"
 sync_leads = "python grist_leads_source.py --fb-export"
+update_ads = "python update_ads_from_leads.py --config config.json"

@@ -36,7 +36,7 @@ pixi run run
 
 ```bash
 pip install requests
-python grist_export.py
+python export_ads.py
 ```
 
 ## Configuration
@@ -50,9 +50,27 @@ python grist_export.py
 
    ```json
    {
-     "doc_id": "your_document_id",
-     "api_key": "your_api_key",
-     "server": "https://docs.getgrist.com"
+     "ad_planning": {
+       "doc_id": "your_ad_planning_document_id",
+       "api_key": "your_api_key",
+       "server": "https://docs.getgrist.com"
+     },
+     "leads": {
+       "doc_id": "your_leads_document_id",
+       "api_key": "your_api_key",
+       "server": "https://docs.getgrist.com",
+       "table_id": "Leads",
+       "columns": {
+         "phone": "Phone",
+         "email": "Email",
+         "name_en": "Name",
+         "name_he": "Name_Hebrew_",
+         "date": "Date",
+         "campaign": "Campaign",
+         "ad_name": "Ad_name",
+         "platform": "Platform"
+       }
+     }
    }
    ```
 
@@ -65,12 +83,54 @@ For self-hosted Grist instances, change the `server` field to your instance URL.
 
 **Security Note:** The `config.json` file is gitignored and will not be committed to version control. Never commit your API key!
 
+## Syncing Facebook Leads to Grist
+
+### Downloading Facebook Leads
+
+To sync leads from Facebook to your Grist leads table, you first need to download the leads export from Facebook:
+
+1. Go to **Facebook Business Center** (business.facebook.com)
+2. Navigate to **All tools** in the left sidebar
+3. Find and click on **Instant forms** tool
+4. Click on your instant form (e.g., "Leads form 6/6/25")
+5. Click the **Download** button
+6. Choose download period:
+   - **Last 3 months**: Downloads all leads from the past 3 months
+   - **Since last download**: Downloads only new leads since your last export
+7. Select **CSV** format and download
+
+The downloaded file will be in UTF-16 tab-delimited format with columns like `id`, `created_time`, `ad_name`, `campaign_name`, `platform`, `email`, `full_name`, `phone_number`, etc.
+
+### Running the Sync
+
+Once you have the Facebook leads CSV file, sync it to your Grist table:
+
+```bash
+pixi run sync_leads "path/to/your/leads_export.csv"
+```
+
+The script will:
+- Match leads by phone + email combination
+- Add missing Hebrew/English names (bilingual complement)
+- Fill in Campaign, Ad name, and Platform for matched leads
+- Create new lead records for unmatched entries
+- Report any name mismatches or time gaps (without overwriting data)
+
+**Example output:**
+```
+[INFO] Successfully read file with encoding=utf-16, delimiter='\t'
+[INFO] Found 46 rows with 16 columns
+[NAME COMPLEMENT] Added Hebrew name='גדי אדרי' (English already present 'Gadi Edri').
+[DONE] Added 2 new leads.
+[DONE] Updated 44 existing leads.
+```
+
 ## Usage
 
 ### Basic Export
 
 ```python
-from grist_export import GristExtractor
+from export_ads import GristExtractor
 
 extractor = GristExtractor(DOC_ID, API_KEY)
 extractor.save_to_json(

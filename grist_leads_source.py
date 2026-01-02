@@ -48,16 +48,32 @@ def parse_dt(s: Optional[str]) -> Optional[datetime]:
     s = str(s).strip()
     if not s:
         return None
-    # Facebook export uses ISO with timezone: 2025-12-26T10:13:34+02:00
-    try:
-        return datetime.fromisoformat(s)
-    except Exception:
-        pass
-    # Grist date columns might be YYYY-MM-DD
-    try:
-        return datetime.strptime(s, "%Y-%m-%d").replace(tzinfo=timezone.utc)
-    except Exception:
-        return None
+
+    # Try various date formats
+    formats = [
+        # Facebook export ISO with timezone: 2025-12-26T10:13:34+02:00
+        None,  # fromisoformat
+        # Grist date columns: YYYY-MM-DD
+        "%Y-%m-%d",
+        # CSV export format: 01/01/2026 7:10am or 12/30/2025 9:44pm
+        "%m/%d/%Y %I:%M%p",
+        "%d/%m/%Y %I:%M%p",
+    ]
+
+    for fmt in formats:
+        try:
+            if fmt is None:
+                dt = datetime.fromisoformat(s)
+            else:
+                dt = datetime.strptime(s, fmt)
+            # Ensure timezone-aware datetime
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+            return dt
+        except Exception:
+            continue
+
+    return None
 
 
 def dt_to_grist_date(d: datetime) -> str:
@@ -88,6 +104,13 @@ class GristClient:
         url = self._url(f"/docs/{self.doc_id}/tables/{table_id}/records")
         payload = {"records": records}
         r = self.session.post(url, json=payload, timeout=60)
+        if not r.ok:
+            # Print detailed error information
+            print(f"[ERROR] Failed to add records. Status: {r.status_code}")
+            print(f"[ERROR] Response: {r.text}")
+            print(
+                f"[ERROR] Sample record being sent: {records[0] if records else 'None'}"
+            )
         r.raise_for_status()
         out = r.json().get("records", [])
         return [x.get("id") for x in out if "id" in x]
@@ -96,6 +119,13 @@ class GristClient:
         url = self._url(f"/docs/{self.doc_id}/tables/{table_id}/records")
         payload = {"records": records}
         r = self.session.patch(url, json=payload, timeout=60)
+        if not r.ok:
+            # Print detailed error information
+            print(f"[ERROR] Failed to patch records. Status: {r.status_code}")
+            print(f"[ERROR] Response: {r.text}")
+            print(
+                f"[ERROR] Sample record being sent: {records[0] if records else 'None'}"
+            )
         r.raise_for_status()
 
 
@@ -103,15 +133,55 @@ class GristClient:
 # FB export parsing (utf-16 + tab)
 # -------------------------
 def read_fb_export(path: str) -> List[Dict[str, Any]]:
-    # Facebook lead export: UTF-16 with tab separators (as in your sample file)
+    # Facebook lead export: Try different encodings since format may vary
     import csv
 
-    rows: List[Dict[str, Any]] = []
-    with open(path, "r", encoding="utf-16") as f:
-        reader = csv.DictReader(f, delimiter="\t")
-        for row in reader:
-            rows.append(row)
-    return rows
+    # Try different encoding/delimiter combinations
+    # Note: Facebook exports are typically UTF-16 tab-delimited, try that first
+    configs = [
+        ("utf-16", "\t"),
+        ("utf-16-le", "\t"),
+        ("utf-8", ","),
+        ("utf-8", "\t"),
+        ("latin-1", ","),
+        ("latin-1", "\t"),
+    ]
+
+    for encoding, delimiter in configs:
+        try:
+            rows: List[Dict[str, Any]] = []
+            with open(path, "r", encoding=encoding, errors="strict") as f:
+                reader = csv.DictReader(f, delimiter=delimiter)
+                first_row = None
+                for row in reader:
+                    if first_row is None:
+                        first_row = row
+                    rows.append(row)
+
+            # Validate that we actually parsed columns (not one giant column)
+            if rows and len(rows[0]) > 1:
+                print(
+                    f"[INFO] Successfully read file with encoding={encoding}, delimiter={repr(delimiter)}"
+                )
+                print(f"[INFO] Found {len(rows)} rows with {len(rows[0])} columns")
+                return rows
+        except (UnicodeDecodeError, UnicodeError):
+            continue
+        except Exception as e:
+            # If it's not an encoding error, it might be the right encoding but wrong delimiter
+            # Try next combination
+            continue
+            continue
+        except Exception as e:
+            # If it's not an encoding error, it might be the right encoding but wrong delimiter
+            # Try next combination
+            continue
+
+    # If we get here, none of the encodings worked
+    raise SystemExit(
+        f"Error: Could not read {path} with any supported encoding. "
+        f"Tried: utf-16, utf-8, utf-16-le, latin-1 with tab and comma delimiters."
+    )
 
 
 # -------------------------
@@ -243,8 +313,17 @@ def compute_updates_for_match(
 
     # Time gap check (> max_gap_days) between FB created_time and Grist Date (if both exist)
     if fb_created and existing_date:
-        gap = abs((fb_created - existing_date).total_seconds())
-        if gap > max_gap_days * 86400:
+        # Ensure both are timezone-aware for comparison
+        fb_aware = (
+            fb_created if fb_created.tzinfo else fb_created.replace(tzinfo=timezone.utc)
+        )
+        existing_aware = (
+            existing_date
+            if existing_date.tzinfo
+            else existing_date.replace(tzinfo=timezone.utc)
+        )
+        gap_days = abs((fb_aware - existing_aware).days)
+        if gap_days > max_gap_days:
             squawks.append(
                 f"[TIME GAP] phone={fb_phone} email={fb_email} : "
                 f"FB created={fb_created.isoformat()} vs Grist date={existing_date.isoformat()} "
@@ -268,10 +347,27 @@ def main() -> None:
     ap = argparse.ArgumentParser(
         description="Sync Facebook Lead export into a Grist Leads table (fill source columns; create missing leads)."
     )
-    ap.add_argument("--fb-export", required=True, help="Path to Facebook lead export CSV/TSV (UTF-16 tab-delimited).")
-    ap.add_argument("--config", default="config.json", help="Path to config.json (same as grist_export.py).")
-    ap.add_argument("--table", default=None, help="Grist tableId for leads (overrides config['leads_table_id']).")
-    ap.add_argument("--max-gap-days", type=int, default=3, help="Squawk if FB created_time vs Grist date differs by more than this.")
+    ap.add_argument(
+        "--fb-export",
+        required=True,
+        help="Path to Facebook lead export CSV/TSV (UTF-16 tab-delimited).",
+    )
+    ap.add_argument(
+        "--config",
+        default="config.json",
+        help="Path to config.json (same as export_ads.py).",
+    )
+    ap.add_argument(
+        "--table",
+        default=None,
+        help="Grist tableId for leads (overrides config['leads_table_id']).",
+    )
+    ap.add_argument(
+        "--max-gap-days",
+        type=int,
+        default=3,
+        help="Squawk if FB created_time vs Grist date differs by more than this.",
+    )
     args = ap.parse_args()
 
     if not os.path.exists(args.config):
@@ -282,15 +378,19 @@ def main() -> None:
     with open(args.config, "r", encoding="utf-8") as f:
         cfg = json.load(f)
 
-    doc_id = cfg.get("doc_id")
-    api_key = cfg.get("api_key")
-    server = cfg.get("server", "https://docs.getgrist.com")
-    table_id = args.table or cfg.get("leads_table_id") or "Leads"
+    # Read from leads section
+    leads_config = cfg.get("leads", {})
+    doc_id = leads_config.get("doc_id")
+    api_key = leads_config.get("api_key")
+    server = leads_config.get("server", "https://docs.getgrist.com")
+    table_id = args.table or leads_config.get("table_id") or "Leads"
 
     if not doc_id or not api_key:
-        raise SystemExit("Error: config.json must include doc_id and api_key.")
+        raise SystemExit(
+            "Error: config.json must include leads.doc_id and leads.api_key."
+        )
 
-    # Column mapping (override via config['leads_columns'])
+    # Column mapping (override via config['leads']['columns'])
     cols = {
         "phone": "Phone",
         "email": "Email",
@@ -301,7 +401,25 @@ def main() -> None:
         "ad_name": "Ad name",
         "platform": "Platform",
     }
-    cols.update(cfg.get("leads_columns", {}) or {})
+    cols.update(leads_config.get("columns", {}) or {})
+
+    # Validate all required columns are present
+    required_cols = [
+        "phone",
+        "email",
+        "name_en",
+        "name_he",
+        "date",
+        "campaign",
+        "ad_name",
+        "platform",
+    ]
+    missing_cols = [col for col in required_cols if col not in cols]
+    if missing_cols:
+        raise SystemExit(
+            f"Error: Missing required column mappings in config: {missing_cols}. "
+            f"Ensure all required columns are defined in config['leads_columns'] or use defaults."
+        )
 
     client = GristClient(server=server, doc_id=doc_id, api_key=api_key)
 
@@ -322,18 +440,33 @@ def main() -> None:
     now = datetime.now(timezone.utc)
 
     for row in fb_rows:
-        fb_email = norm_email(row.get("email"))
-        fb_phone = norm_phone(row.get("phone_number") or row.get("phone") or row.get("Phone"))
-        fb_name = pick_first_nonempty(row.get("full_name"), row.get("name"))
-        fb_campaign = pick_first_nonempty(row.get("campaign_name"), row.get("campaign"))
-        fb_ad = pick_first_nonempty(row.get("ad_name"), row.get("ad"))
-        fb_platform = pick_first_nonempty(row.get("platform"))
-        fb_created = parse_dt(row.get("created_time"))
+        # Handle different CSV formats - try Facebook export columns first, then generic columns
+        fb_email = norm_email(row.get("email") or row.get("Email"))
+        fb_phone = norm_phone(
+            row.get("phone_number")
+            or row.get("phone")
+            or row.get("Phone")
+            or row.get("WhatsApp number")
+        )
+        fb_name = pick_first_nonempty(
+            row.get("full_name"), row.get("name"), row.get("Name")
+        )
+        fb_campaign = pick_first_nonempty(
+            row.get("campaign_name"),
+            row.get("campaign"),
+            row.get("Campaign"),
+            row.get("Source"),
+        )
+        fb_ad = pick_first_nonempty(row.get("ad_name"), row.get("ad"), row.get("Form"))
+        fb_platform = pick_first_nonempty(
+            row.get("platform"), row.get("Platform"), row.get("Channel")
+        )
+        fb_created = parse_dt(row.get("created_time") or row.get("Created"))
 
         key = (fb_phone, fb_email)
 
         # Require BOTH phone and email for matching (per your rule)
-        has_key = (fb_phone != "" and fb_email != "")
+        has_key = fb_phone != "" and fb_email != ""
 
         if not has_key:
             print(
@@ -371,7 +504,13 @@ def main() -> None:
                 fields[cols["date"]] = dt_to_grist_date(fb_created)
 
                 # Optional: also squawk if the lead is "old" relative to now by > max-gap-days
-                if abs((now - fb_created.astimezone(timezone.utc)).total_seconds()) > args.max_gap_days * 86400:
+                fb_aware = (
+                    fb_created
+                    if fb_created.tzinfo
+                    else fb_created.replace(tzinfo=timezone.utc)
+                )
+                gap_days = abs((now - fb_aware).days)
+                if gap_days > args.max_gap_days:
                     print(
                         f"[TIME GAP] Creating lead but FB created_time is >{args.max_gap_days} days from now: "
                         f"created={fb_created.isoformat()} name='{fb_name}' phone={fb_phone} email={fb_email}"
@@ -417,16 +556,26 @@ def main() -> None:
         print("[DONE] Added 0 new leads.")
 
     if patch_batch:
-        # Patch in reasonable chunks (avoid huge requests)
-        CHUNK = 200
-        for i in range(0, len(patch_batch), CHUNK):
-            client.patch_records(table_id, patch_batch[i : i + CHUNK])
-        print(f"[DONE] Updated {len(patch_batch)} existing leads.")
+        # Group records by their field keys (Grist requires same fields in a batch)
+        from collections import defaultdict
+
+        grouped = defaultdict(list)
+        for rec in patch_batch:
+            field_keys = tuple(sorted(rec["fields"].keys()))
+            grouped[field_keys].append(rec)
+
+        # Patch each group separately
+        total_updated = 0
+        for field_keys, records in grouped.items():
+            CHUNK = 200
+            for i in range(0, len(records), CHUNK):
+                client.patch_records(table_id, records[i : i + CHUNK])
+            total_updated += len(records)
+
+        print(f"[DONE] Updated {total_updated} existing leads.")
     else:
         print("[DONE] Updated 0 existing leads.")
 
 
 if __name__ == "__main__":
     main()
-
-
