@@ -8,7 +8,7 @@ import re
 from datetime import datetime, timezone, timedelta
 from typing import Any, Dict, List, Optional, Tuple
 
-import requests
+from grist.grist import GristClient
 
 
 # -------------------------
@@ -79,54 +79,6 @@ def parse_dt(s: Optional[str]) -> Optional[datetime]:
 def dt_to_grist_date(d: datetime) -> str:
     # Keep it simple: write YYYY-MM-DD into a Date column
     return d.date().isoformat()
-
-
-# -------------------------
-# Grist API client
-# -------------------------
-class GristClient:
-    def __init__(self, server: str, doc_id: str, api_key: str) -> None:
-        self.server = server.rstrip("/")
-        self.doc_id = doc_id
-        self.session = requests.Session()
-        self.session.headers.update({"Authorization": f"Bearer {api_key}"})
-
-    def _url(self, path: str) -> str:
-        return f"{self.server}/api{path}"
-
-    def fetch_records(self, table_id: str) -> List[Dict[str, Any]]:
-        url = self._url(f"/docs/{self.doc_id}/tables/{table_id}/records")
-        r = self.session.get(url, timeout=60)
-        r.raise_for_status()
-        return r.json().get("records", [])
-
-    def add_records(self, table_id: str, records: List[Dict[str, Any]]) -> List[int]:
-        url = self._url(f"/docs/{self.doc_id}/tables/{table_id}/records")
-        payload = {"records": records}
-        r = self.session.post(url, json=payload, timeout=60)
-        if not r.ok:
-            # Print detailed error information
-            print(f"[ERROR] Failed to add records. Status: {r.status_code}")
-            print(f"[ERROR] Response: {r.text}")
-            print(
-                f"[ERROR] Sample record being sent: {records[0] if records else 'None'}"
-            )
-        r.raise_for_status()
-        out = r.json().get("records", [])
-        return [x.get("id") for x in out if "id" in x]
-
-    def patch_records(self, table_id: str, records: List[Dict[str, Any]]) -> None:
-        url = self._url(f"/docs/{self.doc_id}/tables/{table_id}/records")
-        payload = {"records": records}
-        r = self.session.patch(url, json=payload, timeout=60)
-        if not r.ok:
-            # Print detailed error information
-            print(f"[ERROR] Failed to patch records. Status: {r.status_code}")
-            print(f"[ERROR] Response: {r.text}")
-            print(
-                f"[ERROR] Sample record being sent: {records[0] if records else 'None'}"
-            )
-        r.raise_for_status()
 
 
 # -------------------------

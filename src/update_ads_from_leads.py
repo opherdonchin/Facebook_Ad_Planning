@@ -3,45 +3,7 @@ import json
 import sys
 from typing import Any, Dict, List, Optional, Tuple
 
-import requests
-
-
-class GristClient:
-    def __init__(
-        self, doc_id: str, api_key: str, server: str = "https://docs.getgrist.com"
-    ):
-        self.doc_id = doc_id
-        self.server = server.rstrip("/")
-        self.session = requests.Session()
-        self.session.headers.update(
-            {
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            }
-        )
-
-    def _url(self, path: str) -> str:
-        return f"{self.server}/api/docs/{self.doc_id}{path}"
-
-    def fetch_records(self, table_id: str) -> List[Dict[str, Any]]:
-        url = self._url(f"/tables/{table_id}/records")
-        r = self.session.get(url)
-        r.raise_for_status()
-        return r.json().get("records", [])
-
-    def patch_records(self, table_id: str, records: List[Dict[str, Any]]) -> None:
-        if not records:
-            return
-        url = self._url(f"/tables/{table_id}/records")
-        payload = {"records": records}
-        r = self.session.patch(url, json=payload)
-        if not r.ok:
-            print(f"[ERROR] Failed to patch records. Status: {r.status_code}")
-            print(f"[ERROR] Response: {r.text}")
-            if records:
-                print(f"[ERROR] Sample record: {records[0]}")
-        r.raise_for_status()
+from grist.grist import GristClient
 
 
 def _num(x: Any) -> int:
