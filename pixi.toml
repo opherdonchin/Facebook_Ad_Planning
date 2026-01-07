@@ -11,5 +11,6 @@ requests = ">=2.31.0"
 
 [tasks]
 export_ads = "python export_ads.py"
+export_ads_no_attachments = "python export_ads.py --no-attachments"
 sync_leads = "python grist_leads_source.py --fb-export"
 update_ads = "python update_ads_from_leads.py --config config.json"

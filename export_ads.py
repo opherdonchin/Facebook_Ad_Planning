@@ -6,6 +6,7 @@ import tarfile
 import mimetypes
 import hashlib
 import shutil
+import argparse
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 
@@ -320,6 +321,12 @@ class GristExtractor:
 
 # Example usage:
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Export Grist data")
+    parser.add_argument(
+        "--no-attachments", action="store_true", help="Skip downloading attachments"
+    )
+    args = parser.parse_args()
+
     # Load configuration from config.json
     config_file = "config.json"
 
@@ -351,7 +358,7 @@ if __name__ == "__main__":
     # Export everything including attachments
     data = extractor.save_to_json(
         output_file="performance_data.json",
-        download_attachments=True,
+        download_attachments=not args.no_attachments,
         attachments_dir="attachments",
         manifest_file="attachments_manifest.json",
         attachments_tar="attachments.tar",
