@@ -322,13 +322,13 @@ def main() -> None:
     )
     args = ap.parse_args()
 
-    if not os.path.exists(args.config):
-        raise SystemExit(
-            f"Error: {args.config} not found. Copy config.example.json -> config.json and add credentials."
-        )
+    # Load configuration
+    from utils import load_config
 
-    with open(args.config, "r", encoding="utf-8") as f:
-        cfg = json.load(f)
+    try:
+        cfg = load_config(args.config)
+    except FileNotFoundError as e:
+        raise SystemExit(e)
 
     # Read from leads section
     leads_config = cfg.get("leads", {})

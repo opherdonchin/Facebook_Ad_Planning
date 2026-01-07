@@ -22,11 +22,6 @@ def _num(x: Any) -> int:
         return 0
 
 
-def load_config(path: str) -> Dict[str, Any]:
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
 def build_rollup_by_ad(
     rollup_records: List[Dict[str, Any]], cols: Dict[str, str]
 ) -> Dict[str, Dict[str, int]]:
@@ -54,6 +49,8 @@ def main() -> None:
         "--dry-run", action="store_true", help="Print changes but do not patch Grist."
     )
     args = ap.parse_args()
+
+    from utils import load_config
 
     cfg = load_config(args.config)
 

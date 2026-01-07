@@ -43,15 +43,33 @@ class GristClient:
         r.raise_for_status()
         return r.json()["columns"]
 
-    def fetch_records(self, table_id: str) -> List[Dict[str, Any]]:
+    def fetch_records(self, table_id: str, flat: bool = False) -> List[Dict[str, Any]]:
+        """
+        Fetch all records from a table.
+
+        Args:
+            table_id: The ID of the table to fetch.
+            flat: If True, returns [{"id": 1, "col1": "A"}, ...] instead of [{"id": 1, "fields": {"col1": "A"}}, ...].
+        """
         url = self._url(f"/tables/{table_id}/records")
         r = self.session.get(url, timeout=60)
         r.raise_for_status()
-        return r.json().get("records", [])
+        raw_records = r.json().get("records", [])
+
+        if flat:
+            flat_records = []
+            for r in raw_records:
+                item = r.get("fields", {}).copy()
+                item["id"] = r.get("id")
+                flat_records.append(item)
+            return flat_records
+
+        return raw_records
 
     def add_records(self, table_id: str, records: List[Dict[str, Any]]) -> List[int]:
         url = self._url(f"/tables/{table_id}/records")
         payload = {"records": records}
+        print(f"DEBUG: Adding {len(records)} records to {table_id}")
         r = self.session.post(url, json=payload, timeout=60)
         if not r.ok:
             print(f"[ERROR] Failed to add records. Status: {r.status_code}")
@@ -61,6 +79,7 @@ class GristClient:
             )
         r.raise_for_status()
         out = r.json().get("records", [])
+        print(f"DEBUG: Added {len(out)} records")
         return [x.get("id") for x in out if "id" in x]
 
     def patch_records(self, table_id: str, records: List[Dict[str, Any]]) -> None:
@@ -76,6 +95,45 @@ class GristClient:
                 f"[ERROR] Sample record being sent: {records[0] if records else 'None'}"
             )
         r.raise_for_status()
+
+    def delete_records(self, table_id: str, record_ids: List[int]) -> None:
+        if not record_ids:
+            return
+
+        # Use /data/delete endpoint
+        url = self._url(f"/tables/{table_id}/data/delete")
+        print(
+            f"DEBUG: Deleting {len(record_ids)} records from {table_id} via /data/delete"
+        )
+
+        # This endpoint expects a JSON array of IDs
+        # We'll still chunk it to be safe
+        chunk_size = 2000
+        for i in range(0, len(record_ids), chunk_size):
+            chunk = record_ids[i : i + chunk_size]
+            r = self.session.post(url, json=chunk, timeout=60)
+
+            if not r.ok:
+                print(
+                    f"[ERROR] Failed to delete records chunk. Status: {r.status_code}"
+                )
+                print(f"[ERROR] Response: {r.text}")
+            r.raise_for_status()
+
+    def delete_all_records(self, table_id: str) -> None:
+        """Deletes all records in the specified table."""
+        records = self.fetch_records(table_id)
+        if not records:
+            return
+
+        ids = [r["id"] for r in records if "id" in r]
+
+        # Delete in chunks to be safe (though Grist handles large batches well usually)
+        chunk_size = 1000
+        for i in range(0, len(ids), chunk_size):
+            chunk = ids[i : i + chunk_size]
+            print(f"Deleting {len(chunk)} records from {table_id}...")
+            self.delete_records(table_id, chunk)
 
     # ----------------------------------------------------------------------
     # Attachment Helpers
@@ -241,3 +299,16 @@ class GristClient:
                         print(f"    ✗ Failed to download attachment {att_id_str}: {e}")
 
         return attachment_map
+
+    def create_table(self, table_id: str, columns: List[Dict[str, str]]) -> None:
+        """
+        Create a new table with the specified columns.
+
+        Args:
+            table_id: ID of the table to create.
+            columns: List of dicts with 'id' and 'type', e.g. [{'id': 'Name', 'type': 'Text'}]
+        """
+        url = self._url("/tables")
+        payload = {"tables": [{"id": table_id, "columns": columns}]}
+        r = self.session.post(url, json=payload)
+        r.raise_for_status()

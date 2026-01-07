@@ -127,6 +127,8 @@ def save_export(
 
 # Example usage:
 if __name__ == "__main__":
+    from utils import load_config
+
     parser = argparse.ArgumentParser(description="Export Grist data")
     parser.add_argument(
         "--no-attachments", action="store_true", help="Skip downloading attachments"
@@ -134,17 +136,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Load configuration from config.json
-    config_file = "config.json"
-
-    if not os.path.exists(config_file):
-        print(f"Error: {config_file} not found!")
-        print(
-            "Please copy config.example.json to config.json and add your credentials."
-        )
+    try:
+        config = load_config("config.json")
+    except FileNotFoundError as e:
+        print(e)
         exit(1)
-
-    with open(config_file, "r") as f:
-        config = json.load(f)
 
     # Read from ad_tracking section
     ad_config = config.get("ad_tracking", {})
