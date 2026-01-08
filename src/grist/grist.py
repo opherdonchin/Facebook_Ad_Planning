@@ -43,6 +43,30 @@ class GristClient:
         r.raise_for_status()
         return r.json()["columns"]
 
+    def create_columns(self, table_id: str, columns: List[Dict[str, Any]]) -> None:
+        """
+        Create new columns in bulk.
+        columns: [{"id": "col_id", "fields": {"label": "My Col", "type": "Numeric"}}, ...]
+        """
+        if not columns:
+            return
+        url = self._url(f"/tables/{table_id}/columns")
+        payload = {"columns": columns}
+        r = self.session.post(url, json=payload)
+        r.raise_for_status()
+
+    def update_columns(self, table_id: str, columns: List[Dict[str, Any]]) -> None:
+        """
+        Update existing columns in bulk.
+        columns: [{"id": "col_id", "fields": {"type": "Numeric"}}, ...]
+        """
+        if not columns:
+            return
+        url = self._url(f"/tables/{table_id}/columns")
+        payload = {"columns": columns}
+        r = self.session.patch(url, json=payload)
+        r.raise_for_status()
+
     def fetch_records(self, table_id: str, flat: bool = False) -> List[Dict[str, Any]]:
         """
         Fetch all records from a table.

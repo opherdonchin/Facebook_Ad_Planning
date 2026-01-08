@@ -34,6 +34,66 @@ TransformFn = Callable[[Dict[str, ibis.expr.types.Table]], pd.DataFrame]
 # -------------------------
 
 
+def infer_grist_type(series: pd.Series, col_name: str) -> str:
+    """Guess Grist column type from pandas series."""
+    if series.empty:
+        return "Text"
+
+    dtype = str(series.dtype)
+
+    if pd.api.types.is_float_dtype(series):
+        if "CPL" in col_name or "Spend" in col_name:
+            return "Numeric"
+        return "Numeric"
+
+    if pd.api.types.is_integer_dtype(series):
+        # Heuristic: if column name suggests date/time and values are large, maybe DateTime?
+        if "Week" in col_name and series.mean() > 1000000000:
+            return "DateTime"
+        return "Int"
+
+    if pd.api.types.is_bool_dtype(series):
+        return "Bool"
+    
+    if pd.api.types.is_datetime64_any_dtype(series):
+        return "DateTime"
+
+    return "Text"
+
+
+def sync_schema(client: GristClient, table_id: str, df: pd.DataFrame) -> None:
+    """Ensure Grist table has columns matching the DataFrame types."""
+    # Get existing columns
+    try:
+        existing_cols = client.get_table_columns(table_id)
+        existing_ids = {c["id"] for c in existing_cols}
+    except Exception as e:
+        print(f"Warning: Could not fetch schema for {table_id}: {e}")
+        existing_ids = set()
+
+    to_create = []
+    to_update = []
+
+    for col in df.columns:
+        grist_type = infer_grist_type(df[col], col)
+        
+        col_def = {"id": col, "fields": {"type": grist_type}}
+        
+        if col in existing_ids:
+            to_update.append(col_def)
+        else:
+            col_def["fields"]["label"] = col
+            to_create.append(col_def)
+
+    if to_create:
+        print(f"Creating columns in {table_id}: {[c['id'] for c in to_create]}")
+        client.create_columns(table_id, to_create)
+    
+    if to_update:
+        print(f"Updating columns in {table_id}: {[c['id'] for c in to_update]}")
+        client.update_columns(table_id, to_update)
+
+
 def run_transform(
     *,
     input_client: GristClient,
@@ -129,25 +189,23 @@ def run_transform(
 
     # Check if table exists
     existing_tables = [t["id"] for t in output_client.get_tables()]
+    
     if output_table not in existing_tables:
-        print(f"Propagating schema to new table: {output_table}")
-        # Infer schema from dataframe
-        columns = []
-        for col_name, dtype in result_df.dtypes.items():
-            grist_type = "Text"
-            if pd.api.types.is_integer_dtype(dtype):
-                grist_type = "Int"
-            elif pd.api.types.is_float_dtype(dtype):
-                grist_type = "Numeric"
-            elif pd.api.types.is_bool_dtype(dtype):
-                grist_type = "Bool"
-
-            columns.append({"id": col_name, "type": grist_type})
-
-        output_client.create_table(output_table, columns)
-    elif overwrite:
-        print(f"Overwriting table: {output_table}")
-        output_client.delete_all_records(output_table)
+        print(f"Creating new table with typed schema: {output_table}")
+        columns_spec = []
+        for col in result_df.columns:
+            g_type = infer_grist_type(result_df[col], col)
+            columns_spec.append({"id": col, "fields": {"type": g_type, "label": col}})
+        output_client.create_table(output_table, columns_spec)
+        
+    else:
+        # Table exists, ensure columns match types
+        print(f"Syncing schema for existing table: {output_table}")
+        sync_schema(output_client, output_table, result_df)
+        
+        if overwrite:
+            print(f"Overwriting table: {output_table}")
+            output_client.delete_all_records(output_table)
 
     # Wrap for Grist API: {col: val} -> {"fields": {col: val}}
     # Convert NaNs to None for JSON compliance
