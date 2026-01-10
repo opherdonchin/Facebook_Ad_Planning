@@ -477,12 +477,11 @@ TRANSFORMS: Dict[str, TransformSpec] = {
             "leads": {
                 "id": "id",
                 "Campaign": "Campaign",
-                "Ad Name": "Ad",
+                "Ad_name": "Ad",
                 "Status": "Status",
             },
             "events": {
-                # IMPORTANT: adjust raw column names if they differ in your doc
-                "Lead": "Lead_id",
+                "Name": "Lead_id",
                 "Event": "Event",
             },
         },

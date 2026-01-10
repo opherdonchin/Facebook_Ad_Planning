@@ -1,5 +1,123 @@
 # Weekly Decision Log
 
+## Week 2026-W2
+
+### Context and timing
+
+* **Latest completed data week assessed:** 2026-W1
+* **Decision week planned:** 2026-W2
+* **Ads launched:** Saturday evening
+
+Operational note:
+
+* From **Thursday through Saturday**, before this decision cycle was fully organized, the following ads continued running:
+
+  * **Men:** Mens Ad A, Mens Ad B
+  * **Women:** Womens Ad A, Womens Ad D
+* This overlap is documented to avoid confusion when interpreting partial‑week performance.
+
+---
+
+### Ads running in 2026-W2
+
+* **Men:** Mens Ad A (kept), Mens Ad N (shuffle)
+* **Women:** Womens Ad N (shuffle), Womens Ad O (new text)
+
+---
+
+### Evidence considered
+
+* Weekly and run‑level performance from `performance_data.json` for 2026-W1
+* Lifetime ad‑level and tag‑level rollups
+* Recent delivery behavior and low‑sample constraints
+
+---
+
+### Decisions
+
+**Keep**
+
+* **Mens Ad A** retained as the anchor ad based on strong weekly and run‑level CPL.
+
+**Shuffle (existing materials only)**
+
+* **Mens Ad N**: new combination of existing media, headline, and text.
+* **Womens Ad N**: new combination of existing media, headline, and text.
+
+**New material (one ad only)**
+
+* **Womens Ad O**: new headline and new primary text paired with existing illustrated calm poster media.
+
+---
+
+### Rationale
+
+**Mens Ad A (kept, unchanged)**
+
+* Mens Ad A was retained without modification because it is the only ad that met *both* weekly and run‑level performance criteria with sufficient signal.
+* Its media, headline, and text have repeatedly delivered low CPL across multiple weeks, making it the most reliable anchor for the men’s campaign.
+* No creative changes were introduced here in order to preserve continuity and to ensure that any changes in overall portfolio performance can be attributed to the exploratory ads rather than disruption of the baseline.
+
+**Mens Ad N (shuffle: media + headline + text)**
+
+* Mens Ad N was created as a **pure reshuffle** of existing components rather than a new-material experiment.
+* **Media:** `Dojo_Action_LineArt_Male.png` (existing illustrated dynamic throw; acceptable lifetime CPL; no suppression signals).
+* **Headline:** "כוח רגוע מבפנים" (existing men’s headline with strong historical performance).
+* **Text:** `Mens_Text_CalmStrength_v2` (existing men’s text emphasizing grounded control and calm strength).
+* These components were each previously validated in other combinations but had not been paired together.
+* This reshuffle explicitly tests *interaction effects* between known components while minimizing risk in a campaign anchored by Mens Ad A.
+
+**Womens Ad N (shuffle: media + headline + text)**
+
+* Womens Ad N serves as the women’s-campaign analogue of Mens Ad N: a low-risk exploratory reshuffle using only existing materials.
+* **Media:** `Dojo_Instruction_FemalePair.png` (existing instructional photo; neutral delivery; semantically flexible).
+* **Headline:** "תנועה שמרגישה נכון" (existing women’s headline with stable historical CPL).
+* **Text:** `Womens_Text_GentlePractice_v1` (existing supportive, non-competitive framing).
+* The goal of this reshuffle is to maintain strong semantic alignment while testing a new combination that has not previously been run.
+* This ad provides incremental learning without consuming the single weekly allowance for new material.
+
+**Womens Ad O (new text + headline, existing media)**
+
+* Womens Ad O is the **only ad this week containing new material**, consistent with the weekly constraint.
+* **Media:** `Illustrated_Calm_Poster_Female.png` (existing illustrated calm poster; low energy; visually distinct; no recent overuse).
+* **New headline:** "מרחב שקט לעצמך" (new; hook = stress / mental load; promise = personal calm; tone = reassuring).
+* **New text:** `Womens_Text_CalmPermission_v1`
+
+  * Opening line: "מקום לנשום. לא צריך למהר"
+  * Structure: checklist (three parallel bullets)
+  * Desire bullets:
+
+    * 🌿 תנועה רגועה שמכבדת את הגוף
+    * 🌿 אימון רך, תומך ולא תחרותי
+    * 🌿 מרחב בטוח לעצור רגע בתוך השבוע
+  * CTA: "לחצי לפרטים ולהתנסות בשיעור היכרות בלי התחייבות"
+* This configuration reflects the hypothesis that recent underperformance in the women’s campaign is driven primarily by **copy fatigue** rather than media failure, and that explicitly permissive calm copy is better matched to this visual than instructional imagery.
+
+**Abandoned alternative (documented explicitly)**
+
+* The preferred initial plan was to pair the **Dojo_Instruction_FemalePair** image with a new headline and text.
+* This plan was abandoned because the image had already been posted earlier in the same week, violating the creative‑uniqueness rule.
+* As a result, Dojo_Instruction_FemalePair was retained only in a shuffled configuration, and the new copy was reassigned to the illustrated calm poster.
+
+Only one ad includes new material, in line with exploration constraints.
+
+---
+
+### What would change this decision next week
+
+* Any ad producing **<50 ILS CPL over ≥3 leads** becomes a keep candidate.
+* Sustained **>65 ILS CPL over ≥3 leads** triggers replacement.
+* Clear evidence of media–copy mismatch or delivery suppression may trigger media rotation.
+
+---
+
+### Confidence level
+
+**Moderate–high confidence.**
+
+Decisions balance stability with a single, well‑scoped exploratory change under noisy, low‑budget conditions.
+
+
 ## Week 2026-W1
 
 ### Context

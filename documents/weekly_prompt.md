@@ -1,126 +1,230 @@
-# Note to the human
+# Weekly Prompt for processing facebook ads
 
-This prompt assume that you are uploading
+This prompt is pasted in every week to process data on previous ad runs and plan the ad run for the coming week.
+
+## Assumed uploads (hard stop if violated)
+
+This prompt assumes that the following files are uploaded. If they have not all been uploaded, **stop processing, notify the user, and wait for instructions**. Verify that each file can actually be read. Make sure that you have read each file and processed it and notify the user that it has been succesfully processed.
 
 1. `performance_data.json`
 2. `attachments_manifest.json`
 3. `attachments.tar`
 4. `decision_log.md`
 
-You should probably go over `PROJECT_GUIDE.md` and see that it still aligns with your intentions, potentially updating it and replacing the document in the project files.
+We have encountered past situations witht his process where agents made decisions without checking actual file contents. Thus, it is important to make extra sure that the information is up to date. 
 
-# Goals for this conversation
+You should also review `PROJECT_GUIDE.md` to confirm alignment with current intentions, updating it if necessary.
 
-Your output should be structured so as to address the following goals. You can give section headings according to the highlighted text in each item.
+---
+
+## Mandatory clarifications (read before analysis)
+
+1. **Week disambiguation is mandatory**
+
+   * Explicitly distinguish between:
+
+     * (a) the **latest completed data week** (being assessed)
+     * (b) the **decision week** (being planned)
+     * (c) the **current contiguous run** for each ad
+   * These must never be conflated.
+
+2. **Separate processing from output**
+
+   * Put all thought processes and interim conclusions in the chat. Use a discursive, conversational format designed to give insight rather than support conclusions.
+   * Actual output should go in canvases. These are specified in the **Required output** section below.
+   * Keep processing and outputs separate.  
+
+3. **Creative uniqueness per week**
+
+   * In a given week, the **same media, headline, or primary text may not appear in more than one ad of a campaign**
+
+4. **New‑material constraint**
+
+   * **At most one ad per week may contain new material** (new headline, new text, or new media).
+   * Up to **two additional ads** may:
+     * shuffle existing materials, or
+     * reuse a previously run ad that is not currently active.
+
+5. **Media provenance requirement**
+
+   * Any existing media used must:
+
+     * correspond to a **specific file in `attachments.tar`**, and
+     * be referenced using its canonical name from `attachments_manifest.json`.
+
+6. **Image–text semantic check (mandatory)**
+
+   * Before proposing or finalizing any ad, verify that the **actual image content** (not just its tags or filename) matches the proposed headline and text.
+   * If there is a mismatch, flag it and revise.
+
+7. **Tag reuse discipline**
+
+   * Before assigning hooks, promises, tone, or structure, review existing tag tables in `performance_data.json`, including:
+
+     * `Hook_types`
+     * existing headline/text tag assignments
+     * `Derived_Tag_Lifetime_Rollups`
+   * New tags should be introduced **only if no existing tag fits**, and must be explicitly marked as new.
+
+8. **Formatting requirements for new text**
+
+   * New text must follow the agreed AIDA structure:
+
+     * **A**: Attention → carried primarily by the image
+     * **I**: Interest → headline + first line
+     * **D**: Desire → exactly three bullet points
+     * **A**: Action → explicit, low‑pressure CTA
+   * Bullet points must be parallel in structure.
+   * Emojis are allowed only if calm, neutral, and consistent.
+
+---
+
+## Goals for this conversation
+
+Work sequentially. Use chat for reasoning and interim decisions; place finalized outputs in canvases using the specification in **Required outputs**
 
 1. **Assess** performance from the previous week
-2. **Highlight new** or suprising information
+2. **Highlight new** or surprising information
 3. Restate **current understanding** in light of new information
 4. Make **keep decisions** based on previous week information
-5. Make **change decisions** based on ad lifetime information
-6. Generate **decision log** section to be pasted into the decision log in order to maintain trackable history
-7. **Summarize** all important points made for easy reference for the human
+5. Make **change decisions** based on ad lifetime information and constraints
+6. Generate a **decision‑log entry**
+7. **Summarize** key points for the human decision‑maker
 
-## **Assess** performance from the previous week
+---
 
-- Go over the data in `performance_data.json` and the decision log to determine the latest week for which we have information
-- Find the 4 ads that ran that week
-- Prepare an output table summarizing the performance of those 4 ads. The table should include: weekly exposure, spend, and cost per lead; lifetime weeks, spend, and cost per lead; and lifetime conversion, registraiton, and failure percentages.
+## Assess performance from the previous week
 
-## **Highlight new** or suprising information
+* Determine the latest completed week using `performance_data.json` and `decision_log.md`
+* Identify ads with spend or leads in that week
+* For each such ad, summarize:
 
-* Go over the previous weeks performance table, the `performance_data.json` file, and the decision log and assess whether any of the results in the output table are surprising, unexpected, or important given previous performance, previous decision rationals, and previous decisions.
-* Summarize your conclusions in a concise bullet point list. Try to keep each point to a single sentence, but use two if necessary for clarity. Assume I will ask about things that I don't understand, so when in doubt lean towards more concise.
+  * weekly spend and CPL
+  * run‑level spend and CPL
+  * lifetime spend and CPL
 
-# Restate **current understanding** in light of new information
+* If more than four ads show activity:
 
-- Summarize your current undersatnding of what know:
-  - About ads that work and don't work and what works and doesn't work about them
-  - About tags that work and don't work and combinations that seem particularly successful
-  - About headlines that work and don't work
-  - About texts that work and don't work
-  - About media that works and doesn't work
-  - About particular pairs of headlines, texts, and media that are notably successful or unsuccessful
-- Each of these should be a table with one entry per ad, tag, combination, headline, text, media, or pair
-- Each table should allow only one reasonable length line per item. This should include a brief justificaiton of why we know what we know, but not to exceed one line it total for the entire entry.
-- The should be a justification for each line
-- The tables do not need to be exhaustive. Information about which we have limited confidence can simply be left out of the table.
+  * Identify the four **intentionally run** ads using spend magnitude and the decision log
+  * If intent is unclear or contradictory, **stop and ask for clarification**
 
-# Make **keep decisions** based on previous week information
+---
 
-- Keep ads whose previous weeks CPL was less than 50
-- If there were no leads or the CPL is greater than 50
-  - Look at the table with the latest runs in `performace_data.json`
-  - Keep ads whose combined CPL this run is less than 50
-  - Keep ads whose combined spend this run is less than 80
-- Always keep at least one ad, even if all 4 do not match the criteria.
-  - Choose the one with the best chance of performing well in the next cycle.
+## Highlight new or surprising information
 
-# Make **change decisions** based on ad lifetime information
+* Compare results against:
 
-- We will need new ads for every ad that was not kept
-- If we are placing up to 2 ads
-  - Use existing materials shuffled in a new way
-    - Choose combinations that seem likely to be successful given past performance in ads and past combinations
-    - Don't repeat a combination of materials that already exists in another ad
-    - In each campaign put materials that are appropriate for that campaign or neutral
-- If we are placing 3 ads, one should include new materials
-  - Alternate new text (headline and text) with new media
-  - For new text
-    - Pick media that is likely to be successful
-    - Use it as an inspiration for new text (headline and text) that is as different as possible from existing text and very likely to be successful
-    - Suggest hooks, promises, structure, and tone so that they can be easily added to the database
-  - For new media
-    - Pick a headline / text combination that is likely to be successful
-      - It can be an existing combination or a new one
-    - Pick two existing media that might work well with this combination
-    - Explain what variations on the existing media we should look for in the new media
-    - Suggest media style and energy that would be good fits
+  * previous weeks
+  * prior decision rationales
+* Label each notable event as:
 
-# Required outputs (every week)
+  * *possibly noise*
+  * *actionable observation*
+  * *learning signal*
+
+---
+
+## Restate current understanding
+
+Summarize what is currently known about:
+
+* Ads
+* Tags and tag combinations
+* Headlines
+* Texts
+* Media
+* Notable headline–text–media combinations
+
+Each category of interest should be considered briefly, but if component‑level effects cannot be isolated, they may be 
+omitted to avoid being overly influenced by speculation. 
+
+---
+
+## Make keep decisions
+
+* Keep ads with **weekly CPL < 50**
+* If an ad has no leads or if its CPL ≥ 50:
+
+  * Check current run CPL and current run spend 
+    * Keep ads with current run CPL < 50 or ads with current run spend < 80
+* Always keep **at least one ad**
+
+---
+
+## Make change decisions
+
+* Every non‑kept ad must be replaced
+* Base change decisions on lifetime information
+  * Review tables of lifetime performance for ads and components and tags
+  * Review summary of current understanding
+* Apply the new‑material constraint strictly: maximum of one ad with new content.
+  * If three is new material, check decision log
+    * If last new material was text, use new media
+    * If last new material was media, use new text
+* Each change must be to one of the following (described in detail below):
+  * Previously used ad
+  * Reshuffled content
+  * New text
+  * New media
+
+### Previously used ad
+
+* Only if the ad performed reasonably in the past
+* And has not been used in at least 6 weeks
+
+### Reshuffled content
+
+* Choose one media, one headline, and one text that are likely to work together
+* Do not use a combination that has been used before
+
+### New text
+
+* Choose an existing media asset likely to succeed
+* Create both new text and new headline to match it
+* Ensure image–text alignment
+* Specify hook, promise, tone, structure, and grammar using tags. 
+  * Review both tag taxonomy and tag list tables and actual tag use in performance_data.json before choosing.
+  * Use existing tags if appropriate.
+  * Expand tags list where it is appropriate but make sure to flag this and explain.
+
+### New media
+
+* Choose existing headline + text
+  * Can be an existing combination or a new combination
+* Use two existing media as inspiration
+  * Can be media used with these headline and text or different existing media
+* Explain how new media might differ from the inspiration
+* Suggest tags for the new media to help convey the idea
+
+---
+
+## Required outputs (every week)
+
+All outputs must be placed in a canvas and formatted in Markdown.
 
 ### 1) Performance summary
-
-* Table
-
-  * Creative combo → Spend, Leads, CPL
-  * Week‑over‑week CPL deltas where applicable
-  * Explicit flags for:
-
-    * low sample size
-    * Meta suppression / non‑delivery
-* Summary
-
-  * Key points that are important, surprising, or unexpected.
+* Table of spend, leads, cpl and week over week detlas
+* Explicit flags for low sample size or low delivery
+* Summary of ke ypoints that are improtant, surprising or unexpected.
 
 ### 2) Summary of current situation
-
-- Bullet points of key understandings to be used in planning and decisions
-- Separate sections: Key things for agent to remember; key things for human to notice.
+* Bullet points of key undersatndings to be used in planning and decisions
+* Separate setions with key things for agent to remember and key things for human to notice
 
 ### 3) Key decisions
+* Tables with one line per item
+* Tables:
+  * Ads to keep
+  * Ads generated from existing materials
+  * Ads generated with new material
+* Make sure to specify tags and brief justificaiton 
+  * Although everything must fit on one reasonably sized line
+* For new media specify
+  * Inspiration media
+  * Suggested variation
+  * Suggested tag
+  * 
 
-- Table of ads to keep
-  - Name
-  - Campaign
-  - Media, headline, and text in the ad
-  - Tags: media style, media energy, hooks, promises, tone, structure, gendered grammar and target
-- Table of ads generated from existing materials (if we have them)
-  - Name of new ad
-  - Campaign
-  - Media, headline, and text to combine
-  - Tags: media style, media energy, hooks, promises, tone, structure, gendered grammar and target
-- Summary of new ad to generate (if we have one)
-  - Name of new ad
-  - Campaign
-  - Existing content
-    - Media, headline, and/or text to combine
-    - Tags: media style, media energy, hooks, promises, tone, structure, gendered grammar and/or target
-  - New content to generate
-    - If headline and text:
-      - Suggested headline and text
-      - Tags
-    - If media
-      - Existing media to use as inspiration
-      - Suggestion for how to vary it
-      - Suggested tags for new media
+### 4) Decision‑log entry
+
+

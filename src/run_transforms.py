@@ -142,6 +142,11 @@ def run_transform(
 
     for alias, records in raw_tables.items():
         df = pd.DataFrame(records)
+        
+        # Infer better dtypes from the data
+        # This is especially important for Grist reference columns
+        # which come as integers but pandas infers as object
+        df = df.infer_objects()
 
         # 2b. Apply select_rename immediately if configured
         # This prevents loading unused/complex columns (like Reference Lists) into DuckDB/Ibis
@@ -158,6 +163,36 @@ def run_transform(
             # Select only keys that exist
             valid_keys = [k for k in mapping.keys() if k in available_cols]
             df = df[valid_keys].rename(columns=mapping)
+            
+            # Re-infer types after selecting columns
+            df = df.infer_objects()
+
+        # Convert remaining object dtype columns to their proper types
+        # This is needed for reference columns from Grist which come as integers
+        for col in df.select_dtypes(include=['object']).columns:
+            # Check if all non-null values are integers
+            sample = df[col].dropna()
+            if len(sample) > 0:
+                # Check first few values to determine type
+                sample_values = sample.head(min(100, len(sample))).tolist()
+                # Check if all are integers (not bools, which are subclass of int in Python)
+                is_int_list = [isinstance(x, int) and not isinstance(x, bool) for x in sample_values]
+                is_int = all(is_int_list)
+                
+                if is_int:
+                    # All sampled values are integers - convert to int64
+                    print(f"  Converting {alias}.{col} from object to int64")
+                    df[col] = df[col].astype('int64')
+                else:
+                    # Check if mostly integers (common for reference columns with some invalid refs)
+                    true_count = sum(is_int_list)
+                    if true_count / len(is_int_list) > 0.8:  # 80% integers
+                        print(f"  {alias}.{col} is mostly integers ({true_count}/{len(is_int_list)}), converting with coercion")
+                        df[col] = pd.to_numeric(df[col], errors='coerce').astype('Int64')  # Nullable int
+                    else:
+                        # Convert to string to ensure compatibility with PyArrow
+                        print(f"  Converting {alias}.{col} from object to string")
+                        df[col] = df[col].astype(str)
 
         # con.register(alias, df)
         # ibis_tables[alias] = ibis_con.table(alias)
@@ -248,25 +283,57 @@ if __name__ == "__main__":
         default="test",
         help="Config profile to use (e.g., 'test', 'ad_tracking'). Defaults to 'test'.",
     )
+    parser.add_argument(
+        "--input-profile",
+        help="Config profile to read input tables from (defaults to --profile)",
+    )
+    parser.add_argument(
+        "--output-profile",
+        help="Config profile to write output table to (defaults to --profile)",
+    )
     args = parser.parse_args()
 
-    # Load config and initialize client ONCE
+    # Load config
     config = load_config("config.json")
-    profile_config = config.get(args.profile)
-
-    if not profile_config:
-        raise ValueError(f"Profile '{args.profile}' not found in config.json")
-
-    doc_id = profile_config.get("doc_id")
-    api_key = profile_config.get("api_key")
-    server = profile_config.get("server", "https://docs.getgrist.com")
-
-    if not doc_id or not api_key:
+    
+    # Determine input and output profiles
+    input_profile_name = args.input_profile or args.profile
+    output_profile_name = args.output_profile or args.profile
+    
+    # Get input profile config
+    input_profile_config = config.get(input_profile_name)
+    if not input_profile_config:
+        raise ValueError(f"Input profile '{input_profile_name}' not found in config.json")
+    
+    input_doc_id = input_profile_config.get("doc_id")
+    input_api_key = input_profile_config.get("api_key")
+    input_server = input_profile_config.get("server", "https://docs.getgrist.com")
+    
+    if not input_doc_id or not input_api_key:
         raise ValueError(
-            f"Config profile '{args.profile}' must include doc_id and api_key"
+            f"Input profile '{input_profile_name}' must include doc_id and api_key"
         )
-
-    client = GristClient(doc_id=doc_id, api_key=api_key, server=server)
+    
+    input_client = GristClient(doc_id=input_doc_id, api_key=input_api_key, server=input_server)
+    
+    # Get output profile config
+    output_profile_config = config.get(output_profile_name)
+    if not output_profile_config:
+        raise ValueError(f"Output profile '{output_profile_name}' not found in config.json")
+    
+    output_doc_id = output_profile_config.get("doc_id")
+    output_api_key = output_profile_config.get("api_key")
+    output_server = output_profile_config.get("server", "https://docs.getgrist.com")
+    
+    if not output_doc_id or not output_api_key:
+        raise ValueError(
+            f"Output profile '{output_profile_name}' must include doc_id and api_key"
+        )
+    
+    output_client = GristClient(doc_id=output_doc_id, api_key=output_api_key, server=output_server)
+    
+    # For backwards compatibility, still use single profile_config for input table overrides
+    profile_config = input_profile_config
 
     # Run each requested transform
     for name in args.transform_names:
@@ -276,7 +343,9 @@ if __name__ == "__main__":
             print(f"[ERROR] Unknown transform: '{name}'. Available: {available}")
             continue
 
-        print(f"\n[{name}] Running transform (profile: {args.profile})...")
+        print(f"\n[{name}] Running transform...")
+        print(f"  Input:  {input_profile_name} (doc: {input_doc_id})")
+        print(f"  Output: {output_profile_name} (doc: {output_doc_id})")
 
         # Allow config to override input table IDs (e.g. for different envs)
         # Registry has defaults (e.g. "perf" -> "Test_ad_performance")
@@ -289,9 +358,9 @@ if __name__ == "__main__":
 
         try:
             run_transform(
-                input_client=client,
+                input_client=input_client,
                 input_tables=input_tables,
-                output_client=client,
+                output_client=output_client,
                 output_table=spec.output_table,
                 transform=spec.transform,
                 overwrite=spec.overwrite,
