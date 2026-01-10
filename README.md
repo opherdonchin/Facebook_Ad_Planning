@@ -125,6 +125,37 @@ The script will:
 [DONE] Updated 44 existing leads.
 ```
 
+## Weekly Workflow
+
+To update the system with the latest data each week, follow these steps:
+
+1. **Download Leads**: Download the leads export from Facebook Ads Manager (see "Downloading Facebook Leads" section above).
+
+2. **Sync Leads**: Import the leads into the Grist Leads table.
+   ```bash
+   pixi run sync_leads "path/to/facebook_leads.csv"
+   ```
+
+3. **Update Ad Stats**: Update the Ads table in Grist with lead counts.
+   ```bash
+   pixi run update_ads
+   ```
+
+4. **Run Transforms**: Update the derived metrics tables in Grist.
+   Ensure you have the `ad_tracking` profile configured in `config.json`.
+   ```bash
+   # Update derived tables from ad performance data
+   pixi run transform_weekly
+   ```
+
+   This runs the following transforms:
+   - `weekly_metrics_prod`: Weekly performance metrics by campaign and ad
+   - `lifetime_ad_metrics_prod`: Lifetime aggregate metrics for each ad
+   - `last_contiguous_run_ad_metrics_prod`: Metrics for the most recent contiguous run of each ad
+   - `tag_lifetime_rollups_prod`: Lifetime metrics aggregated by creative tags
+
+   **Note**: The `lifetime_ad_conversions_prod` transform requires data from both the `ad_tracking` and `leads` documents. If you need to run it, ensure your config has both profiles configured and the transform's input tables are properly mapped.
+
 ## Usage
 
 ### Basic Export

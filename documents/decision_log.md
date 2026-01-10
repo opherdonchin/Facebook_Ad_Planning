@@ -1,5 +1,57 @@
 # Weekly Decision Log
 
+## Week 2026-W1
+
+### Context
+
+* Latest completed data week in export: **2025-W52.
+* Campaign changes executed late in the week → expected **low volume and noisy CPLs**.
+
+### Active Portfolio (Entering Week)
+
+* **Women:** Womens Ad A, Womens Ad J
+* **Men:** Mens Ad A, Mens Ad B
+* **Operational note:** Womens Ad J showed **no delivery** (0 spend).
+
+### Evidence Considered
+
+* All active ads were **low sample size (≤2 leads)**; weekly CPLs not considered decisive.
+* Lifetime CPL leaders remain:
+
+  * Womens Ad A (~37 ILS)
+  * Mens Ad B (~38 ILS)
+* Tag rollups show **consistent signal** favoring:
+
+  * **Photo – Outside** media
+  * **Calm** energy
+* Womens Ad J exhibited **delivery collapse**, treated as an operational issue rather than a performance signal.
+
+### Decisions
+
+* **Keep** Mens Ad A unchanged.
+* **Keep** Mens Ad B unchanged despite weak weekly CPL (treated as noise).
+* **Keep** Womens Ad A as baseline women’s creative.
+* **Pause / remove** Womens Ad J due to non-delivery.
+* **Reactivate** Womens Ad D as second women’s slot.
+
+### Rationale
+
+* Weekly CPL fluctuations interpreted as noise under low volume.
+* Portfolio stability prioritized to allow signal accumulation.
+* Womens Ad J swap driven by delivery integrity, not by learning conclusions.
+
+### Deferred Actions
+
+* No new creative generation this week.
+* No recombination of text/headline/media components.
+* Reason: iteration space not exhausted and insufficient evidence to justify exploration.
+
+### Re-evaluation Triggers (Next Week)
+
+* If **Mens Ad A or B** exceed **60–65 ILS CPL over ≥3 leads**, reassess men’s portfolio.
+* If **Womens Ad A or D** exceed **~65 ILS CPL over ≥3 leads**, reassess women’s portfolio.
+* If delivery collapses again on baseline ads, consider **Media Seed 1**.
+
 ## Week 2025-W52 — 2026-01-02
 
 ### Context snapshot
@@ -36,15 +88,12 @@
 * **Men:** No change.
 
   * Continue **Mens Ad A** and **Mens Ad B** unchanged.
-
 * **Women:** Rotate portfolio.
 
   * Remove **Womens Ad D**.
   * Activate **Womens Ad J** in its original configuration.
   * Keep **Womens Ad A** unchanged.
-
 * No new creatives generated.
-
 * No recombination of text, headline, or media components.
 
 ---
@@ -87,7 +136,6 @@
 **High confidence.**
 
 Decision is conservative, evidence‑aligned, and consistent with stability‑first portfolio management.
-
 
 ## Week 2025-W51 2025-12-24
 

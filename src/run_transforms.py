@@ -54,7 +54,7 @@ def infer_grist_type(series: pd.Series, col_name: str) -> str:
 
     if pd.api.types.is_bool_dtype(series):
         return "Bool"
-    
+
     if pd.api.types.is_datetime64_any_dtype(series):
         return "DateTime"
 
@@ -76,9 +76,9 @@ def sync_schema(client: GristClient, table_id: str, df: pd.DataFrame) -> None:
 
     for col in df.columns:
         grist_type = infer_grist_type(df[col], col)
-        
+
         col_def = {"id": col, "fields": {"type": grist_type}}
-        
+
         if col in existing_ids:
             to_update.append(col_def)
         else:
@@ -88,7 +88,7 @@ def sync_schema(client: GristClient, table_id: str, df: pd.DataFrame) -> None:
     if to_create:
         print(f"Creating columns in {table_id}: {[c['id'] for c in to_create]}")
         client.create_columns(table_id, to_create)
-    
+
     if to_update:
         print(f"Updating columns in {table_id}: {[c['id'] for c in to_update]}")
         client.update_columns(table_id, to_update)
@@ -189,7 +189,7 @@ def run_transform(
 
     # Check if table exists
     existing_tables = [t["id"] for t in output_client.get_tables()]
-    
+
     if output_table not in existing_tables:
         print(f"Creating new table with typed schema: {output_table}")
         columns_spec = []
@@ -197,12 +197,12 @@ def run_transform(
             g_type = infer_grist_type(result_df[col], col)
             columns_spec.append({"id": col, "fields": {"type": g_type, "label": col}})
         output_client.create_table(output_table, columns_spec)
-        
+
     else:
         # Table exists, ensure columns match types
         print(f"Syncing schema for existing table: {output_table}")
         sync_schema(output_client, output_table, result_df)
-        
+
         if overwrite:
             print(f"Overwriting table: {output_table}")
             output_client.delete_all_records(output_table)
@@ -239,10 +239,9 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Run Grist transforms.")
     parser.add_argument(
-        "transform_name",
-        nargs="?",
-        default="weekly_metrics",
-        help="Name of the transform to run (defined in transforms.py)",
+        "transform_names",
+        nargs="+",
+        help="Name(s) of the transform to run (defined in transforms.py)",
     )
     parser.add_argument(
         "--profile",
@@ -251,16 +250,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    spec = TRANSFORMS.get(args.transform_name)
-    if not spec:
-        available = ", ".join(TRANSFORMS.keys())
-        raise ValueError(
-            f"Unknown transform: '{args.transform_name}'. Available: {available}"
-        )
-
-    print(f"Running transform: {spec.name} (profile: {args.profile})")
-
-    # Load config and initialize client
+    # Load config and initialize client ONCE
     config = load_config("config.json")
     profile_config = config.get(args.profile)
 
@@ -278,21 +268,38 @@ if __name__ == "__main__":
 
     client = GristClient(doc_id=doc_id, api_key=api_key, server=server)
 
-    # Allow config to override input table IDs (e.g. for different envs)
-    # Registry has defaults (e.g. "perf" -> "Test_ad_performance")
-    # Config can have "inputs": { "perf": "Weekly_runs" }
-    input_tables = spec.input_tables.copy()
-    config_inputs = profile_config.get("inputs", {})
-    if config_inputs:
-        input_tables.update(config_inputs)
-        print(f"Overriding input tables from config: {config_inputs}")
+    # Run each requested transform
+    for name in args.transform_names:
+        spec = TRANSFORMS.get(name)
+        if not spec:
+            available = ", ".join(TRANSFORMS.keys())
+            print(f"[ERROR] Unknown transform: '{name}'. Available: {available}")
+            continue
 
-    run_transform(
-        input_client=client,
-        input_tables=input_tables,
-        output_client=client,
-        output_table=spec.output_table,
-        transform=spec.transform,
-        overwrite=spec.overwrite,
-        select_rename=spec.select_rename,
-    )
+        print(f"\n[{name}] Running transform (profile: {args.profile})...")
+
+        # Allow config to override input table IDs (e.g. for different envs)
+        # Registry has defaults (e.g. "perf" -> "Test_ad_performance")
+        # Config can have "inputs": { "perf": "Weekly_runs" }
+        input_tables = spec.input_tables.copy()
+        config_inputs = profile_config.get("inputs", {})
+        if config_inputs:
+            input_tables.update(config_inputs)
+            print(f"[{name}] Overriding input tables from config: {config_inputs}")
+
+        try:
+            run_transform(
+                input_client=client,
+                input_tables=input_tables,
+                output_client=client,
+                output_table=spec.output_table,
+                transform=spec.transform,
+                overwrite=spec.overwrite,
+                select_rename=spec.select_rename,
+            )
+            print(f"[{name}] Completed successfully.")
+        except Exception as e:
+            print(f"[{name}] FAILED: {e}")
+            import traceback
+
+            traceback.print_exc()

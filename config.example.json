@@ -1,6 +1,6 @@
 {
-  "ad_planning": {
-    "doc_id": "your_ad_planning_document_id_here",
+  "ad_tracking": {
+    "doc_id": "your_ad_tracking_document_id_here",
     "api_key": "your_api_key_here",
     "server": "https://docs.getgrist.com"
   },
