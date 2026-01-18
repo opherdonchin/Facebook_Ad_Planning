@@ -1,5 +1,41 @@
 # Weekly Decision Log
 
+## 2026‑W03 plan (assessed week: 2026‑W02)
+
+### Week disambiguation
+
+- **Assessed week:** 2026‑W02
+- **Decision week (planned):** 2026‑W03
+- **Contiguous runs (as of assessed week end):**
+  - Mens Ad A: 2025‑W52 → 2026‑W02 (3 weeks)
+  - Mens Ad N: 2026‑W02 → 2026‑W02 (1 week)
+  - Womens Ad N: 2026‑W02 → 2026‑W02 (1 week)
+  - Womens Ad O: 2026‑W02 → 2026‑W02 (1 week)
+
+### What happened in 2026‑W02
+
+- All four ads delivered meaningful spend (≈48–81 ILS), but **lead counts were low everywhere (1–2 leads/ad)**.
+- Mens Ad A showed a **weekly CPL spike (80.7)**, but this was based on **1 lead**; its **current-run CPL remains strong (33.8 over 8 leads)**.
+- Womens Ad O produced the best weekly CPL (**23.8 on 2 leads**) with clean image–text alignment.
+
+### Decision for 2026‑W03
+
+**Keep all four currently active ads** (no replacements required this week; preserve new‑material budget).
+
+- **Mens Ad A** — Media: `Shihonage_MF_Dojo_Photo__A.png` (attachment_id=27; sha256=6f84d2a4…) — keep due to strong run-level CPL despite noisy week.
+- **Mens Ad N** — Media: `Outside_Sunset_MM_Kaitenage_photo__B.png` (attachment_id=28; sha256=ef37e601…) — keep; early signal is good and outside-photo media performs well in lifetime rollups.
+- **Womens Ad N** — Media: `Dojo_Instruction_FemalePair.png` (attachment_id=53; sha256=db735aa7…) — keep; early, low-sample run and spend below strong evidence threshold.
+- **Womens Ad O** — Media: `Illustrated_Calm_Poster_Female.png` (attachment_id=38; sha256=97ddbb5d…) — keep; strongest weekly CPL in W02.
+
+### Data hygiene / learning notes
+
+- **Tag integrity risk:** at least one media asset appears to have a Media_Style tag inconsistent with the actual image (e.g., a dojo photo tagged as “Illustration - Poster”). Component/tag learning should be treated cautiously until corrected.
+
+### What would change this decision next week
+
+- If delivery collapses (sharp spend/impressions drop) for a baseline ad, consider a controlled reshuffle.
+- If tag-based decisions are desired, prioritize fixing obvious Media_Style / Media_Energy tag mismatches first.
+
 ## Week 2026-W2
 
 ### Context and timing

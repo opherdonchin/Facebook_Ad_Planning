@@ -146,7 +146,8 @@ omitted to avoid being overly influenced by speculation.
 * If an ad has no leads or if its CPL ≥ 50:
 
   * Check current run CPL and current run spend 
-    * Keep ads with current run CPL < 50 or ads with current run spend < 80
+    * Keep ads with current run CPL < 40 
+    * Keep ads with current run spend < 80
 * Always keep **at least one ad**
 
 ---
@@ -226,5 +227,4 @@ All outputs must be placed in a canvas and formatted in Markdown.
   * 
 
 ### 4) Decision‑log entry
-
 
