@@ -127,34 +127,137 @@ The script will:
 
 ## Weekly Workflow
 
-To update the system with the latest data each week, follow these steps:
+This is the complete weekly process for keeping the Grist database up to date with Facebook ad performance and planning new ad campaigns.
 
-1. **Download Leads**: Download the leads export from Facebook Ads Manager (see "Downloading Facebook Leads" section above).
+### Quick Reference
 
-2. **Sync Leads**: Import the leads into the Grist Leads table.
-   ```bash
-   pixi run sync_leads "path/to/facebook_leads.csv"
-   ```
+The complete sequence with commands:
 
-3. **Update Ad Stats**: Update the Ads table in Grist with lead counts.
-   ```bash
-   pixi run update_ads
-   ```
+```bash
+# 1. Download Facebook leads manually (from Facebook Ads Manager)
+#    → Saves CSV file with new leads
 
-4. **Run Transforms**: Update the derived metrics tables in Grist.
-   Ensure you have the `ad_tracking` profile configured in `config.json`.
-   ```bash
-   # Update derived tables from ad performance data
-   pixi run transform_weekly
-   ```
+# 2. Sync leads to Grist
+pixi run sync_leads "facebook_exports/your_leads_file.csv"
+#    → Imports leads, updates Leads table
+#    → Grist auto-updates Leads_summary_Ad_name table
+#    → Reports: "Added X new leads. Updated Y existing leads."
 
-   This runs the following transforms:
-   - `weekly_metrics_prod`: Weekly performance metrics by campaign and ad
-   - `lifetime_ad_metrics_prod`: Lifetime aggregate metrics for each ad
-   - `last_contiguous_run_ad_metrics_prod`: Metrics for the most recent contiguous run of each ad
-   - `tag_lifetime_rollups_prod`: Lifetime metrics aggregated by creative tags
+# 3. Update ad stats
+pixi run update_ads
+#    → Copies lead counts from Leads summary to Ads table
+#    → Reports: "Rows to update: X" → "Updated Ad tracking-Ads from Leads rollup."
 
-   **Note**: The `lifetime_ad_conversions_prod` transform requires data from both the `ad_tracking` and `leads` documents. If you need to run it, ensure your config has both profiles configured and the transform's input tables are properly mapped.
+# 4. Export ad data
+pixi run export_ads
+#    → Creates: performance_data.json, attachments_manifest.json, attachments.tar
+#    → Reports: "Exported X tables, Y total records, Z attachments"
+
+# 5. Generate derived metrics
+pixi run transform_weekly
+#    → Updates 4 analytical tables in ad_tracking document
+#    → Reports: "Synced X rows to [table_name]" for each table
+
+# 6. AI-assisted analysis and planning
+#    → Upload exported files + decision_log.md to AI assistant
+#    → Follow weekly_prompt.md to analyze and plan next week's ads
+```
+
+### Detailed Steps
+
+### Step 1: Download Facebook Leads
+
+Download the latest leads from Facebook Ads Manager:
+
+1. Go to **Facebook Business Center** (business.facebook.com)
+2. Navigate to **All tools** → **Instant forms**
+3. Click on your instant form
+4. Click **Download**
+5. Choose **"Since last download"** or **"Last 3 months"**
+6. Select **CSV** format and save the file
+
+Save the downloaded CSV to the `facebook_exports/` directory.
+
+### Step 2: Sync Leads to Grist
+
+Import the Facebook leads into your Grist Leads table:
+
+```bash
+pixi run sync_leads "facebook_exports/your_leads_file.csv"
+```
+
+The script will:
+- Match leads by phone + email combination
+- Add missing Hebrew/English names
+- Fill in Campaign, Ad name, and Platform information
+- Create new records for new leads
+- Report any name mismatches or time gaps
+
+When leads are added to the Leads table, Grist automatically updates its native summary table (`Leads_summary_Ad_name`) which groups leads by ad name and counts conversions.
+
+### Step 3: Update Ad Statistics
+
+Update the Ads table in the ad_tracking document with the latest lead counts and conversion data:
+
+```bash
+pixi run update_ads
+```
+
+This copies lead rollup data (total leads, trial lessons, registrations, failed contacts) from the Leads summary table into the Ads table for performance tracking.
+
+### Step 4: Export Ad Performance Data
+
+Export the current state of your ad tracking database from Grist, including all updated metrics, creative assets, and formulas:
+
+```bash
+pixi run export_ads
+```
+
+This creates three files needed for analysis:
+- `performance_data.json` - Complete database with all tables, metrics, and formulas
+- `attachments_manifest.json` - Metadata for all creative assets (images, videos)
+- `attachments.tar` - Archive of all creative files
+
+### Step 5: Generate Derived Metrics
+
+Run transforms to update all derived performance metrics tables in the ad_tracking document:
+
+```bash
+pixi run transform_weekly
+```
+
+This updates:
+- `weekly_metrics_prod` - Weekly performance by campaign and ad
+- `lifetime_ad_metrics_prod` - Lifetime aggregate metrics per ad
+- `last_contiguous_run_ad_metrics_prod` - Metrics for current ad runs
+- `tag_lifetime_rollups_prod` - Performance aggregated by creative tags (headlines, text, media, hooks, etc.)
+
+**Note**: These transforms work on the ad_tracking document and are independent of the leads sync. They can be run before or after the export step.
+
+### Step 6: Analyze and Plan (AI-Assisted)
+
+With all data updated, you can now:
+
+1. Upload the three export files (`performance_data.json`, `attachments_manifest.json`, `attachments.tar`) to your AI assistant
+2. Also upload `documents/decision_log.md` for historical context
+3. Follow the prompts in `documents/weekly_prompt.md` to:
+   - Assess previous week's performance
+   - Identify which ads to keep running
+   - Decide which ads to replace
+   - Plan new creative combinations or generate new content
+   - Update the decision log
+
+The weekly_prompt provides detailed guidance on making data-driven decisions while staying within creative constraints (e.g., max one new piece of content per week, no duplicate headlines/text within a campaign).
+
+### Summary
+
+Complete weekly workflow in order:
+1. Download Facebook leads CSV manually from Facebook Ads Manager
+2. `pixi run sync_leads "facebook_exports/file.csv"` - Import leads to Grist
+3. `pixi run update_ads` - Copy lead stats from Leads summary to Ads table
+4. `pixi run export_ads` - Export current Grist state for analysis
+5. `pixi run transform_weekly` - Generate derived analytical metrics
+6. Analyze data and plan next week's ads using AI + `weekly_prompt.md`
 
 ## Usage
 
