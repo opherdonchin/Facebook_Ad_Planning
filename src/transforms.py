@@ -402,6 +402,130 @@ def tag_lifetime_rollups_transform(
     return ibis.union(*unions).execute()
 
 
+def component_media_lifetime_metrics_transform(
+    tables: Dict[str, ibis.expr.types.Table],
+) -> pd.DataFrame:
+    """
+    Aggregate lifetime metrics by Media component.
+    Sums Spend and Leads for all ads using each media asset, then calculates CPL.
+    """
+    t_runs = tables["perf"]
+    t_ads = tables["ads"]
+    t_creatives = tables["creatives"]
+    t_media = tables["media"]
+
+    # Join runs to ads to creatives to media
+    joined = (
+        t_runs.join(t_ads, t_runs["Ad_id"] == t_ads["ad_oid"])
+        .join(t_creatives, t_ads["Creative_id"] == t_creatives["creative_oid"])
+        .join(t_media, t_creatives["Media_id"] == t_media["media_oid"])
+    )
+
+    # Aggregate by media ID
+    agg = joined.group_by(t_media["media_oid"].name("Media_ID")).aggregate(
+        Name=t_media["Name"].first(),
+        Variant=t_media["Variant"].first(),
+        Format=t_media["Format"].first(),
+        Spend=t_runs["Spend"].sum(),
+        Leads=t_runs["Leads"].sum(),
+        Ads=t_ads["ad_oid"].nunique(),
+    )
+
+    # Calculate CPL
+    agg = agg.mutate(
+        CPL=ibis.ifelse(agg["Leads"] > 0, agg["Spend"] / agg["Leads"], ibis.null())
+    )
+
+    # Execute and sort in pandas (nulls last)
+    result_df = agg.execute()
+    result_df = result_df.sort_values(
+        by=["CPL", "Spend"], ascending=[True, False], na_position="last"
+    )
+
+    return result_df
+
+
+def component_headline_lifetime_metrics_transform(
+    tables: Dict[str, ibis.expr.types.Table],
+) -> pd.DataFrame:
+    """
+    Aggregate lifetime metrics by Headline component.
+    Sums Spend and Leads for all ads using each headline, then calculates CPL.
+    """
+    t_runs = tables["perf"]
+    t_ads = tables["ads"]
+    t_creatives = tables["creatives"]
+    t_headlines = tables["headlines"]
+
+    # Join runs to ads to creatives to headlines
+    joined = (
+        t_runs.join(t_ads, t_runs["Ad_id"] == t_ads["ad_oid"])
+        .join(t_creatives, t_ads["Creative_id"] == t_creatives["creative_oid"])
+        .join(t_headlines, t_creatives["Headline_id"] == t_headlines["headline_oid"])
+    )
+
+    # Aggregate by headline ID
+    agg = joined.group_by(t_headlines["headline_oid"].name("Headline_ID")).aggregate(
+        Text=t_headlines["Text"].first(),
+        Spend=t_runs["Spend"].sum(),
+        Leads=t_runs["Leads"].sum(),
+        Ads=t_ads["ad_oid"].nunique(),
+    )
+
+    # Calculate CPL
+    agg = agg.mutate(
+        CPL=ibis.ifelse(agg["Leads"] > 0, agg["Spend"] / agg["Leads"], ibis.null())
+    )
+
+    # Execute and sort in pandas (nulls last)
+    result_df = agg.execute()
+    result_df = result_df.sort_values(
+        by=["CPL", "Spend"], ascending=[True, False], na_position="last"
+    )
+
+    return result_df
+
+
+def component_text_lifetime_metrics_transform(
+    tables: Dict[str, ibis.expr.types.Table],
+) -> pd.DataFrame:
+    """
+    Aggregate lifetime metrics by Text component.
+    Sums Spend and Leads for all ads using each text, then calculates CPL.
+    """
+    t_runs = tables["perf"]
+    t_ads = tables["ads"]
+    t_texts = tables["texts"]
+
+    # Join runs to ads to texts
+    joined = t_runs.join(t_ads, t_runs["Ad_id"] == t_ads["ad_oid"]).join(
+        t_texts, t_ads["Text_id"] == t_texts["text_oid"]
+    )
+
+    # Aggregate by text ID
+    agg = joined.group_by(t_texts["text_oid"].name("Text_ID")).aggregate(
+        Name=t_texts["Name"].first(),
+        Variant=t_texts["Variant"].first(),
+        Primary_text=t_texts["Primary_text"].first(),
+        Spend=t_runs["Spend"].sum(),
+        Leads=t_runs["Leads"].sum(),
+        Ads=t_ads["ad_oid"].nunique(),
+    )
+
+    # Calculate CPL
+    agg = agg.mutate(
+        CPL=ibis.ifelse(agg["Leads"] > 0, agg["Spend"] / agg["Leads"], ibis.null())
+    )
+
+    # Execute and sort in pandas (nulls last)
+    result_df = agg.execute()
+    result_df = result_df.sort_values(
+        by=["CPL", "Spend"], ascending=[True, False], na_position="last"
+    )
+
+    return result_df
+
+
 # -------------------------
 # Registry
 # -------------------------
@@ -543,6 +667,101 @@ TRANSFORMS: Dict[str, TransformSpec] = {
             "tone": {"id": "tone_oid", "Tone": "Tone"},
             "promise_types": {"id": "promise_oid", "Promise": "Promise"},
             "hook_types": {"id": "hook_oid", "Hook": "Hook"},
+        },
+    ),
+    "component_media_lifetime_metrics_prod": TransformSpec(
+        name="component_media_lifetime_metrics_prod",
+        transform=component_media_lifetime_metrics_transform,
+        input_tables={
+            "perf": "Weekly_runs",
+            "ads": "Ads",
+            "creatives": "Creatives",
+            "media": "Media",
+        },
+        output_table="Derived_Component_Media_Lifetime",
+        overwrite=True,
+        select_rename={
+            "perf": {
+                "A": "Week",
+                "Ad": "Ad_id",
+                "Spend": "Spend",
+                "Leads": "Leads",
+            },
+            "ads": {
+                "id": "ad_oid",
+                "Creative": "Creative_id",
+            },
+            "creatives": {
+                "id": "creative_oid",
+                "Media": "Media_id",
+            },
+            "media": {
+                "id": "media_oid",
+                "Name": "Name",
+                "Variant": "Variant",
+                "Format": "Format",
+            },
+        },
+    ),
+    "component_headline_lifetime_metrics_prod": TransformSpec(
+        name="component_headline_lifetime_metrics_prod",
+        transform=component_headline_lifetime_metrics_transform,
+        input_tables={
+            "perf": "Weekly_runs",
+            "ads": "Ads",
+            "creatives": "Creatives",
+            "headlines": "Headlines",
+        },
+        output_table="Derived_Component_Headline_Lifetime",
+        overwrite=True,
+        select_rename={
+            "perf": {
+                "A": "Week",
+                "Ad": "Ad_id",
+                "Spend": "Spend",
+                "Leads": "Leads",
+            },
+            "ads": {
+                "id": "ad_oid",
+                "Creative": "Creative_id",
+            },
+            "creatives": {
+                "id": "creative_oid",
+                "Headline": "Headline_id",
+            },
+            "headlines": {
+                "id": "headline_oid",
+                "Text": "Text",
+            },
+        },
+    ),
+    "component_text_lifetime_metrics_prod": TransformSpec(
+        name="component_text_lifetime_metrics_prod",
+        transform=component_text_lifetime_metrics_transform,
+        input_tables={
+            "perf": "Weekly_runs",
+            "ads": "Ads",
+            "texts": "Texts",
+        },
+        output_table="Derived_Component_Text_Lifetime",
+        overwrite=True,
+        select_rename={
+            "perf": {
+                "A": "Week",
+                "Ad": "Ad_id",
+                "Spend": "Spend",
+                "Leads": "Leads",
+            },
+            "ads": {
+                "id": "ad_oid",
+                "Text": "Text_id",
+            },
+            "texts": {
+                "id": "text_oid",
+                "Name": "Name",
+                "Variant": "Variant",
+                "Primary_text": "Primary_text",
+            },
         },
     ),
 }

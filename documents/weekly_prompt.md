@@ -11,7 +11,7 @@ This prompt assumes that the following files are uploaded. If they have not all 
 3. `attachments.tar`
 4. `decision_log.md`
 
-We have encountered past situations witht his process where agents made decisions without checking actual file contents. Thus, it is important to make extra sure that the information is up to date. 
+We have encountered past situations witht his process where agents made decisions without checking actual file contents. Thus, it is important to make extra sure that the information is up to date.
 
 You should also review `PROJECT_GUIDE.md` to confirm alignment with current intentions, updating it if necessary.
 
@@ -27,36 +27,30 @@ You should also review `PROJECT_GUIDE.md` to confirm alignment with current inte
      * (b) the **decision week** (being planned)
      * (c) the **current contiguous run** for each ad
    * These must never be conflated.
-
 2. **Separate processing from output**
 
    * Put all thought processes and interim conclusions in the chat. Use a discursive, conversational format designed to give insight rather than support conclusions.
    * Actual output should go in canvases. These are specified in the **Required output** section below.
-   * Keep processing and outputs separate.  
-
+   * Keep processing and outputs separate.
 3. **Creative uniqueness per week**
 
    * In a given week, the **same media, headline, or primary text may not appear in more than one ad of a campaign**
-
 4. **New‑material constraint**
 
    * **At most one ad per week may contain new material** (new headline, new text, or new media).
    * Up to **two additional ads** may:
      * shuffle existing materials, or
      * reuse a previously run ad that is not currently active.
-
 5. **Media provenance requirement**
 
    * Any existing media used must:
 
      * correspond to a **specific file in `attachments.tar`**, and
      * be referenced using its canonical name from `attachments_manifest.json`.
-
 6. **Image–text semantic check (mandatory)**
 
    * Before proposing or finalizing any ad, verify that the **actual image content** (not just its tags or filename) matches the proposed headline and text.
    * If there is a mismatch, flag it and revise.
-
 7. **Tag reuse discipline**
 
    * Before assigning hooks, promises, tone, or structure, review existing tag tables in `performance_data.json`, including:
@@ -65,7 +59,6 @@ You should also review `PROJECT_GUIDE.md` to confirm alignment with current inte
      * existing headline/text tag assignments
      * `Derived_Tag_Lifetime_Rollups`
    * New tags should be introduced **only if no existing tag fits**, and must be explicitly marked as new.
-
 8. **Formatting requirements for new text**
 
    * New text must follow the agreed AIDA structure:
@@ -102,7 +95,6 @@ Work sequentially. Use chat for reasoning and interim decisions; place finalized
   * weekly spend and CPL
   * run‑level spend and CPL
   * lifetime spend and CPL
-
 * If more than four ads show activity:
 
   * Identify the four **intentionally run** ads using spend magnitude and the decision log
@@ -135,8 +127,8 @@ Summarize what is currently known about:
 * Media
 * Notable headline–text–media combinations
 
-Each category of interest should be considered briefly, but if component‑level effects cannot be isolated, they may be 
-omitted to avoid being overly influenced by speculation. 
+Each category of interest should be considered briefly, but if component‑level effects cannot be isolated, they may be
+omitted to avoid being overly influenced by speculation.
 
 ---
 
@@ -145,8 +137,8 @@ omitted to avoid being overly influenced by speculation.
 * Keep ads with **weekly CPL < 50**
 * If an ad has no leads or if its CPL ≥ 50:
 
-  * Check current run CPL and current run spend 
-    * Keep ads with current run CPL < 40 
+  * Check current run CPL and current run spend
+    * Keep ads with current run CPL < 30
     * Keep ads with current run spend < 80
 * Always keep **at least one ad**
 
@@ -183,7 +175,7 @@ omitted to avoid being overly influenced by speculation.
 * Choose an existing media asset likely to succeed
 * Create both new text and new headline to match it
 * Ensure image–text alignment
-* Specify hook, promise, tone, structure, and grammar using tags. 
+* Specify hook, promise, tone, structure, and grammar using tags.
   * Review both tag taxonomy and tag list tables and actual tag use in performance_data.json before choosing.
   * Use existing tags if appropriate.
   * Expand tags list where it is appropriate but make sure to flag this and explain.
@@ -204,27 +196,29 @@ omitted to avoid being overly influenced by speculation.
 All outputs must be placed in a canvas and formatted in Markdown.
 
 ### 1) Performance summary
+
 * Table of spend, leads, cpl and week over week detlas
 * Explicit flags for low sample size or low delivery
 * Summary of ke ypoints that are improtant, surprising or unexpected.
 
 ### 2) Summary of current situation
+
 * Bullet points of key undersatndings to be used in planning and decisions
 * Separate setions with key things for agent to remember and key things for human to notice
 
 ### 3) Key decisions
+
 * Tables with one line per item
 * Tables:
   * Ads to keep
   * Ads generated from existing materials
   * Ads generated with new material
-* Make sure to specify tags and brief justificaiton 
+* Make sure to specify tags and brief justificaiton
   * Although everything must fit on one reasonably sized line
 * For new media specify
   * Inspiration media
   * Suggested variation
   * Suggested tag
-  * 
+  *
 
 ### 4) Decision‑log entry
-

@@ -1,5 +1,58 @@
 # Weekly Decision Log
 
+## 2026‑W04 plan (assessed week: 2026‑W03)
+
+### Week disambiguation
+
+* **Assessed week:** 2026‑W03
+* **Decision week (planned):** 2026‑W04
+
+---
+
+### Portfolio decision
+
+Run **four ads** in the coming week:
+
+* **Men:** Mens Ad J, Mens Ad N
+* **Women:** Womens Ad P, Womens Ad Q
+
+---
+
+### Rationale (concise)
+
+**Men’s portfolio**
+
+* **Mens Ad J** retained as a stable performer with acceptable historical behavior; no evidence of semantic mismatch or fatigue.
+* **Mens Ad N** retained to preserve a second, distinct male creative angle; still early but no negative signal warranting replacement.
+
+**Women’s portfolio**
+
+* **Womens Ad P** introduced as a **pure reshuffle of existing materials**. The goal is incremental learning via a new combination while staying inside previously validated semantic space and without consuming the weekly new‑material allowance.
+* **Womens Ad Q** introduced as the **single new‑material ad** for the week:
+
+  * New media (instructional interaction with clear female agency)
+  * New headline: *עוצמה, איזון, ביטחון עצמי*
+  * New text: *Meaningful Movement*
+    This decision followed a focused reassessment of image–text alignment around the instructional female‑pair media. Earlier runs with that media showed zero leads but insufficient evidence to attribute failure to copy or headline. The new creative is therefore treated explicitly as a controlled probe of **media + message together**, not as a baseline replacement.
+
+---
+
+### Constraints check
+
+* Creative uniqueness preserved within each campaign.
+* Exactly **one** ad contains new material (Womens Ad Q).
+* Reused assets traceable to existing attachments.
+
+---
+
+### Notes for next review
+
+* Evaluate Womens Ad Q primarily on **delivery and early lead signal** to determine whether the instructional media can work with stronger, competence‑forward messaging.
+* Womens Ad P provides a comparison point using only known components.
+* Men’s ads provide continuity for week‑over‑week interpretation.
+
+---
+
 ## 2026‑W03 plan (assessed week: 2026‑W02)
 
 ### Week disambiguation
