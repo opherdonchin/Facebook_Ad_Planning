@@ -85,7 +85,11 @@ For self-hosted Grist instances, change the `server` field to your instance URL.
 
 ## Syncing Facebook Leads to Grist
 
-### Downloading Facebook Leads
+### Daily
+
+Updating Facebook leads can be done manually if there are only one or two (which is the usual thing). However, to update a batch, there is a sync tool.
+
+#### Download Facebook Leads
 
 To sync leads from Facebook to your Grist leads table, you first need to download the leads export from Facebook:
 
@@ -99,7 +103,7 @@ To sync leads from Facebook to your Grist leads table, you first need to downloa
    - **Since last download**: Downloads only new leads since your last export
 7. Select **CSV** format and download
 
-The downloaded file will be in UTF-16 tab-delimited format with columns like `id`, `created_time`, `ad_name`, `campaign_name`, `platform`, `email`, `full_name`, `phone_number`, etc.
+The downloaded file will be in UTF-16 tab-delimited format with columns like `id`, `created_time`, `ad_name`, `campaign_name`, `platform`, `email`, `full_name`, `phone_number`, etc
 
 ### Running the Sync
 
@@ -110,6 +114,7 @@ pixi run sync_leads "path/to/your/leads_export.csv"
 ```
 
 The script will:
+
 - Match leads by phone + email combination
 - Add missing Hebrew/English names (bilingual complement)
 - Fill in Campaign, Ad name, and Platform for matched leads
@@ -117,6 +122,7 @@ The script will:
 - Report any name mismatches or time gaps (without overwriting data)
 
 **Example output:**
+
 ```
 [INFO] Successfully read file with encoding=utf-16, delimiter='\t'
 [INFO] Found 46 rows with 16 columns
@@ -134,31 +140,27 @@ This is the complete weekly process for keeping the Grist database up to date wi
 The complete sequence with commands:
 
 ```bash
-# 1. Download Facebook leads manually (from Facebook Ads Manager)
-#    → Saves CSV file with new leads
+# 1. Update Weekly run data from Facebook
+# This is done manually but could probably be updated
+# Update the Weekly Runs table in the Ad tracking database in Grist with this weeks numbers
 
-# 2. Sync leads to Grist
-pixi run sync_leads "facebook_exports/your_leads_file.csv"
-#    → Imports leads, updates Leads table
-#    → Grist auto-updates Leads_summary_Ad_name table
-#    → Reports: "Added X new leads. Updated Y existing leads."
-
-# 3. Update ad stats
+# 1. Update ad stats
 pixi run update_ads
 #    → Copies lead counts from Leads summary to Ads table
 #    → Reports: "Rows to update: X" → "Updated Ad tracking-Ads from Leads rollup."
 
-# 4. Export ad data
-pixi run export_ads
-#    → Creates: performance_data.json, attachments_manifest.json, attachments.tar
-#    → Reports: "Exported X tables, Y total records, Z attachments"
-
-# 5. Generate derived metrics
+# 2. Generate derived metrics
 pixi run transform_weekly
 #    → Updates 4 analytical tables in ad_tracking document
 #    → Reports: "Synced X rows to [table_name]" for each table
 
-# 6. AI-assisted analysis and planning
+# 3. Export ad data
+pixi run export_ads
+#    → Creates: performance_data.json, attachments_manifest.json, attachments.tar
+#    → Reports: "Exported X tables, Y total records, Z attachments"
+
+
+# 4. AI-assisted analysis and planning
 #    → Upload exported files + decision_log.md to AI assistant
 #    → Follow weekly_prompt.md to analyze and plan next week's ads
 ```
@@ -187,6 +189,7 @@ pixi run sync_leads "facebook_exports/your_leads_file.csv"
 ```
 
 The script will:
+
 - Match leads by phone + email combination
 - Add missing Hebrew/English names
 - Fill in Campaign, Ad name, and Platform information
@@ -214,6 +217,7 @@ pixi run export_ads
 ```
 
 This creates three files needed for analysis:
+
 - `performance_data.json` - Complete database with all tables, metrics, and formulas
 - `attachments_manifest.json` - Metadata for all creative assets (images, videos)
 - `attachments.tar` - Archive of all creative files
@@ -227,6 +231,7 @@ pixi run transform_weekly
 ```
 
 This updates:
+
 - `weekly_metrics_prod` - Weekly performance by campaign and ad
 - `lifetime_ad_metrics_prod` - Lifetime aggregate metrics per ad
 - `last_contiguous_run_ad_metrics_prod` - Metrics for current ad runs
@@ -252,6 +257,7 @@ The weekly_prompt provides detailed guidance on making data-driven decisions whi
 ### Summary
 
 Complete weekly workflow in order:
+
 1. Download Facebook leads CSV manually from Facebook Ads Manager
 2. `pixi run sync_leads "facebook_exports/file.csv"` - Import leads to Grist
 3. `pixi run update_ads` - Copy lead stats from Leads summary to Ads table
