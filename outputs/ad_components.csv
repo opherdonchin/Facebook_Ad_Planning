@@ -1,0 +1,33 @@
+ad_id,ad_name,campaign,media_id,media_name,headline_id,headline_text,text_id,text_name
+1,Womens Ad B,1,14,Dynamic_Throw_FF_LineArt,14,תנועה. עוצמה. חיוך.,12,Time Out For You
+2,Womens Ad E,1,5,Illustrated_Soft_Strength_Female,19,"עוצמה, רוגע, ובטחון עצמי",12,Time Out For You
+3,Womens Ad F,1,16,SumoOtoshi_MF_Dojo_Photo,19,"עוצמה, רוגע, ובטחון עצמי",13,Time Out For You
+4,Womens Ad H,1,15,Swariwaza_Kokyuho_Dojo_Photo,21,"כוח, שלווה, וביטחון פנימי",14,Time Out For You
+5,Womens Ad I,1,11,Illustrated_Calm_Poster_Female,22,עוצמה מתחילה בהקשבה,15,Strength Through Softness
+6,Womens Ad J,1,11,Illustrated_Calm_Poster_Female,21,"כוח, שלווה, וביטחון פנימי",14,Time Out For You
+7,Womens Ad C,1,10,Illustrated_Flow_Poster_Female,15,בשבילך כי מגיע לך,16,Soft Power For You
+8,Womens Ad K,1,11,Illustrated_Calm_Poster_Female,22,עוצמה מתחילה בהקשבה,17,Calm Precision
+9,Womens Ad A,1,13,Dojo_Instruction_FemalePair,13,"גוף חזק, ראש רגוע",18,Meaningful Movement
+10,Womens Ad L,1,12,Illustrated_Strength_Poster_Female,23,חזקה. רגועה. בטוחה.,19,Safe And Capable
+11,Womens Ad M,1,23,Calm_Instruction_FF_Lineart,24,כוח שקט. ביטחון בתנועה,20,Confident Movement Your Pace
+12,Womens Ad D,1,15,Swariwaza_Kokyuho_Dojo_Photo,19,"עוצמה, רוגע, ובטחון עצמי",12,Time Out For You
+13,Womens Ad G,1,17,SumoOtoshi_MF_AiArt,19,"עוצמה, רוגע, ובטחון עצמי",21,Screens To Energy
+14,Mens Ad D,2,4,Highfall_photo_Opher_Arnon,4,לנער את השגרה,1,Stress Mental Load
+15,Mens Ad E,2,18,Pin_Class_photo,6,"תנועה, זרימה, חיבור",2,Stress Mental Load
+16,Mens Ad G,2,7,Dynamic_Throw_DoJo_Video,7,"עוצמה, איזון, בטחון עצמי",3,"Balance, Not Struggle"
+17,Mens Ad F,2,6,Ikyo_pin_2M_photo,6,"תנועה, זרימה, חיבור",3,"Balance, Not Struggle"
+18,Mens Ad I,2,6,Ikyo_pin_2M_photo,9,"שליטה בלי כוחנות, עוצמה בלי מאבק",4,Strength Without Force
+19,Mens Ad H,2,19,Dojo_Instruction_MF_photo,8,כוח שקט ללא מאבק,5,Effortless Strength
+20,Mens Ad C,2,3,Kneeling_Control_Demonstration,4,לנער את השגרה,6,Anger Under Pressure
+21,Mens Ad B,2,2,Outside_Sunset_MM_Kaitenage_photo,2,ללמוד לשלוט ברגע,7,Time Out For You
+22,Mens Ad A,2,1,Shihonage_MF_Dojo_Photo,4,לנער את השגרה,8,Everyday Pressure
+23,Mens Ad K,2,8,Iriminage_Dyamic_MM_Dojo_Photo,11,עוצמה דרך חיבור,9,Flow and Focus
+24,Mens Ad J,2,21,Tenshinage_lineart_controlled,10,"כוח שקט, שליטה ברגע",10,Stable Without Struggle
+25,Mens Ad M,2,22,Solo_Balanced_lineart,12,חוזק שקט. שליטה בתנועה.,11,Control Without Strain
+26,Mens Ad N,2,2,Outside_Sunset_MM_Kaitenage_photo,4,לנער את השגרה,7,Time Out For You
+27,Womens Ad N,1,13,Dojo_Instruction_FemalePair,19,"עוצמה, רוגע, ובטחון עצמי",12,Time Out For You
+28,Womens Ad O,1,11,Illustrated_Calm_Poster_Female,25,מרחב שקט לעצמך,22,Quiet Space - Bullet Calm
+29,Womens Ad P,1,13,Dojo_Instruction_FemalePair,6,"תנועה, זרימה, חיבור",3,"Balance, Not Struggle"
+30,Womens Ad Q,1,24,Munetsuki_F_Kyu,7,"עוצמה, איזון, בטחון עצמי",18,Meaningful Movement
+31,Mens Ad O,2,1,Shihonage_MF_Dojo_Photo,2,ללמוד לשלוט ברגע,8,Everyday Pressure
+32,Womens Ad R,1,11,Illustrated_Calm_Poster_Female,13,"גוף חזק, ראש רגוע",22,Quiet Space - Bullet Calm

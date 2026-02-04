@@ -3,13 +3,15 @@
 This document defines the required structure and conventions for entries in `decision_log.md`.
 
 Goals:
+
 - unambiguous week identification
 - consistent machine parsing
 - fast human scanning
 - prevention of implicit temporal wording (“last week”, “this week”, etc.)
 
 ## Heading Template
-``` markdown
+
+```markdown
 # Plan for YYYY-WXX (assessing YYYY-WYY)
 
 ### Weeks
@@ -81,8 +83,17 @@ These values must match the title exactly.
 
 ```markdown
 ### Ads active in assessed week (YYYY-WYY)
-- Men: <comma-separated ad names>
+- Men: 
+
+| Ad name | Spend | CPL | Lifetime spend | Lifteime CPL |
+---------------------------------------------------------
+|          |       |     |              |               |
+
 - Women: <comma-separated ad names>
+
+| Ad name | Spend | CPL | Lifetime spend | Lifteime CPL |
+---------------------------------------------------------
+|          |       |     |              |               |
 ```
 
 This section records what **actually ran** during the analyzed week, regardless of when the decision was made.
@@ -93,9 +104,41 @@ This section records what **actually ran** during the analyzed week, regardless 
 
 ```markdown
 ### Ads planned for decision week (YYYY-WXX)
-- Men: <comma-separated ad names>
+- Men: 
+
+#### Reuse:
+
+| Name      | Spend | CPL | Lifetime spend | Lifetime CPL |
+-----------------------------------------------------------
+| {Ad name} |       |     |                |              |
+
+#### Reshuffle:
+
+[One table for each reshffuled ad]
+
+**{ New ad name }**
+
+| Component       | Spend | CPL | Lifetime spend | Lifetime CPL |
+-----------------------------------------------------------
+| {Media name}    |       |     |                |              |
+| {Headline name} |       |     |                |              |
+| {Text name}     |       |     |                |              |
+
+#### New content
+
+**{ New ad name }**
+
+| Component       | Spend | CPL | Lifetime spend | Lifetime CPL |
+-----------------------------------------------------------
+| {Media name}    |       |     |                |              |
+| {Headline name} |       |     |                |              |
+| {Text name}     |       |     |                |              |
+
+**Put new content in bold face and leave Spend / CPL blank**
+
 - Women: <comma-separated ad names>
-```
+
+Following the same format as for the men's section
 
 This section records the intended portfolio for the upcoming week.
 

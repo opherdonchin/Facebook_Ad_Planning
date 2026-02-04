@@ -7,10 +7,8 @@ This document records stable heuristics used when applying judgment in the weekl
 ## General principles
 
 1. These heuristics are secondary to anything written in the weekly prompt. Instructions or heuristics in the weekly prompt override these instructions and heuristics.
-2. Prefer **simplicity over novelty** unless data strongly supports change.
-3. Treat small-sample signals as hypotheses, not conclusions.
-4. Favor decisions that preserve **learnability** across weeks.
-5. Avoid changes that introduce multiple new variables at once.
+2. Prefer **exploitation over exploration** unless there is no effective exploitation strategy available.
+3. Prefer **simplicity over novelty** unless data strongly supports change.
 
 ---
 
@@ -58,34 +56,18 @@ Surprises should be highlighted even if no immediate decision follows.
 * Weeks with poor performance should involve a mix of re-combination, re-use of old material, and novelty.
 * ## Choosing what to change
 * If recombining (in descending preference order but preference is weak. Make sure choices are varied with some randomness)
-  1. New combinations of tags where the combination has proven successful
-  2. New combinations of tags that are historically strong independently
-  3. New combinations of individual elements that were historically strong
+  1. New combinations of individual elements that were historically strong
+  2. New combinations of tags where the combination has proven successful
+  3. New combinations of tags that are historically strong independently
+  4. Always respect gender designation. Do not use male adds in female campaigns or vice versa.
 * If re-using existing ads
   * Strong historical performers
   * Ads with insufficient evidence
   * Weak historical performers with strong tag combinations or strong tags
 * If creating novelty
   * Choose existing elements according to the hierarchy for recombination
-  * Choose suggested tags for the novel element that are likely to combine well with the existing elements or that are strong tags indepedently
-
-## Confidence discipline
-
-* Do not generalize from a single week unless supported by prior evidence.
-* Treat any claim based on <3 lifetime leads as provisional.
-* Prefer omission over speculation in summary tables.
-
----
-
-## When intuition may override metrics
-
-Intuition may guide decisions at any juncture, but especially when:
-
-* Sample size is extremely small, or
-* Delivery artifacts clearly dominate performance, or
-* The decision is required to maintain campaign continuity
-
-In such cases, the rationale must be stated explicitly in the decision log.
+  * Choose suggested tags for the novel element that are likely to combine well withthe existing elements or that are strong tags indepedently
+  * Respect gender specifications. Do not put male ad components in female campaigns or vice versa.
 
 ---
 
@@ -94,3 +76,5 @@ In such cases, the rationale must be stated explicitly in the decision log.
 * When multiple weeks of consistent data contradict intuition
 * When clear CPL thresholds are met or violated
 * When overriding would reduce comparability across weeks
+
+When no clear guidelines guide you, intuition is an excellent guide.

@@ -1,0 +1,165 @@
+component_type,component_id,component_name,tag_type,tag_value
+media,1,Shihonage_MF_Dojo_Photo,Media_Style,Illustration - Poster
+media,1,Shihonage_MF_Dojo_Photo,Media_Energy,Instructional / Demonstration
+media,2,Outside_Sunset_MM_Kaitenage_photo,Media_Style,Photo - Outside
+media,2,Outside_Sunset_MM_Kaitenage_photo,Media_Energy,Meditative / Inspirational
+media,3,Kneeling_Control_Demonstration,Media_Style,Photo - Dojo
+media,3,Kneeling_Control_Demonstration,Media_Energy,Instructional / Demonstration
+media,4,Highfall_photo_Opher_Arnon,Media_Style,Photo - Dojo
+media,4,Highfall_photo_Opher_Arnon,Media_Energy,Dynamic / Throw
+media,5,Illustrated_Soft_Strength_Female,Media_Style,Photo - Dojo
+media,5,Illustrated_Soft_Strength_Female,Media_Energy,Dynamic / Throw
+media,6,Ikyo_pin_2M_photo,Media_Style,Photo - Dojo
+media,6,Ikyo_pin_2M_photo,Media_Energy,Instructional / Demonstration
+media,7,Dynamic_Throw_DoJo_Video,Media_Style,Video - Dojo
+media,7,Dynamic_Throw_DoJo_Video,Media_Energy,Dynamic / Throw
+media,8,Iriminage_Dyamic_MM_Dojo_Photo,Media_Style,Photo - Dojo
+media,8,Iriminage_Dyamic_MM_Dojo_Photo,Media_Energy,Dynamic / Throw
+media,10,Illustrated_Flow_Poster_Female,Media_Style,Photo - Outside
+media,10,Illustrated_Flow_Poster_Female,Media_Energy,Dynamic / Throw
+media,11,Illustrated_Calm_Poster_Female,Media_Style,Illustration - Line Art
+media,11,Illustrated_Calm_Poster_Female,Media_Energy,Soft / Calm
+media,12,Illustrated_Strength_Poster_Female,Media_Style,Illustration - Poster
+media,12,Illustrated_Strength_Poster_Female,Media_Energy,Instructional / Demonstration
+media,13,Dojo_Instruction_FemalePair,Media_Style,Illustration - Line Art
+media,13,Dojo_Instruction_FemalePair,Media_Energy,Dynamic / Throw
+media,14,Dynamic_Throw_FF_LineArt,Media_Style,Illustration - Line Art
+media,14,Dynamic_Throw_FF_LineArt,Media_Energy,Dynamic / Throw
+media,15,Swariwaza_Kokyuho_Dojo_Photo,Media_Style,Photo - Dojo
+media,15,Swariwaza_Kokyuho_Dojo_Photo,Media_Energy,Soft / Calm
+media,16,SumoOtoshi_MF_Dojo_Photo,Media_Style,Photo - Dojo
+media,16,SumoOtoshi_MF_Dojo_Photo,Media_Energy,Instructional / Demonstration
+media,17,SumoOtoshi_MF_AiArt,Media_Style,Illustration - Poster
+media,17,SumoOtoshi_MF_AiArt,Media_Energy,Instructional / Demonstration
+media,18,Pin_Class_photo,Media_Style,Photo - Dojo
+media,18,Pin_Class_photo,Media_Energy,Instructional / Demonstration
+media,19,Dojo_Instruction_MF_photo,Media_Style,Photo - Dojo
+media,19,Dojo_Instruction_MF_photo,Media_Energy,Instructional / Demonstration
+media,21,Tenshinage_lineart_controlled,Media_Style,Illustration - Line Art
+media,21,Tenshinage_lineart_controlled,Media_Energy,Dynamic / Throw
+media,22,Solo_Balanced_lineart,Media_Style,Illustration - Line Art
+media,22,Solo_Balanced_lineart,Media_Energy,Meditative / Inspirational
+media,23,Calm_Instruction_FF_Lineart,Media_Style,Illustration - Line Art
+media,23,Calm_Instruction_FF_Lineart,Media_Energy,Soft / Calm
+media,24,Munetsuki_F_Kyu,Media_Style,Video - Dojo
+media,24,Munetsuki_F_Kyu,Media_Energy,Dynamic / Throw
+headline,2,ללמוד לשלוט ברגע,Tone,Reflective
+headline,2,ללמוד לשלוט ברגע,Promise,Focus / Clarity
+headline,2,ללמוד לשלוט ברגע,Hook,Meaning / Growth
+headline,4,לנער את השגרה,Tone,Playful
+headline,4,לנער את השגרה,Promise,Energy / Renewal
+headline,4,לנער את השגרה,Hook,Energy / Fatigue / Screens
+headline,6,"תנועה, זרימה, חיבור",Tone,Poetic
+headline,6,"תנועה, זרימה, חיבור",Promise,Body Capability
+headline,6,"תנועה, זרימה, חיבור",Hook,Meaning / Growth
+headline,7,"עוצמה, איזון, בטחון עצמי",Tone,Poetic
+headline,7,"עוצמה, איזון, בטחון עצמי",Promise,Confidence / Self-Trust
+headline,7,"עוצמה, איזון, בטחון עצמי",Hook,Confidence / Self-Trust
+headline,8,כוח שקט ללא מאבק,Tone,Poetic
+headline,8,כוח שקט ללא מאבק,Promise,Non-violent Power
+headline,8,כוח שקט ללא מאבק,Hook,Strength Without Force
+headline,9,"שליטה בלי כוחנות, עוצמה בלי מאבק",Tone,Direct
+headline,9,"שליטה בלי כוחנות, עוצמה בלי מאבק",Promise,Non-violent Power
+headline,9,"שליטה בלי כוחנות, עוצמה בלי מאבק",Hook,Strength Without Force
+headline,10,"כוח שקט, שליטה ברגע",Tone,Reflective
+headline,10,"כוח שקט, שליטה ברגע",Promise,Calm Under Pressure
+headline,10,"כוח שקט, שליטה ברגע",Hook,Strength Without Force
+headline,11,עוצמה דרך חיבור,Tone,Poetic
+headline,11,עוצמה דרך חיבור,Promise,Non-violent Power
+headline,11,עוצמה דרך חיבור,Hook,Meaning / Growth
+headline,12,חוזק שקט. שליטה בתנועה.,Tone,Poetic
+headline,12,חוזק שקט. שליטה בתנועה.,Promise,Non-violent Power
+headline,12,חוזק שקט. שליטה בתנועה.,Hook,Strength Without Force
+headline,13,"גוף חזק, ראש רגוע",Tone,Direct
+headline,13,"גוף חזק, ראש רגוע",Promise,Calm Under Pressure
+headline,13,"גוף חזק, ראש רגוע",Hook,Stress / Mental Load
+headline,14,תנועה. עוצמה. חיוך.,Tone,Playful
+headline,14,תנועה. עוצמה. חיוך.,Promise,Energy / Renewal
+headline,14,תנועה. עוצמה. חיוך.,Hook,Energy / Fatigue / Screens
+headline,15,בשבילך כי מגיע לך,Tone,Warm
+headline,15,בשבילך כי מגיע לך,Promise,Self-Worth / Permission
+headline,15,בשבילך כי מגיע לך,Hook,Care Load / No Time
+headline,19,"עוצמה, רוגע, ובטחון עצמי",Tone,Poetic
+headline,19,"עוצמה, רוגע, ובטחון עצמי",Promise,Confidence / Self-Trust
+headline,19,"עוצמה, רוגע, ובטחון עצמי",Hook,Stress / Mental Load
+headline,21,"כוח, שלווה, וביטחון פנימי",Tone,Poetic
+headline,21,"כוח, שלווה, וביטחון פנימי",Promise,Calm Under Pressure
+headline,21,"כוח, שלווה, וביטחון פנימי",Hook,Stress / Mental Load
+headline,22,עוצמה מתחילה בהקשבה,Tone,Reflective
+headline,22,עוצמה מתחילה בהקשבה,Promise,Focus / Clarity
+headline,22,עוצמה מתחילה בהקשבה,Hook,Meaning / Growth
+headline,23,חזקה. רגועה. בטוחה.,Tone,Affirmative
+headline,23,חזקה. רגועה. בטוחה.,Promise,Confidence / Self-Trust
+headline,23,חזקה. רגועה. בטוחה.,Hook,Confidence / Self-Trust
+headline,24,כוח שקט. ביטחון בתנועה,Tone,Poetic
+headline,24,כוח שקט. ביטחון בתנועה,Promise,Confidence / Self-Trust
+headline,24,כוח שקט. ביטחון בתנועה,Hook,Strength Without Force
+headline,25,מרחב שקט לעצמך,Tone,Affirmative
+headline,25,מרחב שקט לעצמך,Promise,Calm Under Pressure
+headline,25,מרחב שקט לעצמך,Hook,Stress / Mental Load
+text,1,Stress Mental Load,Hook,Stress / Mental Load
+text,1,Stress Mental Load,Promise,Calm Under Pressure
+text,1,Stress Mental Load,Structure,Question Hook
+text,2,Stress Mental Load,Hook,Stress / Mental Load
+text,2,Stress Mental Load,Promise,Calm Under Pressure
+text,2,Stress Mental Load,Structure,Question Hook
+text,3,"Balance, Not Struggle",Hook,Strength Without Force
+text,3,"Balance, Not Struggle",Promise,Non-violent Power
+text,3,"Balance, Not Struggle",Structure,Short lines
+text,4,Strength Without Force,Hook,Strength Without Force
+text,4,Strength Without Force,Promise,Non-violent Power
+text,4,Strength Without Force,Structure,Short lines
+text,5,Effortless Strength,Hook,Stress / Mental Load
+text,5,Effortless Strength,Promise,Body Capability
+text,5,Effortless Strength,Structure,Question Hook
+text,6,Anger Under Pressure,Hook,Anger / Irritability
+text,6,Anger Under Pressure,Promise,Calm Under Pressure
+text,6,Anger Under Pressure,Structure,Question Hook
+text,7,Time Out For You,Hook,Care Load / No Time
+text,7,Time Out For You,Promise,Calm Under Pressure
+text,7,Time Out For You,Structure,Checklist
+text,8,Everyday Pressure,Hook,Stress / Mental Load
+text,8,Everyday Pressure,Promise,Calm Under Pressure
+text,8,Everyday Pressure,Structure,Question Hook
+text,9,Flow and Focus,Hook,Meaning / Growth
+text,9,Flow and Focus,Promise,Focus / Clarity
+text,9,Flow and Focus,Structure,Manifesto
+text,10,Stable Without Struggle,Hook,Stability / Balance
+text,10,Stable Without Struggle,Promise,Confidence / Self-Trust
+text,10,Stable Without Struggle,Structure,Question Hook
+text,11,Control Without Strain,Hook,Confidence / Self-Trust
+text,11,Control Without Strain,Promise,Body Capability
+text,11,Control Without Strain,Structure,Manifesto
+text,12,Time Out For You,Hook,Care Load / No Time
+text,12,Time Out For You,Promise,Calm Under Pressure
+text,12,Time Out For You,Structure,Checklist
+text,13,Time Out For You,Hook,Care Load / No Time
+text,13,Time Out For You,Promise,Calm Under Pressure
+text,13,Time Out For You,Structure,Checklist
+text,14,Time Out For You,Hook,Care Load / No Time
+text,14,Time Out For You,Promise,Calm Under Pressure
+text,14,Time Out For You,Structure,Checklist
+text,15,Strength Through Softness,Hook,Strength Without Force
+text,15,Strength Through Softness,Promise,Non-violent Power
+text,15,Strength Through Softness,Structure,Short lines
+text,16,Soft Power For You,Hook,Care Load / No Time
+text,16,Soft Power For You,Promise,Confidence / Self-Trust
+text,16,Soft Power For You,Structure,Manifesto
+text,17,Calm Precision,Hook,Strength Without Force
+text,17,Calm Precision,Promise,Focus / Clarity
+text,17,Calm Precision,Structure,Manifesto
+text,18,Meaningful Movement,Hook,Meaning / Growth
+text,18,Meaningful Movement,Promise,Body Capability
+text,18,Meaningful Movement,Structure,Checklist
+text,19,Safe And Capable,Hook,Confidence / Self-Trust
+text,19,Safe And Capable,Promise,Body Capability
+text,19,Safe And Capable,Structure,Short lines
+text,20,Confident Movement Your Pace,Hook,Confidence / Self-Trust
+text,20,Confident Movement Your Pace,Promise,Body Capability
+text,20,Confident Movement Your Pace,Structure,Manifesto
+text,21,Screens To Energy,Hook,Energy / Fatigue / Screens
+text,21,Screens To Energy,Promise,Body Capability
+text,21,Screens To Energy,Structure,Question Hook
+text,22,Quiet Space - Bullet Calm,Hook,Stress / Mental Load
+text,22,Quiet Space - Bullet Calm,Promise,Calm Under Pressure
+text,22,Quiet Space - Bullet Calm,Structure,Checklist

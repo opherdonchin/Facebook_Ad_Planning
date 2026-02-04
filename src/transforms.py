@@ -526,6 +526,167 @@ def component_text_lifetime_metrics_transform(
     return result_df
 
 
+def component_tags_transform(
+    tables: Dict[str, ibis.expr.types.Table],
+) -> pd.DataFrame:
+    """
+    Create a component × tag junction table.
+    Returns one row per component × tag combination with component metadata.
+    """
+    t_media = tables["media"]
+    t_headlines = tables["headlines"]
+    t_texts = tables["texts"]
+
+    # Dictionaries
+    d_style = tables["media_style"]
+    d_energy = tables["media_energy"]
+    d_tone = tables["tone"]
+    d_promise = tables["promise_types"]
+    d_hook = tables["hook_types"]
+
+    rows = []
+
+    # Media components
+    media_df = t_media.execute()
+    for _, row in media_df.iterrows():
+        component_id = row["media_oid"]
+        component_name = row.get("Name", "")
+
+        # Media_Style tag
+        if pd.notna(row.get("Media_Style_id")):
+            style_row = d_style.filter(
+                d_style["style_oid"] == row["Media_Style_id"]
+            ).execute()
+            if not style_row.empty:
+                rows.append(
+                    {
+                        "component_type": "media",
+                        "component_id": component_id,
+                        "component_name": component_name,
+                        "tag_type": "Media_Style",
+                        "tag_value": style_row.iloc[0]["Media_Style"],
+                    }
+                )
+
+        # Media_Energy tag
+        if pd.notna(row.get("Media_Energy_id")):
+            energy_row = d_energy.filter(
+                d_energy["energy_oid"] == row["Media_Energy_id"]
+            ).execute()
+            if not energy_row.empty:
+                rows.append(
+                    {
+                        "component_type": "media",
+                        "component_id": component_id,
+                        "component_name": component_name,
+                        "tag_type": "Media_Energy",
+                        "tag_value": energy_row.iloc[0]["Media_Energy"],
+                    }
+                )
+
+    # Headline components
+    headline_df = t_headlines.execute()
+    for _, row in headline_df.iterrows():
+        component_id = row["headline_oid"]
+        component_name = row.get("Text", "")
+
+        # Tone tag
+        if pd.notna(row.get("Tone_id")):
+            tone_row = d_tone.filter(d_tone["tone_oid"] == row["Tone_id"]).execute()
+            if not tone_row.empty:
+                rows.append(
+                    {
+                        "component_type": "headline",
+                        "component_id": component_id,
+                        "component_name": component_name,
+                        "tag_type": "Tone",
+                        "tag_value": tone_row.iloc[0]["Tone"],
+                    }
+                )
+
+        # Promise tag
+        if pd.notna(row.get("Promise_id_headline")):
+            promise_row = d_promise.filter(
+                d_promise["promise_oid"] == row["Promise_id_headline"]
+            ).execute()
+            if not promise_row.empty:
+                rows.append(
+                    {
+                        "component_type": "headline",
+                        "component_id": component_id,
+                        "component_name": component_name,
+                        "tag_type": "Promise",
+                        "tag_value": promise_row.iloc[0]["Promise"],
+                    }
+                )
+
+        # Hooks tag
+        if pd.notna(row.get("Hooks_id")):
+            hook_row = d_hook.filter(d_hook["hook_oid"] == row["Hooks_id"]).execute()
+            if not hook_row.empty:
+                rows.append(
+                    {
+                        "component_type": "headline",
+                        "component_id": component_id,
+                        "component_name": component_name,
+                        "tag_type": "Hook",
+                        "tag_value": hook_row.iloc[0]["Hook"],
+                    }
+                )
+
+    # Text components
+    text_df = t_texts.execute()
+    for _, row in text_df.iterrows():
+        component_id = row["text_oid"]
+        component_name = row.get("Name", "")
+
+        # Hook tag
+        if pd.notna(row.get("Hook_id_text")):
+            hook_row = d_hook.filter(
+                d_hook["hook_oid"] == row["Hook_id_text"]
+            ).execute()
+            if not hook_row.empty:
+                rows.append(
+                    {
+                        "component_type": "text",
+                        "component_id": component_id,
+                        "component_name": component_name,
+                        "tag_type": "Hook",
+                        "tag_value": hook_row.iloc[0]["Hook"],
+                    }
+                )
+
+        # Promise tag
+        if pd.notna(row.get("Promise_id_text")):
+            promise_row = d_promise.filter(
+                d_promise["promise_oid"] == row["Promise_id_text"]
+            ).execute()
+            if not promise_row.empty:
+                rows.append(
+                    {
+                        "component_type": "text",
+                        "component_id": component_id,
+                        "component_name": component_name,
+                        "tag_type": "Promise",
+                        "tag_value": promise_row.iloc[0]["Promise"],
+                    }
+                )
+
+        # Structure tag (string field, no join needed)
+        if pd.notna(row.get("Structure")) and row["Structure"] != "":
+            rows.append(
+                {
+                    "component_type": "text",
+                    "component_id": component_id,
+                    "component_name": component_name,
+                    "tag_type": "Structure",
+                    "tag_value": row["Structure"],
+                }
+            )
+
+    return pd.DataFrame(rows)
+
+
 # -------------------------
 # Registry
 # -------------------------
@@ -762,6 +923,49 @@ TRANSFORMS: Dict[str, TransformSpec] = {
                 "Variant": "Variant",
                 "Primary_text": "Primary_text",
             },
+        },
+    ),
+    "component_tags_prod": TransformSpec(
+        name="component_tags_prod",
+        transform=component_tags_transform,
+        input_tables={
+            "media": "Media",
+            "headlines": "Headlines",
+            "texts": "Texts",
+            "media_style": "Media_Style",
+            "media_energy": "Media_Energy",
+            "tone": "Tone",
+            "promise_types": "Promise_types",
+            "hook_types": "Hook_types",
+        },
+        output_table="Derived_Component_Tags",
+        overwrite=True,
+        select_rename={
+            "media": {
+                "id": "media_oid",
+                "Name": "Name",
+                "Media_Style": "Media_Style_id",
+                "Media_Energy": "Media_Energy_id",
+            },
+            "headlines": {
+                "id": "headline_oid",
+                "Text": "Text",
+                "Tone": "Tone_id",
+                "Promise": "Promise_id_headline",
+                "Hooks": "Hooks_id",
+            },
+            "texts": {
+                "id": "text_oid",
+                "Name": "Name",
+                "Hook": "Hook_id_text",
+                "Promise": "Promise_id_text",
+                "Structure": "Structure",
+            },
+            "media_style": {"id": "style_oid", "Media_Style": "Media_Style"},
+            "media_energy": {"id": "energy_oid", "Media_Energy": "Media_Energy"},
+            "tone": {"id": "tone_oid", "Tone": "Tone"},
+            "promise_types": {"id": "promise_oid", "Promise": "Promise"},
+            "hook_types": {"id": "hook_oid", "Hook": "Hook"},
         },
     ),
 }

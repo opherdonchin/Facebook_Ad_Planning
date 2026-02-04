@@ -1,5 +1,105 @@
 # Weekly Decision Log
 
+# Plan for 2026-W06 (assessing 2026-W05)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W05
+* **Decision / planned week:** 2026-W06
+
+### Ads active in assessed week (2026-W05)
+
+* **Men:** Mens Ad J, Mens Ad O, Mens Ad N
+
+| Ad name   |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | ----: | -------------: | -----------: |
+| Mens Ad J | 181.32 | 25.90 |         762.74 |        40.14 |
+| Mens Ad O |  13.47 |     — |          13.47 |            — |
+| Mens Ad N |   0.16 |     — |         260.91 |        52.18 |
+
+* **Women:** Womens Ad P, Womens Ad Q, Womens Ad R
+
+| Ad name     | Spend |   CPL | Lifetime spend | Lifetime CPL |
+| ----------- | ----: | ----: | -------------: | -----------: |
+| Womens Ad P | 81.38 | 81.38 |         167.93 |        41.98 |
+| Womens Ad Q | 18.56 |     — |         142.64 |        71.32 |
+| Womens Ad R | 96.91 | 96.91 |          96.91 |        96.91 |
+
+### Ads planned for decision week (2026-W06)
+
+* **Men:** Mens Ad J, Mens Ad O
+
+#### Reuse:
+
+| Name      |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | ----: | -------------: | -----------: |
+| Mens Ad J | 329.85 | 29.99 |         762.74 |        40.14 |
+| Mens Ad O |  13.47 |     — |          13.47 |            — |
+
+* **Women:** W 2026-W06 1, W 2026-W06 2
+
+#### Reshuffle:
+
+**W 2026-W06 1**
+
+| Component                   | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------------------------- | ----: | --: | -------------: | -----------: |
+| Dojo_Instruction_FemalePair |  1040 |  41 |           1040 |           41 |
+| גוף חזק, ראש רגוע           |   855 |  39 |            855 |           39 |
+| Meaningful Movement         |   855 |  38 |            855 |           38 |
+
+**W 2026-W06 2**
+
+| Component                   | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------------------------- | ----: | --: | -------------: | -----------: |
+| Outside_Sunset_MM_Kaitenage |  1087 |  41 |           1087 |           41 |
+| ללמוד לשלוט ברגע            |   880 |  40 |            880 |           40 |
+| Time Out For You            |  1087 |  41 |           1087 |           41 |
+
+---
+
+## Portfolio decision
+
+* None of the women ads active in 2026-W05 met keep criteria; both women slots are replaced.
+* Replacement strategy prioritizes **exploitation of historical winners at the component level**.
+* Two women ads are constructed as reshuffles using only components with strong lifetime performance.
+
+---
+
+## Rationale (concise)
+
+* Multiple women media, headlines, and texts show CPL ≈ 38–41 at meaningful spend and are treated as reliable exploit anchors.
+* Recent week-level volatility does not override lifetime evidence.
+* Each planned women ad is anchored on a distinct high-performing media asset, with supporting headline and text chosen from other proven components. Gender alignment was enforced at the text level.
+
+---
+
+## Constraints check
+
+* Creative uniqueness per week: **satisfied** (no component reused across ads).
+* New-material constraint: **satisfied** (no new media, headline, or text).
+* Decision priority order: **satisfied** (exploit > probe > interpret).
+
+---
+
+## What would change this decision next week
+
+* If exploit-based women ads fail to produce leads or show CPL ≥ 50 at meaningful spend, consider uncertainty probes using low-spend components.
+
+---
+
+## Confidence level
+
+* **Men:** high
+* **Women:** medium–high
+
+---
+
+End of Plan 2026-W06
+
+---
+
+
 # Plan for 2026-W05 (assessing 2026-W04)
 
 ### Weeks
@@ -41,7 +141,6 @@ End of Plan for 2026-W05
 
 ---
 
-
 # Plan for 2026‑W04 (assessing 2026‑W03)
 
 ### Weeks
@@ -71,8 +170,9 @@ End of Plan for 2026-W05
 **Women’s portfolio**
 
 * **Womens Ad P** introduced as a **pure reshuffle of existing materials**. The goal is incremental learning via a new combination while staying inside previously validated semantic space and without consuming the weekly new‑material allowance.
-* **Womens Ad Q** introduced as the **single new‑material ad** for the week:
 
+* **Womens Ad Q** introduced as the **single new‑material ad** for the week:
+  
   * New media (instructional interaction with clear female agency)
   * New headline: *עוצמה, איזון, ביטחון עצמי*
   * New text: *Meaningful Movement*
@@ -174,7 +274,6 @@ End of plan for 2026-W03
 
 ---
 
-
 ### Context and timing
 
 * **Latest completed data week assessed:** 2026-W01
@@ -184,9 +283,10 @@ End of plan for 2026-W03
 Operational note:
 
 * From **Thursday through Saturday**, before this decision cycle was fully organized, the following ads continued running:
-
+  
   * **Men:** Mens Ad A, Mens Ad B
   * **Women:** Womens Ad A, Womens Ad D
+
 * This overlap is documented to avoid confusion when interpreting partial‑week performance.
 
 ---
@@ -252,18 +352,25 @@ Operational note:
 **Womens Ad O (new text + headline, existing media)**
 
 * Womens Ad O is the **only ad this week containing new material**, consistent with the weekly constraint.
+
 * **Media:** `Illustrated_Calm_Poster_Female.png` (existing illustrated calm poster; low energy; visually distinct; no recent overuse).
+
 * **New headline:** "מרחב שקט לעצמך" (new; hook = stress / mental load; promise = personal calm; tone = reassuring).
+
 * **New text:** `Womens_Text_CalmPermission_v1`
-
+  
   * Opening line: "מקום לנשום. לא צריך למהר"
+  
   * Structure: checklist (three parallel bullets)
+  
   * Desire bullets:
-
+    
     * 🌿 תנועה רגועה שמכבדת את הגוף
     * 🌿 אימון רך, תומך ולא תחרותי
     * 🌿 מרחב בטוח לעצור רגע בתוך השבוע
+  
   * CTA: "לחצי לפרטים ולהתנסות בשיעור היכרות בלי התחייבות"
+
 * This configuration reflects the hypothesis that recent underperformance in the women’s campaign is driven primarily by **copy fatigue** rather than media failure, and that explicitly permissive calm copy is better matched to this visual than instructional imagery.
 
 **Abandoned alternative (documented explicitly)**
@@ -329,14 +436,17 @@ End of plan for 2026-W02
 ### Evidence Considered
 
 * All active ads were **low sample size (≤2 leads)**; weekly CPLs not considered decisive.
-* Lifetime CPL leaders remain:
 
+* Lifetime CPL leaders remain:
+  
   * Womens Ad A (~37 ILS)
   * Mens Ad B (~38 ILS)
-* Tag rollups show **consistent signal** favoring:
 
+* Tag rollups show **consistent signal** favoring:
+  
   * **Photo - Outside** media
   * **Calm** energy
+
 * Womens Ad J exhibited **delivery collapse**, treated as an operational issue rather than a performance signal.
 
 ### Decisions
@@ -366,14 +476,18 @@ End of plan for 2026-W02
 * If delivery collapses again on baseline ads, consider **Media Seed 1**.
 
 ---
+
 ### Context snapshot
 
 * Men’s and Women’s lead campaigns running at ~30 ILS/day each.
-* Portfolio at start of W52 (post-reset):
 
+* Portfolio at start of W52 (post-reset):
+  
   * **Men:** Mens Ad A, Mens Ad B
   * **Women:** Womens Ad A, Womens Ad D
+
 * W52 is a **full, closed week**. W53 is the upcoming run week.
+
 * Conversion rollups (Has trial / Has registrations / Failures) are now present but still sparse and treated as exploratory telemetry.
 
 ---
@@ -398,14 +512,17 @@ End of plan for 2026-W02
 ### Decision taken
 
 * **Men:** No change.
-
+  
   * Continue **Mens Ad A** and **Mens Ad B** unchanged.
-* **Women:** Rotate portfolio.
 
+* **Women:** Rotate portfolio.
+  
   * Remove **Womens Ad D**.
   * Activate **Womens Ad J** in its original configuration.
   * Keep **Womens Ad A** unchanged.
+
 * No new creatives generated.
+
 * No recombination of text, headline, or media components.
 
 ---
@@ -477,10 +594,12 @@ End of plan for 2026-W01
 ## Context snapshot
 
 * Men’s and Women’s lead campaigns running at ~30 ILS/day each.
-* At start of week, active creatives were:
 
+* At start of week, active creatives were:
+  
   * **Men:** Mens Ad K, Mens Ad M
   * **Women:** Womens Ad M, Womens Ad G
+
 * W51 data incomplete and treated as provisional.
 
 ---
@@ -497,12 +616,15 @@ End of plan for 2026-W01
 ## Decision taken
 
 * **Men:** Remove Mens Ad K and Mens Ad M.
-
+  
   * Activate **Mens Ad A** and **Mens Ad B** in their original configurations.
-* **Women:** Remove Womens Ad M.
 
+* **Women:** Remove Womens Ad M.
+  
   * Activate **Womens Ad A** and **Womens Ad D** in their original configurations.
+
 * No new creatives generated.
+
 * No recombination of existing components.
 
 ---
