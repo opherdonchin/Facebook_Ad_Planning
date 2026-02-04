@@ -48,12 +48,15 @@ def read_csv_with_encoding(path: str) -> List[Dict[str, Any]]:
 
 def parse_date_to_timestamp(date_str: str) -> int:
     """
-    Parse a date string (YYYY-MM-DD) and return Unix timestamp at midnight (naive, Israel local time).
+    Parse a date string (YYYY-MM-DD) and return Unix timestamp at midnight UTC.
+    Grist stores dates as UTC timestamps.
     """
     try:
         dt = datetime.strptime(date_str.strip(), "%Y-%m-%d")
-        # Naive datetime (no timezone), treating as Israel local time
-        return int(dt.timestamp())
+        # Convert to UTC timestamp (date at midnight UTC)
+        from datetime import timezone
+        dt_utc = dt.replace(tzinfo=timezone.utc)
+        return int(dt_utc.timestamp())
     except Exception as e:
         raise ValueError(f"Could not parse date '{date_str}': {e}")
 
