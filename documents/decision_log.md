@@ -1,20 +1,63 @@
 # Weekly Decision Log
 
-## 2026‑W04 plan (assessed week: 2026‑W03)
+# Plan for 2026-W05 (assessing 2026-W04)
 
-### Week disambiguation
+### Weeks
 
-* **Assessed week:** 2026‑W03
-* **Decision week (planned):** 2026‑W04
+* **Assessed (data) week:** 2026-W04
+* **Decision / planned week:** 2026-W05
+
+### Ads active in assessed week (2026-W04)
+
+* Men: Mens Ad J, Mens Ad N
+* Women: Womens Ad P, Womens Ad Q
+
+### Ads planned for decision week (2026-W05)
+
+* Men: Mens Ad J, Mens Ad O
+* Women: Womens Ad P, Womens Ad R
 
 ---
 
-### Portfolio decision
+## Assessment notes (2026-W04)
 
-Run **four ads** in the coming week:
+* Mens Ad J: 148.53 spend / 4 leads (37.13 CPL) - keep.
+* Mens Ad N: 53.96 spend / 1 lead (53.96 CPL); run is 260.67 spend at 52.13 CPL - replace.
+* Womens Ad P: 86.55 spend / 3 leads (28.85 CPL) - keep.
+* Womens Ad Q: 124.08 spend / 2 leads (62.04 CPL) - replace.
 
-* **Men:** Mens Ad J, Mens Ad N
-* **Women:** Womens Ad P, Womens Ad Q
+---
+
+## Decisions for 2026-W05
+
+* Keep: Mens Ad J; Womens Ad P.
+* Replace Mens Ad N with Mens Ad O (existing materials reshuffle): Shihonage_MF_Dojo_Photo__A.png + "ללמוד לשלוט ברגע" + "Everyday Pressure".
+* Replace Womens Ad Q with Womens Ad R (existing materials reshuffle): Illustrated_Calm_Poster_Female.png + "גוף חזק, ראש רגוע" + "Quiet Space - Bullet Calm".
+* New-material slot: unused this week.
+
+---
+
+End of Plan for 2026-W05
+
+---
+
+
+# Plan for 2026‑W04 (assessing 2026‑W03)
+
+### Weeks
+
+- **Assessed (data) week:** 2026‑W04
+- **Decision / planned week:** 2026‑W03
+
+### Ads active in assessed week (2026‑W03)
+
+- Men: Mens Ad A, Mens Ad N
+- Women: Womens Ad N, Womens Ad O
+
+### Ads planned for decision week (2026‑W04)
+
+- Men: Mens Ad J, Mens Ad N
+- Women: Womens Ad P, Womens Ad Q
 
 ---
 
@@ -33,7 +76,7 @@ Run **four ads** in the coming week:
   * New media (instructional interaction with clear female agency)
   * New headline: *עוצמה, איזון, ביטחון עצמי*
   * New text: *Meaningful Movement*
-    This decision followed a focused reassessment of image–text alignment around the instructional female‑pair media. Earlier runs with that media showed zero leads but insufficient evidence to attribute failure to copy or headline. The new creative is therefore treated explicitly as a controlled probe of **media + message together**, not as a baseline replacement.
+    This decision followed a focused reassessment of image-text alignment around the instructional female‑pair media. Earlier runs with that media showed zero leads but insufficient evidence to attribute failure to copy or headline. The new creative is therefore treated explicitly as a controlled probe of **media + message together**, not as a baseline replacement.
 
 ---
 
@@ -53,12 +96,29 @@ Run **four ads** in the coming week:
 
 ---
 
-## 2026‑W03 plan (assessed week: 2026‑W02)
+End of plan for 2026-W04
 
-### Week disambiguation
+---
 
-- **Assessed week:** 2026‑W02
-- **Decision week (planned):** 2026‑W03
+# Plan for 2026‑W03 (assessing 2026‑W02)
+
+### Weeks
+
+- **Assessed (data) week:** 2026‑W03
+- **Decision / planned week:** 2026‑W02
+
+### Ads active in assessed week (2026‑W02)
+
+- Men: Mens Ad A, Mens Ad N
+- Women: Womens Ad N, Womens Ad O
+
+### Ads planned for decision week (2026‑W03)
+
+- Men: Mens Ad A, Mens Ad N
+- Women: Womens Ad N, Womens Ad O
+
+---
+
 - **Contiguous runs (as of assessed week end):**
   - Mens Ad A: 2025‑W52 → 2026‑W02 (3 weeks)
   - Mens Ad N: 2026‑W02 → 2026‑W02 (1 week)
@@ -67,18 +127,18 @@ Run **four ads** in the coming week:
 
 ### What happened in 2026‑W02
 
-- All four ads delivered meaningful spend (≈48–81 ILS), but **lead counts were low everywhere (1–2 leads/ad)**.
+- All four ads delivered meaningful spend (≈48-81 ILS), but **lead counts were low everywhere (1-2 leads/ad)**.
 - Mens Ad A showed a **weekly CPL spike (80.7)**, but this was based on **1 lead**; its **current-run CPL remains strong (33.8 over 8 leads)**.
-- Womens Ad O produced the best weekly CPL (**23.8 on 2 leads**) with clean image–text alignment.
+- Womens Ad O produced the best weekly CPL (**23.8 on 2 leads**) with clean image-text alignment.
 
 ### Decision for 2026‑W03
 
 **Keep all four currently active ads** (no replacements required this week; preserve new‑material budget).
 
-- **Mens Ad A** — Media: `Shihonage_MF_Dojo_Photo__A.png` (attachment_id=27; sha256=6f84d2a4…) — keep due to strong run-level CPL despite noisy week.
-- **Mens Ad N** — Media: `Outside_Sunset_MM_Kaitenage_photo__B.png` (attachment_id=28; sha256=ef37e601…) — keep; early signal is good and outside-photo media performs well in lifetime rollups.
-- **Womens Ad N** — Media: `Dojo_Instruction_FemalePair.png` (attachment_id=53; sha256=db735aa7…) — keep; early, low-sample run and spend below strong evidence threshold.
-- **Womens Ad O** — Media: `Illustrated_Calm_Poster_Female.png` (attachment_id=38; sha256=97ddbb5d…) — keep; strongest weekly CPL in W02.
+- **Mens Ad A** - Media: `Shihonage_MF_Dojo_Photo__A.png` (attachment_id=27; sha256=6f84d2a4…) - keep due to strong run-level CPL despite noisy week.
+- **Mens Ad N** - Media: `Outside_Sunset_MM_Kaitenage_photo__B.png` (attachment_id=28; sha256=ef37e601…) - keep; early signal is good and outside-photo media performs well in lifetime rollups.
+- **Womens Ad N** - Media: `Dojo_Instruction_FemalePair.png` (attachment_id=53; sha256=db735aa7…) - keep; early, low-sample run and spend below strong evidence threshold.
+- **Womens Ad O** - Media: `Illustrated_Calm_Poster_Female.png` (attachment_id=38; sha256=97ddbb5d…) - keep; strongest weekly CPL in W02.
 
 ### Data hygiene / learning notes
 
@@ -89,12 +149,36 @@ Run **four ads** in the coming week:
 - If delivery collapses (sharp spend/impressions drop) for a baseline ad, consider a controlled reshuffle.
 - If tag-based decisions are desired, prioritize fixing obvious Media_Style / Media_Energy tag mismatches first.
 
-## Week 2026-W2
+---
+
+End of plan for 2026-W03
+
+---
+
+# Plan for 2026‑W02 (assessing 2026‑W01)
+
+### Weeks
+
+- **Assessed (data) week:** 2026‑W02
+- **Decision / planned week:** 2026‑W01
+
+### Ads active in assessed week (2026‑W01)
+
+- Men: Mens Ad A, Mens Ad B
+- Women: Womens Ad A, Womens Ad D
+
+### Ads planned for decision week (2026‑W02)
+
+- Men: Mens Ad A, Mens Ad N
+- Women: Womens Ad N, Womens Ad O
+
+---
+
 
 ### Context and timing
 
-* **Latest completed data week assessed:** 2026-W1
-* **Decision week planned:** 2026-W2
+* **Latest completed data week assessed:** 2026-W01
+* **Decision week planned:** 2026-W02
 * **Ads launched:** Saturday evening
 
 Operational note:
@@ -107,7 +191,7 @@ Operational note:
 
 ---
 
-### Ads running in 2026-W2
+### Ads running in 2026-W02
 
 * **Men:** Mens Ad A (kept), Mens Ad N (shuffle)
 * **Women:** Womens Ad N (shuffle), Womens Ad O (new text)
@@ -116,7 +200,7 @@ Operational note:
 
 ### Evidence considered
 
-* Weekly and run‑level performance from `performance_data.json` for 2026-W1
+* Weekly and run‑level performance from `performance_data.json` for 2026-W01
 * Lifetime ad‑level and tag‑level rollups
 * Recent delivery behavior and low‑sample constraints
 
@@ -196,22 +280,44 @@ Only one ad includes new material, in line with exploration constraints.
 
 * Any ad producing **<50 ILS CPL over ≥3 leads** becomes a keep candidate.
 * Sustained **>65 ILS CPL over ≥3 leads** triggers replacement.
-* Clear evidence of media–copy mismatch or delivery suppression may trigger media rotation.
+* Clear evidence of media-copy mismatch or delivery suppression may trigger media rotation.
 
 ---
 
 ### Confidence level
 
-**Moderate–high confidence.**
+**Moderate-high confidence.**
 
 Decisions balance stability with a single, well‑scoped exploratory change under noisy, low‑budget conditions.
 
+---
 
-## Week 2026-W1
+End of plan for 2026-W02
+
+---
+
+# Plan for 2026‑W01 (assessing 2025‑W052)
+
+### Weeks
+
+- **Assessed (data) week:** 2025‑W52
+- **Decision / planned week:** 2026‑W01
+
+### Ads active in assessed week (2025‑W52)
+
+- Men: Mens Ad A, Mens Ad B
+- Women: Womens Ad A, Womens Ad J
+
+### Ads planned for decision week (2026‑W01)
+
+- Men: Mens Ad A, Mens Ad B
+- Women: Womens Ad A, Womens Ad D
+
+---
 
 ### Context
 
-* Latest completed data week in export: **2025-W52.
+* Latest completed data week in export: **2025-W52**.
 * Campaign changes executed late in the week → expected **low volume and noisy CPLs**.
 
 ### Active Portfolio (Entering Week)
@@ -229,7 +335,7 @@ Decisions balance stability with a single, well‑scoped exploratory change unde
   * Mens Ad B (~38 ILS)
 * Tag rollups show **consistent signal** favoring:
 
-  * **Photo – Outside** media
+  * **Photo - Outside** media
   * **Calm** energy
 * Womens Ad J exhibited **delivery collapse**, treated as an operational issue rather than a performance signal.
 
@@ -255,12 +361,11 @@ Decisions balance stability with a single, well‑scoped exploratory change unde
 
 ### Re-evaluation Triggers (Next Week)
 
-* If **Mens Ad A or B** exceed **60–65 ILS CPL over ≥3 leads**, reassess men’s portfolio.
+* If **Mens Ad A or B** exceed **60-65 ILS CPL over ≥3 leads**, reassess men’s portfolio.
 * If **Womens Ad A or D** exceed **~65 ILS CPL over ≥3 leads**, reassess women’s portfolio.
 * If delivery collapses again on baseline ads, consider **Media Seed 1**.
 
-## Week 2025-W52 — 2026-01-02
-
+---
 ### Context snapshot
 
 * Men’s and Women’s lead campaigns running at ~30 ILS/day each.
@@ -308,7 +413,7 @@ Decisions balance stability with a single, well‑scoped exploratory change unde
 ### Primary rationale
 
 * Decision rules based on ≥3 leads remain appropriate for high‑CPL evaluation.
-* However, sustained **zero‑lead spend (~120–150 ILS) with normal delivery** constitutes a separate failure mode and justifies conservative rotation.
+* However, sustained **zero‑lead spend (~120-150 ILS) with normal delivery** constitutes a separate failure mode and justifies conservative rotation.
 * Mens portfolio does not meet any reassessment trigger.
 * Womens Ad D shows insufficient evidence to justify continued budget allocation when proven alternatives exist.
 * Action favors portfolio hygiene over exploration.
@@ -325,13 +430,13 @@ Decisions balance stability with a single, well‑scoped exploratory change unde
 
 ### Clarification added to decision rules (implicit)
 
-* Ads that accumulate **~120–150 ILS with zero leads and normal delivery** may be rotated out even if CPL‑over‑≥3‑leads criteria are not met.
+* Ads that accumulate **~120-150 ILS with zero leads and normal delivery** may be rotated out even if CPL‑over‑≥3‑leads criteria are not met.
 
 ---
 
 ### What would change this decision next week
 
-* If **Mens Ad A or B** exceed ~60–65 ILS CPL over ≥3 leads, reassess men’s portfolio.
+* If **Mens Ad A or B** exceed ~60-65 ILS CPL over ≥3 leads, reassess men’s portfolio.
 * If **Womens Ad A or J** exceed ~65 ILS CPL over ≥3 leads, reassess women’s portfolio.
 * If baseline delivery collapses (suppression or sharp impression drop), consider Media Seed 1.
 * If baseline ads stabilize but CPL trends upward across weeks, consider controlled recombination before new creative generation.
@@ -344,9 +449,32 @@ Decisions balance stability with a single, well‑scoped exploratory change unde
 
 Decision is conservative, evidence‑aligned, and consistent with stability‑first portfolio management.
 
-## Week 2025-W51 2025-12-24
+---
 
-Context snapshot
+End of plan for 2026-W01
+
+---
+
+# Plan for 2025‑W52 (assessing 2025‑W51)
+
+### Weeks
+
+- **Assessed (data) week:** 2025‑51
+- **Decision / planned week:** 2025‑W52
+
+### Ads active in assessed week (2026‑W51)
+
+- Men: Mens Ad K, Mens Ad M
+- Women: Womens Ad M, Womens Ad G
+
+### Ads planned for decision week (2025‑W52)
+
+- Men: Mens Ad A, Mens Ad B
+- Women: Womens Ad A, Womens Ad D
+
+---
+
+## Context snapshot
 
 * Men’s and Women’s lead campaigns running at ~30 ILS/day each.
 * At start of week, active creatives were:
@@ -359,9 +487,9 @@ Context snapshot
 
 ## What changed since last decision
 
-* **Mens Ad K** accumulated ~125 ILS across W50–W51 with **zero leads** (no longer low-sample).
+* **Mens Ad K** accumulated ~125 ILS across W50-W51 with **zero leads** (no longer low-sample).
 * **Mens Ad M** produced leads but at elevated CPL (≈65 in W50, ≈95 in W51 provisional).
-* **Womens Ad M** remained stable but expensive (≈71–73 CPL across W50–W51; 4 total leads).
+* **Womens Ad M** remained stable but expensive (≈71-73 CPL across W50-W51; 4 total leads).
 * **Womens Ad G** produced 1 lead at low CPL in W51, but remains a single-event result.
 
 ---
@@ -398,7 +526,7 @@ Context snapshot
 
 ## What would change this decision next week
 
-* If Mens Ad A or B exceed ~60–65 ILS CPL over ≥3 leads, reassess men’s portfolio.
+* If Mens Ad A or B exceed ~60-65 ILS CPL over ≥3 leads, reassess men’s portfolio.
 * If Womens Ad A or D exceed ~65 ILS CPL over ≥3 leads, reassess women’s portfolio.
 * If delivery collapses on baseline ads (suppression or sharp impression drop), consider Media Seed 1.
 * If baseline ads stabilize but CPL trends upward across weeks, consider controlled recombination or new creative generation.
@@ -410,3 +538,9 @@ Context snapshot
 **High confidence.**
 
 Decision favors evidence-backed stability over novelty in a noisy, low-budget environment.
+
+---
+
+End of plan for 2025-W52
+
+---

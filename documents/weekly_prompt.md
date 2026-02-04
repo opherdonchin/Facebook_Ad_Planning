@@ -27,31 +27,39 @@ You should also review `PROJECT_GUIDE.md` to confirm alignment with current inte
      * (b) the **decision week** (being planned)
      * (c) the **current contiguous run** for each ad
    * These must never be conflated.
-2. **Separate processing from output**
-
+2. **Decision-log format compliance is mandatory**
+   * Read `decision_log_format.md` before doing any week identification or writing any decision-log output.
+   * Any new entry written to `decision_log.md` must follow the required heading structure defined there:
+     * Decision week (planned)
+     * Assessed week (data)
+     * Ads active in assessed week
+     * Ads planned for decision week
+   * If older entries in `decision_log.md` conflict with the format, do **not** imitate them—follow `decision_log_format.md`.
+   * If you cannot determine the assessed week or decision week unambiguously, **stop** and ask for clarification before proceeding.
+3. **Separate processing from output**
    * Put all thought processes and interim conclusions in the chat. Use a discursive, conversational format designed to give insight rather than support conclusions.
    * Actual output should go in canvases. These are specified in the **Required output** section below.
    * Keep processing and outputs separate.
-3. **Creative uniqueness per week**
+4. **Creative uniqueness per week**
 
    * In a given week, the **same media, headline, or primary text may not appear in more than one ad of a campaign**
-4. **New‑material constraint**
+5. **New‑material constraint**
 
    * **At most one ad per week may contain new material** (new headline, new text, or new media).
    * Up to **two additional ads** may:
      * shuffle existing materials, or
      * reuse a previously run ad that is not currently active.
-5. **Media provenance requirement**
+6. **Media provenance requirement**
 
    * Any existing media used must:
 
      * correspond to a **specific file in `attachments.tar`**, and
      * be referenced using its canonical name from `attachments_manifest.json`.
-6. **Image–text semantic check (mandatory)**
+7. **Image–text semantic check (mandatory)**
 
    * Before proposing or finalizing any ad, verify that the **actual image content** (not just its tags or filename) matches the proposed headline and text.
    * If there is a mismatch, flag it and revise.
-7. **Tag reuse discipline**
+8. **Tag reuse discipline**
 
    * Before assigning hooks, promises, tone, or structure, review existing tag tables in `performance_data.json`, including:
 
@@ -59,7 +67,7 @@ You should also review `PROJECT_GUIDE.md` to confirm alignment with current inte
      * existing headline/text tag assignments
      * `Derived_Tag_Lifetime_Rollups`
    * New tags should be introduced **only if no existing tag fits**, and must be explicitly marked as new.
-8. **Formatting requirements for new text**
+9. **Formatting requirements for new text**
 
    * New text must follow the agreed AIDA structure:
 
@@ -141,6 +149,8 @@ omitted to avoid being overly influenced by speculation.
     * Keep ads with current run CPL < 30
     * Keep ads with current run spend < 80
 * Always keep **at least one ad**
+
+  * If no ads meet keep criteria, make a judgement call: which is the ad most likely to succeed next week?
 
 ---
 
