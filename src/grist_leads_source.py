@@ -33,8 +33,26 @@ def norm_phone(phone: Optional[str]) -> str:
     if not phone:
         return ""
     p = str(phone).strip()
+    original = p  # Keep original for warning message
     p = re.sub(r"[^\d+]", "", p)
-    # Common Israeli cases: "05xxxxxxxx" -> "9725xxxxxxxx" ; "+9725xxxxxxx" -> "9725xxxxxxx"
+
+    # Handle +972 country code
+    if p.startswith("+972"):
+        remaining = p[4:]  # Strip +972
+        digit_count = len(remaining)
+
+        if digit_count == 9 and remaining[0] == "5":
+            # 9 digits starting with 5: add leading 0 → 0512345678
+            return "0" + remaining
+        elif digit_count == 10 and remaining[0] == "0":
+            # 10 digits starting with 0: use as-is → 0512345678
+            return remaining
+        else:
+            # Other cases: keep full number as it appears in form and warn
+            print(f"[PHONE WARNING] Unusual +972 format: {original} -> keeping as-is")
+            return original
+
+    # Common Israeli cases without +972: "05xxxxxxxx" -> "9725xxxxxxxx"
     if p.startswith("+"):
         p = p[1:]
     if p.startswith("0") and len(p) >= 9:
