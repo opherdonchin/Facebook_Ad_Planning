@@ -1,5 +1,97 @@
 # Weekly Decision Log
 
+# Plan for 2026-W07 (assessing 2026-W06)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W06
+* **Decision / planned week:** 2026-W07
+
+---
+
+### Ads active in assessed week (2026-W06)
+
+* Men:
+
+| Ad name   | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | ----- | --- | -------------- | ------------ |
+| Mens Ad J |       |     |                |              |
+| Mens Ad O |       |     |                |              |
+
+* Women:
+
+| Ad name      | Spend | CPL | Lifetime spend | Lifetime CPL |
+| ------------ | ----- | --- | -------------- | ------------ |
+| W 2026-W06 1 |       |     |                |              |
+| W 2026-W06 2 |       |     |                |              |
+
+---
+
+### Ads planned for decision week (2026-W07)
+
+* Men:
+
+#### Reuse:
+
+| Name      | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | ----- | --- | -------------- | ------------ |
+| Mens Ad J |       |     |                |              |
+| Mens Ad O |       |     |                |              |
+
+* Women:
+
+#### Reuse:
+
+| Name         | Spend | CPL | Lifetime spend | Lifetime CPL |
+| ------------ | ----- | --- | -------------- | ------------ |
+| W 2026-W06 2 |       |     |                |              |
+
+#### Reshuffle:
+
+**W 2026-W06 3 – Shihonage Reshuffle**
+
+| Component                | Spend | CPL | Lifetime spend | Lifetime CPL |
+| ------------------------ | ----- | --- | -------------- | ------------ |
+| Shihonage_MF_Dojo_Photo  |       |     |                |              |
+| עוצמה, איזון, בטחון עצמי |       |     |                |              |
+| Balance, Not Struggle    |       |     |                |              |
+
+---
+
+## Portfolio decision
+
+* Men campaign remains stable with two proven performers.
+* Women campaign retains the stronger of the two previous-week ads.
+* The underperforming Women ad is replaced with a reshuffle anchored on a top-tier media asset (Shihonage_MF_Dojo_Photo).
+
+---
+
+## Rationale (concise)
+
+* Shihonage_MF_Dojo_Photo is a statistically meaningful asset (≈1000 ILS lifetime spend, CPL ≈43).
+* Headline 7 (עוצמה, איזון, בטחון עצמי) is an existing, proven headline.
+* Balance, Not Struggle is among the stronger eligible texts.
+* The combination has not previously been run together.
+* No component duplication within Women this week.
+* No reuse of components from the removed ad.
+
+---
+
+## Constraints check
+
+* Week labels explicit and aligned.
+* No component duplication within Women campaign.
+* No reuse of removed ad components.
+* No new material introduced.
+* Gender designation respected.
+
+---
+
+End of Plan 2026-W07
+
+---
+
+
 # Plan for 2026-W06 (assessing 2026-W05)
 
 ### Weeks
