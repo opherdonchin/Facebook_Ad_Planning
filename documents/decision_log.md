@@ -1,5 +1,68 @@
 # Weekly Decision Log
 
+# Plan for 2026-W08 (assessing 2026-W07)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W07
+* **Decision / planned week:** 2026-W08
+
+### Ads active in assessed week (2026-W07)
+
+* **Men:** Mens Ad J, Mens Ad O
+* **Women:** W 2026-W06 2, W 2602_3
+
+### Ads planned for decision week (2026-W08)
+
+* **Men:** Mens Ad J, Mens Ad B
+* **Women:** W 2026-W06 2, Womens Ad A
+
+---
+
+## Performance notes from 2026-W07
+
+* Mens Ad J: weekly CPL **39.55** (2 leads on 79.11 spend) — still the anchor, but delivery dropped vs 2026-W06.
+* Mens Ad O: weekly CPL **112.18** (1 lead on 112.18 spend); run CPL **127.47** at run spend **127.47** → fails keep rules.
+* W 2026-W06 2: weekly CPL **46.94** (1 lead on 46.94 spend) → keep (low sample).
+* W 2602_3: weekly CPL **70.05** (2 leads on 140.09 spend) → replace per keep rules.
+
+---
+
+## Portfolio decision
+
+* **Men:** Keep Mens Ad J; replace Mens Ad O with **Mens Ad B** (historical performer, inactive ≥6 weeks).
+* **Women:** Keep W 2026-W06 2; replace W 2602_3 with **Womens Ad A** (strongest historical performer, inactive ≥6 weeks).
+
+---
+
+## Rationale (priority order)
+
+1. **Exploit historical winners**
+
+   * Mens Ad B has meaningful lifetime delivery (spend **880.60**, CPL **40.03**) and is eligible for reuse.
+   * Womens Ad A is the top Women historical asset in the dataset (spend **855.23**, CPL **38.87**) and is eligible for reuse.
+2. **Probe uncertainty**
+
+   * Deferred this week; first stabilize portfolios with high-evidence winners.
+3. **Stabilize and interpret**
+
+   * Using reused ads reduces variance from new combinations and keeps interpretation cleaner.
+
+---
+
+## Constraints check
+
+* **New-material constraint:** satisfied (0/1 new ads).
+* **Creative uniqueness per campaign:** satisfied (no media/headline/text duplicated within Men; none duplicated within Women).
+* **Media provenance:** all media are present in `attachments_manifest.json` and stored in `attachments.tar` under their canonical names.
+* **Image–text semantic check:** passed (manual inspection of the planned media vs headline/text).
+
+---
+
+End of Plan for 2026-W08
+
+---
+
 # Plan for 2026-W07 (assessing 2026-W06)
 
 ### Weeks

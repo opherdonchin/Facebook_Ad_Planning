@@ -31,5 +31,6 @@ ad_id,ad_name,campaign,media_id,media_name,headline_id,headline_text,text_id,tex
 30,Womens Ad Q,W,24,Munetsuki_F_Kyu,7,"עוצמה, איזון, בטחון עצמי",18,Meaningful Movement
 31,Mens Ad O,M,1,Shihonage_MF_Dojo_Photo,2,ללמוד לשלוט ברגע,8,Everyday Pressure
 32,Womens Ad R,W,11,Illustrated_Calm_Poster_Female,13,"גוף חזק, ראש רגוע",22,Quiet Space - Bullet Calm
-33,W 2026-W06 1,W,1,Shihonage_MF_Dojo_Photo,4,לנער את השגרה,18,Meaningful Movement
+33,W 2026-W06 1,W,13,Dojo_Instruction_FemalePair,13,"גוף חזק, ראש רגוע",18,Meaningful Movement
 34,W 2026-W06 2,W,2,Outside_Sunset_MM_Kaitenage_photo,2,ללמוד לשלוט ברגע,12,Time Out For You
+35,W 2602_3,W,1,Shihonage_MF_Dojo_Photo,7,"עוצמה, איזון, בטחון עצמי",3,"Balance, Not Struggle"
