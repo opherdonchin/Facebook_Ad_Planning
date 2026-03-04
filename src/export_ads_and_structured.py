@@ -113,6 +113,15 @@ def main():
         f"  • outputs/ad_components.{args.format if args.format != 'both' else '{csv,parquet}'}"
     )
     print(
+        f"  • outputs/component_media_lifetime.{args.format if args.format != 'both' else '{csv,parquet}'}"
+    )
+    print(
+        f"  • outputs/component_headline_lifetime.{args.format if args.format != 'both' else '{csv,parquet}'}"
+    )
+    print(
+        f"  • outputs/component_text_lifetime.{args.format if args.format != 'both' else '{csv,parquet}'}"
+    )
+    print(
         f"  • outputs/component_tags.{args.format if args.format != 'both' else '{csv,parquet}'}"
     )
 

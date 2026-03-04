@@ -1,12 +1,15 @@
 """
 Convert performance_data.json to structured Parquet files for ChatGPT analysis.
 
-Reads the Grist database export and generates 5 tables:
+Reads the Grist database export and generates 8 tables:
 1. ad_weekly_performance.parquet - Weekly performance by ad
 2. ad_run_summary.parquet - Metrics per contiguous run
 3. ad_lifetime_summary.parquet - Lifetime metrics by ad
 4. ad_components.parquet - Ad-to-component mapping
-5. component_tags.parquet - Component-to-tag junction table
+5. component_media_lifetime.parquet - Lifetime metrics by media component
+6. component_headline_lifetime.parquet - Lifetime metrics by headline component
+7. component_text_lifetime.parquet - Lifetime metrics by text component
+8. component_tags.parquet - Component-to-tag junction table
 """
 
 import json
@@ -410,6 +413,183 @@ def generate_component_tags(data: Dict[str, Any]) -> pd.DataFrame:
     return result
 
 
+def generate_component_media_lifetime(data: Dict[str, Any]) -> pd.DataFrame:
+    """
+    Generate component_media_lifetime table from Derived_Component_Media_Lifetime.
+
+    Grain: one row per media component
+    """
+    df = extract_table_df(data, "Derived_Component_Media_Lifetime")
+
+    if df.empty:
+        return pd.DataFrame(
+            columns=[
+                "media_id",
+                "media_name",
+                "media_variant",
+                "media_format",
+                "spend",
+                "leads",
+                "ads",
+                "cpl",
+            ]
+        )
+
+    result = pd.DataFrame(
+        {
+            "media_id": pd.to_numeric(
+                df.get("Media_ID") if "Media_ID" in df.columns else pd.Series(dtype=int),
+                errors="coerce",
+            ).astype("Int64"),
+            "media_name": (
+                df.get("Name")
+                if "Name" in df.columns
+                else df.get("Media_Name", pd.Series(dtype=str))
+            ),
+            "media_variant": (
+                df.get("Variant") if "Variant" in df.columns else pd.Series(dtype=str)
+            ),
+            "media_format": (
+                df.get("Format") if "Format" in df.columns else pd.Series(dtype=str)
+            ),
+            "spend": pd.to_numeric(
+                df.get("Spend") if "Spend" in df.columns else pd.Series(dtype=float),
+                errors="coerce",
+            ),
+            "leads": pd.to_numeric(
+                df.get("Leads") if "Leads" in df.columns else pd.Series(dtype=int),
+                errors="coerce",
+            ).astype("Int64"),
+            "ads": pd.to_numeric(
+                df.get("Ads") if "Ads" in df.columns else pd.Series(dtype=int),
+                errors="coerce",
+            ).astype("Int64"),
+            "cpl": pd.to_numeric(
+                df.get("CPL") if "CPL" in df.columns else pd.Series(dtype=float),
+                errors="coerce",
+            ),
+        }
+    )
+
+    return result
+
+
+def generate_component_headline_lifetime(data: Dict[str, Any]) -> pd.DataFrame:
+    """
+    Generate component_headline_lifetime table from Derived_Component_Headline_Lifetime.
+
+    Grain: one row per headline component
+    """
+    df = extract_table_df(data, "Derived_Component_Headline_Lifetime")
+
+    if df.empty:
+        return pd.DataFrame(
+            columns=[
+                "headline_id",
+                "headline_text",
+                "spend",
+                "leads",
+                "ads",
+                "cpl",
+            ]
+        )
+
+    result = pd.DataFrame(
+        {
+            "headline_id": pd.to_numeric(
+                df.get("Headline_ID")
+                if "Headline_ID" in df.columns
+                else pd.Series(dtype=int),
+                errors="coerce",
+            ).astype("Int64"),
+            "headline_text": (
+                df.get("Headline_Text")
+                if "Headline_Text" in df.columns
+                else df.get("Text", pd.Series(dtype=str))
+            ),
+            "spend": pd.to_numeric(
+                df.get("Spend") if "Spend" in df.columns else pd.Series(dtype=float),
+                errors="coerce",
+            ),
+            "leads": pd.to_numeric(
+                df.get("Leads") if "Leads" in df.columns else pd.Series(dtype=int),
+                errors="coerce",
+            ).astype("Int64"),
+            "ads": pd.to_numeric(
+                df.get("Ads") if "Ads" in df.columns else pd.Series(dtype=int),
+                errors="coerce",
+            ).astype("Int64"),
+            "cpl": pd.to_numeric(
+                df.get("CPL") if "CPL" in df.columns else pd.Series(dtype=float),
+                errors="coerce",
+            ),
+        }
+    )
+
+    return result
+
+
+def generate_component_text_lifetime(data: Dict[str, Any]) -> pd.DataFrame:
+    """
+    Generate component_text_lifetime table from Derived_Component_Text_Lifetime.
+
+    Grain: one row per text component
+    """
+    df = extract_table_df(data, "Derived_Component_Text_Lifetime")
+
+    if df.empty:
+        return pd.DataFrame(
+            columns=[
+                "text_id",
+                "text_name",
+                "text_variant",
+                "primary_text",
+                "spend",
+                "leads",
+                "ads",
+                "cpl",
+            ]
+        )
+
+    result = pd.DataFrame(
+        {
+            "text_id": pd.to_numeric(
+                df.get("Text_ID") if "Text_ID" in df.columns else pd.Series(dtype=int),
+                errors="coerce",
+            ).astype("Int64"),
+            "text_name": (
+                df.get("Name") if "Name" in df.columns else pd.Series(dtype=str)
+            ),
+            "text_variant": (
+                df.get("Variant") if "Variant" in df.columns else pd.Series(dtype=str)
+            ),
+            "primary_text": (
+                df.get("Primary_text")
+                if "Primary_text" in df.columns
+                else pd.Series(dtype=str)
+            ),
+            "spend": pd.to_numeric(
+                df.get("Spend") if "Spend" in df.columns else pd.Series(dtype=float),
+                errors="coerce",
+            ),
+            "leads": pd.to_numeric(
+                df.get("Leads") if "Leads" in df.columns else pd.Series(dtype=int),
+                errors="coerce",
+            ).astype("Int64"),
+            "ads": pd.to_numeric(
+                df.get("Ads") if "Ads" in df.columns else pd.Series(dtype=int),
+                errors="coerce",
+            ).astype("Int64"),
+            "cpl": pd.to_numeric(
+                df.get("CPL") if "CPL" in df.columns else pd.Series(dtype=float),
+                errors="coerce",
+            ),
+        }
+    )
+
+    return result
+
+
 def main(
     json_path: str = "outputs/performance_data.json",
     output_dir: str = "outputs",
@@ -437,6 +617,9 @@ def main(
         "ad_run_summary": generate_ad_run_summary(data),
         "ad_lifetime_summary": generate_ad_lifetime_summary(data),
         "ad_components": generate_ad_components(data),
+        "component_media_lifetime": generate_component_media_lifetime(data),
+        "component_headline_lifetime": generate_component_headline_lifetime(data),
+        "component_text_lifetime": generate_component_text_lifetime(data),
         "component_tags": generate_component_tags(data),
     }
 

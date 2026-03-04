@@ -1,4 +1,4 @@
-[project]
+[workspace]
 name = "facebook-ad-planning"
 version = "0.1.0"
 description = "Export Grist documents with all data, formulas, and attachments"

@@ -1,5 +1,90 @@
 # Weekly Decision Log
 
+# Plan for 2026-W09 (assessing 2026-W08)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W08
+- **Decision / planned week:** 2026-W09
+
+### Ads active in assessed week (2026-W08)
+
+- Men: Mens Ad B, Mens Ad J
+- Women: Womens Ad A, W 2026-W06 1
+
+### Ads planned for decision week (2026-W09)
+
+- Men: Mens Ad J, M 2602_1
+- Women: W 2026-W06 1, W 2602_4
+
+---
+
+## Performance Summary (2026-W08)
+
+- Mens Ad J: Weekly CPL below 50 → retained under primary keep rule.
+- Mens Ad B: ~70 ILS spend, 0 leads → failed weekly test and did not justify continued delivery.
+- W 2026-W06 1: Minimal spend, no meaningful signal → retained due to insufficient delivery.
+- Womens Ad A: CPL ≈ 105 → clear underperformance.
+
+---
+
+## Keep Decisions
+
+- Mens Ad J retained (weekly CPL < 50).
+- W 2026-W06 1 retained (low spend; no conclusive signal).
+
+---
+
+## Replacement Decisions
+
+### Men
+
+- Mens Ad B replaced.
+- New ad: M 2602_1.
+  - Text: Everyday Pressure (masculine grammar).
+  - Rationale: 
+    - Exploit historically strong text component (<50 lifetime CPL) 
+    - New combination. 
+    - Avoid reuse of cooled components.
+
+### Women
+
+- Womens Ad A replaced.
+   - Reshuffle not viable due to:
+     - 3‑month full-ad cooling rule.
+     - 1‑week component cooling.
+     - Only one female-coded media under 50 CPL, currently active in W 2026-W06 1.
+    - Therefore, new-media slot used.
+  - New ad: W 2602_4.
+    - Headline: לנער את השגרה.
+    - Text: Everyday Pressure (feminine grammatical variant).
+    - Media: Photo_Dojo_MF_Ikkyo_Static.
+      - New media
+      - Rationale: 
+        - Maintain disciplined component threshold (<50 lifetime CPL for headline and text
+        - Accept constraint-driven media probe.
+
+---
+
+## Rule Updates
+
+- Implemented 3-month cooling period for full ads before reuse.
+- Implemented 1-week cooling period for components of replaced ads.
+- Maintained strict <50 CPL threshold for component exploitation.
+
+---
+
+## Strategic Notes
+
+- Constrained by thin high-performing media pool.
+  - Future priority: collect additional female-forward, dynamic images to expand eligible reshuffle space.
+
+---
+
+End of Plan for 2026-W09
+
+---
+
 # Plan for 2026-W08 (assessing 2026-W07)
 
 ### Weeks

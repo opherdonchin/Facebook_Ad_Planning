@@ -4,16 +4,26 @@ This prompt is pasted in every week to process data on previous ad runs and plan
 
 ## Assumed uploads (hard stop if violated)
 
-This prompt assumes that the following files are uploaded. If they have not all been uploaded, **stop processing, notify the user, and wait for instructions**. Verify that each file can actually be read. Make sure that you have read each file and processed it and notify the user that it has been succesfully processed.
+This prompt assumes that files are uploaded in **two batches**. If any required file in a batch is missing or unreadable, **stop processing, notify the user, and wait for instructions**. Verify that each file can actually be read. Make sure that you have read each file and processed it and notify the user that it has been succesfully processed.
+
+**Batch 1 (ad level, receive first — do not begin analysis yet)**
 
 1. `ad_weekly_performance.csv`
 2. `ad_run_summary.csv`
-3. `ad_lifetime_summary.csv`
-4. `ad_components.csv`
-5. `component_tags.csv`
-6. `attachments_manifest.json`
-7. `attachments.tar`
-8. `decision_log.md`
+3. `performance_data.json`
+4. `decision_log.md`
+
+**Batch 2 (components + assets + lifetime — only after this batch is fully processed may analysis begin)**
+
+1. `component_tags.csv`
+2. `attachments_manifest.json`
+3. `attachments.tar`
+4. `ad_lifetime_summary.csv`
+5. `component_media_lifetime.csv`
+6. `component_headline_lifetime.csv`
+7. `component_text_lifetime.csv`
+
+When Batch 1 arrives, read and acknowledge it, then **wait** for Batch 2 without performing any analysis or drafting outputs. When Batch 2 arrives, confirm **both batches** are fully processed before beginning any analysis or preparing a response.
 
 All uploaded data files (except `decision_log.md`) are described in `data_schema.md`.
 
@@ -105,6 +115,12 @@ You should also review `PROJECT_GUIDE.md` to confirm alignment with current inte
    * Bullet points must be parallel in structure.
    
    * Emojis are allowed only if calm, neutral, and consistent.
+
+10. **Cooling rules (mandatory)**
+   
+   * **Full‑ad cooling:** an ad cannot be reused unless it has been inactive for **at least 3 months**.
+   * **Component cooling:** any component (media, headline, text) from a **replaced** ad cannot be reused for **1 week**.
+   * Treat cooling rules as hard constraints; if they block a preferred option, choose the next‑best eligible alternative.
 
 ---
 
@@ -205,6 +221,7 @@ Insights here may inform which winners to exploit or which probes to run, but mu
 * Base change decisions on lifetime information only
   * Review tables of lifetime performance for ads and components and tags
   * Review summary of current understanding
+  * For exploitation, use a **strict <50 CPL threshold** at meaningful spend.
 * Apply the new‑material constraint strictly: maximum of one ad with new content.
   * If there is new material, check decision log
     * If last new material was text, use new media

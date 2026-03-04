@@ -4,7 +4,7 @@ This document describes the schema for the structured CSV/Parquet files exported
 
 ## Files Overview
 
-Five tables are exported with pre-joined relationships:
+Eight tables are exported with pre-joined relationships:
 
 **Tabular weekly files**
 
@@ -12,13 +12,17 @@ Five tables are exported with pre-joined relationships:
 2. **ad_run_summary.csv** - Last contiguous run metrics per ad
 3. **ad_lifetime_summary.csv** - Lifetime aggregates per ad
 4. **ad_components.csv** - Ad-to-component mapping
-5. **component_tags.csv** - Component-to-tag relationships
+5. **component_media_lifetime.csv** - Lifetime aggregates per media component
+6. **component_headline_lifetime.csv** - Lifetime aggregates per headline component
+7. **component_text_lifetime.csv** - Lifetime aggregates per text component
+8. **component_tags.csv** - Component-to-tag relationships
 
 **Non-tabular weekly files**
 
-6. **attachments_manifest.json**
-7. **attachments.tar**
-8. **decision_log.md**
+9. **performance_data.json**
+10. **attachments_manifest.json**
+11. **attachments.tar**
+12. **decision_log.md**
 
 ---
 
@@ -161,7 +165,104 @@ ad_id,ad_name,campaign,media_id,media_name,headline_id,headline_text,text_id,tex
 
 ---
 
-### 5. component_tags.csv
+### 5. component_media_lifetime.csv
+
+**Grain:** One row per media component
+
+Lifetime aggregate performance metrics for each media asset across all ads that used it.
+
+#### Columns
+
+| Column          | Type           | Description                                  | Example Values                   |
+| --------------- | -------------- | -------------------------------------------- | -------------------------------- |
+| `media_id`      | int            | Grist record ID for the media asset          | `14`, `5`                        |
+| `media_name`    | string         | Canonical media name                         | `Illustrated_Flow_Poster_Female` |
+| `media_variant` | string or empty| Variant label for the media                  | `A`, `B`, empty                  |
+| `media_format`  | string         | Media format                                 | `Image`, `Video`                 |
+| `spend`         | float          | Total spend across all ads using this media  | `415.23`                         |
+| `leads`         | int            | Total leads across all ads using this media  | `12`                             |
+| `ads`           | int            | Number of distinct ads using this media      | `3`                              |
+| `cpl`           | float or empty | Cost per lead (spend/leads), null if no leads| `34.60`, null                    |
+
+#### Notes
+
+- Aggregates ALL ad performance where this media appears
+- Use for identifying proven or under-tested media assets
+
+#### Example Row
+
+```csv
+media_id,media_name,media_variant,media_format,spend,leads,ads,cpl
+14,Illustrated_Flow_Poster_Female,A,Image,415.23,12,3,34.60
+```
+
+---
+
+### 6. component_headline_lifetime.csv
+
+**Grain:** One row per headline component
+
+Lifetime aggregate performance metrics for each headline across all ads that used it.
+
+#### Columns
+
+| Column          | Type           | Description                                   | Example Values            |
+| --------------- | -------------- | --------------------------------------------- | ------------------------- |
+| `headline_id`   | int            | Grist record ID for the headline              | `14`, `5`                 |
+| `headline_text` | string         | Actual headline text                           | `תנועה. עוצמה. חיוך.`     |
+| `spend`         | float          | Total spend across all ads using this headline| `512.10`                  |
+| `leads`         | int            | Total leads across all ads using this headline| `14`                      |
+| `ads`           | int            | Number of distinct ads using this headline    | `4`                       |
+| `cpl`           | float or empty | Cost per lead (spend/leads), null if no leads | `36.58`, null             |
+
+#### Notes
+
+- Aggregates ALL ad performance where this headline appears
+- Use for identifying historically strong or weak headline text
+
+#### Example Row
+
+```csv
+headline_id,headline_text,spend,leads,ads,cpl
+14,"תנועה. עוצמה. חיוך.",512.10,14,4,36.58
+```
+
+---
+
+### 7. component_text_lifetime.csv
+
+**Grain:** One row per text component
+
+Lifetime aggregate performance metrics for each primary text across all ads that used it.
+
+#### Columns
+
+| Column         | Type           | Description                                   | Example Values          |
+| -------------- | -------------- | --------------------------------------------- | ----------------------- |
+| `text_id`      | int            | Grist record ID for the text                  | `12`, `5`               |
+| `text_name`    | string         | Name/variant label for the text               | `Time Out For You`      |
+| `text_variant` | string or empty| Variant label for the text                    | `A`, empty              |
+| `primary_text` | string         | Full primary text content                      | (long text)             |
+| `spend`        | float          | Total spend across all ads using this text    | `398.00`                |
+| `leads`        | int            | Total leads across all ads using this text    | `9`                     |
+| `ads`          | int            | Number of distinct ads using this text        | `3`                     |
+| `cpl`          | float or empty | Cost per lead (spend/leads), null if no leads | `44.22`, null           |
+
+#### Notes
+
+- Aggregates ALL ad performance where this text appears
+- Use for identifying strong or under-tested text variants
+
+#### Example Row
+
+```csv
+text_id,text_name,text_variant,primary_text,spend,leads,ads,cpl
+12,Time Out For You,A,"(full text omitted)",398.00,9,3,44.22
+```
+
+---
+
+### 8. component_tags.csv
 
 **Grain:** One row per component × tag assignment
 
@@ -247,7 +348,21 @@ performance_by_style = weekly.merge(components, on='ad_name').merge(
 
 ---
 
-### 6. attachments_manifest.json
+### 9. performance_data.json
+
+**Purpose:** Full Grist database export (raw JSON).
+
+This file contains all tables and records from the ad tracking document, including derived tables and attachments metadata. It is the source used to generate the structured CSVs in this document.
+
+### Usage notes
+
+- Not intended for direct analysis; use the structured CSVs instead.
+- Useful for audits or regenerating structured exports.
+
+
+---
+
+### 10. attachments_manifest.json
 
 **Purpose:** Canonical registry of all media assets available for use in ads.
 
@@ -267,7 +382,7 @@ This file maps media identifiers to the actual files stored in `attachments.tar`
 
 ---
 
-## 7. attachments.tar
+## 11. attachments.tar
 
 **Purpose:** Binary archive containing all media assets referenced in ads.
 

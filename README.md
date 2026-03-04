@@ -46,12 +46,13 @@ python export_ads.py
 ## Configuration
 
 1. Copy the example configuration file:
-
+   
    ```bash
    cp config.example.json config.json
    ```
-2. Edit `config.json` with your credentials:
 
+2. Edit `config.json` with your credentials:
+   
    ```json
    {
      "ad_planning": {
@@ -145,8 +146,9 @@ The complete sequence with commands:
 
 ```bash
 # 1. Update Weekly run data from Facebook
-# This is done manually but could probably be updated
-# Update the Weekly Runs table in the Ad tracking database in Grist with this weeks numbers
+pixi run update_weekly_runs
+# Update the Weekly Runs table in the Ad tracking database in Grist 
+# with this weeks numbers
 
 # 2. Update ad stats
 pixi run update_ads
@@ -241,11 +243,13 @@ pixi run export_ads
 This creates **8 files** needed for analysis:
 
 **JSON Format (full database):**
+
 - `performance_data.json` - Complete database with all tables, metrics, and formulas
 - `attachments_manifest.json` - Metadata for all creative assets (images, videos)
 - `attachments.tar` - Archive of all creative files
 
 **CSV Format (AI-optimized, default):**
+
 - `ad_weekly_performance.csv` - Weekly performance by ad (grain: ad × ISO week)
 - `ad_run_summary.csv` - Last contiguous run metrics per ad
 - `ad_lifetime_summary.csv` - Lifetime aggregates per ad
@@ -255,11 +259,13 @@ This creates **8 files** needed for analysis:
 **Optional Parquet Format:**
 
 To export as Parquet instead of CSV:
+
 ```bash
 pixi run export_ads --format parquet
 ```
 
 Or export both formats:
+
 ```bash
 pixi run export_ads --format both
 ```
@@ -320,7 +326,7 @@ extractor.save_to_json(
 The script generates:
 
 1. **`performance_data.json`**: Complete database export including:
-
+   
    - Document metadata
    - All table structures and columns
    - All record data
@@ -328,7 +334,7 @@ The script generates:
    - Attachment references
 
 2. **Structured data files** (CSV by default, Parquet optional):
-
+   
    - `ad_weekly_performance.{csv|parquet}` - Weekly metrics by ad × ISO week (118 rows)
    - `ad_run_summary.{csv|parquet}` - Last contiguous run per ad (31 rows)
    - `ad_lifetime_summary.{csv|parquet}` - Lifetime aggregates per ad (31 rows)
@@ -340,7 +346,7 @@ The script generates:
 3. **`attachments/`**: Directory containing all downloaded files organized by table
 
 4. **`attachments_manifest.json`**: Detailed manifest of all attachments including:
-
+   
    - File paths and names
    - SHA256 checksums
    - Source table and record information

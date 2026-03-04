@@ -95,18 +95,54 @@ def main() -> None:
         print("[WARN] No rows found in CSV file.")
         return
 
+    ads_table_id = ad_cfg.get("ads_table_id", "Ads")
+    ad_name_col = ad_cfg.get("columns", {}).get("ad_name", "Name")
+
     # Fetch Ads table to build ad_name -> record_id mapping
     print("[INFO] Fetching Ads table from Grist...")
-    ads_records = client.fetch_records("Ads", flat=True)
+    ads_records = client.fetch_records(ads_table_id, flat=True)
 
     ad_name_to_id: Dict[str, int] = {}
     for rec in ads_records:
-        ad_name = rec.get("Name", "").strip()
+        ad_name = (rec.get(ad_name_col) or "").strip()
         rec_id = rec.get("id")
         if ad_name and rec_id:
             ad_name_to_id[ad_name] = rec_id
 
     print(f"[INFO] Found {len(ad_name_to_id)} ads in Grist Ads table")
+
+    # Ensure Ads table contains all ad names from the CSV
+    csv_ad_names = sorted(
+        {
+            row.get("Ad name", "").strip()
+            for row in csv_rows
+            if row.get("Ad name", "").strip()
+        }
+    )
+    missing_ads = [name for name in csv_ad_names if name not in ad_name_to_id]
+
+    if missing_ads:
+        print(
+            f"[WARN] {len(missing_ads)} ads missing in Grist Ads table. "
+            f"{'Would create in dry-run.' if args.dry_run else 'Creating now...'}"
+        )
+        for ad in missing_ads:
+            print(f"  - {ad}")
+
+        if not args.dry_run:
+            new_ad_records = [{"fields": {ad_name_col: name}} for name in missing_ads]
+            client.add_records(ads_table_id, new_ad_records)
+
+            # Re-fetch to refresh the mapping with newly created IDs
+            ads_records = client.fetch_records(ads_table_id, flat=True)
+            ad_name_to_id = {}
+            for rec in ads_records:
+                ad_name = (rec.get(ad_name_col) or "").strip()
+                rec_id = rec.get("id")
+                if ad_name and rec_id:
+                    ad_name_to_id[ad_name] = rec_id
+
+            print(f"[INFO] Ads table now has {len(ad_name_to_id)} ads")
 
     # Transform CSV rows to Grist records
     records_to_insert: List[Dict[str, Any]] = []
