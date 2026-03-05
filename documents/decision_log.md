@@ -1,5 +1,286 @@
 # Weekly Decision Log
 
+# Plan for 2026-W10 (assessing 2026-W09)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W09
+* **Decision / planned week:** 2026-W10
+
+### Ads active in assessed week (2026-W09)
+
+* Men: Mens Ad J, M 2602_1
+* Women: W 2602_4, W 2026-W06 2
+
+**Incidental delivery (not intentionally run):**
+
+* Womens Ad A
+
+### Ads planned for decision week (2026-W10)
+
+* Men: Mens Ad J, M 2602_1
+* Women: W2603_1, W2603_2
+
+---
+
+## Performance Summary (2026-W09)
+
+### Men
+
+**Mens Ad J**
+
+* Weekly CPL ≈ 35.7
+* Run CPL ≈ 32.6
+* Lifetime CPL ≈ 36.9
+
+Clear success signal.
+
+---
+
+**M 2602_1**
+
+* Weekly CPL ≈ 45
+* 2 leads during first week of delivery.
+
+Early probe with acceptable CPL.
+
+---
+
+### Women
+
+**W 2602_4**
+
+* Weekly CPL ≈ 52
+* Run spend ≈ 104
+
+Failed primary keep rule (weekly CPL < 50).
+Also failed fallback rule (run spend > 80 with CPL > 30).
+
+---
+
+**W 2026-W06 2**
+
+* Spend ≈ 64
+* Leads = 0
+
+Originally retained under the “insufficient delivery” rule (spend < 80).
+However, overall campaign signal remained weak.
+
+---
+
+**Womens Ad A**
+
+* Spend ≈ 25
+* Leads = 1
+
+This ad was **not intentionally run** and had already been rejected in the previous week.
+Delivery occurred due to Facebook serving residual impressions.
+
+Decision: **exclude from evaluation**.
+
+---
+
+## Keep Decisions
+
+### Men
+
+* **Mens Ad J retained**
+
+  * Meets primary rule: weekly CPL < 50.
+
+* **M 2602_1 retained**
+
+  * Early probe with acceptable CPL.
+
+---
+
+## Replacement Decisions
+
+### Women
+
+Initial algorithmic recommendation:
+
+* Replace **W 2602_4**
+* Retain **W 2026-W06 2** due to insufficient delivery.
+
+However, during review the following reasoning was applied:
+
+1. The women’s campaign has not produced a stable performer.
+2. Both ads lacked convincing signal.
+3. Replacing both ads accelerates exploration.
+
+Decision:
+
+* **Replace both W 2602_4 and W 2026-W06 2.**
+
+This creates a **full refresh week for the women’s campaign**.
+
+---
+
+## New Ads
+
+### W2603_1
+
+Media
+Shihonage_MF_Dojo_Photo__A
+
+Headline
+לנער את השגרה
+
+Text
+Quiet Space – Bullet Calm
+
+#### Component status
+
+Media: previously used, historically strong (reshuffle)
+Headline: previously used, historically strong (reshuffle)
+Text: exploratory component (low historical spend)
+
+#### Rationale
+
+This ad combines two historically strong components with a new text variant.
+
+Design goal:
+
+* high-probability engagement hook
+* introduce a calmer text concept to probe messaging tone
+
+Conceptual frame:
+
+“shake the routine” + dojo action imagery + calm internal experience.
+
+---
+
+### W2603_2
+
+Media
+Dojo_Instruction_FemalePair
+
+Headline
+משהו חדש לגוף ולראש
+
+Text
+Posture / shoulder strengthening copy (same text previously used in Womens Ad A)
+
+#### Component status
+
+Media: existing component (reshuffle)
+Headline: new combination in this context
+Text: previously used text component (reshuffle)
+
+#### Rationale
+
+This ad intentionally probes a **different conceptual entry point** from W2603_1.
+
+Frame:
+
+* instruction
+* guided learning
+* body awareness
+
+The media shows instructor interaction, so the headline emphasizing learning and discovery was chosen to align visually and semantically.
+
+---
+
+## Component Strategy
+
+Two distinct creative hypotheses are being tested:
+
+### Ad W2603_1
+
+Action / emotional reset frame
+
+* dynamic technique image
+* “shake up routine” headline
+* calm experiential text
+
+---
+
+### Ad W2603_2
+
+Instruction / learning frame
+
+* instructor-student interaction image
+* learning-oriented headline
+* posture / strengthening message
+
+This structure improves interpretability of results by testing **two clear messaging directions**.
+
+---
+
+## Naming Decisions
+
+New ads named:
+
+W2603_1
+W2603_2
+
+Format chosen:
+
+W + YYMM + variant
+
+Example:
+
+W2603_1
+
+Reasons:
+
+* consistent with existing names (e.g., M 2602_1, W 2602_4)
+* chronological lexical sorting
+* avoids schema drift
+
+Alternative format `W26_03_1` was considered but rejected due to unnecessary complexity.
+
+---
+
+## Deviations from Assistant Recommendations
+
+During planning several recommendations were revised.
+
+### 1. Replacement scope
+
+Assistant recommendation:
+
+* replace only W 2602_4
+
+Final decision:
+
+* replace **both women’s ads**
+
+Reason:
+
+* accelerate exploration due to weak signal.
+
+---
+
+### 2. Ad component pairing
+
+One assistant-proposed combination contained a text that did not exist in the component table.
+
+This was corrected by:
+
+* reusing verified text from Womens Ad A
+* selecting a headline consistent with the instructional media.
+
+---
+
+## Operational Notes
+
+Incidental delivery of previously rejected ads occurred (Womens Ad A).
+
+For future analysis cycles it may be useful to apply a heuristic:
+
+Ignore ads with **spend < 30 ILS unless intentionally run**.
+
+This prevents accidental delivery from influencing weekly evaluation.
+
+---
+
+End of Plan for 2026-W10
+
+---
+
+
 # Plan for 2026-W09 (assessing 2026-W08)
 
 ### Weeks
