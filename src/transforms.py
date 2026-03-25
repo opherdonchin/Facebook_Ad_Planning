@@ -37,7 +37,7 @@ def weekly_metrics_joined_transform(
     t_ads = tables["ads"]
 
     # Canonical inputs:
-    # perf: Week, Ad_id, Spend, Leads
+    # perf: Week, Ad_id, Spend, Leads, Intended_run
     # ads: id, Name, Campaign
 
     joined = t_runs.join(t_ads, t_runs["Ad_id"] == t_ads["id"])
@@ -48,6 +48,7 @@ def weekly_metrics_joined_transform(
     ).aggregate(
         Spend=t_runs["Spend"].sum(),
         Leads=t_runs["Leads"].sum(),
+        Intended_run=ibis.coalesce(t_runs["Intended_run"], False).any(),
     )
 
     # Calculate metrics
@@ -707,6 +708,7 @@ TRANSFORMS: Dict[str, TransformSpec] = {
                 "Ad": "Ad_id",
                 "Spend": "Spend",
                 "Leads": "Leads",
+                "Intended_run": "Intended_run",
             },
             "ads": {
                 "id": "id",

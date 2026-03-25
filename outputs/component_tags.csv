@@ -1,5 +1,5 @@
 component_type,component_id,component_name,tag_type,tag_value
-media,1,Shihonage_MF_Dojo_Photo,Media_Style,Illustration - Poster
+media,1,Shihonage_MF_Dojo_Photo,Media_Style,Illustration - Photo Art
 media,1,Shihonage_MF_Dojo_Photo,Media_Energy,Instructional / Demonstration
 media,2,Outside_Sunset_MM_Kaitenage_photo,Media_Style,Photo - Outside
 media,2,Outside_Sunset_MM_Kaitenage_photo,Media_Energy,Meditative / Inspirational
@@ -105,6 +105,9 @@ headline,27,לנער את הרגע,Hook,Meaning / Growth
 headline,28,כוח רגוע מבפנים,Tone,Affirmative
 headline,28,כוח רגוע מבפנים,Promise,Confidence / Self-Trust
 headline,28,כוח רגוע מבפנים,Hook,Confidence / Self-Trust
+headline,29,משהו חדש לגוף ולראש,Tone,Affirmative
+headline,29,משהו חדש לגוף ולראש,Promise,Energy / Renewal
+headline,29,משהו חדש לגוף ולראש,Hook,Meaning / Growth
 text,1,Stress Mental Load,Hook,Stress / Mental Load
 text,1,Stress Mental Load,Promise,Calm Under Pressure
 text,1,Stress Mental Load,Structure,Question Hook

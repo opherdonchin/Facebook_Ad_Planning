@@ -11,5 +11,15 @@
         "statusBar.debuggingForeground": "#F9FBE6",
         "statusBar.noFolderBackground": "#4C550C",
         "statusBar.noFolderForeground": "#F9FBE6"
+    },
+    "chat.tools.terminal.autoApprove": {
+        "/^python src/export_ads_and_structured\\.py outputs/performance_data\\.json outputs csv$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python -c \"import sys; sys\\.path\\.insert\\(0, 'src'\\); import export_structured_data as es; es\\.main\\('outputs/performance_data\\.json','outputs','csv'\\)\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
     }
 }

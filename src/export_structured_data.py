@@ -70,6 +70,66 @@ def extract_table_df(data: Dict[str, Any], table_name: str) -> pd.DataFrame:
     return pd.DataFrame(flattened_records)
 
 
+def derive_weekly_intended_run_flags(data: Dict[str, Any]) -> pd.DataFrame:
+    """
+    Build per-week intended-run flags from Weekly_runs.Intended_run.
+
+    This keeps ad_weekly_performance.csv usable even before the derived Grist
+    weekly metrics table is regenerated with an explicit intended-run column.
+    """
+    if "Weekly_runs" not in data["tables"] or "Ads" not in data["tables"]:
+        return pd.DataFrame(
+            columns=["iso_week", "campaign", "ad_name", "intended_run"]
+        )
+
+    weekly_runs = extract_table_df(data, "Weekly_runs")
+    ads = extract_table_df(data, "Ads")
+
+    if (
+        weekly_runs.empty
+        or ads.empty
+        or "A" not in weekly_runs.columns
+        or "Ad" not in weekly_runs.columns
+        or "Intended_run" not in weekly_runs.columns
+        or "Name" not in ads.columns
+        or "Campaign" not in ads.columns
+    ):
+        return pd.DataFrame(
+            columns=["iso_week", "campaign", "ad_name", "intended_run"]
+        )
+
+    intended_run_flags = (
+        weekly_runs.loc[:, ["A", "Ad", "Intended_run"]]
+        .rename(
+            columns={
+                "A": "iso_week",
+                "Ad": "ad_id",
+                "Intended_run": "intended_run",
+            }
+        )
+        .merge(
+            ads.loc[:, ["id", "Name", "Campaign"]].rename(
+                columns={"id": "ad_id", "Name": "ad_name", "Campaign": "campaign"}
+            ),
+            on="ad_id",
+            how="left",
+        )
+    )
+
+    intended_run_flags["campaign"] = map_campaign_to_letter(
+        intended_run_flags["campaign"]
+    )
+    intended_run_flags["intended_run"] = (
+        intended_run_flags["intended_run"].fillna(False).astype(bool)
+    )
+
+    intended_run_flags = intended_run_flags.groupby(
+        ["iso_week", "campaign", "ad_name"], as_index=False, sort=False
+    ).agg(intended_run=("intended_run", "any"))
+
+    return intended_run_flags
+
+
 def generate_ad_weekly_performance(data: Dict[str, Any]) -> pd.DataFrame:
     """
     Generate ad_weekly_performance table from Derived_Weekly_Ad_Metrics.
@@ -83,15 +143,14 @@ def generate_ad_weekly_performance(data: Dict[str, Any]) -> pd.DataFrame:
             columns=[
                 "iso_week",
                 "campaign",
-                "ad_id",
                 "ad_name",
                 "spend",
                 "leads",
                 "cpl",
+                "intended_run",
             ]
         )
 
-    # Rename columns to match expected format
     result = pd.DataFrame(
         {
             "iso_week": (
@@ -115,6 +174,21 @@ def generate_ad_weekly_performance(data: Dict[str, Any]) -> pd.DataFrame:
             ),
         }
     )
+
+    if "Intended_run" in df.columns:
+        result["intended_run"] = pd.Series(
+            df.get("Intended_run"), dtype="boolean"
+        )
+    elif "Active" in df.columns:
+        result["intended_run"] = pd.Series(df.get("Active"), dtype="boolean")
+    else:
+        intended_run_flags = derive_weekly_intended_run_flags(data)
+        result = result.merge(
+            intended_run_flags,
+            on=["iso_week", "campaign", "ad_name"],
+            how="left",
+        )
+        result["intended_run"] = result["intended_run"].astype("boolean")
 
     return result
 
@@ -280,6 +354,13 @@ def generate_ad_components(data: Dict[str, Any]) -> pd.DataFrame:
 
     # Preserve important columns by renaming before joins to avoid collisions
     ads_df = ads_df.rename(columns={"Text": "Text_ref", "Name": "ad_name"})
+
+    # Normalize join key dtypes to avoid pandas merge errors when keys
+    # are inferred as mixed types (e.g., object vs int64).
+    for df_ in (ads_df, creatives_df, media_df, headlines_df, texts_df):
+        for col in ("id", "Creative", "Media", "Headline", "Text", "Text_ref"):
+            if col in df_.columns:
+                df_[col] = df_[col].astype("string")
 
     # Join Ads → Creatives
     ads_with_creative = ads_df.merge(

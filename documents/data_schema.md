@@ -38,26 +38,28 @@ Weekly performance metrics for each ad, aggregated by week.
 
 #### Columns
 
-| Column     | Type           | Description                                   | Example Values             |
-| ---------- | -------------- | --------------------------------------------- | -------------------------- |
-| `iso_week` | string         | ISO week identifier (YYYY-WXX format)         | `2026-W05`, `2025-W52`     |
-| `campaign` | string         | Campaign identifier (W=Women, M=Men)          | `W`, `M`                   |
-| `ad_name`  | string         | Human-readable ad name                        | `Womens Ad A`, `Mens Ad B` |
-| `spend`    | float          | Amount spent in ILS for this week             | `115.64`, `80.59`          |
-| `leads`    | int            | Number of leads generated this week           | `3`, `0`, `5`              |
-| `cpl`      | float or empty | Cost per lead (spend/leads), null if no leads | `38.55`, null              |
+| Column      | Type           | Description                                                  | Example Values             |
+| ----------- | -------------- | ------------------------------------------------------------ | -------------------------- |
+| `iso_week`  | string         | ISO week identifier (YYYY-WXX format)                        | `2026-W05`, `2025-W52`     |
+| `campaign`  | string         | Campaign identifier (W=Women, M=Men)                         | `W`, `M`                   |
+| `ad_name`   | string         | Human-readable ad name                                       | `Womens Ad A`, `Mens Ad B` |
+| `spend`     | float          | Amount spent in ILS for this week                            | `115.64`, `80.59`          |
+| `leads`     | int            | Number of leads generated this week                          | `3`, `0`, `5`              |
+| `cpl`       | float or empty | Cost per lead (spend/leads), null if no leads                | `38.55`, null              |
+| `intended_run` | boolean     | Whether the ad was intentionally run that week               | `true`, `false`            |
 
 #### Notes
 
 - ISO weeks are sourced directly from Grist's formula column (column `A` in `Weekly_runs` table)
 - Empty `cpl` values indicate weeks with no leads (divide by zero)
+- `intended_run` is sourced from `Weekly_runs.Intended_run`, so intended ads with zero delivery still remain marked
 - ~118 rows covering historical data from June 2025 through February 2026
 
 #### Example Row
 
 ```csv
-iso_week,campaign,ad_name,spend,leads,cpl
-2025-W25,W,Womens Ad A,115.64,3,38.546667
+iso_week,campaign,ad_name,spend,leads,cpl,intended_run
+2025-W25,W,Womens Ad A,115.64,3,38.546667,true
 ```
 
 ---

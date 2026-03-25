@@ -116,12 +116,6 @@ You should also review `PROJECT_GUIDE.md` to confirm alignment with current inte
    
    * Emojis are allowed only if calm, neutral, and consistent.
 
-10. **Cooling rules (mandatory)**
-   
-   * **Full‑ad cooling:** an ad cannot be reused unless it has been inactive for **at least 3 months**.
-   * **Component cooling:** any component (media, headline, text) from a **replaced** ad cannot be reused for **1 week**.
-   * Treat cooling rules as hard constraints; if they block a preferred option, choose the next‑best eligible alternative.
-
 ---
 
 ## Goals for this conversation
@@ -221,7 +215,6 @@ Insights here may inform which winners to exploit or which probes to run, but mu
 * Base change decisions on lifetime information only
   * Review tables of lifetime performance for ads and components and tags
   * Review summary of current understanding
-  * For exploitation, use a **strict <50 CPL threshold** at meaningful spend.
 * Apply the new‑material constraint strictly: maximum of one ad with new content.
   * If there is new material, check decision log
     * If last new material was text, use new media

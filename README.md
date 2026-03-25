@@ -250,7 +250,7 @@ This creates **8 files** needed for analysis:
 
 **CSV Format (AI-optimized, default):**
 
-- `ad_weekly_performance.csv` - Weekly performance by ad (grain: ad × ISO week)
+- `ad_weekly_performance.csv` - Weekly performance by ad (grain: ad × ISO week, including intended-run flag)
 - `ad_run_summary.csv` - Last contiguous run metrics per ad
 - `ad_lifetime_summary.csv` - Lifetime aggregates per ad
 - `ad_components.csv` - Ad-to-component mapping (media, headline, text)

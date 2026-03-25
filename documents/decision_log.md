@@ -1,5 +1,193 @@
 # Weekly Decision Log
 
+# Plan for 2026-W12 (assessing 2026-W11)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W11
+- **Decision / planned week:** 2026-W12
+
+### Ads active in assessed week (2026-W11)
+
+- Men:
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| M 2603_1 | 188.92 | 47.23 | 188.92 | 47.23 |
+| M 2603_2 | 8.47 | — | 8.47 | — |
+
+- Women:
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2603_1 | 198.61 | 66.20 | 288.60 | 57.72 |
+| W 2603_2 | 0.00 | — | 98.24 | 32.75 |
+
+### Ads planned for decision week (2026-W12)
+
+- Men:
+
+#### Reuse:
+
+None.
+
+#### Reshuffle:
+
+None.
+
+#### Keep as-is:
+
+| Name | Weekly spend | Weekly CPL | Run spend | Run CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|---:|---:|
+| M 2603_1 | 188.92 | 47.23 | 188.92 | 47.23 | 188.92 | 47.23 |
+| M 2603_2 | 8.47 | — | 8.47 | — | 8.47 | — |
+
+- Women:
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Womens Ad P | 167.93 | 41.98 | 167.93 | 41.98 |
+
+#### Reshuffle:
+
+**W 2603_3**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Shihonage_MF_Dojo_Photo | 824.41 | 39.26 | 824.41 | 39.26 |
+| גוף חזק, ראש רגוע | 855.23 | 38.87 | 855.23 | 38.87 |
+| Meaningful Movement | 855.23 | 38.87 | 855.23 | 38.87 |
+
+#### New material:
+
+None.
+
+---
+
+## Portfolio decision
+
+- **Men:** keep both current ads.
+- **Women:** replace both current ads.
+- **New material:** none for 2026-W12.
+
+---
+
+## Rationale
+
+- `M 2603_1` met the primary keep rule in its first meaningful week.
+- `M 2603_2` received too little spend to justify replacement.
+- `W 2603_1` failed the keep rules after scaling and now appears, from the corrected mapping, to be a weak component combination rather than a pure component failure.
+- `W 2603_2` had acceptable run CPL but received zero spend in 2026-W11; under the written rules it is still a replacement, though confidence in the interpretation remains limited.
+- The women’s campaign still has enough historical strength to rebuild from existing winners rather than introducing new material.
+
+---
+
+## Constraints check
+
+- Latest completed data week and planned week are explicitly separated.
+- No media, headline, or text is repeated within the women’s campaign for 2026-W12.
+- At most one ad may contain new material; 2026-W12 contains none.
+- The reused ad (`Womens Ad P`) satisfies the six-week cooling rule.
+- `W 2603_3` is a new combination of existing materials rather than a repeated historical combination.
+- Planned women’s ads were checked against actual image content, not tags alone.
+
+---
+
+## Data hygiene / learning notes
+
+- `ad_components.csv` corrected the current component mappings and materially improved interpretability.
+- `M 2603_2` is mislabeled as women’s in component-level exports; campaign identity had to be recovered from the ad name and weekly context.
+- `Dojo_Instruction_FemalePair` and `Dynamic_Throw_FF_LineArt` are duplicate image files under different names.
+- `Illustrated_Soft_Strength_Female` appears mis-tagged as `Photo - Dojo`.
+- Delivery concentration remains a confound: low-spend ads should not be over-interpreted.
+
+---
+
+## What would change this decision next week
+
+- If `M 2603_2` again receives very low spend, it should stop being protected by the low-delivery rule.
+- If the rebuilt women’s portfolio again fails despite higher-delivery proven inventory, the next step should be a deliberately designed **new media** probe.
+- If `Womens Ad P` underperforms materially on re-entry, confidence in old women’s winners should be downgraded.
+
+---
+
+## Confidence level
+
+- **Men keep decisions:** high.
+- **Women replacement decisions:** medium.
+- **Interpretation of `W 2603_2`:** low-to-medium because zero delivery makes the signal ambiguous.
+
+---
+
+End of Plan for 2026-W12
+
+---
+
+# Plan for 2026-W11 (assessing 2026-W10)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W10
+- **Decision / planned week:** 2026-W11
+
+### Ads active in assessed week (2026-W10)
+
+- Men:
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Mens Ad J | 0.00 | — | 1477.06 | 36.93 |
+| M 2602_1 | 195.38 | 97.69 | 285.32 | 71.33 |
+
+- Women:
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2603_1 | 89.99 | 45.00 | 89.99 | 45.00 |
+| W 2603_2 | 98.24 | 32.75 | 98.24 | 32.75 |
+
+### Ads planned for decision week (2026-W11)
+
+- Men:
+
+#### Reuse:
+
+None.
+
+#### Reshuffle:
+
+**M 2603_1 (proposed)**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Shihonage_MF_Dojo_Photo | 824.41 | 39.26 | 824.41 | 39.26 |
+| לנער את השגרה | 1492.07 | 48.13 | 1492.07 | 48.13 |
+| Time Out For You (Dad) | 1087.31 | 41.82 | 1087.31 | 41.82 |
+
+**M 2603_2 (proposed)**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Outside_Sunset_MM_Kaitenage_photo | 1087.31 | 41.82 | 1087.31 | 41.82 |
+| ללמוד לשלוט ברגע | 880.60 | 40.03 | 880.60 | 40.03 |
+| Everyday Pressure | 824.41 | 39.26 | 824.41 | 39.26 |
+
+- Women:
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2603_1 | 89.99 | 45.00 | 89.99 | 45.00 |
+| W 2603_2 | 98.24 | 32.75 | 98.24 | 32.75 |
+
+---
+
+## Portfolio decision
+---
+
 # Plan for 2026-W10 (assessing 2026-W09)
 
 ### Weeks
