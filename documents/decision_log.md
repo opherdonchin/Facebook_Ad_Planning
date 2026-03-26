@@ -1,5 +1,132 @@
 # Weekly Decision Log
 
+# Plan for 2026-W13 (assessing 2026-W12)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W12
+* **Decision / planned week:** 2026-W13
+
+### Ads active in assessed week (2026-W12)
+
+* Men:
+
+| Ad name  | Spend | CPL | Lifetime spend | Lifetime CPL |
+| -------- | ----: | --: | -------------: | -----------: |
+| M 2603_1 | 64.57 |   — |         253.49 |        63.37 |
+
+* Women:
+
+| Ad name     |  Spend |    CPL | Lifetime spend | Lifetime CPL |
+| ----------- | -----: | -----: | -------------: | -----------: |
+| Womens Ad P | 185.02 |  37.00 |         352.95 |        39.22 |
+| M 2603_2    | 131.34 | 131.34 |         139.81 |       139.81 |
+
+**Data-hygiene note:** `W 2603_3` also appeared in `2026-W12` with `campaign = 0`, missing components, and only `9.00` ILS spend. I am treating it as a stray invalid record rather than a stable campaign asset.
+
+### Ads planned for decision week (2026-W13)
+
+* Men:
+
+#### Reuse
+
+| Name      | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | ----: | --: | -------------: | -----------: |
+| Mens Ad A |     — |   — |         825.09 |        39.29 |
+
+#### Reshuffle
+
+**M 2603_3**
+
+| Component                         | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------------------------------- | ----: | --: | -------------: | -----------: |
+| Outside_Sunset_MM_Kaitenage_photo |     — |   — |        1087.31 |        41.82 |
+| ללמוד לשלוט ברגע                  |     — |   — |         880.60 |        40.03 |
+| Stable Without Struggle           |     — |   — |         432.89 |        54.11 |
+
+#### New content
+
+None.
+
+* Women:
+
+#### Keep / Reuse
+
+| Name        |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| ----------- | -----: | ----: | -------------: | -----------: |
+| Womens Ad P | 185.02 | 37.00 |         352.95 |        39.22 |
+
+#### Reshuffle
+
+**W 2603_4**
+
+| Component                    | Spend | CPL | Lifetime spend | Lifetime CPL |
+| ---------------------------- | ----: | --: | -------------: | -----------: |
+| Swariwaza_Kokyuho_Dojo_Photo |     — |   — |         952.78 |        63.52 |
+| גוף חזק, ראש רגוע            |     — |   — |         855.23 |        38.87 |
+| Time Out For You (Mom)       |     — |   — |        1386.80 |        57.78 |
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+* **Men:** replace the weak current run with one cooled historical winner and one high-evidence reshuffle.
+* **Women:** keep the only clear weekly winner and pair it with a conservative exploitative reshuffle rather than novelty.
+
+---
+
+## Rationale (concise)
+
+1. **Exploit historical winners first.**
+
+   * There is no shortage of proven ads and components.
+2. **Do not protect weak probes once they have enough spend to fail.**
+
+   * `M 2603_2` is past that point.
+3. **Do not overreact to malformed records.**
+
+   * `W 2603_3` is treated as a data-hygiene issue, not as a learning asset.
+4. **Keep the one clean success.**
+
+   * `Womens Ad P` earned that status this week.
+
+---
+
+## Data hygiene / learning notes
+
+* Bring `decision_log.md` back into sync next week; it currently lags the data.
+* Fix the campaign assignment for `M 2603_2` in the source system if it is truly a men's ad.
+* Investigate why the headline `"משהו חדש לגוף ולראש"` is missing from the headline lifetime export.
+* Confirm whether `W 2603_3` is a test placeholder, a failed draft, or a bad export row.
+
+---
+
+## What would change this decision next week
+
+* If **Womens Ad P** falls sharply while its spend remains meaningful, I would stop treating it as an anchor.
+* If the **M 2603_3** reshuffle under-delivers despite normal spend, I would revert harder toward the deepest men's baselines.
+* If the women reshuffle underperforms while **Womens Ad P** remains strong, I would next test another strong women baseline rather than introduce new content.
+* If source-data hygiene remains messy, I would reduce confidence in component-level learning and lean more on ad-level winners.
+
+---
+
+## Confidence level
+
+**Moderately high.**
+
+The main portfolio choices are straightforward. The main uncertainty is not the creative logic; it is the recent metadata quality.
+
+---
+
+End of Plan 2026-W13
+
+---
+
+
 # Plan for 2026-W12 (assessing 2026-W11)
 
 ### Weeks
