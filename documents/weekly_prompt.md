@@ -19,17 +19,30 @@ This prompt assumes that files are uploaded in **two batches**. If any required 
 2. `attachments_manifest.json`
 3. `attachments.tar`
 4. `ad_lifetime_summary.csv`
-5. `component_media_lifetime.csv`
-6. `component_headline_lifetime.csv`
-7. `component_text_lifetime.csv`
+5. `ad_components.csv`
+6. `component_media_lifetime.csv`
+7. `component_headline_lifetime.csv`
+8. `component_text_lifetime.csv`
 
 When Batch 1 arrives, read and acknowledge it, then **wait** for Batch 2 without performing any analysis or drafting outputs. When Batch 2 arrives, confirm **both batches** are fully processed before beginning any analysis or preparing a response.
+
+## Project files required (not uploaded in either batch)
+
+In addition to uploaded files, the following project files must be available locally and read before analysis:
+
+1. `documents/data_schema.md`
+2. `documents/decision_log_format.md`
+3. `documents/PROJECT_GUIDE.md`
+4. `documents/tag_taxonomy.md`
+5. `documents/decision_heuristics.md`
+
+If any of these files are missing or unreadable, **stop processing, notify the user, and wait for instructions**.
 
 All uploaded data files (except `decision_log.md`) are described in `data_schema.md`.
 
 Agents must consult `data_schema.md` to understand:
 
-- the purpose perof each file
+- the purpose of each file
 - table grain and column semantics
 - which file is the canonical source for each type of information
 
@@ -38,6 +51,14 @@ The required structure and formatting rules for decision-log entries are defined
 We have encountered past situations with this process where agents made decisions without checking actual file contents. Thus, it is important to make extra sure that the information is up to date.
 
 You should also review `PROJECT_GUIDE.md` to confirm alignment with current intentions, updating it if necessary.
+
+Before analysis begins, provide an explicit readiness confirmation listing:
+
+- every uploaded file that was successfully read
+- every required project file above that was successfully read
+- any file that was missing, unreadable, or not processed
+
+If anything is missing, do not continue to analysis.
 
 ---
 
@@ -95,7 +116,7 @@ You should also review `PROJECT_GUIDE.md` to confirm alignment with current inte
 
 8. **Tag reuse discipline**
    
-   * Before assigning hooks, promises, tone, or structure, review existing tag tables in `components_tags.csv`, including:
+   * Before assigning hooks, promises, tone, or structure, review existing tag tables in `component_tags.csv`, including:
      
      * `Hook_types`
      * existing headline/text tag assignments
@@ -115,6 +136,29 @@ You should also review `PROJECT_GUIDE.md` to confirm alignment with current inte
    * Bullet points must be parallel in structure.
    
    * Emojis are allowed only if calm, neutral, and consistent.
+
+10. **Missing-information gate (mandatory before decisions)**
+    
+    * Before making keep/change decisions, check whether required information exists in:
+      
+      * uploaded batch files, and
+      * required project files listed above.
+    
+    * If any required information is missing, stale, or ambiguous, stop and produce a **Missing Information Report** (in chat) with:
+      
+      * missing item
+      * why it is required by this prompt
+      * minimal way the user can provide it
+    
+    * At minimum, validate:
+      
+      * data freshness (latest completed week is unambiguous)
+      * source-data preparation status (latest Leads/Sales updates and intended-run flags are already reflected in exports)
+      * intentional-run identification (especially if >4 active ads)
+      * ability to inspect actual media files from `attachments.tar`
+      * ad-to-component mapping availability (prefer `ad_components.csv`; otherwise confirm it can be reconstructed reliably from `performance_data.json`)
+      * component/campaign integrity for planned ads (no missing components, no cross-campaign gender mismatch)
+      * decision-log clarity about the most recent new-material type (text vs media) when the alternation rule is applied.
 
 ---
 

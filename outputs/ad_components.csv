@@ -40,4 +40,6 @@ ad_id,ad_name,campaign,media_id,media_name,headline_id,headline_text,text_id,tex
 39,W 2603_2,W,13,Dojo_Instruction_FemalePair,,,18,Meaningful Movement
 40,M 2603_1,M,1,Shihonage_MF_Dojo_Photo,,,7,Time Out For You
 41,M 2603_2,W,2,Outside_Sunset_MM_Kaitenage_photo,,,8,Everyday Pressure
-42,W 2603_3,0,,,,,,
+42,W 2603_3,W,1,Shihonage_MF_Dojo_Photo,,,18,Meaningful Movement
+43,M 2603_3,M,2,Outside_Sunset_MM_Kaitenage_photo,,,10,Stable Without Struggle
+44,W 2603_4,W,15,Swariwaza_Kokyuho_Dojo_Photo,,,12,Time Out For You

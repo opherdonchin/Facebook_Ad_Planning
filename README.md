@@ -138,44 +138,44 @@ The script will:
 
 ## Weekly Workflow
 
-This is the complete weekly process for keeping the Grist database up to date with Facebook ad performance and planning new ad campaigns.
+This workflow has two cadences:
+
+- **Daily / several times per day**: sync incoming leads from Facebook Instant Forms into the Leads database.
+- **Weekly planning cycle**: update manual summary tables, import weekly ad performance, validate metadata, then run transforms/exports.
 
 ### Quick Reference
 
-The complete sequence with commands:
+Complete sequence:
 
 ```bash
-# 1. Update Weekly run data from Facebook
-pixi run update_weekly_runs
-# Update the Weekly Runs table in the Ad tracking database in Grist 
-# with this weeks numbers
+# Daily (or several times per day): sync leads from Instant Forms export
+pixi run sync_leads "facebook_exports/leads_export.csv"
 
-# 2. Update ad stats
+# Weekly manual prep in Leads database:
+#   1) Update Sales Events
+#   2) Update Weekly Summary (including weekly CPL/cost fields from Ads Manager report)
+
+# Weekly: import ad performance CSV into ad_tracking.Weekly_runs
+pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"
+# Optional safety check first:
+# pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv" --dry-run
+
+# Weekly manual QA in ad_tracking before transforms:
+#   - Set Weekly_runs.Intended_run for ads that were intentionally active
+#   - Ensure every ad in Weekly_runs exists in Ads with correct Campaign (W/M)
+#   - Ensure each ad has valid creative/component links and gender-appropriate assignments
+
+# Weekly pipeline after manual prep + QA
 pixi run update_ads
-#    → Copies lead counts from Leads summary to Ads table
-#    → Reports: "Rows to update: X" → "Updated Ad tracking-Ads from Leads rollup."
-
-# 3. Generate derived metrics
 pixi run transform_weekly
-#    → Updates 5 analytical tables in ad_tracking document (including component_tags)
-#    → Reports: "Synced X rows to [table_name]" for each table
-
-# 4. Export ad data
 pixi run export_ads
-#    → Creates: performance_data.json, attachments_manifest.json, attachments.tar
-#    → Creates: 5 structured CSV files for AI analysis (use --format parquet for Parquet)
-#    → Reports: "Exported X tables, Y total records, Z attachments"
-
-# 5. AI-assisted analysis and planning
-#    → Upload CSV files + decision_log.md to AI assistant
-#    → Follow weekly_prompt.md to analyze and plan next week's ads
 ```
 
 ### Detailed Steps
 
-### Step 1: Download Facebook Leads
+### Step 1: Daily Lead Sync (repeat during the week)
 
-Download the latest leads from Facebook Ads Manager:
+Download the latest leads from Facebook Instant Forms:
 
 1. Go to **Facebook Business Center** (business.facebook.com)
 2. Navigate to **All tools** → **Instant forms**
@@ -204,17 +204,55 @@ The script will:
 
 When leads are added to the Leads table, Grist automatically updates its native summary table (`Leads_summary_Ad_name`) which groups leads by ad name and counts conversions.
 
-### Step 3: Update Ad Statistics
+### Step 3: Weekly Manual Update in Leads Database
 
-Update the Ads table in the ad_tracking document with the latest lead counts and conversion data:
+Before running the weekly pipeline, manually update the **Leads** document:
+
+1. Update **Sales Events**
+2. Update the **Weekly Summary** table (including weekly cost/CPL fields from the Ads Manager report)
+
+This step is currently manual and should be completed before `update_ads`, so ad-level rollups are aligned with latest sales/conversion reality.
+
+### Step 4: Download Weekly Performance CSV from Ads Manager
+
+Export weekly ad performance CSV from Ads Manager and save it to `facebook_exports/`.
+
+The import expects these columns:
+
+- `Ad name`
+- `Reporting ends` (format: `YYYY-MM-DD`)
+- `Amount spent (ILS)`
+- `Results`
+
+### Step 5: Import Weekly Runs to Ad Tracking
+
+```bash
+pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"
+```
+
+The script writes rows into `Weekly_runs` and can auto-create missing ad names in `Ads` when needed.
+
+### Step 6: Manual Data QA in Ad Tracking (Required)
+
+After importing weekly runs, manually validate in Grist:
+
+1. Set `Weekly_runs.Intended_run` for ads that were intentionally active.
+2. Confirm all ads in `Weekly_runs` exist in `Ads` with correct campaign assignment (`W`/`M`).
+3. Confirm each ad has complete creative linkage (media/headline/text) and that components match intended gender/campaign usage.
+
+Important: auto-created `Ads` rows from Step 5 only contain ad names, so campaign/creative fields must be filled manually before transforms/exports.
+
+### Step 7: Update Ad Statistics from Leads Rollups
+
+Update the Ads table in the `ad_tracking` document with the latest lead counts and conversion data:
 
 ```bash
 pixi run update_ads
 ```
 
-This copies lead rollup data (total leads, trial lessons, registrations, failed contacts) from the Leads summary table into the Ads table for performance tracking.
+This copies rollup data (total leads, trial lessons, registrations, failed contacts) from the Leads rollup table into `ad_tracking.Ads`.
 
-### Step 4: Generate Derived Metrics
+### Step 8: Generate Derived Metrics
 
 Run transforms to update all derived performance metrics tables in the ad_tracking document:
 
@@ -232,7 +270,7 @@ This updates 5 tables:
 
 **Note**: These transforms work on the ad_tracking document and are independent of the leads sync. They can be run before or after the export step.
 
-### Step 5: Export Ad Performance Data
+### Step 9: Export Ad Performance Data
 
 Export the current state of your ad tracking database from Grist, including all updated metrics, creative assets, and formulas:
 
@@ -240,7 +278,7 @@ Export the current state of your ad tracking database from Grist, including all 
 pixi run export_ads
 ```
 
-This creates **8 files** needed for analysis:
+This creates **11 analysis files** in `outputs/`:
 
 **JSON Format (full database):**
 
@@ -254,6 +292,9 @@ This creates **8 files** needed for analysis:
 - `ad_run_summary.csv` - Last contiguous run metrics per ad
 - `ad_lifetime_summary.csv` - Lifetime aggregates per ad
 - `ad_components.csv` - Ad-to-component mapping (media, headline, text)
+- `component_media_lifetime.csv` - Lifetime aggregates per media component
+- `component_headline_lifetime.csv` - Lifetime aggregates per headline component
+- `component_text_lifetime.csv` - Lifetime aggregates per text component
 - `component_tags.csv` - Component-to-tag relationships (164 rows of tag assignments)
 
 **Optional Parquet Format:**
@@ -272,11 +313,11 @@ pixi run export_ads --format both
 
 The CSV files are pre-joined, structured tables optimized for AI analysis with proper data types and clean column names. See [documents/data_schema.md](documents/data_schema.md) for detailed schema documentation.
 
-### Step 6: Analyze and Plan (AI-Assisted)
+### Step 10: Analyze and Plan (AI-Assisted)
 
 With all data updated, you can now:
 
-1. Upload the **CSV files** (5 structured tables) to your AI assistant for efficient analysis
+1. Upload the **CSV files** (8 structured tables) to your AI assistant for efficient analysis
    - Alternative: Use `--format parquet` for Parquet format if your AI supports it
    - See [documents/data_schema.md](documents/data_schema.md) for detailed schema documentation
 2. Also upload `documents/decision_log.md` for historical context
@@ -295,12 +336,15 @@ The weekly_prompt provides detailed guidance on making data-driven decisions whi
 
 Complete weekly workflow in order:
 
-1. Download Facebook leads CSV manually from Facebook Ads Manager
-2. `pixi run sync_leads "facebook_exports/file.csv"` - Import leads to Grist
-3. `pixi run update_ads` - Copy lead stats from Leads summary to Ads table
-4. `pixi run transform_weekly` - Generate 5 derived analytical metrics tables
-5. `pixi run export_ads` - Export Grist state to JSON + structured CSV files
-6. Analyze data and plan next week's ads using AI + CSV tables + `weekly_prompt.md`
+1. Throughout the week: download leads export and run `pixi run sync_leads "facebook_exports/file.csv"`
+2. Weekly in Leads DB: manually update Sales Events and Weekly Summary
+3. Download weekly Ads Manager performance CSV
+4. `pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"` - Import weekly spend/leads into `Weekly_runs`
+5. In ad_tracking Grist: manually set `Intended_run` and fix any missing/incorrect ad campaign + creative/component metadata
+6. `pixi run update_ads` - Copy lead/conversion rollups from Leads to `ad_tracking.Ads`
+7. `pixi run transform_weekly` - Generate derived analytical metrics tables
+8. `pixi run export_ads` - Export Grist state to JSON + structured CSV/Parquet files
+9. Analyze data and plan next week's ads using AI + exports + `weekly_prompt.md`
 
 **See [documents/data_schema.md](documents/data_schema.md) for detailed schema documentation of all exported CSV files.**
 
@@ -323,9 +367,9 @@ extractor.save_to_json(
 
 ### Output Files
 
-The script generates:
+`pixi run export_ads` generates:
 
-1. **`performance_data.json`**: Complete database export including:
+1. **`outputs/performance_data.json`**: Complete database export including:
    
    - Document metadata
    - All table structures and columns
@@ -335,24 +379,27 @@ The script generates:
 
 2. **Structured data files** (CSV by default, Parquet optional):
    
-   - `ad_weekly_performance.{csv|parquet}` - Weekly metrics by ad × ISO week (118 rows)
-   - `ad_run_summary.{csv|parquet}` - Last contiguous run per ad (31 rows)
-   - `ad_lifetime_summary.{csv|parquet}` - Lifetime aggregates per ad (31 rows)
-   - `ad_components.{csv|parquet}` - Ad → media/headline/text mapping (32 rows)
-   - `component_tags.{csv|parquet}` - Component → tag assignments (164 rows)
+   - `outputs/ad_weekly_performance.{csv|parquet}` - Weekly metrics by ad × ISO week
+   - `outputs/ad_run_summary.{csv|parquet}` - Last contiguous run per ad
+   - `outputs/ad_lifetime_summary.{csv|parquet}` - Lifetime aggregates per ad
+   - `outputs/ad_components.{csv|parquet}` - Ad → media/headline/text mapping
+   - `outputs/component_media_lifetime.{csv|parquet}` - Lifetime aggregates per media component
+   - `outputs/component_headline_lifetime.{csv|parquet}` - Lifetime aggregates per headline component
+   - `outputs/component_text_lifetime.{csv|parquet}` - Lifetime aggregates per text component
+   - `outputs/component_tags.{csv|parquet}` - Component → tag assignments
    
    See [documents/data_schema.md](documents/data_schema.md) for detailed column descriptions.
 
-3. **`attachments/`**: Directory containing all downloaded files organized by table
+3. **`outputs/attachments/`**: Directory containing all downloaded files organized by table
 
-4. **`attachments_manifest.json`**: Detailed manifest of all attachments including:
+4. **`outputs/attachments_manifest.json`**: Detailed manifest of all attachments including:
    
    - File paths and names
    - SHA256 checksums
    - Source table and record information
    - Original filenames and content types
 
-5. **`attachments.tar` or `attachments.tar.gz`**: Compressed archive of all attachments
+5. **`outputs/attachments.tar`**: Compressed archive of all attachments
 
 ## API Reference
 
@@ -401,23 +448,26 @@ After running the export on a Grist document with "Creatives" and "Media" tables
 
 ```
 Facebook_Ad_Planning/
-├── performance_data.json          # Complete data export
-├── attachments_manifest.json      # Attachment metadata
-├── attachments.tar                # Compressed attachments
-├── outputs/
-│   ├── ad_weekly_performance.csv  # (or .parquet with --format parquet)
-│   ├── ad_run_summary.csv
-│   ├── ad_lifetime_summary.csv
-│   ├── ad_components.csv
-│   └── component_tags.csv
-└── attachments/
-    ├── Creatives/
-    │   ├── Womens Ad M.png
-    │   ├── Mens Ad L.png
-    │   └── ...
-    └── Media/
-        ├── Video_Asset_1.mp4
-        └── ...
+└── outputs/
+    ├── performance_data.json
+    ├── attachments_manifest.json
+    ├── attachments.tar
+    ├── ad_weekly_performance.csv      # (or .parquet with --format parquet)
+    ├── ad_run_summary.csv
+    ├── ad_lifetime_summary.csv
+    ├── ad_components.csv
+    ├── component_media_lifetime.csv
+    ├── component_headline_lifetime.csv
+    ├── component_text_lifetime.csv
+    ├── component_tags.csv
+    └── attachments/
+        ├── Creatives/
+        │   ├── Womens Ad M.png
+        │   ├── Mens Ad L.png
+        │   └── ...
+        └── Media/
+            ├── Video_Asset_1.mp4
+            └── ...
 ```
 
 ## Troubleshooting

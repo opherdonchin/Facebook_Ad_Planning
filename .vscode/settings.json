@@ -1,16 +1,16 @@
 {
     "workbench.colorCustomizations": {
-        "activityBar.background": "#2B3007",
-        "titleBar.activeBackground": "#3C440A",
-        "titleBar.activeForeground": "#F9FBE6",
-        "titleBar.inactiveBackground": "#2B3007",
-        "titleBar.inactiveForeground": "#F9FBE6",
-        "statusBar.background": "#4C550C",
-        "statusBar.foreground": "#F9FBE6",
-        "statusBar.debuggingBackground": "#4C550C",
-        "statusBar.debuggingForeground": "#F9FBE6",
-        "statusBar.noFolderBackground": "#4C550C",
-        "statusBar.noFolderForeground": "#F9FBE6"
+        "statusBar.noFolderBackground": "#352776",
+        "statusBar.noFolderForeground": "#FAFAFD",
+        "activityBar.background": "#2E2267",
+        "titleBar.activeBackground": "#B7ACE4",
+        "titleBar.activeForeground": "#1B133A",
+        "titleBar.inactiveBackground": "#2E2267",
+        "titleBar.inactiveForeground": "#1B133A",
+        "statusBar.background": "#352776",
+        "statusBar.foreground": "#FAFAFD",
+        "statusBar.debuggingBackground": "#352776",
+        "statusBar.debuggingForeground": "#FAFAFD"
     },
     "chat.tools.terminal.autoApprove": {
         "/^python src/export_ads_and_structured\\.py outputs/performance_data\\.json outputs csv$/": {
