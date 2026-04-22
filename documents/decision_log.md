@@ -1,183 +1,142 @@
 # Weekly Decision Log
 
-# 1) Performance summary
+# Plan for 2026-W16 (assessing 2026-W15)
 
-## Week structure confirmed
+### Weeks
 
-* **Last real logged decision week:** `2026-W13`
-* **Previous completed week:** `2026-W13`
-* **Latest completed week:** `2026-W14`
-* **Decision / planned week:** `2026-W15`
+* **Assessed (data) week:** 2026-W15
+* **Decision / planned week:** 2026-W16
 
-This **is** a valid catch-up situation:
+### Ads active in assessed week (2026-W15)
 
-* the latest formal log entry is for **planning `2026-W13` while assessing `2026-W12`**
-* two completed data weeks have elapsed since then: **`2026-W13` and `2026-W14`**
-* the **same intended portfolio** remained active across both completed weeks:
+* Men:
 
-  * **Men:** `Mens Ad A`, `M 2603_3`
-  * **Women:** `Womens Ad P`, `W 2603_4`
-* there were small **non-intended residual rows** in `2026-W13`, but no evidence of a real mid-period portfolio change
+| Ad name   |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | ----: | -------------: | -----------: |
+| Mens Ad A |  75.05 |     — |        1147.17 |        45.89 |
+| Mens Ad B | 131.57 | 43.86 |        1082.66 |        43.31 |
 
-## Previous completed week — `2026-W13`
+* Women:
 
-| Campaign | Ad          | Weekly spend | Weekly leads | Weekly CPL | Current run spend | Current run CPL | Lifetime spend | Lifetime CPL | Flags                    |
-| :------- | :---------- | -----------: | -----------: | :--------- | ----------------: | --------------: | -------------: | -----------: | :----------------------- |
-| Men      | M 2603_3    |        45.87 |            0 | —          |            148.29 |           74.14 |         148.29 |        74.14 | low sample; sub-80 spend |
-| Men      | Mens Ad A   |       155.74 |            2 | 77.87      |            247.03 |           61.76 |        1072.12 |        42.88 | —                        |
-| Women    | W 2603_4    |        59.69 |            0 | —          |            121.38 |           60.69 |         121.38 |        60.69 | low sample; sub-80 spend |
-| Women    | Womens Ad P |       141.95 |            0 | —          |            466.76 |           58.34 |         634.69 |        52.89 | low sample               |
+| Ad name     |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| ----------- | -----: | ----: | -------------: | -----------: |
+| Womens Ad P |  88.22 | 44.11 |         722.91 |        51.64 |
+| W 2603_4    | 116.29 | 58.15 |         237.67 |        59.42 |
 
-## Latest completed week — `2026-W14`
+### Ads planned for decision week (2026-W16)
 
-| Campaign | Ad          | Weekly spend | Weekly leads | Weekly CPL | Current run spend | Current run CPL | Lifetime spend | Lifetime CPL | Flags                    |
-| :------- | :---------- | -----------: | -----------: | ---------: | ----------------: | --------------: | -------------: | -----------: | :----------------------- |
-| Men      | M 2603_3    |       102.42 |            2 |      51.21 |            148.29 |           74.14 |         148.29 |        74.14 | low sample               |
-| Men      | Mens Ad A   |        91.29 |            2 |      45.65 |            247.03 |           61.76 |        1072.12 |        42.88 | —                        |
-| Women    | W 2603_4    |        61.69 |            2 |      30.84 |            121.38 |           60.69 |         121.38 |        60.69 | low sample; sub-80 spend |
-| Women    | Womens Ad P |       139.79 |            3 |      46.60 |            466.76 |           58.34 |         634.69 |        52.89 | —                        |
+* Men:
 
-## Combined two-week hold period — `2026-W13` + `2026-W14`
+#### Reuse:
 
-| Campaign | Ad          | 2w spend | 2w leads | 2w CPL | W14 vs W13 spend Δ | W14 vs W13 leads Δ | Pattern                         | Flags                    |
-| :------- | :---------- | -------: | -------: | -----: | -----------------: | -----------------: | :------------------------------ | :----------------------- |
-| Men      | M 2603_3    |   148.29 |        2 |  74.14 |              56.55 |                  2 | improvement but still weak      | low sample; modest spend |
-| Men      | Mens Ad A   |   247.03 |        4 |  61.76 |             -64.45 |                  0 | improvement                     | —                        |
-| Women    | W 2603_4    |   121.38 |        2 |  60.69 |               2.00 |                  2 | improvement; low evidence       | low sample; modest spend |
-| Women    | Womens Ad P |   281.74 |        3 |  93.91 |              -2.16 |                  3 | delivery instability / reversal | —                        |
+| Name      |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | ----: | -------------: | -----------: |
+| Mens Ad A |  75.05 |     — |        1147.17 |        45.89 |
+| Mens Ad B | 131.57 | 43.86 |        1082.66 |        43.31 |
 
-## Key points
+#### Reshuffle:
 
-* `2026-W13` alone would have pushed toward overreaction: three of the four intended ads had **zero leads**.
-* `2026-W14` reversed that picture sharply: **all four intended ads produced leads**, and three of the four were **below 50 CPL**.
-* The strongest reversal was in the women’s campaign:
+None.
 
-  * `Womens Ad P` went from **141.95 spend / 0 leads** to **139.79 spend / 3 leads / 46.60 CPL**
-  * `W 2603_4` went from **59.69 spend / 0 leads** to **61.69 spend / 2 leads / 30.84 CPL**
-* `Mens Ad A` remains the clearest men’s anchor: weak `2026-W13`, good `2026-W14`, and strong lifetime evidence.
-* `M 2603_3` improved in `2026-W14`, but still missed the keep rule and still has weak run and lifetime evidence.
+#### New content
 
----
+None.
 
-# 2) Summary of current situation
+* Women:
 
-## Key things for the agent to remember
+#### Reuse:
 
-* Treat this as **one catch-up decision for `2026-W15`**, not two ordinary weekly cycles.
-* Use **`2026-W14` as the formal assessed week**, but interpret it with explicit reference to:
+| Name        | Spend |   CPL | Lifetime spend | Lifetime CPL |
+| ----------- | ----: | ----: | -------------: | -----------: |
+| Womens Ad P | 88.22 | 44.11 |         722.91 |        51.64 |
 
-  * `2026-W13` on its own
-  * `2026-W14` on its own
-  * the combined `2026-W13` + `2026-W14` hold period
-* The intended unchanged portfolio across both completed weeks was:
+#### Reshuffle:
 
-  * **Men:** `Mens Ad A`, `M 2603_3`
-  * **Women:** `Womens Ad P`, `W 2603_4`
-* Ignore the tiny non-intended residual rows in `2026-W13` for decision purposes.
-* The raw `Weekly_runs` data and lifetime tables are fresher than the exported weekly summary CSVs; do not silently trust stale rollups over fresher raw rows.
+**W 2604_1**
 
-## Key things for the human to notice
+| Component                      | Spend | CPL | Lifetime spend | Lifetime CPL |
+| ------------------------------ | ----: | --: | -------------: | -----------: |
+| Illustrated_Calm_Poster_Female |     — |   — |         773.06 |        70.28 |
+| גוף חזק, ראש רגוע              |     — |   — |         855.23 |        38.87 |
+| Meaningful Movement            |     — |   — |         855.23 |        38.87 |
 
-* The portfolio was **much more volatile across these two weeks than a normal one-week review would reveal**.
-* `Womens Ad P` looks weak in the two-week aggregate but strong in the latest week; the right reading is **volatility**, not immediate rejection.
-* `W 2603_4` is still **thin evidence**. Its latest week is good, but it is not yet a stable winner.
-* `M 2603_3` got a second week and improved, but **not enough** to earn protection.
-* The clean exploit move is available in men: **bring back `Mens Ad B`**. It is cooled, historically strong, and component-distinct from `Mens Ad A`.
+#### New content
 
-## Current understanding by category
-
-### Ads
-
-* **Men:** `Mens Ad A` is still a durable baseline. `M 2603_3` does not yet justify another hold week.
-* **Women:** `Womens Ad P` remains the strongest ad-level women’s asset, but not stable week to week. `W 2603_4` is promising but underpowered.
-
-### Tags and tag combinations
-
-* Strong recurring men’s exploit space still clusters around:
-
-  * calm / control promises
-  * stress / mental-load hooks
-  * outside or clean dojo imagery
-* Strong women’s assets still cluster around:
-
-  * calm-under-pressure framing
-  * meaningful movement / non-force framing
-  * visually legible female-centered instruction or calm dojo imagery
-* Tag-level conclusions remain useful but **secondary to ad-level and component-level evidence**.
-
-### Headlines
-
-* Strongest headline evidence remains with:
-
-  * `ללמוד לשלוט ברגע`
-  * `גוף חזק, ראש רגוע`
-  * `לנער את השגרה`
-* The current weak men’s ad used one of those strong headlines, which implies the failure is **not headline-only**.
-
-### Texts
-
-* Strongest reusable text evidence remains with:
-
-  * `Everyday Pressure`
-  * `Time Out For You (Dad)`
-  * `Meaningful Movement`
-* `Stable Without Struggle` is not a disaster, but it is notably weaker than the best exploit texts.
-
-### Media
-
-* Strongest lifetime media remain:
-
-  * `Shihonage_MF_Dojo_Photo`
-  * `Outside_Sunset_MM_Kaitenage_photo`
-  * `Dojo_Instruction_FemalePair`
-* `Swariwaza_Kokyuho_Dojo_Photo` is weaker historically, but the latest week gave it a real positive signal.
-
-### Notable headline–text–media combinations
-
-* `Mens Ad A` remains a coherent, strong bundle:
-
-  * `Shihonage_MF_Dojo_Photo`
-  * `לנער את השגרה`
-  * `Everyday Pressure`
-* `Mens Ad B` remains the cleanest eligible exploit return:
-
-  * `Outside_Sunset_MM_Kaitenage_photo`
-  * `ללמוד לשלוט ברגע`
-  * `Time Out For You (Dad)`
-* `Womens Ad P` still looks semantically strong:
-
-  * instructional female line-art image
-  * movement/connection headline
-  * non-force / balance text
-* `W 2603_4` now has one encouraging week, but its evidence base is still too small to call it established.
+None.
 
 ---
 
-# 3) Key decisions
+## Portfolio decision
 
-## Ads to keep
-
-| Campaign | Ad            | Type | Tags                                                                                                                                                          | Brief justification                                                                                                                          |
-| -------- | ------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Men      | `Mens Ad A`   | Keep | media: illustration-photo-art / instructional-demonstration; headline: playful, energy-renewal; text: stress/mental-load → calm under pressure, question hook | Latest week CPL **45.65**. Weak `2026-W13` reversed in `2026-W14`. Still the strongest men’s live anchor by lifetime evidence.               |
-| Women    | `Womens Ad P` | Keep | media: line-art / dynamic throw; headline: poetic, body capability; text: strength without force, non-violent power, short lines                              | Latest week CPL **46.60**. Two-week view is volatile, but latest week meets keep rule and ad-level evidence remains strong enough to retain. |
-| Women    | `W 2603_4`    | Keep | media: dojo photo / soft calm; headline: direct, stress/mental-load, calm under pressure; text: care-load / calm under pressure / checklist                   | Latest week CPL **30.84**. Evidence is still thin, but the written keep rule is met and the latest week is the clearest positive signal yet. |
-
-## Ads generated from existing materials
-
-| Campaign | Planned ad  | Type               | Tags                                                                                                                                    | Brief justification                                                                                                                                                                                          |
-| -------- | ----------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Men      | `Mens Ad B` | Previously used ad | media: photo-outside / meditative-inspirational; headline: reflective, focus/clarity; text: care-load / calm under pressure / checklist | Best cooled historical winner available. Lifetime CPL **43.23**, last seen **2026-W08**, distinct from `Mens Ad A` on media, headline, and text, and semantically still coherent on actual image inspection. |
-
-## Ads generated with new material
-
-None for `2026-W15`.
-
-Exploit-first is sufficient this week. No novelty is required.
+* **Men:** keep both current ads.
+* **Women:** keep **Womens Ad P** and replace **W 2603_4** with one exploitive reshuffle from existing materials.
+* **New material:** none for `2026-W17`.
 
 ---
 
-# 4) Decision-log entry
+## Rationale (concise)
+
+1. **Keep the ads that meet the written rules.**
+
+   * **Mens Ad B** and **Womens Ad P** both met the weekly CPL threshold.
+   * **Mens Ad A** failed on leads but still qualifies under the run-spend fallback because its current run spend is below 80 ILS.
+
+2. **Do not protect W 2603_4.**
+
+   * Weekly CPL is above 50.
+   * Current run spend is above 80.
+   * Current run CPL is also above 30.
+
+3. **Exploit strong women components rather than introduce novelty.**
+
+   * The best women’s headline and text components remain **גוף חזק, ראש רגוע** and **Meaningful Movement**.
+   * The strongest women’s media asset is already occupied by **Womens Ad P**, so the replacement must exploit around that constraint.
+
+4. **Avoid duplication and weak recent clusters.**
+
+   * Do not duplicate any component already used by **Womens Ad P**.
+   * Do not continue leaning on the weak recent **Swariwaza + Time Out For You (Mom)** cluster.
+
+---
+
+## Constraints check
+
+* Assessed week and decision week are explicitly separated.
+* No media, headline, or text is duplicated within either campaign for `2026-W17`.
+* New-material constraint is satisfied: **0 new ads**.
+* The women’s replacement uses only existing materials.
+* The women’s reshuffle is a new combination rather than a repeated historical combo.
+* No new tags are introduced.
+
+---
+
+## Data hygiene / learning notes
+
+* Current-run summaries are clean this week: each active ad has a one-week current run, which matches the prior portfolio change.
+* No intent ambiguity was present in the assessed week: exactly four intended ads were active.
+
+---
+
+## What would change this decision next week
+
+* If **Mens Ad A** fails again on normal spend, stop treating this as a low-evidence hold.
+* If **Mens Ad B** holds this level of efficiency for another week, it becomes the clear men’s anchor again.
+* If **Womens Ad P** weakens materially while the reshuffle also fails, the women’s side will need a broader rebuild rather than a one-slot replacement.
+* If **W 2604_1** underdelivers despite normal spend, shift away from calm illustrative women media and back toward other proven structures.
+
+---
+
+## Confidence level
+
+**Moderate.**
+
+The keep/replace logic is straightforward. The main uncertainty is not the threshold logic; it is the week-label jump and the fact that the replacement must work around the already-occupied strongest women’s media asset.
+
+---
+
+End of Plan for 2026-W16
+
+---
 
 # Plan for 2026-W15 (assessing 2026-W14)
 

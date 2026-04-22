@@ -14,6 +14,7 @@ Includes (and originallys started as a repository for) a Python tool to export c
 - **Multiple Format Support**: Export as CSV (default), Parquet, or both formats
 - **Derived Metrics**: Computes weekly, lifetime, and tag-based performance aggregations using DuckDB
 - **Component Tracking**: Maintains ad-to-component and component-to-tag relationships
+- **Upload Bundle Packaging**: Zips weekly data, creative assets, and planning context into upload-ready bundles
 - **SHA256 Verification**: Generates checksums for all downloaded attachments
 - **Archive Creation**: Automatically packages attachments into compressed tarball
 - **Smart File Naming**: Uses record data (Name, Variant fields) to create meaningful filenames
@@ -169,6 +170,7 @@ pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"
 pixi run update_ads
 pixi run transform_weekly
 pixi run export_ads
+pixi run package_uploads
 ```
 
 ### Detailed Steps
@@ -313,15 +315,32 @@ pixi run export_ads --format both
 
 The CSV files are pre-joined, structured tables optimized for AI analysis with proper data types and clean column names. See [documents/data_schema.md](documents/data_schema.md) for detailed schema documentation.
 
-### Step 10: Analyze and Plan (AI-Assisted)
+### Step 10: Package Weekly Upload Bundles
+
+Create the upload bundles after `export_ads` finishes:
+
+```bash
+pixi run package_uploads
+```
+
+This validates that all required weekly planning files exist, then creates three zip files in `outputs/`:
+
+- `weekly_upload_data.zip` - structured CSVs plus `performance_data.json`
+- `weekly_upload_assets.zip` - `attachments_manifest.json` plus `attachments.tar`
+- `weekly_upload_context.zip` - decision log, schema, prompt, and planning reference documents
+
+The command also writes `outputs/weekly_upload_manifest.json` with file paths, sizes, and SHA256 checksums. If any required file is missing, the command stops without creating bundles.
+
+### Step 11: Analyze and Plan (AI-Assisted)
 
 With all data updated, you can now:
 
-1. Upload the **CSV files** (8 structured tables) to your AI assistant for efficient analysis
-   - Alternative: Use `--format parquet` for Parquet format if your AI supports it
-   - See [documents/data_schema.md](documents/data_schema.md) for detailed schema documentation
-2. Also upload `documents/decision_log.md` for historical context
-3. Follow the prompts in `documents/weekly_prompt.md` to:
+1. Upload the three generated zip files together in one batch:
+   - `outputs/weekly_upload_data.zip`
+   - `outputs/weekly_upload_assets.zip`
+   - `outputs/weekly_upload_context.zip`
+2. Paste or follow `documents/weekly_prompt.md` so the assistant validates and reads every bundled file before analysis.
+3. Use the prompt to:
    - Assess previous week's performance
    - Identify which ads to keep running
    - Decide which ads to replace
@@ -344,7 +363,8 @@ Complete weekly workflow in order:
 6. `pixi run update_ads` - Copy lead/conversion rollups from Leads to `ad_tracking.Ads`
 7. `pixi run transform_weekly` - Generate derived analytical metrics tables
 8. `pixi run export_ads` - Export Grist state to JSON + structured CSV/Parquet files
-9. Analyze data and plan next week's ads using AI + exports + `weekly_prompt.md`
+9. `pixi run package_uploads` - Create upload-ready weekly zip bundles in `outputs/`
+10. Analyze data and plan next week's ads using AI + the generated bundles + `weekly_prompt.md`
 
 **See [documents/data_schema.md](documents/data_schema.md) for detailed schema documentation of all exported CSV files.**
 
@@ -400,6 +420,30 @@ extractor.save_to_json(
    - Original filenames and content types
 
 5. **`outputs/attachments.tar`**: Compressed archive of all attachments
+
+`pixi run package_uploads` validates the weekly planning inputs and creates:
+
+1. **`outputs/weekly_upload_data.zip`**:
+
+   - `performance_data.json`
+   - all 8 structured CSV files
+
+2. **`outputs/weekly_upload_assets.zip`**:
+
+   - `attachments_manifest.json`
+   - `attachments.tar`
+
+3. **`outputs/weekly_upload_context.zip`**:
+
+   - `documents/decision_log.md`
+   - `documents/data_schema.md`
+   - `documents/decision_log_format.md`
+   - `documents/PROJECT_GUIDE.md`
+   - `documents/tag_taxonomy.md`
+   - `documents/decision_heuristics.md`
+   - `documents/weekly_prompt.md`
+
+4. **`outputs/weekly_upload_manifest.json`**: Manifest with bundle membership, file sizes, and SHA256 checksums
 
 ## API Reference
 
