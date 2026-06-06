@@ -7,6 +7,7 @@ attachments_manifest.json
 attachments.tar
 attachments.tar.gz
 attachments/
+facebook_exports/*.exe
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

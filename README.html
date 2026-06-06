@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>readme</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="README_files/libs/clipboard/clipboard.min.js"></script>
+<script src="README_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="README_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="README_files/libs/quarto-html/popper.min.js"></script>
+<script src="README_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="README_files/libs/quarto-html/anchor.min.js"></script>
+<link href="README_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="README_files/libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="README_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="README_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="README_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="facebook-ad-planning" class="level1">
+<h1>Facebook Ad Planning</h1>
+<p>A repository for data and planning history on facebook advertising campaigns. Used primarily for Isshin Aikido in Beer Sheva</p>
+<p>Includes (and originallys started as a repository for) a Python tool to export complete Grist documents including all data, formulas, metadata, and file attachments via the Grist API.</p>
+<section id="features" class="level2">
+<h2 class="anchored" data-anchor-id="features">Features</h2>
+<ul>
+<li><strong>Complete Data Export</strong>: Extracts all tables, columns, records, and metadata from Grist documents</li>
+<li><strong>Formula Preservation</strong>: Captures all formulas with their definitions</li>
+<li><strong>Attachment Management</strong>: Downloads and organizes file attachments with intelligent naming</li>
+<li><strong>Structured Output</strong>: Exports to JSON format with organized attachment manifest</li>
+<li><strong>AI-Ready Structured Tables</strong>: Automatically generates 5 pre-joined CSV tables optimized for AI analysis</li>
+<li><strong>Multiple Format Support</strong>: Export as CSV (default), Parquet, or both formats</li>
+<li><strong>Derived Metrics</strong>: Computes weekly, lifetime, and tag-based performance aggregations using DuckDB</li>
+<li><strong>Component Tracking</strong>: Maintains ad-to-component and component-to-tag relationships</li>
+<li><strong>Upload Bundle Packaging</strong>: Zips weekly data, creative assets, and planning context into upload-ready bundles</li>
+<li><strong>SHA256 Verification</strong>: Generates checksums for all downloaded attachments</li>
+<li><strong>Archive Creation</strong>: Automatically packages attachments into compressed tarball</li>
+<li><strong>Smart File Naming</strong>: Uses record data (Name, Variant fields) to create meaningful filenames</li>
+<li><strong>Self-hosted Support</strong>: Works with both Grist Cloud and self-hosted Grist instances</li>
+</ul>
+</section>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<section id="using-pixi-recommended" class="level3">
+<h3 class="anchored" data-anchor-id="using-pixi-recommended">Using Pixi (Recommended)</h3>
+<p>This project uses <a href="https://prefix.dev/docs/pixi/overview">Pixi</a> for dependency management:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install pixi if you haven't already</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Visit: https://prefix.dev/docs/pixi/installation</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install dependencies</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> install</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the script</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run run</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="using-pip" class="level3">
+<h3 class="anchored" data-anchor-id="using-pip">Using pip</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install requests</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> export_ads.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="configuration" class="level2">
+<h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
+<ol type="1">
+<li><p>Copy the example configuration file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> config.example.json config.json</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Edit <code>config.json</code> with your credentials:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"ad_planning"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"doc_id"</span><span class="fu">:</span> <span class="st">"your_ad_planning_document_id"</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"api_key"</span><span class="fu">:</span> <span class="st">"your_api_key"</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"server"</span><span class="fu">:</span> <span class="st">"https://docs.getgrist.com"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"leads"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"doc_id"</span><span class="fu">:</span> <span class="st">"your_leads_document_id"</span><span class="fu">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"api_key"</span><span class="fu">:</span> <span class="st">"your_api_key"</span><span class="fu">,</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"server"</span><span class="fu">:</span> <span class="st">"https://docs.getgrist.com"</span><span class="fu">,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"table_id"</span><span class="fu">:</span> <span class="st">"Leads"</span><span class="fu">,</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"columns"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"phone"</span><span class="fu">:</span> <span class="st">"Phone"</span><span class="fu">,</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"Email"</span><span class="fu">,</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name_en"</span><span class="fu">:</span> <span class="st">"Name"</span><span class="fu">,</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name_he"</span><span class="fu">:</span> <span class="st">"Name_Hebrew_"</span><span class="fu">,</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"date"</span><span class="fu">:</span> <span class="st">"Date"</span><span class="fu">,</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"campaign"</span><span class="fu">:</span> <span class="st">"Campaign"</span><span class="fu">,</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"ad_name"</span><span class="fu">:</span> <span class="st">"Ad_name"</span><span class="fu">,</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"platform"</span><span class="fu">:</span> <span class="st">"Platform"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+<p><strong>Finding your credentials:</strong></p>
+<ul>
+<li><strong>Document ID</strong>: Found in your Grist document URL: <code>https://docs.getgrist.com/doc/YOUR_DOC_ID</code></li>
+<li><strong>API Key</strong>: Generate from your Grist profile settings → API section</li>
+</ul>
+<p>For self-hosted Grist instances, change the <code>server</code> field to your instance URL.</p>
+<p><strong>Security Note:</strong> The <code>config.json</code> file is gitignored and will not be committed to version control. Never commit your API key!</p>
+</section>
+<section id="syncing-facebook-leads-to-grist" class="level2">
+<h2 class="anchored" data-anchor-id="syncing-facebook-leads-to-grist">Syncing Facebook Leads to Grist</h2>
+<section id="daily" class="level3">
+<h3 class="anchored" data-anchor-id="daily">Daily</h3>
+<p>Updating Facebook leads can be done manually if there are only one or two (which is the usual thing). However, to update a batch, there is a sync tool.</p>
+<section id="download-facebook-leads" class="level4">
+<h4 class="anchored" data-anchor-id="download-facebook-leads">Download Facebook Leads</h4>
+<p>To sync leads from Facebook to your Grist leads table, you first need to download the leads export from Facebook:</p>
+<ol type="1">
+<li>Go to <strong>Facebook Business Center</strong> (business.facebook.com)</li>
+<li>Navigate to <strong>All tools</strong> in the left sidebar</li>
+<li>Find and click on <strong>Instant forms</strong> tool</li>
+<li>Click on your instant form (e.g., “Leads form 6/6/25”)</li>
+<li>Click the <strong>Download</strong> button</li>
+<li>Choose download period:
+<ul>
+<li><strong>Last 3 months</strong>: Downloads all leads from the past 3 months</li>
+<li><strong>Since last download</strong>: Downloads only new leads since your last export</li>
+</ul></li>
+<li>Select <strong>CSV</strong> format and download</li>
+</ol>
+<p>The downloaded file will be in UTF-16 tab-delimited format with columns like <code>id</code>, <code>created_time</code>, <code>ad_name</code>, <code>campaign_name</code>, <code>platform</code>, <code>email</code>, <code>full_name</code>, <code>phone_number</code>, etc</p>
+</section>
+</section>
+<section id="running-the-sync" class="level3">
+<h3 class="anchored" data-anchor-id="running-the-sync">Running the Sync</h3>
+<p>Once you have the Facebook leads CSV file, sync it to your Grist table:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run sync_leads <span class="st">"path/to/your/leads_export.csv"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The script will:</p>
+<ul>
+<li>Match leads by phone + email combination</li>
+<li>Add missing Hebrew/English names (bilingual complement)</li>
+<li>Fill in Campaign, Ad name, and Platform for matched leads</li>
+<li>Create new lead records for unmatched entries</li>
+<li>Report any name mismatches or time gaps (without overwriting data)</li>
+</ul>
+<p><strong>Example output:</strong></p>
+<pre><code>[INFO] Successfully read file with encoding=utf-16, delimiter='\t'
+[INFO] Found 46 rows with 16 columns
+[NAME COMPLEMENT] Added Hebrew name='גדי אדרי' (English already present 'Gadi Edri').
+[DONE] Added 2 new leads.
+[DONE] Updated 44 existing leads.</code></pre>
+</section>
+</section>
+<section id="weekly-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="weekly-workflow">Weekly Workflow</h2>
+<p>This workflow has two cadences:</p>
+<ul>
+<li><strong>Daily / several times per day</strong>: sync incoming leads from Facebook Instant Forms into the Leads database.</li>
+<li><strong>Weekly planning cycle</strong>: update manual summary tables, import weekly ad performance, validate metadata, then run transforms/exports.</li>
+</ul>
+<section id="quick-reference" class="level3">
+<h3 class="anchored" data-anchor-id="quick-reference">Quick Reference</h3>
+<p>Complete sequence:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily (or several times per day): sync leads from Instant Forms export</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run sync_leads <span class="st">"facebook_exports/leads_export.csv"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Weekly manual prep in Leads database:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   1) Update Sales Events</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   2) Update Weekly Summary (including weekly CPL/cost fields from Ads Manager report)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Weekly: import ad performance CSV into ad_tracking.Weekly_runs</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run update_weekly_runs <span class="st">"facebook_exports/ads_manager_weekly.csv"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional safety check first:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv" --dry-run</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Weekly manual QA in ad_tracking before transforms:</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   - Set Weekly_runs.Intended_run for ads that were intentionally active</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#   - Ensure every ad in Weekly_runs exists in Ads with correct Campaign (W/M)</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#   - Ensure each ad has valid creative/component links and gender-appropriate assignments</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Weekly pipeline after manual prep + QA</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run update_ads</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run transform_weekly</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run export_ads</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run package_uploads</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="detailed-steps" class="level3">
+<h3 class="anchored" data-anchor-id="detailed-steps">Detailed Steps</h3>
+</section>
+<section id="step-1-daily-lead-sync-repeat-during-the-week" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-daily-lead-sync-repeat-during-the-week">Step 1: Daily Lead Sync (repeat during the week)</h3>
+<p>Download the latest leads from Facebook Instant Forms:</p>
+<ol type="1">
+<li>Go to <strong>Facebook Business Center</strong> (business.facebook.com)</li>
+<li>Navigate to <strong>All tools</strong> → <strong>Instant forms</strong></li>
+<li>Click on your instant form</li>
+<li>Click <strong>Download</strong></li>
+<li>Choose <strong>“Since last download”</strong> or <strong>“Last 3 months”</strong></li>
+<li>Select <strong>CSV</strong> format and save the file</li>
+</ol>
+<p>Save the downloaded CSV to the <code>facebook_exports/</code> directory.</p>
+</section>
+<section id="step-2-sync-leads-to-grist" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-sync-leads-to-grist">Step 2: Sync Leads to Grist</h3>
+<p>Import the Facebook leads into your Grist Leads table:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run sync_leads <span class="st">"facebook_exports/your_leads_file.csv"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The script will:</p>
+<ul>
+<li>Match leads by phone + email combination</li>
+<li>Add missing Hebrew/English names</li>
+<li>Fill in Campaign, Ad name, and Platform information</li>
+<li>Create new records for new leads</li>
+<li>Report any name mismatches or time gaps</li>
+</ul>
+<p>When leads are added to the Leads table, Grist automatically updates its native summary table (<code>Leads_summary_Ad_name</code>) which groups leads by ad name and counts conversions.</p>
+</section>
+<section id="step-3-weekly-manual-update-in-leads-database" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-weekly-manual-update-in-leads-database">Step 3: Weekly Manual Update in Leads Database</h3>
+<p>Before running the weekly pipeline, manually update the <strong>Leads</strong> document:</p>
+<ol type="1">
+<li>Update <strong>Sales Events</strong></li>
+<li>Update the <strong>Weekly Summary</strong> table (including weekly cost/CPL fields from the Ads Manager report)</li>
+</ol>
+<p>This step is currently manual and should be completed before <code>update_ads</code>, so ad-level rollups are aligned with latest sales/conversion reality.</p>
+</section>
+<section id="step-4-download-weekly-performance-csv-from-ads-manager" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-download-weekly-performance-csv-from-ads-manager">Step 4: Download Weekly Performance CSV from Ads Manager</h3>
+<p>Export weekly ad performance CSV from Ads Manager and save it to <code>facebook_exports/</code>.</p>
+<p>The import expects these columns:</p>
+<ul>
+<li><code>Ad name</code></li>
+<li><code>Reporting ends</code> (format: <code>YYYY-MM-DD</code>)</li>
+<li><code>Amount spent (ILS)</code></li>
+<li><code>Results</code></li>
+</ul>
+</section>
+<section id="step-5-import-weekly-runs-to-ad-tracking" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-import-weekly-runs-to-ad-tracking">Step 5: Import Weekly Runs to Ad Tracking</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run update_weekly_runs <span class="st">"facebook_exports/ads_manager_weekly.csv"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The script writes rows into <code>Weekly_runs</code> and can auto-create missing ad names in <code>Ads</code> when needed.</p>
+</section>
+<section id="step-6-manual-data-qa-in-ad-tracking-required" class="level3">
+<h3 class="anchored" data-anchor-id="step-6-manual-data-qa-in-ad-tracking-required">Step 6: Manual Data QA in Ad Tracking (Required)</h3>
+<p>After importing weekly runs, manually validate in Grist:</p>
+<ol type="1">
+<li>Set <code>Weekly_runs.Intended_run</code> for ads that were intentionally active.</li>
+<li>Confirm all ads in <code>Weekly_runs</code> exist in <code>Ads</code> with correct campaign assignment (<code>W</code>/<code>M</code>).</li>
+<li>Confirm each ad has complete creative linkage (media/headline/text) and that components match intended gender/campaign usage.</li>
+</ol>
+<p>Important: auto-created <code>Ads</code> rows from Step 5 only contain ad names, so campaign/creative fields must be filled manually before transforms/exports.</p>
+</section>
+<section id="step-7-update-ad-statistics-from-leads-rollups" class="level3">
+<h3 class="anchored" data-anchor-id="step-7-update-ad-statistics-from-leads-rollups">Step 7: Update Ad Statistics from Leads Rollups</h3>
+<p>Update the Ads table in the <code>ad_tracking</code> document with the latest lead counts and conversion data:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run update_ads</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This copies rollup data (total leads, trial lessons, registrations, failed contacts) from the Leads rollup table into <code>ad_tracking.Ads</code>.</p>
+</section>
+<section id="step-8-generate-derived-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="step-8-generate-derived-metrics">Step 8: Generate Derived Metrics</h3>
+<p>Run transforms to update all derived performance metrics tables in the ad_tracking document:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run transform_weekly</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This updates 5 tables:</p>
+<ul>
+<li><code>Derived_Weekly_Ad_Metrics</code> - Weekly performance by campaign and ad</li>
+<li><code>Derived_Lifetime_Ad_Metrics</code> - Lifetime aggregate metrics per ad</li>
+<li><code>Derived_Last_Run_Ad_Metrics</code> - Metrics for most recent contiguous run per ad</li>
+<li><code>Derived_Tag_Lifetime_Rollups</code> - Performance aggregated by creative tags (headlines, text, media, hooks, etc.)</li>
+<li><code>Derived_Component_Tags</code> - Component-to-tag junction table for tracking which tags apply to each media/headline/text</li>
+</ul>
+<p><strong>Note</strong>: These transforms work on the ad_tracking document and are independent of the leads sync. They can be run before or after the export step.</p>
+</section>
+<section id="step-9-export-ad-performance-data" class="level3">
+<h3 class="anchored" data-anchor-id="step-9-export-ad-performance-data">Step 9: Export Ad Performance Data</h3>
+<p>Export the current state of your ad tracking database from Grist, including all updated metrics, creative assets, and formulas:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run export_ads</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This creates <strong>11 analysis files</strong> in <code>outputs/</code>:</p>
+<p><strong>JSON Format (full database):</strong></p>
+<ul>
+<li><code>performance_data.json</code> - Complete database with all tables, metrics, and formulas</li>
+<li><code>attachments_manifest.json</code> - Metadata for all creative assets (images, videos)</li>
+<li><code>attachments.tar</code> - Archive of all creative files</li>
+</ul>
+<p><strong>CSV Format (AI-optimized, default):</strong></p>
+<ul>
+<li><code>ad_weekly_performance.csv</code> - Weekly performance by ad (grain: ad × ISO week, including intended-run flag)</li>
+<li><code>ad_run_summary.csv</code> - Last contiguous run metrics per ad</li>
+<li><code>ad_lifetime_summary.csv</code> - Lifetime aggregates per ad</li>
+<li><code>ad_components.csv</code> - Ad-to-component mapping (media, headline, text)</li>
+<li><code>component_media_lifetime.csv</code> - Lifetime aggregates per media component</li>
+<li><code>component_headline_lifetime.csv</code> - Lifetime aggregates per headline component</li>
+<li><code>component_text_lifetime.csv</code> - Lifetime aggregates per text component</li>
+<li><code>component_tags.csv</code> - Component-to-tag relationships (164 rows of tag assignments)</li>
+</ul>
+<p><strong>Optional Parquet Format:</strong></p>
+<p>To export as Parquet instead of CSV:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run export_ads <span class="at">--format</span> parquet</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or export both formats:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run export_ads <span class="at">--format</span> both</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The CSV files are pre-joined, structured tables optimized for AI analysis with proper data types and clean column names. See <a href="documents/data_schema.md">documents/data_schema.md</a> for detailed schema documentation.</p>
+</section>
+<section id="step-10-package-weekly-upload-bundles" class="level3">
+<h3 class="anchored" data-anchor-id="step-10-package-weekly-upload-bundles">Step 10: Package Weekly Upload Bundles</h3>
+<p>Create the upload bundles after <code>export_ads</code> finishes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pixi</span> run package_uploads</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This validates that all required weekly planning files exist, then creates three zip files in <code>outputs/</code>:</p>
+<ul>
+<li><code>weekly_upload_data.zip</code> - structured CSVs plus <code>performance_data.json</code></li>
+<li><code>weekly_upload_assets.zip</code> - <code>attachments_manifest.json</code> plus <code>attachments.tar</code></li>
+<li><code>weekly_upload_context.zip</code> - decision log, schema, prompt, and planning reference documents</li>
+</ul>
+<p>The command also writes <code>outputs/weekly_upload_manifest.json</code> with file paths, sizes, and SHA256 checksums. If any required file is missing, the command stops without creating bundles.</p>
+</section>
+<section id="step-11-analyze-and-plan-ai-assisted" class="level3">
+<h3 class="anchored" data-anchor-id="step-11-analyze-and-plan-ai-assisted">Step 11: Analyze and Plan (AI-Assisted)</h3>
+<p>With all data updated, you can now:</p>
+<ol type="1">
+<li>Upload the three generated zip files together in one batch:
+<ul>
+<li><code>outputs/weekly_upload_data.zip</code></li>
+<li><code>outputs/weekly_upload_assets.zip</code></li>
+<li><code>outputs/weekly_upload_context.zip</code></li>
+</ul></li>
+<li>Paste or follow <code>documents/weekly_prompt.md</code> so the assistant validates and reads every bundled file before analysis.</li>
+<li>Use the prompt to:
+<ul>
+<li>Assess previous week’s performance</li>
+<li>Identify which ads to keep running</li>
+<li>Decide which ads to replace</li>
+<li>Plan new creative combinations or generate new content</li>
+<li>Update the decision log</li>
+</ul></li>
+</ol>
+<p>The weekly_prompt provides detailed guidance on making data-driven decisions while staying within creative constraints (e.g., max one new piece of content per week, no duplicate headlines/text within a campaign).</p>
+<p><strong>Why Structured Files?</strong> The CSV/Parquet tables are pre-joined and optimized for AI analysis, eliminating the need for manual JSON parsing and table reconstruction. They provide clean, typed dataframes with proper relationships already established.</p>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>Complete weekly workflow in order:</p>
+<ol type="1">
+<li>Throughout the week: download leads export and run <code>pixi run sync_leads "facebook_exports/file.csv"</code></li>
+<li>Weekly in Leads DB: manually update Sales Events and Weekly Summary</li>
+<li>Download weekly Ads Manager performance CSV</li>
+<li><code>pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"</code> - Import weekly spend/leads into <code>Weekly_runs</code></li>
+<li>In ad_tracking Grist: manually set <code>Intended_run</code> and fix any missing/incorrect ad campaign + creative/component metadata</li>
+<li><code>pixi run update_ads</code> - Copy lead/conversion rollups from Leads to <code>ad_tracking.Ads</code></li>
+<li><code>pixi run transform_weekly</code> - Generate derived analytical metrics tables</li>
+<li><code>pixi run export_ads</code> - Export Grist state to JSON + structured CSV/Parquet files</li>
+<li><code>pixi run package_uploads</code> - Create upload-ready weekly zip bundles in <code>outputs/</code></li>
+<li>Analyze data and plan next week’s ads using AI + the generated bundles + <code>weekly_prompt.md</code></li>
+</ol>
+<p><strong>See <a href="documents/data_schema.md">documents/data_schema.md</a> for detailed schema documentation of all exported CSV files.</strong></p>
+</section>
+</section>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage</h2>
+<section id="basic-export" class="level3">
+<h3 class="anchored" data-anchor-id="basic-export">Basic Export</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> export_ads <span class="im">import</span> GristExtractor</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>extractor <span class="op">=</span> GristExtractor(DOC_ID, API_KEY)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>extractor.save_to_json(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    output_file<span class="op">=</span><span class="st">"performance_data.json"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    download_attachments<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    attachments_dir<span class="op">=</span><span class="st">"attachments"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    manifest_file<span class="op">=</span><span class="st">"attachments_manifest.json"</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    attachments_tar<span class="op">=</span><span class="st">"attachments.tar"</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="output-files" class="level3">
+<h3 class="anchored" data-anchor-id="output-files">Output Files</h3>
+<p><code>pixi run export_ads</code> generates:</p>
+<ol type="1">
+<li><p><strong><code>outputs/performance_data.json</code></strong>: Complete database export including:</p>
+<ul>
+<li>Document metadata</li>
+<li>All table structures and columns</li>
+<li>All record data</li>
+<li>Formula definitions</li>
+<li>Attachment references</li>
+</ul></li>
+<li><p><strong>Structured data files</strong> (CSV by default, Parquet optional):</p>
+<ul>
+<li><code>outputs/ad_weekly_performance.{csv|parquet}</code> - Weekly metrics by ad × ISO week</li>
+<li><code>outputs/ad_run_summary.{csv|parquet}</code> - Last contiguous run per ad</li>
+<li><code>outputs/ad_lifetime_summary.{csv|parquet}</code> - Lifetime aggregates per ad</li>
+<li><code>outputs/ad_components.{csv|parquet}</code> - Ad → media/headline/text mapping</li>
+<li><code>outputs/component_media_lifetime.{csv|parquet}</code> - Lifetime aggregates per media component</li>
+<li><code>outputs/component_headline_lifetime.{csv|parquet}</code> - Lifetime aggregates per headline component</li>
+<li><code>outputs/component_text_lifetime.{csv|parquet}</code> - Lifetime aggregates per text component</li>
+<li><code>outputs/component_tags.{csv|parquet}</code> - Component → tag assignments</li>
+</ul>
+<p>See <a href="documents/data_schema.md">documents/data_schema.md</a> for detailed column descriptions.</p></li>
+<li><p><strong><code>outputs/attachments/</code></strong>: Directory containing all downloaded files organized by table</p></li>
+<li><p><strong><code>outputs/attachments_manifest.json</code></strong>: Detailed manifest of all attachments including:</p>
+<ul>
+<li>File paths and names</li>
+<li>SHA256 checksums</li>
+<li>Source table and record information</li>
+<li>Original filenames and content types</li>
+</ul></li>
+<li><p><strong><code>outputs/attachments.tar</code></strong>: Compressed archive of all attachments</p></li>
+</ol>
+<p><code>pixi run package_uploads</code> validates the weekly planning inputs and creates:</p>
+<ol type="1">
+<li><p><strong><code>outputs/weekly_upload_data.zip</code></strong>:</p>
+<ul>
+<li><code>performance_data.json</code></li>
+<li>all 8 structured CSV files</li>
+</ul></li>
+<li><p><strong><code>outputs/weekly_upload_assets.zip</code></strong>:</p>
+<ul>
+<li><code>attachments_manifest.json</code></li>
+<li><code>attachments.tar</code></li>
+</ul></li>
+<li><p><strong><code>outputs/weekly_upload_context.zip</code></strong>:</p>
+<ul>
+<li><code>documents/decision_log.md</code></li>
+<li><code>documents/data_schema.md</code></li>
+<li><code>documents/decision_log_format.md</code></li>
+<li><code>documents/PROJECT_GUIDE.md</code></li>
+<li><code>documents/tag_taxonomy.md</code></li>
+<li><code>documents/decision_heuristics.md</code></li>
+<li><code>documents/weekly_prompt.md</code></li>
+</ul></li>
+<li><p><strong><code>outputs/weekly_upload_manifest.json</code></strong>: Manifest with bundle membership, file sizes, and SHA256 checksums</p></li>
+</ol>
+</section>
+</section>
+<section id="api-reference" class="level2">
+<h2 class="anchored" data-anchor-id="api-reference">API Reference</h2>
+<section id="gristextractor-class" class="level3">
+<h3 class="anchored" data-anchor-id="gristextractor-class">GristExtractor Class</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>GristExtractor(doc_id: <span class="bu">str</span>, api_key: <span class="bu">str</span>, server: <span class="bu">str</span> <span class="op">=</span> <span class="st">"https://docs.getgrist.com"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Methods:</strong></p>
+<ul>
+<li><code>get_tables()</code>: Retrieve all tables in the document</li>
+<li><code>get_table_columns(table_id)</code>: Get column definitions for a table</li>
+<li><code>get_table_data(table_id)</code>: Fetch all records from a table</li>
+<li><code>download_attachment(attachment_id, output_dir, desired_stem)</code>: Download a single attachment</li>
+<li><code>extract_attachments_from_records(...)</code>: Download all attachments from a table</li>
+<li><code>extract_full_database(download_attachments, attachments_dir)</code>: Extract complete database</li>
+<li><code>save_to_json(...)</code>: Main export function that saves everything to files</li>
+</ul>
+</section>
+</section>
+<section id="file-naming-logic" class="level2">
+<h2 class="anchored" data-anchor-id="file-naming-logic">File Naming Logic</h2>
+<p>Attachments are intelligently named using the following pattern:</p>
+<ul>
+<li>Single attachment: <code>{Name}__{Variant}.ext</code></li>
+<li>Multiple attachments: <code>{Name}__{Variant}__1.ext</code>, <code>{Name}__{Variant}__2.ext</code>, etc.</li>
+<li>Fallback: <code>{table}_{record_id}.ext</code> if Name field is empty</li>
+</ul>
+<p>File stems are sanitized to remove special characters and ensure filesystem compatibility.</p>
+</section>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<ul>
+<li>Python ≥ 3.8</li>
+<li>requests ≥ 2.31.0</li>
+<li>pandas ≥ 2.3.3</li>
+<li>duckdb ≥ 1.4.3 (for transforms)</li>
+<li>ibis-framework ≥ 11.0.0 (for transforms)</li>
+<li>pyarrow ≥ 18.0.0 (only required for Parquet format exports)</li>
+</ul>
+</section>
+<section id="license" class="level2">
+<h2 class="anchored" data-anchor-id="license">License</h2>
+<p>MIT License - see <a href="LICENSE">LICENSE</a> file for details.</p>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>After running the export on a Grist document with “Creatives” and “Media” tables:</p>
+<pre><code>Facebook_Ad_Planning/
+└── outputs/
+    ├── performance_data.json
+    ├── attachments_manifest.json
+    ├── attachments.tar
+    ├── ad_weekly_performance.csv      # (or .parquet with --format parquet)
+    ├── ad_run_summary.csv
+    ├── ad_lifetime_summary.csv
+    ├── ad_components.csv
+    ├── component_media_lifetime.csv
+    ├── component_headline_lifetime.csv
+    ├── component_text_lifetime.csv
+    ├── component_tags.csv
+    └── attachments/
+        ├── Creatives/
+        │   ├── Womens Ad M.png
+        │   ├── Mens Ad L.png
+        │   └── ...
+        └── Media/
+            ├── Video_Asset_1.mp4
+            └── ...</code></pre>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><strong>Authentication Error</strong>: Verify your API key is correct and has access to the document</li>
+<li><strong>Missing Attachments</strong>: Ensure attachment IDs are numeric and valid</li>
+<li><strong>File Name Conflicts</strong>: Duplicate filenames are automatically numbered with <code>__2</code>, <code>__3</code>, etc.</li>
+</ul>
+</section>
+<section id="contributing" class="level2">
+<h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
+<p>Contributions welcome! Please feel free to submit a Pull Request.</p>
+</section>
+<section id="author" class="level2">
+<h2 class="anchored" data-anchor-id="author">Author</h2>
+<p>Opher Donchin</p>
+<hr>
+<p><strong>Note</strong>: Keep your API keys secure and never commit them to version control.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

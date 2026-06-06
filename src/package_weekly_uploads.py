@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import sys
+import tempfile
 import zipfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -155,18 +156,33 @@ def compression_for(path: Path) -> int:
 
 
 def write_bundle(bundle: Bundle, destination: Path, manifest_path: Path) -> None:
-    with zipfile.ZipFile(destination, mode="w") as archive:
-        for bundle_file in bundle.files:
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    temp_handle = tempfile.NamedTemporaryFile(
+        delete=False,
+        dir=destination.parent,
+        prefix=f".{destination.name}.",
+        suffix=".tmp",
+    )
+    temp_path = Path(temp_handle.name)
+    temp_handle.close()
+
+    try:
+        with zipfile.ZipFile(temp_path, mode="w") as archive:
+            for bundle_file in bundle.files:
+                archive.write(
+                    bundle_file.source,
+                    bundle_file.arcname,
+                    compress_type=compression_for(bundle_file.source),
+                )
             archive.write(
-                bundle_file.source,
-                bundle_file.arcname,
-                compress_type=compression_for(bundle_file.source),
+                manifest_path,
+                f"manifest/{MANIFEST_NAME}",
+                compress_type=zipfile.ZIP_DEFLATED,
             )
-        archive.write(
-            manifest_path,
-            f"manifest/{MANIFEST_NAME}",
-            compress_type=zipfile.ZIP_DEFLATED,
-        )
+        temp_path.replace(destination)
+    except Exception:
+        temp_path.unlink(missing_ok=True)
+        raise
 
 
 def parse_args() -> argparse.Namespace:

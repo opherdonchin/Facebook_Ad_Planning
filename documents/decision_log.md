@@ -1,5 +1,490 @@
 # Weekly Decision Log
 
+# Plan for 2026-W23 (assessing 2026-W22)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W22
+- **Decision / planned week:** 2026-W23
+- **Partial mid-week evidence used:** 2026-W23 through Saturday; used only as an override signal, not as a completed assessed week.
+
+### Ads active in assessed week (2026-W22)
+
+- Men: Mens Ad J, M 2605_1
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --- | --- | --- | --- | --- |
+| Mens Ad J | 225.77 | 112.89 | 1990.99 | 39.04 |
+| M 2605_1 | 11.40 | —   | 181.63 | 90.82 |
+
+- Women: W 2603_2, W 2605_1
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --- | --- | --- | --- | --- |
+| W 2603_2 | 131.67 | 131.67 | 419.76 | 83.95 |
+| W 2605_1 | 113.59 | 113.59 | 244.29 | 61.07 |
+
+### Ads planned for decision week (2026-W23)
+
+- Men: Mens Ad J, M 2605_1
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --- | --- | --- | --- | --- |
+| Mens Ad J | 49.05 | 16.35 | 1990.99 | 39.04 |
+| M 2605_1 | 12.76 | 12.76 | 181.63 | 90.82 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+- Women: Womens Ad P, W 2603_1
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --- | --- | --- | --- | --- |
+| Womens Ad P | —   | —   | 867.97 | 54.25 |
+| W 2603_1 | —   | —   | 288.60 | 57.72 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+- **Men:** keep `Mens Ad J` and `M 2605_1` unchanged for the rest of `2026-W23`.
+- **Women:** replace `W 2603_2` and `W 2605_1` immediately with `Womens Ad P` and `W 2603_1`.
+- **New material:** none.
+
+---
+
+## Rationale concise
+
+- `2026-W22` was poor across all four active ads, but the partial `2026-W23` data changes the men’s decision.
+- `Mens Ad J` has 3 partial-week leads at 16.35 CPL and remains the strongest lifetime male ad.
+- `M 2605_1` is still weak overall, but the single cheap `2026-W23` lead and low spend make it less urgent than the women’s campaign.
+- `W 2603_2` has failed across the current run: 321.52 ILS, 2 leads, 160.76 run CPL, plus near-zero `2026-W23` delivery.
+- `W 2605_1` is semantically coherent but remains above target and has not stabilized the women’s campaign.
+- `Womens Ad P` and `W 2603_1` are cooled existing women’s ads with better historical evidence than the current women’s ads.
+
+---
+
+## Constraints check
+
+- No new media, headline, or text is introduced.
+- Exactly two existing-material changes are made.
+- No component is duplicated within the men’s or women’s campaign for `2026-W23`.
+- Replacement media are present in `attachments_manifest.json` and `attachments.tar`:
+  - `Dojo_Instruction_FemalePair` → `attachments/Media/Dojo_Instruction_FemalePair.png`
+  - `Shihonage_MF_Dojo_Photo` → `attachments/Media/Shihonage_MF_Dojo_Photo__A.png`
+- Actual images were inspected and match their proposed headlines/texts well enough to run.
+- No alternation decision for new material is required because no new material is used.
+
+---
+
+## Data hygiene / learning notes
+
+- The uploaded `decision_log.md` ends at `2026-W19`; the user reports that a `2026-W20` plan exists externally. For this decision, current `intended_run` flags and W20–W23 performance data were used to identify the active ads.
+- The `ad_components.csv` file has empty headline fields for several ads, but headline assignments were recoverable from `performance_data.json` / `Ads` and `Headlines`.
+- `2026-W23` data is partial. A full `2026-W23` dataset should be used for the `2026-W24` decision.
+
+---
+
+## What would change this decision next week
+
+- If full `2026-W23` confirms `Mens Ad J` near its partial-week result, keep it.
+- If `M 2605_1` remains weak after full `2026-W23`, replace it in `2026-W24`; the leading exploitation candidate is `Mens Ad A`.
+- If `Womens Ad P` or `W 2603_1` fail to deliver after the W23 switch, reassess against `Womens Ad A`, `W 2603_4`, and possible controlled recombination.
+- If the full W23 women’s data improves sharply before the switch is implemented, revisit this decision before changing ads.
+
+---
+
+## Confidence level
+
+**Moderate.**
+
+The direction of the women’s change is clear. The men’s hold is less certain, but it is the least disruptive mid-week choice because partial W23 men’s performance has improved and the two-change limit is better spent on women.
+
+---
+
+End of Plan 2026-W23
+
+---
+
+## Decisions for 2026-W20
+
+### Keep
+
+| Campaign | Ad | Reason |
+|---|---|---|
+| M | Mens Ad J | W19 CPL 25.67; current-run CPL 25.67; lifetime CPL 35.46 |
+| M | Mens Ad N | Current-run spend only 18.20 ILS; insufficient delivery to judge |
+| W | Womens Ad A | W19 CPL 21.70; current-run CPL 27.68; lifetime CPL 39.10 |
+
+### Replace
+
+| Campaign | Remove | Replacement | Type | Components |
+|---|---|---|---|---|
+| W | Womens Ad J | W 2605_1 | Reshuffle existing materials | `Shihonage_MF_Dojo_Photo` + `מרחב שקט לעצמך` + `Quiet Space - Bullet Calm` |
+
+### New content
+
+None. No new headline, text, or media is proposed for 2026-W20.
+
+---
+
+## Rationale
+
+- `Mens Ad J` is retained because it finally received delivery in 2026-W19 and performed strongly: 153.99 ILS spend, 6 leads, CPL 25.67.
+- `Mens Ad N` is retained under the low-delivery rule. It spent only 18.20 ILS in its current run, so the no-lead result is not yet informative enough to replace it.
+- `Womens Ad A` remains the women’s anchor: current-run spend 276.80 ILS, 10 leads, CPL 27.68.
+- `Womens Ad J` is replaced because it spent 99.16 ILS in the current run with no leads, and its lifetime CPL is weak at 73.55.
+- `W 2605_1` uses no new material. It is a controlled reshuffle using the best available non-duplicated women-compatible media candidate plus a coherent calm/quiet-space headline and text.
+- `W 2603_2` was not selected despite strong historical CPL because it duplicates the kept `Womens Ad A` media and text.
+
+---
+
+## Planned components for W 2605_1
+
+| Component type | Component | Provenance / tags |
+|---|---|---|
+| Media | `Shihonage_MF_Dojo_Photo` | Attachment: `Shihonage_MF_Dojo_Photo__A.png`; tags: `Illustration - Photo Art`, `Instructional / Demonstration` |
+| Headline | `מרחב שקט לעצמך` | Tags: `Stress / Mental Load`, `Calm Under Pressure`, `Affirmative` |
+| Primary text | `Quiet Space - Bullet Calm` | Tags: `Stress / Mental Load`, `Calm Under Pressure`, `Checklist` |
+
+Actual image content was inspected. The image shows calm paired dojo instruction with controlled hand/arm connection. It is compatible with the quiet-space and calm-under-pressure message.
+
+---
+
+## Constraints check
+
+- **Assessed week:** 2026-W19.
+- **Decision week:** 2026-W20.
+- **Current contiguous runs:** evaluated separately from weekly and lifetime totals.
+- **Intentional-run identification:** clear; four intended ads identified from `intended_run` and the previous decision log.
+- **Creative uniqueness:** satisfied within both campaigns.
+- **New-material constraint:** satisfied; zero new-material ads.
+- **Media provenance:** satisfied. Referenced existing media appear in `attachments_manifest.json` and `attachments.tar`.
+- **Image–text semantic check:** passed for all planned ads.
+- **Gender/campaign integrity:** no blocking mismatch identified.
+
+---
+
+## What would change this decision next week
+
+- If `Mens Ad N` receives meaningful spend and still produces no leads, replace it rather than carrying it on low-delivery grounds.
+- If `Mens Ad J` continues to perform well, keep it as the men’s anchor.
+- If `Womens Ad A` continues to perform well, preserve it and avoid duplicating its components.
+- If `W 2605_1` fails with meaningful spend, the quiet/calm women’s reshuffle should cool, and the next women’s probe should move back toward competence/body-capability framing.
+
+---
+
+## Confidence level
+
+Moderate-high.
+
+The keep/replace decisions follow the explicit rules. Confidence is highest for keeping `Mens Ad J` and `Womens Ad A`, moderate for keeping `Mens Ad N` because it is a low-delivery keep, and moderate for `W 2605_1` because it is a controlled reshuffle with coherent image-text alignment but not a previously proven full ad.
+
+---
+
+End of Plan for 2026-W20
+
+---
+
+
+# Plan for 2026-W19 (assessing 2026-W18)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W18
+- **Decision / planned week:** 2026-W19
+
+### Ads active in assessed week (2026-W18)
+
+- Men:
+
+| Ad name   | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | ----: | --: | -------------: | -----------: |
+| Mens Ad J |  0.03 |   — |        1477.09 |        36.93 |
+| M 2604_1  | 200.84 | 200.84 |       200.84 |       200.84 |
+
+- Women:
+
+| Ad name     | Spend |    CPL | Lifetime spend | Lifetime CPL |
+| ----------- | ----: | -----: | -------------: | -----------: |
+| Womens Ad A |  86.75 |  28.92 |        1303.56 |        40.74 |
+| Womens Ad D | 118.67 | 118.67 |         913.38 |        57.09 |
+
+### Ads planned for decision week (2026-W19)
+
+- Men: Mens Ad J, Mens Ad N
+
+#### Reuse:
+
+| Name      | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | ----: | --: | -------------: | -----------: |
+| Mens Ad J |  0.03 |   — |        1477.09 |        36.93 |
+| Mens Ad N |     — |   — |         260.91 |        52.18 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+- Women: Womens Ad A, Womens Ad J
+
+#### Reuse:
+
+| Name        | Spend |   CPL | Lifetime spend | Lifetime CPL |
+| ----------- | ----: | ----: | -------------: | -----------: |
+| Womens Ad A | 86.75 | 28.92 |        1303.56 |        40.74 |
+| Womens Ad J |     — |     — |         342.14 |        57.02 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+- **Men:** keep `Mens Ad J`; replace `M 2604_1` with `Mens Ad N`.
+- **Women:** keep `Womens Ad A`; replace `Womens Ad D` with `Womens Ad J`.
+
+---
+
+## Rationale concise
+
+- `Womens Ad A` is the only assessed-week clear winner: 86.75 ILS spend, 3 leads, CPL 28.92.
+- `Mens Ad J` is retained because current-run spend is only 0.03 ILS and lifetime CPL remains strong at 36.93; the `2026-W18` result is non-delivery, not a creative failure.
+- `M 2604_1` is replaced because it spent 200.84 ILS for one lead in its first run.
+- `Womens Ad D` is replaced because it spent 118.67 ILS for one lead in its reintroduction.
+- `Mens Ad N` is selected as an existing-material replacement: historically reasonable, not recently used, no duplicate men’s components, and visually compatible with the time-out/renewal framing.
+- `Womens Ad J` is selected as an existing-material replacement: historically reasonable, not recently used, no duplicate women’s components, and visually compatible with the calm/strength/time-for-yourself framing.
+
+---
+
+## Constraints check
+
+- **Assessed week:** `2026-W18`.
+- **Decision week:** `2026-W19`.
+- **Creative uniqueness:** satisfied within both campaigns.
+- **New-material constraint:** satisfied; no new material introduced for `2026-W19`.
+- **Media provenance:** planned media all exist in `attachments_manifest.json` and `attachments.tar`:
+  - `Tenshinage_lineart_controlled`
+  - `Outside_Sunset_MM_Kaitenage_photo`
+  - `Dojo_Instruction_FemalePair`
+  - `Illustrated_Calm_Poster_Female`
+- **Image–text semantic check:** passed for all planned ads.
+- **Gender/campaign integrity:** satisfied.
+- **Data-hygiene note:** `ad_components.csv` omits headline IDs/text for active ads, but the headline assignments are reconstructable from `performance_data.json`.
+
+---
+
+## What would change this decision next week
+
+- If `Mens Ad J` again receives near-zero spend, treat it as a delivery problem and consider replacing it despite strong lifetime CPL.
+- If `Mens Ad N` receives meaningful spend and performs poorly, return to reshuffling stronger individual men’s components rather than reusing old full ads.
+- If `Womens Ad A` remains strong, preserve it as the women’s campaign anchor.
+- If `Womens Ad J` performs poorly, prefer a controlled reshuffle rather than returning immediately to `Womens Ad D`.
+
+---
+
+## Confidence level
+
+Moderate.
+
+The women’s decision is relatively high confidence because `Womens Ad A` is clearly strong and `Womens Ad D` clearly failed the weekly/run thresholds. The men’s decision is lower confidence because `Mens Ad J` did not receive real delivery, so the portfolio still depends partly on Meta delivery behavior rather than creative evidence.
+
+---
+
+End of Plan 2026-W19
+
+---
+
+# Plan for 2026-W18 (assessing 2026-W17)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W17
+* **Decision / planned week:** 2026-W18
+
+### Ads active in assessed week (2026-W17)
+
+* Men:
+
+| Ad name   |  Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | --: | -------------: | -----------: |
+| Mens Ad B | 200.14 |   — |        1401.33 |        50.05 |
+| Mens Ad J |   0.00 |   — |        1477.06 |        36.93 |
+
+* Women:
+
+| Ad name     |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| ----------- | -----: | ----: | -------------: | -----------: |
+| Womens Ad A | 124.95 | 31.24 |        1216.81 |        41.96 |
+| W 2602_4    |  82.96 |     — |         190.39 |        95.20 |
+
+### Ads planned for decision week (2026-W18)
+
+* Men: Mens Ad J, M 2604_1
+
+#### Reuse:
+
+| Name      | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | ----: | --: | -------------: | -----------: |
+| Mens Ad J |  0.00 |   — |        1477.06 |        36.93 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+**M 2604_1**
+
+| Component                            | Spend | CPL | Lifetime spend | Lifetime CPL |
+| ------------------------------------ | ----: | --: | -------------: | -----------: |
+| **Photo_Dojo_MM_HandContact_Static** |       |     |                |              |
+| **שקט במצבי לחץ**                    |       |     |                |              |
+| **Calm Under Pressure — Men**        |       |     |                |              |
+
+**New media:** `Photo_Dojo_MM_HandContact_Static.png`
+
+**New headline:** שקט במצבי לחץ
+
+**New primary text:**
+
+אנחנו מכירים את זה: כשלחץ עולה, הגוף מתכווץ.
+באייקידו לומדים לעבוד אחרת.
+למצוא שקט גם בתוך מצבי לחץ.
+
+▫️ לשחרר מתח בלי לאבד יציבות
+▫️ לנוע בביטחון בלי להישען על כוח
+▫️ להגיב ברוגע גם ברגע של עימות
+
+הדוג'ו בשכונה ג' בבאר שבע ידידותי ולא תחרותי. מתאים גם למתחילים.
+לחץ על התמונה לשיעור ניסיון בלי התחייבות.
+
+**Tags:**
+
+* Media: `Media_Style = Photo - Dojo`; `Media_Energy = Instructional / Demonstration`; `Pairing = Male-Male`; `Mood = Calm / Controlled`
+
+* Headline: `Hook = Problem-naming`; `Promise = Calm Under Pressure`; `Tone = Direct`
+
+* Text: `Hook = Stability / Balance`; `Promise = Calm Under Pressure`; `Promise = Confidence / Self-Trust`; `Structure = Checklist`; `Gendered grammar = Male`; `Target = Men`
+
+* Women: Womens Ad A, Womens Ad D
+
+#### Reuse:
+
+| Name        |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| ----------- | -----: | ----: | -------------: | -----------: |
+| Womens Ad A | 124.95 | 31.24 |        1216.81 |        41.96 |
+| Womens Ad D |      — |     — |         794.71 |        52.98 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+* **Men:** keep `Mens Ad J`; replace `Mens Ad B` with `M 2604_1`, using new media plus new headline/text.
+* **Women:** keep `Womens Ad A`; replace `W 2602_4` with the cooled existing full ad `Womens Ad D`.
+* **New material:** exactly one planned ad contains new material, but that ad contains both new media and new text/headline by explicit human override.
+
+---
+
+## Rationale (concise)
+
+* `Mens Ad B` failed the keep rules: no W17 leads, 200.14 ILS weekly spend, and current-run CPL 75.04.
+* `Mens Ad J` received zero delivery, so it does not provide a negative creative signal; its lifetime CPL remains the strongest in the men’s campaign.
+* A pure men’s reuse option was weak: `Mens Ad A` is not cooled enough as a full ad, and `Mens Ad N` recycles too much of the just-failed `Mens Ad B` component set.
+* `M 2604_1` is a deliberate human override of the earlier controlled-variation recommendation: it introduces new media and new copy in one ad because the new photo is a strong semantic fit for the pressure/calm framing.
+* `Womens Ad A` clearly met the keep rule with W17 CPL 31.24.
+* `W 2602_4` failed the keep rules and should cool.
+* `Womens Ad D` is a conservative, cooled, existing full-ad replacement that does not duplicate any `Womens Ad A` component.
+
+---
+
+## Constraints check
+
+* Assessed week and decision week are explicitly separated.
+* Current contiguous runs are not conflated with lifetime totals.
+* Exactly four intended ads were identified in `2026-W17`; no intent ambiguity.
+* No media, headline, or text is duplicated within the men’s planned campaign.
+* No media, headline, or text is duplicated within the women’s planned campaign.
+* Exactly one planned ad contains new material.
+* The one new-material ad contains both new media and new headline/text by explicit human override.
+* Existing media are traceable to `attachments_manifest.json` and `attachments.tar`:
+
+  * `Tenshinage_lineart_controlled` → `Tenshinage_lineart_controlled.jpg`
+  * `Dojo_Instruction_FemalePair` → `Dojo_Instruction_FemalePair.png`
+  * `Swariwaza_Kokyuho_Dojo_Photo` → `Swariwaza_Kokyuho_Dojo_Photo.png`
+* New media to add to the asset registry:
+
+  * `Photo_Dojo_MM_HandContact_Static` → `Photo_Dojo_MM_HandContact_Static.png`
+* Actual media content was inspected for image–text alignment.
+* New tag values introduced / to confirm in tagging table: `Pairing = Male-Male`; `Mood = Calm / Controlled`. If these dimensions are not retained, describe the same information in notes rather than formal tags.
+
+---
+
+## Data hygiene / learning notes
+
+* `ad_components.csv` did not expose headline text correctly; headline mapping was reconstructed from `performance_data.json` through the Ads → Creatives → Headlines relationship.
+* Mens Ad J’s W17 zero-delivery should be watched. If it again receives no spend in W18, treat it as a delivery problem requiring a stronger replacement, not as a creative-performance datapoint.
+* `Photo_Dojo_MF_Ikkyo_Static` now has enough negative evidence to stop using it immediately.
+* Because `M 2604_1` introduces both new media and new copy, W18 will not allow clean attribution if the ad performs unusually well or poorly.
+
+---
+
+## What would change this decision next week
+
+* If `Mens Ad J` again receives near-zero delivery, replace it even if its lifetime CPL remains strong.
+* If `M 2604_1` spends meaningfully with no leads, do not infer whether the failure came from media or copy alone; treat the whole new combination cautiously.
+* If `Womens Ad D` underperforms but `Womens Ad A` remains strong, exploit women’s existing materials around the `Dojo_Instruction_FemalePair` / competence axis once component uniqueness allows it.
+* If both women’s ads underperform, deprioritize calm/time-out framing and return to body competence / meaningful movement.
+
+---
+
+## Confidence level
+
+Moderate.
+
+The keep/replace decisions are high confidence because they follow the explicit rules. The exact men’s replacement is lower confidence because it introduces both new media and new copy in the same ad. The image and text are semantically well aligned, but the combined novelty reduces interpretability.
+
+---
+
+End of Plan 2026-W18
+
+---
+
+
 # Plan for 2026-W16 (assessing 2026-W15)
 
 ### Weeks

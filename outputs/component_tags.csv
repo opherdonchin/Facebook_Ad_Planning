@@ -45,6 +45,12 @@ media,24,Munetsuki_F_Kyu,Media_Style,Video - Dojo
 media,24,Munetsuki_F_Kyu,Media_Energy,Dynamic / Throw
 media,25,Photo_Dojo_MF_Ikkyo_Static,Media_Style,Photo - Dojo
 media,25,Photo_Dojo_MF_Ikkyo_Static,Media_Energy,Instructional / Demonstration
+media,26,Photo_Dojo_MM_HandContact_Static,Media_Style,Illustration - Photo Art
+media,26,Photo_Dojo_MM_HandContact_Static,Media_Energy,Dynamic / Throw
+media,27,Photo_Dojo_FF_HandContact_Static,Media_Style,Photo - Dojo
+media,27,Photo_Dojo_FF_HandContact_Static,Media_Energy,Dynamic / Throw
+media,28,Dojo_ClassScene_Ikkyo_MF_Class_Scene,Media_Style,Illustration - Photo Art
+media,28,Dojo_ClassScene_Ikkyo_MF_Class_Scene,Media_Energy,Instructional / Demonstration
 headline,2,ללמוד לשלוט ברגע,Tone,Reflective
 headline,2,ללמוד לשלוט ברגע,Promise,Focus / Clarity
 headline,2,ללמוד לשלוט ברגע,Hook,Meaning / Growth
@@ -108,6 +114,9 @@ headline,28,כוח רגוע מבפנים,Hook,Confidence / Self-Trust
 headline,29,משהו חדש לגוף ולראש,Tone,Affirmative
 headline,29,משהו חדש לגוף ולראש,Promise,Energy / Renewal
 headline,29,משהו חדש לגוף ולראש,Hook,Meaning / Growth
+headline,30,שקט במצבי לחץ,Tone,Direct
+headline,30,שקט במצבי לחץ,Promise,Calm Under Pressure
+headline,30,שקט במצבי לחץ,Hook,Stress / Mental Load
 text,1,Stress Mental Load,Hook,Stress / Mental Load
 text,1,Stress Mental Load,Promise,Calm Under Pressure
 text,1,Stress Mental Load,Structure,Question Hook
@@ -177,3 +186,6 @@ text,22,Quiet Space - Bullet Calm,Structure,Checklist
 text,23,Everyday Pressure,Hook,Stress / Mental Load
 text,23,Everyday Pressure,Promise,Calm Under Pressure
 text,23,Everyday Pressure,Structure,Question Hook
+text,24,Stress management without stress,Hook,Stress / Mental Load
+text,24,Stress management without stress,Promise,Calm Under Pressure
+text,24,Stress management without stress,Structure,Checklist

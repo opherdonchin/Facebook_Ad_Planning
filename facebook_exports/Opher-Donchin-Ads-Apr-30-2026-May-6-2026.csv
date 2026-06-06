@@ -1,0 +1,5 @@
+"Reporting starts","Reporting ends","Ad name","Ad delivery",Results,"Result indicator","Cost per results","Ad set budget","Ad set budget type","Amount spent (ILS)",Impressions,Reach,Ends,"Attribution setting",Bid,"Bid type","Last significant edit","Quality ranking","Engagement rate ranking","Conversion rate ranking","Ad set name"
+2026-04-30,2026-05-06,"Womens Ad A",active,3,actions:leadgen.other,28.91666667,30,Daily,86.75,5092,2603,Ongoing,"7-day click or 1-day view",0,ABSOLUTE_OCPM,2025-10-18T01:16:05-0700,Average,Average,Average,"Womens Ad Set"
+2026-04-30,2026-05-06,"Womens Ad D",active,1,actions:leadgen.other,118.67,30,Daily,118.67,6491,3425,Ongoing,"7-day click or 1-day view",0,ABSOLUTE_OCPM,2025-10-18T01:16:05-0700,Average,Average,Average,"Womens Ad Set"
+2026-04-30,2026-05-06,"Mens Ad J",active,,,,30,Daily,0.03,5,5,Ongoing,"7-day click or 1-day view",0,ABSOLUTE_OCPM,2026-02-18T14:12:05-0800,-,-,-,"Mens Ad Set"
+2026-04-30,2026-05-06,"M 2604_1",active,1,actions:leadgen.other,200.84,30,Daily,200.84,14903,6774,Ongoing,"7-day click or 1-day view",0,ABSOLUTE_OCPM,2026-02-18T14:12:05-0800,Average,Average,Average,"Mens Ad Set"
