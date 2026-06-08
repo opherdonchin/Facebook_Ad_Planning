@@ -8,11 +8,11 @@ from typing import Any, Dict, List, Optional
 
 from grist.grist import GristClient
 from lead_utils import (
+    build_core_lead_fields,
     build_index,
     compute_updates_for_match,
-    dt_to_grist_date,
+    flush_batches,
     format_squawk,
-    is_hebrew,
     norm_email,
     norm_phone,
     parse_dt,
@@ -190,42 +190,25 @@ def main() -> None:
         existing = idx.get(key)
 
         if existing is None:
-            fields: Dict[str, Any] = {}
-
-            if fb_name:
-                if is_hebrew(fb_name):
-                    fields[cols["name_he"]] = fb_name.strip()
-                else:
-                    fields[cols["name_en"]] = fb_name.strip()
-
-            fields[cols["phone"]] = fb_phone
-            fields[cols["email"]] = fb_email
-
-            if fb_campaign:
-                fields[cols["campaign"]] = fb_campaign
-            if fb_ad:
-                fields[cols["ad_name"]] = fb_ad
-            if fb_platform:
-                fields[cols["platform"]] = fb_platform
-
+            fields = build_core_lead_fields(
+                cols=cols,
+                name=fb_name,
+                phone=fb_phone,
+                email=fb_email,
+                campaign=fb_campaign,
+                ad_name=fb_ad,
+                platform=fb_platform,
+                created=fb_created,
+            )
             if fb_created:
-                fields[cols["date"]] = dt_to_grist_date(fb_created)
-
-                fb_aware = (
-                    fb_created if fb_created.tzinfo else fb_created.replace(tzinfo=timezone.utc)
-                )
-                gap_days = abs((now - fb_aware).days)
-                if gap_days > args.max_gap_days:
+                fb_aware = fb_created if fb_created.tzinfo else fb_created.replace(tzinfo=timezone.utc)
+                if abs(now - fb_aware).days > args.max_gap_days:
                     print(
                         f"[TIME GAP] Creating lead but FB created_time is >{args.max_gap_days} days "
                         f"from now: created={fb_created.isoformat()} name='{fb_name}'"
                     )
-
             add_batch.append({"fields": fields})
-            print(
-                f"[NEW LEAD] Created new lead. "
-                f"name='{fb_name}' campaign='{fb_campaign}' ad='{fb_ad}'"
-            )
+            print(f"[NEW LEAD] Created new lead. name='{fb_name}' campaign='{fb_campaign}' ad='{fb_ad}'")
             continue
 
         rec_id = existing.get("id")
@@ -250,30 +233,9 @@ def main() -> None:
         if upd:
             patch_batch.append({"id": rec_id, "fields": upd})
 
-    if add_batch:
-        ids = client.add_records(table_id, add_batch)
-        print(f"[DONE] Added {len(ids)} new leads.")
-    else:
-        print("[DONE] Added 0 new leads.")
-
-    if patch_batch:
-        from collections import defaultdict
-
-        grouped = defaultdict(list)
-        for rec in patch_batch:
-            field_keys = tuple(sorted(rec["fields"].keys()))
-            grouped[field_keys].append(rec)
-
-        total_updated = 0
-        for field_keys, records in grouped.items():
-            CHUNK = 200
-            for i in range(0, len(records), CHUNK):
-                client.patch_records(table_id, records[i: i + CHUNK])
-            total_updated += len(records)
-
-        print(f"[DONE] Updated {total_updated} existing leads.")
-    else:
-        print("[DONE] Updated 0 existing leads.")
+    n_added, n_patched = flush_batches(client, table_id, add_batch, patch_batch)
+    print(f"[DONE] Added {n_added} new leads.")
+    print(f"[DONE] Updated {n_patched} existing leads.")
 
 
 if __name__ == "__main__":

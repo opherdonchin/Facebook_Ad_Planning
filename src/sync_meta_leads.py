@@ -11,17 +11,16 @@ Usage:
 import argparse
 import json
 import sys
-from collections import defaultdict
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 from grist.grist import GristClient
 from lead_utils import (
+    build_core_lead_fields,
     build_index,
     compute_updates_for_match,
-    dt_to_grist_date,
+    flush_batches,
     format_squawk,
-    is_hebrew,
     norm_email,
     norm_phone,
     parse_dt,
@@ -206,36 +205,18 @@ def build_new_lead_fields(
     now_iso: str,
 ) -> Dict[str, Any]:
     """Build the fields dict for a brand-new Grist lead record."""
-    fields: Dict[str, Any] = {}
+    fields = build_core_lead_fields(
+        cols=cols,
+        name=lead.get("full_name", ""),
+        phone=lead["phone_number"],
+        email=lead["email"],
+        campaign=lead.get("campaign_name", ""),
+        ad_name=resolve_ad_name(lead, ad_id_map),
+        platform="Facebook",
+        created=lead.get("created_time"),
+    )
 
-    # Contact
-    fields[cols["phone"]] = lead["phone_number"]
-    fields[cols["email"]] = lead["email"]
-
-    # Name: route to correct language column
-    name = lead.get("full_name", "").strip()
-    if name:
-        if is_hebrew(name):
-            fields[cols["name_he"]] = name
-        else:
-            fields[cols["name_en"]] = name
-
-    # Date from created_time
-    if lead.get("created_time"):
-        fields[cols["date"]] = dt_to_grist_date(lead["created_time"])
-
-    # Attribution (fill if present)
-    campaign_name = lead.get("campaign_name", "")
-    if campaign_name:
-        fields[cols["campaign"]] = campaign_name
-
-    ad_name = resolve_ad_name(lead, ad_id_map)
-    if ad_name:
-        fields[cols["ad_name"]] = ad_name
-
-    fields[cols["platform"]] = "Facebook"
-
-    # Meta columns (all fill-if-configured)
+    # Meta-specific fields (not present in CSV path)
     _set_if_col(fields, cols, "meta_lead_id", lead.get("meta_lead_id", ""))
     _set_if_col(fields, cols, "meta_ad_id", lead.get("ad_id", ""))
     _set_if_col(fields, cols, "meta_campaign_id", lead.get("campaign_id", ""))
@@ -463,23 +444,9 @@ def sync_meta_leads_to_grist(
     if dry_run:
         print("\n[DRY RUN] No changes written to Grist.")
     else:
-        if add_batch:
-            ids = grist_client.add_records(table_id, add_batch)
-            print(f"[DONE] Created {len(ids)} new leads.")
-
-        if patch_batch:
-            grouped: Dict[tuple, List[Dict[str, Any]]] = defaultdict(list)
-            for rec in patch_batch:
-                field_keys = tuple(sorted(rec["fields"].keys()))
-                grouped[field_keys].append(rec)
-
-            total_patched = 0
-            CHUNK = 200
-            for _, records in grouped.items():
-                for i in range(0, len(records), CHUNK):
-                    grist_client.patch_records(table_id, records[i: i + CHUNK])
-                total_patched += len(records)
-            print(f"[DONE] Updated {total_patched} existing leads.")
+        n_added, n_patched = flush_batches(grist_client, table_id, add_batch, patch_batch)
+        print(f"[DONE] Created {n_added} new leads.")
+        print(f"[DONE] Updated {n_patched} existing leads.")
 
     return stats
 

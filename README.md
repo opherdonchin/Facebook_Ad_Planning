@@ -89,10 +89,24 @@ For self-hosted Grist instances, change the `server` field to your instance URL.
 
 **Security Note:** The `config.json` file is gitignored and will not be committed to version control. Never commit your API key!
 
-## Automatic Meta Lead Sync
+## Syncing Leads into Grist
+
+There are two ways to get leads from Meta into Grist. Both paths use the same matching,
+deduplication, and conservative-update logic — they share a common library ([src/lead_utils.py](src/lead_utils.py)).
+
+| | API sync (recommended) | CSV import (fallback) |
+|---|---|---|
+| **Command** | `pixi run sync_meta_leads` | `pixi run sync_leads <file.csv>` |
+| **Lead source** | Meta Graph API (automatic) | CSV downloaded manually from Meta |
+| **Setup needed** | Access token + `Meta_lead_id` Grist column | None beyond existing config |
+| **When to use** | Routine syncing | Token expired, historical backfill, one-off import |
+
+---
+
+## Automatic Meta Lead Sync (`pixi run sync_meta_leads`)
 
 `pixi run sync_meta_leads` polls the Meta Graph API and syncs new leads directly into Grist,
-eliminating the manual CSV download step. The CSV import path is still available as a fallback.
+eliminating the manual CSV download step.
 
 ### Token setup
 
@@ -232,50 +246,32 @@ Start in: D:\Repositories\Facebook_Ad_Planning
 0 */4 * * * cd /path/to/Facebook_Ad_Planning && pixi run sync_meta_leads >> logs/sync.log 2>&1
 ```
 
-### CSV fallback
+---
 
-The manual CSV import (`pixi run sync_leads`) is unchanged and still works. Use it when:
-- The Meta API token has expired and you need leads now
-- You want to import leads from a date range before the sync was set up
-- You need to import leads from a form that is not in `config.json`
+## Manual CSV Import (`pixi run sync_leads`)
 
-## Syncing Facebook Leads to Grist (Manual CSV Import)
+Use this path when the API token has expired, for historical backfills, or to import a specific
+date-range export.
 
-### Daily
-
-Updating Facebook leads can be done manually if there are only one or two (which is the usual thing). However, to update a batch, there is a sync tool.
-
-#### Download Facebook Leads
-
-To sync leads from Facebook to your Grist leads table, you first need to download the leads export from Facebook:
+### How to download a CSV from Meta
 
 1. Go to **Facebook Business Center** (business.facebook.com)
-2. Navigate to **All tools** in the left sidebar
-3. Find and click on **Instant forms** tool
-4. Click on your instant form (e.g., "Leads form 6/6/25")
-5. Click the **Download** button
-6. Choose download period:
-   - **Last 3 months**: Downloads all leads from the past 3 months
-   - **Since last download**: Downloads only new leads since your last export
-7. Select **CSV** format and download
+2. Navigate to **All tools** → **Instant forms**
+3. Click on your instant form → **Download**
+4. Choose **"Since last download"** or a custom period → **CSV** format
+5. Save to `facebook_exports/`
 
-The downloaded file will be in UTF-16 tab-delimited format with columns like `id`, `created_time`, `ad_name`, `campaign_name`, `platform`, `email`, `full_name`, `phone_number`, etc
+The file is UTF-16 tab-delimited with columns: `id`, `created_time`, `ad_name`, `campaign_name`, `platform`, `email`, `full_name`, `phone_number`.
 
-### Running the Sync
-
-Once you have the Facebook leads CSV file, sync it to your Grist table:
+### Running the import
 
 ```bash
-pixi run sync_leads "path/to/your/leads_export.csv"
+pixi run sync_leads "facebook_exports/your_export.csv"
 ```
 
-The script will:
-
-- Match leads by phone + email combination
-- Add missing Hebrew/English names (bilingual complement)
-- Fill in Campaign, Ad name, and Platform for matched leads
-- Create new lead records for unmatched entries
-- Report any name mismatches or time gaps (without overwriting data)
+Both sync paths use the same matching, deduplication, and conservative-update logic — a lead
+imported by CSV and later seen by the API sync will be recognised as the same person and only
+have its missing fields backfilled.
 
 **Example output:**
 
@@ -299,8 +295,10 @@ This workflow has two cadences:
 Complete sequence:
 
 ```bash
-# Daily (or several times per day): sync leads from Instant Forms export
-pixi run sync_leads "facebook_exports/leads_export.csv"
+# Daily (or several times per day): sync leads via Meta API (preferred)
+pixi run sync_meta_leads
+# Fallback: import a manually downloaded CSV instead
+# pixi run sync_leads "facebook_exports/leads_export.csv"
 
 # Weekly manual prep in Leads database:
 #   1) Update Sales Events
@@ -509,7 +507,7 @@ The weekly_prompt provides detailed guidance on making data-driven decisions whi
 
 Complete weekly workflow in order:
 
-1. Throughout the week: download leads export and run `pixi run sync_leads "facebook_exports/file.csv"`
+1. Throughout the week: `pixi run sync_meta_leads` (or `pixi run sync_leads "facebook_exports/file.csv"` as fallback)
 2. Weekly in Leads DB: manually update Sales Events and Weekly Summary
 3. Download weekly Ads Manager performance CSV
 4. `pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"` - Import weekly spend/leads into `Weekly_runs`

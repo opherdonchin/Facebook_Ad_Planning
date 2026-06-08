@@ -7,6 +7,7 @@ and emitted by the CLI layer.
 """
 import json
 import re
+from collections import defaultdict
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -262,6 +263,79 @@ def compute_updates_for_match(
         upd[cols["email"]] = fb_email
 
     return upd, squawks
+
+
+# ---------------------------------------------------------------------------
+# New lead field builder (shared by CSV and API sync paths)
+# ---------------------------------------------------------------------------
+def build_core_lead_fields(
+    cols: Dict[str, str],
+    name: str,
+    phone: str,
+    email: str,
+    campaign: str,
+    ad_name: str,
+    platform: str,
+    created: Optional[datetime],
+) -> Dict[str, Any]:
+    """Build the core CRM fields dict for a new lead record.
+
+    Handles name language routing (Hebrew vs English), all core contact and
+    attribution fields. Meta-specific fields are added by the caller.
+    """
+    fields: Dict[str, Any] = {}
+    fields[cols["phone"]] = phone
+    fields[cols["email"]] = email
+    name = name.strip()
+    if name:
+        if is_hebrew(name):
+            fields[cols["name_he"]] = name
+        else:
+            fields[cols["name_en"]] = name
+    if campaign:
+        fields[cols["campaign"]] = campaign
+    if ad_name:
+        fields[cols["ad_name"]] = ad_name
+    if platform:
+        fields[cols["platform"]] = platform
+    if created:
+        fields[cols["date"]] = dt_to_grist_date(created)
+    return fields
+
+
+# ---------------------------------------------------------------------------
+# Grist write-back (shared by CSV and API sync paths)
+# ---------------------------------------------------------------------------
+def flush_batches(
+    client: Any,
+    table_id: str,
+    add_batch: List[Dict[str, Any]],
+    patch_batch: List[Dict[str, Any]],
+) -> Tuple[int, int]:
+    """Write add and patch batches to Grist. Returns (n_added, n_patched).
+
+    Groups patch records by their field keys and chunks at 200 per request,
+    matching the Grist API's recommended batch size.
+    """
+    n_added = 0
+    n_patched = 0
+
+    if add_batch:
+        ids = client.add_records(table_id, add_batch)
+        n_added = len(ids)
+
+    if patch_batch:
+        grouped: Dict[tuple, List[Dict[str, Any]]] = defaultdict(list)
+        for rec in patch_batch:
+            field_keys = tuple(sorted(rec["fields"].keys()))
+            grouped[field_keys].append(rec)
+        CHUNK = 200
+        for _, records in grouped.items():
+            for i in range(0, len(records), CHUNK):
+                client.patch_records(table_id, records[i: i + CHUNK])
+            n_patched += len(records)
+
+    return n_added, n_patched
 
 
 # ---------------------------------------------------------------------------
