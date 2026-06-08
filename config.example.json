@@ -17,7 +17,27 @@
       "date": "Date",
       "campaign": "Campaign",
       "ad_name": "Ad name",
-      "platform": "Platform"
+      "platform": "Platform",
+
+      "meta_lead_id": "Meta_lead_id",
+      "meta_created_time": "Meta_created_time",
+      "meta_ad_id": "Meta_ad_id",
+      "meta_campaign_id": "Meta_campaign_id",
+      "meta_form_id": "Meta_form_id",
+      "meta_raw_json": "Meta_raw_json",
+      "imported_at": "Imported_at"
+    }
+  },
+  "meta": {
+    "access_token_env": "META_ACCESS_TOKEN",
+    "access_token": "",
+    "api_version": "v25.0",
+    "form_ids": ["YOUR_FORM_ID_HERE"],
+    "lookback_days": 14,
+    "page_id": "",
+    "dedupe_strategy": "meta_id_then_phone_email",
+    "ad_id_to_ad_name": {
+      "YOUR_META_AD_ID": "Your Human-Readable Ad Name"
     }
   }
 }

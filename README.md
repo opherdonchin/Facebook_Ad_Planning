@@ -89,7 +89,157 @@ For self-hosted Grist instances, change the `server` field to your instance URL.
 
 **Security Note:** The `config.json` file is gitignored and will not be committed to version control. Never commit your API key!
 
-## Syncing Facebook Leads to Grist
+## Automatic Meta Lead Sync
+
+`pixi run sync_meta_leads` polls the Meta Graph API and syncs new leads directly into Grist,
+eliminating the manual CSV download step. The CSV import path is still available as a fallback.
+
+### Token setup
+
+The sync requires a Meta access token with lead-reading permissions.
+
+```bash
+# Set the token in your environment (recommended)
+export META_ACCESS_TOKEN="EAAxxxxxxxxxxxxx..."
+
+# Or add it to config.json under meta.access_token (less recommended)
+```
+
+**Required Meta permissions** (empirical: minimum needed varies by token type and Business Manager setup):
+- `leads_retrieval` — read lead data from forms
+- `pages_show_list` — enumerate pages
+- `pages_read_engagement` — required by some endpoints
+- `pages_manage_ads` — required for lead form access in some configurations
+
+> **Lead Access Manager caveat**: In Business Manager environments a separate authorization
+> step in Lead Access Manager may be required before any token can read lead data, regardless
+> of which permission scopes are granted. If you get `#200 Permission error`, check Lead Access
+> Manager first.
+
+**Token lifetime**: User access tokens expire in ~60 days. System user tokens can be configured
+to be non-expiring. After expiry, re-generate via Facebook Developer Console and update
+`META_ACCESS_TOKEN`.
+
+### Required Grist column
+
+Before running in production, add a `Meta_lead_id` column (Text type) to your Grist Leads table,
+then map it in `config.json`:
+
+```json
+"leads": {
+  "columns": {
+    "meta_lead_id": "Meta_lead_id"
+  }
+}
+```
+
+This column is the primary deduplication key. Without it, the sync falls back to phone+email
+matching only, which is less reliable. The sync refuses to run without this column unless you
+pass `--dry-run` or `--allow-no-meta-id`.
+
+### Optional Grist columns
+
+Add these columns for full audit trail (all are Text type unless noted):
+
+| config key | suggested Grist name | what it stores |
+|---|---|---|
+| `meta_created_time` | `Meta_created_time` | ISO timestamp from Meta API |
+| `meta_ad_id` | `Meta_ad_id` | Numeric Meta ad ID |
+| `meta_campaign_id` | `Meta_campaign_id` | Numeric Meta campaign ID |
+| `meta_form_id` | `Meta_form_id` | Numeric lead form ID |
+| `meta_raw_json` | `Meta_raw_json` | Full raw lead payload (JSON) |
+| `imported_at` | `Imported_at` | ISO timestamp when first synced |
+
+### config.json: meta section
+
+```json
+"meta": {
+  "access_token_env": "META_ACCESS_TOKEN",
+  "access_token": "",
+  "api_version": "v25.0",
+  "form_ids": ["23944636508501947"],
+  "lookback_days": 14,
+  "ad_id_to_ad_name": {
+    "23844000000000001": "Summer Trial - Lead Form 1"
+  }
+}
+```
+
+`ad_id_to_ad_name` is optional — use it when the Meta API does not return `ad_name` for a form.
+
+### Required: dry-run before first production sync
+
+Always run `--dry-run` before the first production sync, especially if there are existing leads
+that were imported via CSV. Review the proposed changes and confirm there are no unexpected
+phone-normalization merges (two entries being treated as the same person when they are not).
+
+```bash
+pixi run sync_meta_leads --dry-run
+```
+
+The output will show what would be created, updated, and skipped, with phone/email redacted
+by default. For full PII in logs (e.g., when debugging), add `--verbose-pii`.
+
+### Basic usage
+
+```bash
+# Standard sync (last 14 days, from config)
+pixi run sync_meta_leads
+
+# Backfill from a specific date
+pixi run sync_meta_leads --since 2026-01-01
+
+# Extend lookback window
+pixi run sync_meta_leads --lookback-days 30
+
+# Single form override
+pixi run sync_meta_leads --form-id 23944636508501947
+
+# Full PII in logs (for debugging)
+pixi run sync_meta_leads --verbose-pii --dry-run
+```
+
+### Idempotency guarantee
+
+A second run with no new leads produces **zero Grist writes** (`leads_updated = 0`,
+`leads_created = 0`). The sync uses canonical JSON comparison for `meta_raw_json` and
+fill-if-missing semantics for all other fields. Only fields that are blank in Grist are filled;
+existing Status, names, Campaign, Ad_name, Platform, and all other manually-entered CRM data
+are never overwritten.
+
+### Deduplication logic
+
+1. Match by `meta_lead_id` first (if configured).
+2. Fall back to `(normalized_phone, normalized_email)` pair.
+3. Leads with only phone or only email (no `meta_lead_id` match) are skipped and logged.
+4. In-run duplicates (same lead appearing twice in one batch) are detected and skipped.
+
+### Scheduling
+
+Because the sync handles personal contact information, local scheduling is recommended
+over hosted CI/CD:
+
+**Windows Task Scheduler** (run every few hours):
+```
+Action: Start a program
+Program: pixi.exe
+Arguments: run sync_meta_leads
+Start in: D:\Repositories\Facebook_Ad_Planning
+```
+
+**Linux/macOS cron** (every 4 hours):
+```
+0 */4 * * * cd /path/to/Facebook_Ad_Planning && pixi run sync_meta_leads >> logs/sync.log 2>&1
+```
+
+### CSV fallback
+
+The manual CSV import (`pixi run sync_leads`) is unchanged and still works. Use it when:
+- The Meta API token has expired and you need leads now
+- You want to import leads from a date range before the sync was set up
+- You need to import leads from a form that is not in `config.json`
+
+## Syncing Facebook Leads to Grist (Manual CSV Import)
 
 ### Daily
 
@@ -177,16 +327,20 @@ pixi run package_uploads
 
 ### Step 1: Daily Lead Sync (repeat during the week)
 
-Download the latest leads from Facebook Instant Forms:
+**Automatic (recommended)**: poll Meta directly via the Graph API:
+
+```bash
+pixi run sync_meta_leads
+```
+
+**Manual fallback**: download from Facebook Instant Forms and import CSV:
 
 1. Go to **Facebook Business Center** (business.facebook.com)
 2. Navigate to **All tools** → **Instant forms**
 3. Click on your instant form
 4. Click **Download**
 5. Choose **"Since last download"** or **"Last 3 months"**
-6. Select **CSV** format and save the file
-
-Save the downloaded CSV to the `facebook_exports/` directory.
+6. Select **CSV** format and save the file to `facebook_exports/`
 
 ### Step 2: Sync Leads to Grist
 
