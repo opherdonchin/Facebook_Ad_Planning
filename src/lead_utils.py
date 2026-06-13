@@ -30,6 +30,41 @@ def norm_email(email: Optional[str]) -> str:
     return e  # keep as-is; validation is best-effort
 
 
+def display_phone(phone: str) -> str:
+    """Convert a normalized Israeli number (972XXXXXXXXX) to local format (0XXXXXXXXX).
+
+    Used for storage in Grist so new records match the convention of existing ones.
+    Non-Israeli or already-local numbers are returned as-is.
+    """
+    if phone.startswith("972") and len(phone) in {11, 12}:
+        return "0" + phone[3:]
+    return phone
+
+
+_PLATFORM_ABBREVS: Dict[str, str] = {
+    "facebook": "fb",
+    "instagram": "ig",
+    "audience network": "an",
+    "messenger": "ms",
+    # already-abbreviated forms pass through unchanged
+    "fb": "fb",
+    "ig": "ig",
+    "an": "an",
+    "ms": "ms",
+}
+
+
+def norm_platform(platform: str) -> str:
+    """Normalize platform names to lowercase abbreviations (Facebook→fb, Instagram→ig).
+
+    Unknown values are lowercased and returned as-is.
+    """
+    if not platform:
+        return ""
+    key = platform.lower().strip()
+    return _PLATFORM_ABBREVS.get(key, key)
+
+
 def norm_phone(phone: Optional[str]) -> str:
     """Normalize a phone number to a canonical digit-only form.
 
@@ -224,14 +259,16 @@ def compute_updates_for_match(
             "detail": {"field": "ad_name", "grist": existing_ad, "fb": fb_ad},
         })
 
-    if fb_platform and not existing_platform:
-        upd[cols["platform"]] = fb_platform
-    elif fb_platform and existing_platform and fb_platform != existing_platform:
+    fb_platform_norm = norm_platform(fb_platform)
+    existing_platform_norm = norm_platform(existing_platform)
+    if fb_platform_norm and not existing_platform:
+        upd[cols["platform"]] = fb_platform_norm
+    elif fb_platform_norm and existing_platform and fb_platform_norm != existing_platform_norm:
         squawks.append({
             "type": "SOURCE_MISMATCH",
             "phone": fb_phone,
             "email": fb_email,
-            "detail": {"field": "platform", "grist": existing_platform, "fb": fb_platform},
+            "detail": {"field": "platform", "grist": existing_platform, "fb": fb_platform_norm},
         })
 
     # Time gap check
@@ -258,7 +295,7 @@ def compute_updates_for_match(
 
     # Fill missing phone/email
     if fb_phone and not existing_phone:
-        upd[cols["phone"]] = fb_phone
+        upd[cols["phone"]] = display_phone(fb_phone)
     if fb_email and not existing_email:
         upd[cols["email"]] = fb_email
 
@@ -284,7 +321,7 @@ def build_core_lead_fields(
     attribution fields. Meta-specific fields are added by the caller.
     """
     fields: Dict[str, Any] = {}
-    fields[cols["phone"]] = phone
+    fields[cols["phone"]] = display_phone(phone)
     fields[cols["email"]] = email
     name = name.strip()
     if name:
@@ -297,7 +334,7 @@ def build_core_lead_fields(
     if ad_name:
         fields[cols["ad_name"]] = ad_name
     if platform:
-        fields[cols["platform"]] = platform
+        fields[cols["platform"]] = norm_platform(platform)
     if created:
         fields[cols["date"]] = dt_to_grist_date(created)
     return fields

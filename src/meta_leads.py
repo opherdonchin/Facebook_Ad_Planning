@@ -104,39 +104,43 @@ class MetaLeadsClient:
                 (datetime.now(timezone.utc) - timedelta(days=lookback_days)).timestamp()
             )
 
-        fields = f"{_CORE_FIELDS},{_ENRICHMENT_FIELDS}"
-        base_params: Dict[str, Any] = {"fields": fields, "limit": 100}
-
-        # Attempt server-side filtering
+        cutoff = datetime.fromtimestamp(since_ts, tz=timezone.utc)
         filter_json = json.dumps(
             [{"field": "time_created", "operator": "GREATER_THAN", "value": since_ts}]
         )
-        server_side_ok = True
-        all_leads: List[Dict[str, Any]] = []
 
+        full_fields = f"{_CORE_FIELDS},{_ENRICHMENT_FIELDS}"
+        core_fields = _CORE_FIELDS
+
+        # Strategy 1: server-side filtering + enrichment fields
         try:
-            all_leads = self._paginate(form_id, {**base_params, "filtering": filter_json})
+            return self._paginate(
+                form_id, {"fields": full_fields, "limit": 100, "filtering": filter_json}
+            )
         except requests.HTTPError as exc:
-            resp = exc.response
-            if resp is not None and resp.status_code == 400:
-                # Meta rejected the filtering param — fall back to client-side
-                print(
-                    f"[INFO] Server-side date filtering not supported for form {form_id}. "
-                    f"Falling back to client-side filtering (fetching all pages)."
-                )
-                server_side_ok = False
-            else:
+            if exc.response is None or exc.response.status_code != 400:
                 raise
+            _log_meta_error(exc, f"Server-side date filtering not supported for form {form_id}. "
+                            f"Falling back to client-side filtering (fetching all pages).")
 
-        if not server_side_ok:
-            all_pages = self._paginate(form_id, base_params)
-            cutoff = datetime.fromtimestamp(since_ts, tz=timezone.utc)
-            all_leads = [
-                lead for lead in all_pages
-                if _lead_created_after(lead, cutoff)
-            ]
+        # Strategy 2: client-side filtering + enrichment fields
+        try:
+            pages = self._paginate(form_id, {"fields": full_fields, "limit": 100})
+            return [l for l in pages if _lead_created_after(l, cutoff)]
+        except requests.HTTPError as exc:
+            if exc.response is None or exc.response.status_code != 400:
+                raise
+            _log_meta_error(exc, f"Enrichment fields not available for form {form_id} "
+                            f"(token likely lacks pages_manage_ads). Falling back to core fields only.")
 
-        return all_leads
+        # Strategy 3: client-side filtering + core fields only
+        try:
+            pages = self._paginate(form_id, {"fields": core_fields, "limit": 100})
+            return [l for l in pages if _lead_created_after(l, cutoff)]
+        except requests.HTTPError as exc:
+            if exc.response is not None and exc.response.status_code == 400:
+                _log_meta_error(exc, f"Core-fields request also rejected for form {form_id}.")
+            raise
 
     def _paginate(
         self,
@@ -163,6 +167,18 @@ class MetaLeadsClient:
             current_params["after"] = after
 
         return results
+
+
+def _log_meta_error(exc: requests.HTTPError, context: str) -> None:
+    """Print the Meta API error body alongside a human-readable context message."""
+    body = ""
+    if exc.response is not None:
+        try:
+            err = exc.response.json().get("error", {})
+            body = f" Meta error #{err.get('code')}/{err.get('error_subcode')}: {err.get('message')}"
+        except Exception:
+            body = f" Raw: {exc.response.text[:200]}"
+    print(f"[INFO] {context}{body}")
 
 
 def _lead_created_after(raw: Dict[str, Any], cutoff: datetime) -> bool:
