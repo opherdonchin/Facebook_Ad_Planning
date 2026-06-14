@@ -29,7 +29,6 @@
     }
   },
   "meta": {
-    "access_token_env": "META_ACCESS_TOKEN",
     "access_token": "",
     "api_version": "v25.0",
     "form_ids": ["YOUR_FORM_ID_HERE"],
@@ -38,6 +37,10 @@
     "dedupe_strategy": "meta_id_then_phone_email",
     "ad_id_to_ad_name": {
       "YOUR_META_AD_ID": "Your Human-Readable Ad Name"
-    }
+    },
+
+    "ad_account_id": "act_YOUR_AD_ACCOUNT_ID",
+    "lead_action_types": ["onsite_conversion.lead_grouped", "lead"],
+    "lookback_weeks": 8
   }
 }
