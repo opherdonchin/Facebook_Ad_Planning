@@ -1,7 +1,16 @@
 {
     "workbench.colorCustomizations": {
-        "statusBar.noFolderBackground": "#4B2C4A",
-        "statusBar.noFolderForeground": "#FDFBFD"
+        "statusBar.noFolderBackground": "#352776",
+        "statusBar.noFolderForeground": "#FAFAFD",
+        "activityBar.background": "#2E2267",
+        "titleBar.activeBackground": "#B7ACE4",
+        "titleBar.activeForeground": "#1B133A",
+        "titleBar.inactiveBackground": "#2E2267",
+        "titleBar.inactiveForeground": "#1B133A",
+        "statusBar.background": "#352776",
+        "statusBar.foreground": "#FAFAFD",
+        "statusBar.debuggingBackground": "#352776",
+        "statusBar.debuggingForeground": "#FAFAFD"
     },
     "chat.tools.terminal.autoApprove": {
         "/^python src/export_ads_and_structured\\.py outputs/performance_data\\.json outputs csv$/": {

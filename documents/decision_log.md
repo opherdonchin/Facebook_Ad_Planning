@@ -1,5 +1,133 @@
 # Weekly Decision Log
 
+# Plan for 2026-W24 (assessing 2026-W23)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W23
+- **Decision / planned week:** 2026-W24
+- **Operational note:** decision made Sunday, four days after the normal Thursday update point. Partial 2026-W24 data exists in the export and is used only as in-flight evidence.
+
+### Ads active in assessed week (2026-W23)
+
+- Men: Mens Ad J, M 2605_1
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --- | --- | --- | --- | --- |
+| Mens Ad J | 241.69 | 26.85 | 2278.87 | 35.06 |
+| M 2605_1 | 33.66 | 11.22 | 204.72 | 51.18 |
+
+- Women: W 2605_1, W 2603_1, Womens Ad P, W 2603_2
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --- | --- | --- | --- | --- |
+| W 2605_1 | 130.57 | 43.52 | 310.68 | 51.78 |
+| W 2603_1 | 125.15 | 15.64 | 508.21 | 33.88 |
+| Womens Ad P | 16.13 | —   | 884.89 | 55.31 |
+| W 2603_2 | 3.54 | —   | 421.53 | 84.31 |
+
+### Ads planned for decision week (2026-W24)
+
+- Men: Mens Ad J, M 2605_1
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --- | --- | --- | --- | --- |
+| Mens Ad J | 241.69 | 26.85 | 2278.87 | 35.06 |
+| M 2605_1 | 33.66 | 11.22 | 204.72 | 51.18 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+- Women: W 2603_1, Womens Ad P
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+| --- | --- | --- | --- | --- |
+| W 2603_1 | 125.15 | 15.64 | 508.21 | 33.88 |
+| Womens Ad P | 16.13 | —   | 884.89 | 55.31 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+- Keep `Mens Ad J`.
+- Keep `M 2605_1`.
+- Keep `W 2603_1`.
+- Keep `Womens Ad P` as the second women’s slot, primarily under the low-delivery rule.
+- No new material and no reshuffle are recommended for `2026-W24`.
+
+---
+
+## Rationale concise
+
+- `Mens Ad J` recovered strongly in `2026-W23` and is also excellent in partial `2026-W24`; this is the men’s anchor.
+- `M 2605_1` generated 3 leads at 11.22 CPL in `2026-W23`; evidence is still limited, but replacing it immediately would be premature.
+- `W 2603_1` is the women’s anchor: 8 leads at 15.64 CPL in `2026-W23`, 10 leads at 21.96 CPL in the current run through the export.
+- `W 2605_1` also performed acceptably in `2026-W23`, but it cannot be planned together with `W 2603_1` because both use `Quiet Space - Bullet Calm` as primary text. `W 2603_1` has the stronger current-run and lifetime evidence.
+- `Womens Ad P` is weak historically and has almost no current delivery, but current-run spend is only 16.92 ILS through the export, so it remains a low-delivery keep rather than a failure.
+- Because the `2026-W24` update is already four days late, stability is preferred unless a current ad clearly fails the keep rules.
+
+---
+
+## Constraints check
+
+- **Creative uniqueness:** satisfied for `2026-W24`; no media, headline, or primary text is duplicated within the men’s or women’s campaign.
+- **New-material constraint:** satisfied; zero new media, headlines, or primary texts.
+- **Media provenance:** all planned media are present in `attachments_manifest.json` and `attachments.tar`:
+  - `Tenshinage_lineart_controlled` → `attachments/Media/Tenshinage_lineart_controlled.jpg`
+  - `Dojo_ClassScene_Ikkyo_MF_Class_Scene` → `attachments/Media/Dojo_ClassScene_Ikkyo_MF_Class_Scene.png`
+  - `Shihonage_MF_Dojo_Photo` → `attachments/Media/Shihonage_MF_Dojo_Photo__A.png`
+  - `Dojo_Instruction_FemalePair` → `attachments/Media/Dojo_Instruction_FemalePair.png`
+- **Image-text semantic check:** passed after inspecting the actual media assets.
+- **Gender/campaign integrity:** no blocking mismatch identified.
+- **Most recent new-material alternation:** not relevant because no new material is introduced.
+
+---
+
+## Data hygiene / learning notes
+
+- `2026-W23` contains transition/carryover activity: more than four ads show spend, but meaningful spend and current `2026-W24` intended-run flags make the planned `2026-W24` portfolio clear.
+- `W 2603_2` has only 3.54 ILS spend in `2026-W23` and should be treated as trailing spend, not a decision signal.
+- `Womens Ad P` had 16.13 ILS spend in `2026-W23` and 0.79 ILS in partial `2026-W24`, so there is still no meaningful read on the current run.
+- `ad_components.csv` omits headline fields for several old ads; where needed, headline assignments were reconstructed from `performance_data.json` / `Ads` and `Headlines`.
+
+---
+
+## What would change this decision next week
+
+- If `Womens Ad P` still does not deliver by the end of full `2026-W24`, replace it.
+- If `M 2605_1` receives meaningful spend and fails to add leads, replace it with a stronger historical male fallback, likely `Mens Ad A` or a controlled reshuffle.
+- If `Mens Ad J` and `W 2603_1` remain strong, continue treating them as the two campaign anchors.
+- If the women’s second slot needs replacement, avoid using `Quiet Space - Bullet Calm` unless `W 2603_1` is also being retired.
+
+---
+
+## Confidence level
+
+**Moderate-high for keeping `Mens Ad J` and `W 2603_1`; moderate for keeping `M 2605_1`; low-to-moderate for keeping `Womens Ad P`, justified mostly by low delivery and by avoiding a Sunday mid-week reshuffle.**
+
+---
+
+End of Plan 2026-W24
+
+---
+
 # Plan for 2026-W23 (assessing 2026-W22)
 
 ### Weeks
