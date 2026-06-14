@@ -130,9 +130,44 @@ export META_ACCESS_TOKEN="EAAxxxxxxxxxxxxx..."
 > of which permission scopes are granted. If you get `#200 Permission error`, check Lead Access
 > Manager first.
 
-**Token lifetime**: User access tokens expire in ~60 days. System user tokens can be configured
-to be non-expiring. After expiry, re-generate via Facebook Developer Console and update
-`META_ACCESS_TOKEN`.
+**Token lifetime**: User access tokens expire in ~60 days. After expiry both `sync_meta_leads`
+and `fetch_weekly_runs` will fail with a token-expired error. Renew using the steps below.
+
+### Renewing the Meta access token (every ~60 days)
+
+**Step 1 — Get a short-lived token (valid ~1 hour)**
+
+1. Go to **developers.facebook.com/tools/explorer**
+2. Under **Meta App**, select **Lead syncing**
+3. Confirm **Permissions** shows: `ads_read`, `leads_retrieval`, `pages_show_list`, `pages_read_engagement`, `pages_manage_ads`
+4. Click **Generate Access Token** and approve the popup
+5. Copy the token from the Access Token field
+
+**Step 2 — Exchange for a 60-day token**
+
+Your App ID is `1576127987269445`. Get your App Secret from
+**developers.facebook.com → Lead syncing → App settings → Basic → Show**.
+
+Run this in PowerShell (fill in the two values):
+
+```powershell
+$appId     = "1576127987269445"
+$appSecret = "PASTE_APP_SECRET_HERE"
+$shortToken = "PASTE_SHORT_LIVED_TOKEN_HERE"
+
+$result = Invoke-RestMethod "https://graph.facebook.com/v25.0/oauth/access_token?grant_type=fb_exchange_token&client_id=$appId&client_secret=$appSecret&fb_exchange_token=$shortToken"
+$result.access_token | Set-Clipboard
+```
+
+The 60-day token is now on your clipboard.
+
+**Step 3 — Update config.json**
+
+Paste the token as the value of `meta.access_token` in `config.json`. Verify with:
+
+```bash
+pixi run fetch_weekly_runs --dry-run
+```
 
 ### Required Grist column
 
@@ -304,10 +339,12 @@ pixi run sync_meta_leads
 #   1) Update Sales Events
 #   2) Update Weekly Summary (including weekly CPL/cost fields from Ads Manager report)
 
-# Weekly: import ad performance CSV into ad_tracking.Weekly_runs
-pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"
+# Weekly: fetch ad performance from Meta API into ad_tracking.Weekly_runs
+pixi run fetch_weekly_runs
 # Optional safety check first:
-# pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv" --dry-run
+# pixi run fetch_weekly_runs --dry-run
+# Manual CSV fallback (if token expired):
+# pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"
 
 # Weekly manual QA in ad_tracking before transforms:
 #   - Set Weekly_runs.Intended_run for ads that were intentionally active
@@ -367,24 +404,68 @@ Before running the weekly pipeline, manually update the **Leads** document:
 
 This step is currently manual and should be completed before `update_ads`, so ad-level rollups are aligned with latest sales/conversion reality.
 
-### Step 4: Download Weekly Performance CSV from Ads Manager
-
-Export weekly ad performance CSV from Ads Manager and save it to `facebook_exports/`.
-
-The import expects these columns:
-
-- `Ad name`
-- `Reporting ends` (format: `YYYY-MM-DD`)
-- `Amount spent (ILS)`
-- `Results`
-
-### Step 5: Import Weekly Runs to Ad Tracking
+### Step 4 + 5: Sync Weekly Ad Performance (Automated)
 
 ```bash
-pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"
+pixi run fetch_weekly_runs
 ```
 
-The script writes rows into `Weekly_runs` and can auto-create missing ad names in `Ads` when needed.
+This replaces both the manual Ads Manager CSV download and the `update_weekly_runs` import.
+The script:
+
+1. Reads `Weekly_runs` from Grist to find the most recent week already stored.
+2. Re-fetches that week from its Thursday (picks up any mid-week updates from Meta).
+3. Queries the Meta Marketing API for daily ad-level spend and leads through today.
+4. Aggregates daily rows into Thu–Wed week buckets (same week definition as the rest
+   of the pipeline — see week formula below).
+5. Patches existing Grist records and inserts new ones. Partial weeks (run before
+   Wednesday) are stored against their eventual Wednesday end date and updated
+   automatically on the next run.
+
+**Week formula** (matches Grist): for a reporting end date, shift back 3 days then
+use the ISO week of the result — so a Thu–Wed window maps to one ISO week label.
+
+**Optional safety check first:**
+
+```bash
+pixi run fetch_weekly_runs --dry-run
+```
+
+**Other options:**
+
+```bash
+# Backfill from a specific date
+pixi run fetch_weekly_runs --since 2026-01-01
+
+# Auto-create any new ad names found in Meta data (stub rows only — fill Campaign etc. manually)
+pixi run fetch_weekly_runs --auto-create-ads
+```
+
+**Required config** (`config.json` → `meta` section):
+
+```json
+"ad_account_id": "act_YOUR_AD_ACCOUNT_ID",
+"lead_action_types": ["onsite_conversion.lead_grouped", "lead"],
+"lookback_weeks": 8
+```
+
+- `ad_account_id`: found in Meta Business Manager → Ad accounts (format `act_XXXXXXXXX`).
+- `lead_action_types`: which Meta action type counts as a lead. For Instant Form campaigns
+  this is usually `onsite_conversion.lead_grouped`; `lead` is the fallback.
+- `lookback_weeks`: how far back to go when `Weekly_runs` is empty (default 8).
+
+The same `META_ACCESS_TOKEN` used for lead sync is re-used here; it must include
+`ads_read` permission in addition to the lead-reading scopes.
+
+**Manual fallback** (CSV download + import), if the API token has expired:
+
+1. In **Ads Manager**, export a custom report with columns:
+   `Ad name`, `Reporting ends`, `Amount spent (ILS)`, `Results`.
+2. Save to `facebook_exports/`.
+3. Run:
+   ```bash
+   pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"
+   ```
 
 ### Step 6: Manual Data QA in Ad Tracking (Required)
 
@@ -509,8 +590,7 @@ Complete weekly workflow in order:
 
 1. Throughout the week: `pixi run sync_meta_leads` (or `pixi run sync_leads "facebook_exports/file.csv"` as fallback)
 2. Weekly in Leads DB: manually update Sales Events and Weekly Summary
-3. Download weekly Ads Manager performance CSV
-4. `pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"` - Import weekly spend/leads into `Weekly_runs`
+3. `pixi run fetch_weekly_runs` - Fetch weekly spend/leads from Meta API into `Weekly_runs` (or `pixi run update_weekly_runs "file.csv"` as manual fallback)
 5. In ad_tracking Grist: manually set `Intended_run` and fix any missing/incorrect ad campaign + creative/component metadata
 6. `pixi run update_ads` - Copy lead/conversion rollups from Leads to `ad_tracking.Ads`
 7. `pixi run transform_weekly` - Generate derived analytical metrics tables
