@@ -83,6 +83,8 @@ def build_meta_id_index(
 # ---------------------------------------------------------------------------
 _REQUIRED_COL_KEYS = ["phone", "email", "name_en", "name_he", "date", "campaign", "ad_name", "platform"]
 
+_INACTIVE_STATUSES = frozenset({"Failed", "Pause", "Registered"})
+
 
 def validate_required_cols(
     cols: Dict[str, str],
@@ -189,6 +191,47 @@ def compute_meta_updates(
     col_ia = cols.get("imported_at", "")
     if col_ia and not safe_get(grist_fields, col_ia):
         upd[col_ia] = now_iso
+
+    # Reactivation: if lead re-submits while status is inactive, flip to Reactivated.
+    # Guard: only reactivate for genuinely new submissions. If the Grist row already
+    # stores this exact meta_lead_id, the lead is being re-read within the lookback
+    # window — not a new form submission — so leave the status alone.
+    col_status = cols.get("status", "")
+    col_phone_notes = cols.get("phone_notes", "")
+    col_mid = cols.get("meta_lead_id", "")
+    stored_mid = safe_get(grist_fields, col_mid) if col_mid else ""
+    is_new_submission = not stored_mid or stored_mid != lead.get("meta_lead_id", "")
+    if col_status and is_new_submission:
+        existing_status = safe_get(grist_fields, col_status)
+        if existing_status in _INACTIVE_STATUSES:
+            upd[col_status] = "Reactivated"
+            if col_phone_notes:
+                date_str = (
+                    lead["created_time"].strftime("%Y-%m-%d")
+                    if lead.get("created_time")
+                    else now_iso[:10]
+                )
+                campaign = lead.get("campaign_name", "")
+                ad = resolve_ad_name(lead, ad_id_map)
+                note_parts = [f"Reactivated {date_str} via Meta lead"]
+                if campaign:
+                    note_parts.append(f"campaign: {campaign}")
+                if ad:
+                    note_parts.append(f"ad: {ad}")
+                new_note = " — ".join(note_parts)
+                existing_notes = safe_get(grist_fields, col_phone_notes)
+                upd[col_phone_notes] = (
+                    f"{existing_notes}\n{new_note}".strip() if existing_notes else new_note
+                )
+            formatted_squawks.append(format_squawk({
+                "type": "REACTIVATED",
+                "phone": lead.get("phone_number", ""),
+                "email": lead.get("email", ""),
+                "detail": {
+                    "old_status": existing_status,
+                    "meta_lead_id": lead.get("meta_lead_id", ""),
+                },
+            }, verbose_pii=verbose_pii))
 
     return upd, formatted_squawks
 
@@ -549,6 +592,8 @@ def main() -> None:
         "campaign": "Campaign",
         "ad_name": "Ad name",
         "platform": "Platform",
+        "status": "Status",
+        "phone_notes": "Phone_notes",
         # Meta columns default to "" (not configured)
         "meta_lead_id": "",
         "meta_created_time": "",

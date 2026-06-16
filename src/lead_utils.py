@@ -460,5 +460,11 @@ def format_squawk(w: Dict[str, Any], verbose_pii: bool = False) -> str:
             f"'{detail.get('meta_lead_id')}'. "
             f"Keeping id={detail.get('kept_id')}, also saw id={detail.get('also_saw_id')}."
         )
+    if t == "REACTIVATED":
+        return (
+            f"[REACTIVATED] phone={phone_str} email={email_str}: "
+            f"Status was {detail.get('old_status')!r} → set to 'Reactivated'. "
+            f"meta_lead_id={detail.get('meta_lead_id', '')}."
+        )
     # Fallback for unknown warning types
     return f"[{t}] phone={phone_str} email={email_str} detail={json.dumps(detail)}"
