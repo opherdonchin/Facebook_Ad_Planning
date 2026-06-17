@@ -205,6 +205,12 @@ def compute_meta_updates(
         existing_status = safe_get(grist_fields, col_status)
         if existing_status in _INACTIVE_STATUSES:
             upd[col_status] = "Reactivated"
+            col_next_action = cols.get("next_action", "")
+            if col_next_action:
+                upd[col_next_action] = now_iso[:10]
+            col_what_next = cols.get("what_next", "")
+            if col_what_next:
+                upd[col_what_next] = "Call again"
             if col_phone_notes:
                 date_str = (
                     lead["created_time"].strftime("%Y-%m-%d")
@@ -594,6 +600,8 @@ def main() -> None:
         "platform": "Platform",
         "status": "Status",
         "phone_notes": "Phone_notes",
+        "next_action": "Next_action",
+        "what_next": "What_next",
         # Meta columns default to "" (not configured)
         "meta_lead_id": "",
         "meta_created_time": "",
