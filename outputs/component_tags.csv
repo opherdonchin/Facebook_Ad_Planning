@@ -51,6 +51,12 @@ media,27,Photo_Dojo_FF_HandContact_Static,Media_Style,Photo - Dojo
 media,27,Photo_Dojo_FF_HandContact_Static,Media_Energy,Dynamic / Throw
 media,28,Dojo_ClassScene_Ikkyo_MF_Class_Scene,Media_Style,Illustration - Photo Art
 media,28,Dojo_ClassScene_Ikkyo_MF_Class_Scene,Media_Energy,Instructional / Demonstration
+media,29,Photo_Dojo_FF_ArmContact_Static,Media_Style,Photo - Dojo
+media,29,Photo_Dojo_FF_ArmContact_Static,Media_Energy,Instructional / Demonstration
+media,30,Outside_Sunset_MM_Kaitenage_photo_v2,Media_Style,Photo - Outside
+media,30,Outside_Sunset_MM_Kaitenage_photo_v2,Media_Energy,Meditative / Inspirational
+media,31,Dojo_Instruction_FemalePair_v2,Media_Style,Illustration - Line Art
+media,31,Dojo_Instruction_FemalePair_v2,Media_Energy,Dynamic / Throw
 headline,2,ללמוד לשלוט ברגע,Tone,Reflective
 headline,2,ללמוד לשלוט ברגע,Promise,Focus / Clarity
 headline,2,ללמוד לשלוט ברגע,Hook,Meaning / Growth
@@ -117,6 +123,9 @@ headline,29,משהו חדש לגוף ולראש,Hook,Meaning / Growth
 headline,30,שקט במצבי לחץ,Tone,Direct
 headline,30,שקט במצבי לחץ,Promise,Calm Under Pressure
 headline,30,שקט במצבי לחץ,Hook,Stress / Mental Load
+headline,31,ללמוד לזוז אחרת,Tone,Direct
+headline,31,ללמוד לזוז אחרת,Promise,Body Capability
+headline,31,ללמוד לזוז אחרת,Hook,Strength Without Force
 text,1,Stress Mental Load,Hook,Stress / Mental Load
 text,1,Stress Mental Load,Promise,Calm Under Pressure
 text,1,Stress Mental Load,Structure,Question Hook
@@ -189,3 +198,9 @@ text,23,Everyday Pressure,Structure,Question Hook
 text,24,Stress management without stress,Hook,Stress / Mental Load
 text,24,Stress management without stress,Promise,Calm Under Pressure
 text,24,Stress management without stress,Structure,Checklist
+text,25,Time Out For You,Hook,Care Load / No Time
+text,25,Time Out For You,Promise,Calm Under Pressure
+text,25,Time Out For You,Structure,Checklist
+text,26,Meaningful Movement,Hook,Meaning / Growth
+text,26,Meaningful Movement,Promise,Body Capability
+text,26,Meaningful Movement,Structure,Checklist

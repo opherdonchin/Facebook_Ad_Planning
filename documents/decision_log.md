@@ -1,5 +1,536 @@
 # Weekly Decision Log
 
+# Plan for 2026-W31 (assessing 2026-W30)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W30
+- **Decision / planned week:** 2026-W31
+
+### Ads active in assessed week (2026-W30)
+
+- Men: Mens Ad J, Mens Ad A
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Mens Ad J | 212.51 | 53.13 | 3,665.05 | 39.41 |
+| Mens Ad A | 1.86 | — | 1,261.40 | 48.52 |
+
+- Women: W 2606_1, W 2603_1
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2606_1 | 207.84 | — | 1,018.09 | 63.63 |
+| W 2603_1 | 3.32 | — | 573.14 | 33.71 |
+
+### Ads planned for decision week (2026-W31)
+
+- Men: Mens Ad A, M 2607_1
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Mens Ad A | 1.86 | — | 1,261.40 | 48.52 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+**M 2607_1**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| **Outside_Sunset_MM_Kaitenage_photo_v2** |  |  |  |  |
+| ללמוד לשלוט ברגע | — | — | 2,139.10 | 57.81 |
+| **Time Out For You — Dad 2607 refresh** |  |  |  |  |
+
+- Women: W 2603_1, W 2607_1
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2603_1 | 3.32 | — | 573.14 | 33.71 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+**W 2607_1**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| **Dojo_Instruction_FemalePair_v2** |  |  |  |  |
+| גוף חזק, ראש רגוע | — | — | 1,893.82 | 45.09 |
+| **Meaningful Movement — 2607 refresh** |  |  |  |  |
+
+*Assessed-week metrics are shown for retained ads. The two new variants have no historical ad-level or component-level performance. Headline lifetime values are reconstructed across all ads using each existing headline.*
+
+---
+
+## Revised portfolio decision and implementation
+
+- **Keep:** `Mens Ad A`, `W 2603_1`.
+- **Replace:** `Mens Ad J`, `W 2606_1`.
+- The initially proposed unchanged reuses, `Mens Ad B` and `Womens Ad A`, were **not** used unchanged.
+- Instead, the source ads were rebuilt as named variants:
+  - `M 2607_1`, derived from `Mens Ad B`.
+  - `W 2607_1`, derived from `Womens Ad A`.
+- Both variants retain the source ad's existing headline but use a revised media asset and a revised primary-text record.
+- **Final `2026-W31` portfolio:** Men — `Mens Ad A`, `M 2607_1`; Women — `W 2603_1`, `W 2607_1`.
+
+---
+
+## Source-ad lineage
+
+| New ad | Source ad | Existing headline retained | New media | New text record |
+|---|---|---|---|---|
+| M 2607_1 | Mens Ad B | ללמוד לשלוט ברגע | `Outside_Sunset_MM_Kaitenage_photo_v2`, a restrained visual refresh of `Outside_Sunset_MM_Kaitenage_photo` | `Time Out For You`, variant `Dad 2607 refresh` |
+| W 2607_1 | Womens Ad A | גוף חזק, ראש רגוע | `Dojo_Instruction_FemalePair_v2`, a redesigned orange/navy/cream treatment of `Dojo_Instruction_FemalePair` | `Meaningful Movement`, variant `2607 refresh` |
+
+The original ads and their original media, creative, and text records remain unchanged so that historical performance retains its correct component attribution.
+
+---
+
+## Revised primary texts
+
+### M 2607_1 — `Time Out For You`, variant `Dad 2607 refresh`
+
+✓ חוגים לילדים? יש.  
+✓ פעילויות משפחתיות? יש.  
+ומה איתך?
+
+🥋 אייקידו: פסק זמן אמיתי גם לאבא.
+
+אימונים באווירה טובה ולא תחרותית, בלב באר שבע.  
+מתאים לכל גיל ולכל רמת ניסיון.
+
+השאר פרטים לשיעור ניסיון ללא התחייבות.
+
+**Existing tags retained:** Hook — `Care Load / No Time`; Promise — `Calm Under Pressure`; Structure — `Checklist`; Gendered grammar — `Male`; Target — `Male`.
+
+### W 2607_1 — `Meaningful Movement`, variant `2607 refresh`
+
+מחפשת תחביב שמכניס משמעות, תנועה ורוגע ליומיום?
+
+אייקידו הוא יותר מאימון — זו דרך לפתח חיבור לגוף, לסביבה ולאנשים שמולך.
+
+⚡️ גוף חזק ויציב יותר: כוח, גמישות, שיווי משקל ויציבות  
+⚡️ ביטחון בתנועה: ללמוד ליפול, להתגלגל ולקום  
+⚡️ רוגע במצבי מתח: להתמודד עם קונפליקט בחופשיות וביצירתיות
+
+בדוג'ו שלנו במרכז באר שבע מתאמנים באווירה ידידותית ולא תחרותית. אפשר להתחיל בכל גיל ובכל רמת ניסיון.
+
+השאירי פרטים ובואי לשיעור ניסיון ללא התחייבות.
+
+**Existing tags retained:** Hook — `Meaning / Growth`; Promise — `Body Capability`; Structure — `Checklist`; Gendered grammar — `Female`; Target — `Female`.
+
+---
+
+## Rationale
+
+- The keep and replacement decisions remain unchanged from the original W31 analysis.
+- `Mens Ad B` and `Womens Ad A` supplied established headline-concept lineages, but their original media and copy were deliberately refreshed rather than reused literally.
+- `M 2607_1` makes the people and paired movement more visually prominent while preserving the source image and embedded headline.
+- `W 2607_1` preserves the source line-art technique and embedded headline while giving the creative a stronger orange/navy/cream poster hierarchy.
+- Both revised texts correct errors, simplify the CTA, and make the promised benefits more concrete while preserving the source text's hook, promise, structure, grammar, and audience.
+
+---
+
+## Constraints and interpretability
+
+- **Creative uniqueness within each campaign:** satisfied.
+- **Gender integrity:** satisfied.
+- **Media provenance:** the two new files must be stored as new canonical media records and linked to the source records through descriptions/notes; the historical media records must not be overwritten.
+- **Tag reuse discipline:** satisfied; no new taxonomy values are needed.
+- **New-material count:** the final implementation contains new material in **two** ads, rather than the maximum of one specified by the weekly planning rule.
+- **Controlled variation:** both media and text changed in each new ad. This is an explicit owner-directed implementation change, but it means any future performance difference can be attributed only to the complete ad variant, not separately to the media or the copy.
+- **New-material alternation:** the prior novelty was new media in `W 2606_1`; the final implementation does not follow the usual media/text alternation because both W31 variants contain new media and new text. Record this transparently rather than retroactively treating the variants as unchanged reuses.
+
+---
+
+## Data and implementation notes
+
+- Preserve the partial `2026-W31` spend already recorded on outgoing ads. Do not delete or reassign it.
+- Mark `Mens Ad J` and `W 2606_1` as not intended after the switch, while preserving their existing W31 metrics.
+- Ensure `Mens Ad A`, `M 2607_1`, `W 2603_1`, and `W 2607_1` are the intended W31 portfolio in Grist.
+- Do not edit the original `Time Out For You` (`Dad`) or `Meaningful Movement` records in place. Create new text records with the variants specified above.
+- Do not edit the original media or creative records in place. Create new media and creative records for the two variants.
+
+---
+
+## What to learn from 2026-W31
+
+- Evaluate `M 2607_1` and `W 2607_1` as complete creative variants.
+- Do not infer whether a result was caused by the visual refresh or the revised copy, because both changed together.
+- Preserve source-ad lineage in reporting so the variants can be compared with `Mens Ad B` and `Womens Ad A` without combining their performance histories.
+
+---
+
+## Confidence level
+
+**Moderate.** The source concepts have substantial historical evidence and the edits improve clarity and visual salience, but changing both media and text reduces interpretability and creates two novel ads in the same decision week.
+
+---
+
+End of Plan 2026-W31
+
+---
+
+# Plan for 2026-W30 (assessing 2026-W29)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W29
+* **Decision / planned week:** 2026-W30
+
+### Ads active in assessed week (2026-W29)
+
+* Men: Mens Ad J, Mens Ad A
+
+| Ad name   |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | ----: | -------------: | -----------: |
+| Mens Ad J | 209.18 | 34.86 |       3,430.41 |        38.54 |
+| Mens Ad A |   4.24 |     — |       1,259.54 |        48.44 |
+
+* Women: W 2603_1, W 2606_1
+
+| Ad name  |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| -------- | -----: | ----: | -------------: | -----------: |
+| W 2603_1 |  10.18 |     — |         569.59 |        33.51 |
+| W 2606_1 | 195.05 | 97.53 |         788.63 |        49.29 |
+
+### Ads planned for decision week (2026-W30)
+
+* Men: Mens Ad J, Mens Ad A
+
+#### Reuse:
+
+| Name      |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | ----: | -------------: | -----------: |
+| Mens Ad J | 209.18 | 34.86 |       3,430.41 |        38.54 |
+| Mens Ad A |   4.24 |     — |       1,259.54 |        48.44 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+* Women: W 2603_1, W 2606_1
+
+#### Reuse:
+
+| Name     |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| -------- | -----: | ----: | -------------: | -----------: |
+| W 2603_1 |  10.18 |     — |         569.59 |        33.51 |
+| W 2606_1 | 195.05 | 97.53 |         788.63 |        49.29 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+* No actual portfolio change was made for `2026-W30`.
+* Retrospective assessment: `Mens Ad J` and `W 2603_1` were reasonable keeps; `Mens Ad A` was already showing persistent non-delivery; `W 2606_1` became a watch item after a weak week.
+
+---
+
+## Rationale (concise)
+
+* `Mens Ad J` performed well in `2026-W29`, with 6 leads at 34.86 CPL.
+* `Mens Ad A` again received negligible delivery, so the low-spend rule avoided judging it as a creative failure, but the pattern was becoming operationally stale.
+* `W 2603_1` again received negligible delivery, but its prior run evidence remained strong.
+* `W 2606_1` crossed above the weekly threshold, with 2 leads at 97.53 CPL; however, its lifetime CPL was still below 50 at this point because of the strong launch week.
+
+---
+
+## Data hygiene / learning notes
+
+* This entry was added retrospectively on 2026-07-31 to document an unchanged week.
+
+---
+
+End of Plan 2026-W30
+
+---
+
+# Plan for 2026-W29 (assessing 2026-W28)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W28
+* **Decision / planned week:** 2026-W29
+
+### Ads active in assessed week (2026-W28)
+
+* Men: Mens Ad J, Mens Ad A
+
+| Ad name   |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | ----: | -------------: | -----------: |
+| Mens Ad J | 210.73 |     — |       3,221.23 |        38.81 |
+| Mens Ad A |   1.16 |     — |       1,255.30 |        48.28 |
+
+* Women: W 2603_1, W 2606_1
+
+| Ad name  |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| -------- | -----: | ----: | -------------: | -----------: |
+| W 2603_1 |   8.45 |     — |         559.41 |        32.91 |
+| W 2606_1 | 207.17 | 51.79 |         593.58 |        42.40 |
+
+### Ads planned for decision week (2026-W29)
+
+* Men: Mens Ad J, Mens Ad A
+
+#### Reuse:
+
+| Name      |  Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | --: | -------------: | -----------: |
+| Mens Ad J | 210.73 |   — |       3,221.23 |        38.81 |
+| Mens Ad A |   1.16 |   — |       1,255.30 |        48.28 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+* Women: W 2603_1, W 2606_1
+
+#### Reuse:
+
+| Name     |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| -------- | -----: | ----: | -------------: | -----------: |
+| W 2603_1 |   8.45 |     — |         559.41 |        32.91 |
+| W 2606_1 | 207.17 | 51.79 |         593.58 |        42.40 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+* No actual portfolio change was made for `2026-W29`.
+* Retrospective assessment: the unchanged portfolio was tolerable but weakening; `Mens Ad J` had a no-lead week, while `W 2606_1` narrowly missed the weekly keep threshold.
+
+---
+
+## Rationale (concise)
+
+* `Mens Ad J` spent 210.73 ILS with 0 leads, a meaningful warning after a strong prior week.
+* `Mens Ad A` continued to receive only negligible delivery.
+* `W 2603_1` continued to receive only negligible delivery.
+* `W 2606_1` produced 4 leads at 51.79 CPL, close to the keep threshold and still supported by a strong lifetime result at this point.
+
+---
+
+## Data hygiene / learning notes
+
+* This entry was added retrospectively on 2026-07-31 to document an unchanged week.
+
+---
+
+End of Plan 2026-W29
+
+---
+
+# Plan for 2026-W28 (assessing 2026-W27)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W27
+* **Decision / planned week:** 2026-W28
+
+### Ads active in assessed week (2026-W27)
+
+* Men: Mens Ad J, Mens Ad A
+
+| Ad name   |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | ----: | -------------: | -----------: |
+| Mens Ad J | 206.99 | 25.87 |       3,010.50 |        36.27 |
+| Mens Ad A |   0.55 |     — |       1,254.14 |        48.24 |
+
+* Women: W 2603_1, W 2606_1
+
+| Ad name  |  Spend | CPL | Lifetime spend | Lifetime CPL |
+| -------- | -----: | --: | -------------: | -----------: |
+| W 2603_1 |   3.71 |   — |         550.96 |        32.41 |
+| W 2606_1 | 205.62 |   — |         386.41 |        38.64 |
+
+### Ads planned for decision week (2026-W28)
+
+* Men: Mens Ad J, Mens Ad A
+
+#### Reuse:
+
+| Name      |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | ----: | -------------: | -----------: |
+| Mens Ad J | 206.99 | 25.87 |       3,010.50 |        36.27 |
+| Mens Ad A |   0.55 |     — |       1,254.14 |        48.24 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+* Women: W 2603_1, W 2606_1
+
+#### Reuse:
+
+| Name     |  Spend | CPL | Lifetime spend | Lifetime CPL |
+| -------- | -----: | --: | -------------: | -----------: |
+| W 2603_1 |   3.71 |   — |         550.96 |        32.41 |
+| W 2606_1 | 205.62 |   — |         386.41 |        38.64 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+* No actual portfolio change was made for `2026-W28`.
+* Retrospective assessment: keeping `Mens Ad J` was strongly justified; `W 2606_1` became ambiguous after a zero-lead week following its excellent launch.
+
+---
+
+## Rationale (concise)
+
+* `Mens Ad J` produced 8 leads at 25.87 CPL and clearly remained the men’s anchor.
+* `Mens Ad A` again received negligible spend and no usable read.
+* `W 2603_1` again received negligible spend and no usable read.
+* `W 2606_1` spent 205.62 ILS with 0 leads, a clear warning, but its combined first two weeks still left it at 10 leads and 38.64 lifetime CPL.
+
+---
+
+## Data hygiene / learning notes
+
+* This entry was added retrospectively on 2026-07-31 to document an unchanged week.
+
+---
+
+End of Plan 2026-W28
+
+---
+
+# Plan for 2026-W27 (assessing 2026-W26)
+
+### Weeks
+
+* **Assessed (data) week:** 2026-W26
+* **Decision / planned week:** 2026-W27
+
+### Ads active in assessed week (2026-W26)
+
+* Men: Mens Ad J, Mens Ad A
+
+| Ad name   |  Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | --: | -------------: | -----------: |
+| Mens Ad J | 209.90 |   — |       2,803.51 |        37.38 |
+| Mens Ad A |   2.08 |   — |       1,253.59 |        48.21 |
+
+* Women: W 2603_1, W 2606_1
+
+| Ad name  |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| -------- | -----: | ----: | -------------: | -----------: |
+| W 2603_1 |   5.36 |     — |         547.25 |        32.19 |
+| W 2606_1 | 180.79 | 18.08 |         180.79 |        18.08 |
+
+### Ads planned for decision week (2026-W27)
+
+* Men: Mens Ad J, Mens Ad A
+
+#### Reuse:
+
+| Name      |  Spend | CPL | Lifetime spend | Lifetime CPL |
+| --------- | -----: | --: | -------------: | -----------: |
+| Mens Ad J | 209.90 |   — |       2,803.51 |        37.38 |
+| Mens Ad A |   2.08 |   — |       1,253.59 |        48.21 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+* Women: W 2603_1, W 2606_1
+
+#### Reuse:
+
+| Name     |  Spend |   CPL | Lifetime spend | Lifetime CPL |
+| -------- | -----: | ----: | -------------: | -----------: |
+| W 2603_1 |   5.36 |     — |         547.25 |        32.19 |
+| W 2606_1 | 180.79 | 18.08 |         180.79 |        18.08 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+* No actual portfolio change was made for `2026-W27`.
+* Retrospective assessment: `W 2606_1` was an excellent launch; `Mens Ad J` had a concerning zero-lead week but still had strong lifetime evidence; `Mens Ad A` and `W 2603_1` had negligible delivery.
+
+---
+
+## Rationale (concise)
+
+* `W 2606_1` produced 10 leads at 18.08 CPL, validating the new women’s media direction at launch.
+* `Mens Ad J` spent 209.90 ILS with 0 leads, which was a warning but not enough by itself to override its lifetime strength.
+* `Mens Ad A` and `W 2603_1` did not receive meaningful delivery and therefore did not provide a clean performance read.
+* The actual portfolio remained unchanged, so this entry records the assessment rather than a contemporaneous change.
+
+---
+
+## Data hygiene / learning notes
+
+* This entry was added retrospectively on 2026-07-31 to document an unchanged week.
+* `Womens Ad P` had 14.80 ILS carryover spend in `2026-W26` but was not part of the intended portfolio.
+
+---
+
+End of Plan 2026-W27
+
+---
+
 # Plan for 2026-W26 (assessing 2026-W25)
 
 ### Weeks
