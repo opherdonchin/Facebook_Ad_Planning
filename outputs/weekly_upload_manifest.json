@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-18T22:00:39+00:00",
+  "generated_at_utc": "2026-08-18T22:11:03+00:00",
   "purpose": "Weekly AI planning upload bundles for Facebook ad planning.",
   "upload_instruction": "Upload all zip files in one batch before analysis.",
   "bundles": [
@@ -88,8 +88,8 @@
         {
           "source": "documents/decision_log.md",
           "archive_path": "context/documents/decision_log.md",
-          "size_bytes": 115592,
-          "sha256": "9e7406dba2ac581c2111b6aa177085111c6ca52ec2c51b02dfa93f68ccd91076"
+          "size_bytes": 116828,
+          "sha256": "4729b56e4662a83d52ac3791038c685748315cd6ec431b48171fb223f608996b"
         },
         {
           "source": "documents/data_schema.md",

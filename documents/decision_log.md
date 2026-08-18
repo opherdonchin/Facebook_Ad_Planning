@@ -25,13 +25,13 @@
 
 ### Ads planned for decision week (2026-W34)
 
-- Men: Mens Ad A, Mens Ad B
+- Men: M 2607_1, Mens Ad B
 
 #### Reuse:
 
 | Name | Spend | CPL | Lifetime spend | Lifetime CPL |
 |---|---:|---:|---:|---:|
-| Mens Ad A | 33.00 | - | 1,302.88 | 50.11 |
+| M 2607_1 | 141.67 | 70.84 | 520.58 | 43.38 |
 | Mens Ad B | - | - | 1,401.33 | 50.05 |
 
 #### Reshuffle:
@@ -63,21 +63,27 @@ None.
 
 ## Portfolio decision
 
-Keep `Mens Ad A` under the current-run-spend rule and `W 2603_1` under the current-run-CPL rule. Replace `M 2607_1` and `W 2607_1` with cooled full ads `Mens Ad B` and `Womens Ad A`.
+Keep `M 2607_1` despite its weak W33 because the three-week current run remains usable at 520.58 ILS, 12 leads, and 43.38 CPL. Do not keep `Mens Ad A`: its latest/current stretch is mostly non-delivery, with 53.18 ILS and 0 leads across W24-W33, so the low-spend rule is not a strong strategic reason to keep showing it.
+
+Replace `Mens Ad A` with cooled full ad `Mens Ad B`. Replace `W 2607_1` with cooled full ad `Womens Ad A`. Keep `W 2603_1` as the women's anchor because its current-run CPL remains strong at 26.35 despite low recent delivery.
 
 ## Performance read
 
 The intended W33 portfolio produced 2 leads from 348.91 ILS, for a blended CPL of 174.46. This is a clear deterioration from W32, which produced 6 leads from 430.40 ILS at 71.73 CPL.
 
-`M 2607_1` may still be noisy at the weekly level, but it misses the formal keep gates: W33 CPL is 70.84, current-run CPL is 43.38 rather than under 30, and current-run spend is well above 80 ILS. `W 2607_1` has the clearest negative read, with 357.78 ILS and 0 leads across W32-W33 after its strong W31 launch.
+`M 2607_1` is not a W33 winner, but its complete W31-W33 run still has acceptable evidence. `Mens Ad A` should not be treated as a real current winner: it has repeatedly failed to receive meaningful delivery. `W 2607_1` has the clearest negative read, with 357.78 ILS and 0 leads across W32-W33 after its strong W31 launch.
+
+## Implementation note
+
+The intended Facebook switches for W34 are: keep `M 2607_1` and `W 2603_1` active; activate `Mens Ad B` and `Womens Ad A`; pause `Mens Ad A` and `W 2607_1`.
 
 ## Constraints and learning notes
 
-No new material is introduced. Both replacements exceed the six-week cooling requirement. Media, headline, and text are unique within each campaign. The W31 variants should be treated as complete-ad experiments because both their media and text changed together, so their results should not be attributed separately to copy or image.
+No new material is introduced. Both replacement ads exceed the six-week cooling requirement. Media, headline, and text are unique within each campaign. The W31 variants should be treated as complete-ad experiments because both their media and text changed together, so their results should not be attributed separately to copy or image.
 
 ## Confidence level
 
-Moderate overall: high for replacing `W 2607_1` and reusing `Womens Ad A`; moderate for the male replacement because `Mens Ad B` is the best eligible cooled option but has borderline whole-ad lifetime CPL.
+Moderate overall: high for replacing `W 2607_1` and reusing `Womens Ad A`; moderate for keeping `M 2607_1` because the latest week weakened; moderate for reusing `Mens Ad B` because it started its last run well but then had one expensive zero-lead week.
 
 ---
 
