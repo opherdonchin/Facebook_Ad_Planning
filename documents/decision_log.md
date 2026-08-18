@@ -1,5 +1,90 @@
 # Weekly Decision Log
 
+# Plan for 2026-W34 (assessing 2026-W33)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W33
+- **Decision / planned week:** 2026-W34
+
+### Ads active in assessed week (2026-W33)
+
+- Men: M 2607_1, Mens Ad A
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| M 2607_1 | 141.67 | 70.84 | 520.58 | 43.38 |
+| Mens Ad A | 33.00 | - | 1,302.88 | 50.11 |
+
+- Women: W 2607_1, W 2603_1
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2607_1 | 155.86 | - | 539.73 | 134.93 |
+| W 2603_1 | 18.38 | - | 604.78 | 35.58 |
+
+### Ads planned for decision week (2026-W34)
+
+- Men: Mens Ad A, Mens Ad B
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Mens Ad A | 33.00 | - | 1,302.88 | 50.11 |
+| Mens Ad B | - | - | 1,401.33 | 50.05 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+- Women: W 2603_1, Womens Ad A
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2603_1 | 18.38 | - | 604.78 | 35.58 |
+| Womens Ad A | - | - | 1,480.92 | 41.14 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+Keep `Mens Ad A` under the current-run-spend rule and `W 2603_1` under the current-run-CPL rule. Replace `M 2607_1` and `W 2607_1` with cooled full ads `Mens Ad B` and `Womens Ad A`.
+
+## Performance read
+
+The intended W33 portfolio produced 2 leads from 348.91 ILS, for a blended CPL of 174.46. This is a clear deterioration from W32, which produced 6 leads from 430.40 ILS at 71.73 CPL.
+
+`M 2607_1` may still be noisy at the weekly level, but it misses the formal keep gates: W33 CPL is 70.84, current-run CPL is 43.38 rather than under 30, and current-run spend is well above 80 ILS. `W 2607_1` has the clearest negative read, with 357.78 ILS and 0 leads across W32-W33 after its strong W31 launch.
+
+## Constraints and learning notes
+
+No new material is introduced. Both replacements exceed the six-week cooling requirement. Media, headline, and text are unique within each campaign. The W31 variants should be treated as complete-ad experiments because both their media and text changed together, so their results should not be attributed separately to copy or image.
+
+## Confidence level
+
+Moderate overall: high for replacing `W 2607_1` and reusing `Womens Ad A`; moderate for the male replacement because `Mens Ad B` is the best eligible cooled option but has borderline whole-ad lifetime CPL.
+
+---
+
+End of Plan 2026-W34
+
+---
+
 # Plan for 2026-W31 (assessing 2026-W30)
 
 ### Weeks
