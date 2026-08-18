@@ -25,13 +25,13 @@
 
 ### Ads planned for decision week (2026-W34)
 
-- Men: M 2607_1, Mens Ad B
+- Men: Mens Ad J, Mens Ad B
 
 #### Reuse:
 
 | Name | Spend | CPL | Lifetime spend | Lifetime CPL |
 |---|---:|---:|---:|---:|
-| M 2607_1 | 141.67 | 70.84 | 520.58 | 43.38 |
+| Mens Ad J | - | - | 3,666.04 | 39.42 |
 | Mens Ad B | - | - | 1,401.33 | 50.05 |
 
 #### Reshuffle:
@@ -63,27 +63,27 @@ None.
 
 ## Portfolio decision
 
-Keep `M 2607_1` despite its weak W33 because the three-week current run remains usable at 520.58 ILS, 12 leads, and 43.38 CPL. Do not keep `Mens Ad A`: its latest/current stretch is mostly non-delivery, with 53.18 ILS and 0 leads across W24-W33, so the low-spend rule is not a strong strategic reason to keep showing it.
+End the run for `M 2607_1`. Although the three-week exported run average remains 520.58 ILS, 12 leads, and 43.38 CPL, the latest Ads Manager read is poor enough to override that smoothing; a 1-lead / roughly 186 ILS current read should be treated as a definite end-of-run signal. Do not keep `Mens Ad A`: its latest/current stretch is mostly non-delivery, with 53.18 ILS and 0 leads across W24-W33, so the low-spend rule is not a strong strategic reason to keep showing it.
 
-Replace `Mens Ad A` with cooled full ad `Mens Ad B`. Replace `W 2607_1` with cooled full ad `Womens Ad A`. Keep `W 2603_1` as the women's anchor because its current-run CPL remains strong at 26.35 despite low recent delivery.
+Replace the men's portfolio with `Mens Ad J` and cooled full ad `Mens Ad B`. This is an explicit exception to the six-week cooling preference for `Mens Ad J`, justified by the lack of better male inventory: `Mens Ad J` remains the strongest male ad historically and had strong recent weeks in W27 and W29 before weakening in W30. Replace `W 2607_1` with cooled full ad `Womens Ad A`. Keep `W 2603_1` as the women's anchor because its current-run CPL remains strong at 26.35 despite low recent delivery.
 
 ## Performance read
 
 The intended W33 portfolio produced 2 leads from 348.91 ILS, for a blended CPL of 174.46. This is a clear deterioration from W32, which produced 6 leads from 430.40 ILS at 71.73 CPL.
 
-`M 2607_1` is not a W33 winner, but its complete W31-W33 run still has acceptable evidence. `Mens Ad A` should not be treated as a real current winner: it has repeatedly failed to receive meaningful delivery. `W 2607_1` has the clearest negative read, with 357.78 ILS and 0 leads across W32-W33 after its strong W31 launch.
+`M 2607_1` should not be protected by its earlier W31-W32 performance once the latest read has deteriorated this sharply. `Mens Ad A` should not be treated as a real current winner: it has repeatedly failed to receive meaningful delivery. `W 2607_1` has the clearest negative read among the women's ads, with 357.78 ILS and 0 leads across W32-W33 after its strong W31 launch.
 
 ## Implementation note
 
-The intended Facebook switches for W34 are: keep `M 2607_1` and `W 2603_1` active; activate `Mens Ad B` and `Womens Ad A`; pause `Mens Ad A` and `W 2607_1`.
+The intended Facebook switches for W34 are: keep `W 2603_1` active; activate `Mens Ad J`, `Mens Ad B`, and `Womens Ad A`; pause `M 2607_1`, `Mens Ad A`, and `W 2607_1`.
 
 ## Constraints and learning notes
 
-No new material is introduced. Both replacement ads exceed the six-week cooling requirement. Media, headline, and text are unique within each campaign. The W31 variants should be treated as complete-ad experiments because both their media and text changed together, so their results should not be attributed separately to copy or image.
+No new material is introduced. `Mens Ad B` and `Womens Ad A` exceed the six-week cooling requirement. `Mens Ad J` does not, and this is recorded as a deliberate exception because the alternatives are weaker: `Mens Ad A` is suppressed, `M 2607_1` has reached end-of-run, and the remaining cooled male ads have substantially weaker evidence. Media, headline, and text are unique within each campaign. The W31 variants should be treated as complete-ad experiments because both their media and text changed together, so their results should not be attributed separately to copy or image.
 
 ## Confidence level
 
-Moderate overall: high for replacing `W 2607_1` and reusing `Womens Ad A`; moderate for keeping `M 2607_1` because the latest week weakened; moderate for reusing `Mens Ad B` because it started its last run well but then had one expensive zero-lead week.
+Moderate overall: high for replacing `W 2607_1` and reusing `Womens Ad A`; moderate for ending `M 2607_1`; moderate-low for the men's portfolio because `Mens Ad J` is the best available performer but violates the usual cooling preference, while `Mens Ad B` started its last run well but then had one expensive zero-lead week.
 
 ---
 
