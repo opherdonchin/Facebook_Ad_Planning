@@ -91,6 +91,168 @@ End of Plan 2026-W34
 
 ---
 
+# Plan for 2026-W33 (assessing 2026-W32)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W32
+- **Decision / planned week:** 2026-W33
+
+### Ads active in assessed week (2026-W32)
+
+- Men: M 2607_1, Mens Ad A
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| M 2607_1 | 211.23 | 35.21 | 520.58 | 43.38 |
+| Mens Ad A | 4.48 | - | 1,302.88 | 50.11 |
+
+- Women: W 2607_1, W 2603_1
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2607_1 | 201.92 | - | 539.73 | 134.93 |
+| W 2603_1 | 12.77 | - | 604.78 | 35.58 |
+
+### Ads planned for decision week (2026-W33)
+
+- Men: M 2607_1, Mens Ad A
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| M 2607_1 | 211.23 | 35.21 | 520.58 | 43.38 |
+| Mens Ad A | 4.48 | - | 1,302.88 | 50.11 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+- Women: W 2603_1, Womens Ad A
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2603_1 | 12.77 | - | 604.78 | 35.58 |
+| Womens Ad A | - | - | 1,480.92 | 41.14 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+Keep `M 2607_1`, `Mens Ad A`, and `W 2603_1` by the documented keep rules. Replace `W 2607_1` with `Womens Ad A` under the zero-lead-spend failure mode: `W 2607_1` spent 201.92 ILS in W32 with no leads, and its W31-W32 current run no longer justified continuing the variant over a cooled, historically strong full ad.
+
+## Retrospective implementation note
+
+This W33 decision was not processed at the correct weekly boundary. The actual W33 Facebook run remained `M 2607_1`, `Mens Ad A`, `W 2603_1`, and `W 2607_1`. Grist `Weekly_runs.Intended_run` for W33 should remain faithful to the actual ads that ran, rather than being rewritten to this missed W33 decision.
+
+## Data hygiene / learning notes
+
+`W 2607_1` had an excellent W31 launch and then a clean W32 failure at meaningful spend. The correct weekly process would have flagged it after W32 rather than waiting until W33 also failed. This matters because the W33 data is evidence about a missed continuation, not evidence about a deliberate W33 keep.
+
+## Confidence level
+
+High for the women’s replacement signal; moderate for leaving the men’s side unchanged because `Mens Ad A` continued to show delivery suppression but still had low cumulative spend.
+
+---
+
+End of Plan 2026-W33
+
+---
+
+# Plan for 2026-W32 (assessing 2026-W31)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W31
+- **Decision / planned week:** 2026-W32
+
+### Ads active in assessed week (2026-W31)
+
+- Men: M 2607_1, Mens Ad A
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| M 2607_1 | 167.68 | 41.92 | 520.58 | 43.38 |
+| Mens Ad A | 4.00 | - | 1,302.88 | 50.11 |
+
+- Women: W 2607_1, W 2603_1
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2607_1 | 181.95 | 45.49 | 539.73 | 134.93 |
+| W 2603_1 | 0.72 | - | 604.78 | 35.58 |
+
+### Ads planned for decision week (2026-W32)
+
+- Men: M 2607_1, Mens Ad A
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| M 2607_1 | 167.68 | 41.92 | 520.58 | 43.38 |
+| Mens Ad A | 4.00 | - | 1,302.88 | 50.11 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+- Women: W 2607_1, W 2603_1
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2607_1 | 181.95 | 45.49 | 539.73 | 134.93 |
+| W 2603_1 | 0.72 | - | 604.78 | 35.58 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+No portfolio change for W32. `M 2607_1` and `W 2607_1` both passed the weekly keep rule in W31, with CPL under 50. `Mens Ad A` and `W 2603_1` had extremely low delivery, so the low-spend keep rule applied.
+
+## Data hygiene / learning notes
+
+W31 was the launch week for both 2607 variants. Because W31 changed both media and text in each variant, the correct interpretation is complete-ad performance, not separable media or copy learning.
+
+## Confidence level
+
+High. The W31 data justified continuing the same portfolio into W32.
+
+---
+
+End of Plan 2026-W32
+
+---
+
 # Plan for 2026-W31 (assessing 2026-W30)
 
 ### Weeks
