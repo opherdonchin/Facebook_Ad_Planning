@@ -36,11 +36,12 @@ If any required zip or any required file inside a zip is missing or unreadable, 
 1. `context/documents/decision_log.md`
 2. `context/documents/data_schema.md`
 3. `context/documents/decision_log_format.md`
-4. `context/documents/PROJECT_GUIDE.md`
-5. `context/documents/tag_taxonomy.md`
-6. `context/documents/decision_heuristics.md`
-7. `context/documents/weekly_prompt.md`
-8. `manifest/weekly_upload_manifest.json`
+4. `context/documents/decision_metrics.md`
+5. `context/documents/PROJECT_GUIDE.md`
+6. `context/documents/tag_taxonomy.md`
+7. `context/documents/decision_heuristics.md`
+8. `context/documents/weekly_prompt.md`
+9. `manifest/weekly_upload_manifest.json`
 
 Do not perform analysis or draft outputs until all three bundles are fully opened, all required files are read, and the manifest has been checked against the uploaded contents.
 
@@ -50,10 +51,11 @@ The following project files must be available in `weekly_upload_context.zip` and
 
 1. `documents/data_schema.md`
 2. `documents/decision_log_format.md`
-3. `documents/PROJECT_GUIDE.md`
-4. `documents/tag_taxonomy.md`
-5. `documents/decision_heuristics.md`
-6. `documents/decision_log.md`
+3. `documents/decision_metrics.md`
+4. `documents/PROJECT_GUIDE.md`
+5. `documents/tag_taxonomy.md`
+6. `documents/decision_heuristics.md`
+7. `documents/decision_log.md`
 
 If any of these files are missing or unreadable, **stop processing, notify the user, and wait for instructions**.
 
@@ -64,6 +66,8 @@ Agents must consult `data_schema.md` to understand:
 - the purpose of each file
 - table grain and column semantics
 - which file is the canonical source for each type of information
+
+Agents must consult `decision_metrics.md` to understand CPL, current-run spend, lifetime CPL, and low-delivery flags.
 
 The required structure and formatting rules for decision-log entries are defined in `decision_log_format.md`.
 
@@ -114,12 +118,13 @@ If anything is missing, do not continue to analysis.
    
    * In a given week, the **same media, headline, or primary text may not appear in more than one ad of a campaign**
 
-5. **New‑material constraint**
+5. **Replacement slot structure**
    
-   * **At most one ad per week may contain new material** (new headline, new text, or new media).
-   * Up to **two additional ads** may:
-     * shuffle existing materials, or
-     * reuse a previously run ad that is not currently active.
+   * The portfolio has two men's ad slots and two women's ad slots.
+   * Replacement decisions are made separately for each gender.
+   * Each gender can have 0, 1, or 2 replacement slots in the planned week.
+   * Complete new ads are allowed when the slot rules call for them.
+   * For every complete-new-ad recommendation, also provide one reshuffle fallback for that same gender.
 
 6. **Media provenance requirement**
    
@@ -173,11 +178,11 @@ If anything is missing, do not continue to analysis.
       
       * data freshness (latest completed week is unambiguous)
       * source-data preparation status (latest Leads/Sales updates and intended-run flags are already reflected in exports)
-      * intentional-run identification (especially if >4 active ads)
+      * intentional-run identification when more than four ads show activity
       * ability to inspect actual media files from `attachments.tar`
       * ad-to-component mapping availability (prefer `ad_components.csv`; otherwise confirm it can be reconstructed reliably from `performance_data.json`)
       * component/campaign integrity for planned ads (no missing components, no cross-campaign gender mismatch)
-      * decision-log clarity about the most recent new-material type (text vs media) when the alternation rule is applied.
+      * complete-new-ad history by gender for the assessed week and the completed week immediately before the assessed week.
 
 ---
 
@@ -250,85 +255,80 @@ Insights here may inform which winners to exploit or which probes to run, but mu
 
 ## Make keep decisions
 
-* Keep ads with **weekly CPL < 50**
+Evaluate each active ad independently. Keep means run the ad in the decision week.
 
-* If an ad has no leads or if its CPL ≥ 50:
-  
-  * Check current run CPL and current run spend
-    * Keep ads with current run CPL < 30
-    * Keep ads with current run spend < 80
-
-* Always keep **at least one ad**
-  
-  * If no ads meet keep criteria, make a judgement call: which is the ad most likely to succeed next week?
+1. If the ad spent more than 20 ILS in the assessed week and CPL was under 50, keep it.
+2. If the ad spent more than 20 ILS in the assessed week, CPL was 50 or higher, and total spend in the current run is under 60 ILS, keep it.
+3. If the ad spent more than 20 ILS in the assessed week, CPL was 50 or higher, and total spend in the current run is 60 ILS or higher, replace it.
+4. If the ad spent more than 20 ILS in the assessed week, produced no leads, and total spend in the current run is under 60 ILS, keep it.
+5. If the ad spent more than 20 ILS in the assessed week, produced no leads, and total spend in the current run is 60 ILS or higher, replace it.
+6. If the ad spent 20 ILS or less in the assessed week and total spend in the current run is under 60 ILS, keep it.
+7. If the ad spent 20 ILS or less in the assessed week and total spend in the current run is 60 ILS or higher, replace it.
 
 ---
 
 ## Make change decisions
 
-* All change decisions must be based on this strict priority order:
-  1. Exploit historical winners:
-     * Reuse ads, headlines or texts with strong historical evidence (low CPL at meaningful spend).
-       * This is the default and preferred action
-  2. Probe uncertainty
-     * Prioritize components with low total spend and plausible fit that have not yet received sufficient delivery to rule out success
-  3. Stabilize and interpret
-     * Select components for interpretability and variance control
-* Every non‑kept ad must be replaced
-* Base change decisions on lifetime information only
-  * Review tables of lifetime performance for ads and components and tags
-  * Review summary of current understanding
-* Apply the new‑material constraint strictly: maximum of one ad with new content.
-  * If there is new material, check decision log
-    * If last new material was text, use new media
-    * If last new material was media, use new text
-* Each change must be to one of the following (described in detail below):
-  * Previously used ad
-  * Reshuffled content
-  * New text
-  * New media
-* Never allow any component to appear in more than one ad in a given week
+Every non-kept ad creates one replacement slot in its gender. Fill men's replacement slots only with men's ads or men's-compatible components. Fill women's replacement slots only with women's ads or women's-compatible components.
+
+Before filling replacement slots, make a reuse candidate list separately for men and women.
+
+1. Include inactive same-gender ads that have produced at least one lead before.
+2. Mark a candidate as strong if its most recent prior-run CPL was under 60 or its lifetime CPL was under 50.
+3. Mark a candidate as weak if it has produced at least one lead before and is not strong.
+4. Sort strong candidates and weak candidates separately in this order:
+   1. Lowest CPL across the ad's most recent prior run. Ads with no calculable most-recent-run CPL sort after ads with a calculable CPL.
+   2. Longest pause since the ad last ran.
+   3. Highest lifetime leads.
+   4. Lowest lifetime CPL.
+
+Fill each gender's replacement slots as follows:
+
+| Replacement slots for that gender | Slot rule |
+|---:|---|
+| 0 | Make no replacement for that gender. |
+| 1 | If no complete new ad launched for that gender in the assessed week or the completed week immediately before it, use a complete new ad. Otherwise use the top strong reuse candidate. If there is no strong reuse candidate, use a complete new ad. |
+| 2 | If no complete new ad launched for that gender in the assessed week or the completed week immediately before it, use one complete new ad and one reuse ad. Otherwise use two strong reuse ads if two are available. If fewer than two strong reuse ads are available, use one reuse ad and one complete new ad. If no reuse candidate exists, use two complete new ads. |
+
+When a slot rule says to use one reuse ad, use the top strong reuse candidate. If there is no strong reuse candidate, use the top weak reuse candidate.
+
+When a slot rule says to use two reuse ads, use the top two strong reuse candidates.
+
+When a complete new ad is recommended, design the media, headline, and text together as one ad. Start from the media concept, then write the headline and primary text to match it.
+
+For every complete-new-ad recommendation, also provide one reshuffle fallback. The fallback is an alternative for the user.
+
+Use each media asset, headline, and primary text at most once in each campaign in the planned week.
 
 ### Previously used ad
 
-* Only if the ad performed reasonably in the past
-* And has not been used in at least 6 weeks
+* Use the selected ad unchanged.
+* Confirm that the ad does not duplicate media, headline, or primary text already planned for the same campaign in the planned week.
 
 ### Reshuffled content
 
+Use reshuffled content only as the fallback alternative paired with a complete-new-ad recommendation.
+
 * Choose one media, one headline, and one text that are likely to work together
-* Do not use a combination that has been used before
-  * Do not use any component that is used in another ad this week
+* Use a combination that has not been used before
+  * Use components that are not used in another ad in the same campaign this week
 * When combining components, there needs to be a balance between compatibility between components and selection of individual components
-  * Select a single component with good exploitation if possible
+  * Select the component with the strongest prior evidence
     * Otherwise high uncertainty
     * Otherwise good interpretability
   * Match it with other components that are judged good fits (a requirement)
     * According to the priority: exploitation, uncertainty, interpretatability  
 
-### New text
+### Complete new ad
 
-* Choose an existing media asset according to the priorities
-  * Exploitation followed by uncertainty followed by interpretability
-  * Never use media that is being used in another ad this week
-* Create both new text and new headline to match it
-* Ensure image–text alignment
+* Create new media, a new headline, and new primary text as a single coherent ad.
+* Start with the media concept.
+* Write the headline and primary text to match the media.
+* Ensure image-text alignment.
 * Specify hook, promise, tone, structure, and grammar using tags.
   * Review both tag taxonomy and tag list tables and actual tag use in performance_data.json before choosing.
-  * Use existing tags if appropriate.
-  * Expand tags list where it is appropriate but make sure to flag this and explain.
-
-### New media
-
-* Choose existing headline + text
-  * Can be an existing combination or a new combination
-    * Maximize exploitation followed by uncertainty followed by interpretability
-      * Either of a single component or a previously used combination
-    * Never use any component that is being used in another ad this week
-* Suggest two existing media to use as inspiration
-  * Can be media used with these headline and text or different existing media
-* Explain how new media might differ from the inspiration
-* Suggest tags for the new media to help convey the idea
+  * Use existing tags when they fit.
+  * Flag any proposed new tag explicitly.
 
 ---
 
@@ -352,8 +352,9 @@ All outputs must be placed in a canvas and formatted in Markdown.
 * Tables with one line per item
 * Tables:
   * Ads to keep
-  * Ads generated from existing materials
-  * Ads generated with new material
+  * Reuse ads
+  * Complete new ads
+  * Reshuffle fallbacks for complete new ads
 * Make sure to specify tags and brief justificaiton
   * Although everything must fit on one reasonably sized line
 * For new media specify

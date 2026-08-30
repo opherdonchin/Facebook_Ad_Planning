@@ -16,8 +16,8 @@ This document defines all performance metrics used in the weekly decision cycle.
 
 ### This run
 
-* **This run** refers to the most recent *contiguous* sequence of weeks in which an ad had activity.
-* A run ends when an end is not selected as one of the 4 for the subsequent week.
+* **This run** refers to the most recent *contiguous* sequence of weeks in which an ad was intentionally active.
+* A run ends when the ad is not selected as one of the four planned ads for the subsequent week.
 * Metrics for “this run” are aggregated across all weeks in that contiguous sequence.
 
 ---
@@ -118,3 +118,4 @@ All outcome metrics are derived from downstream data linked to leads.
   * Meta delivery drops sharply without a corresponding decision to pause
 
 These flags are informational but should influence interpretation.
+In the weekly decision rules, low delivery after at least 60 ILS of total current-run spend is treated as a replacement signal.

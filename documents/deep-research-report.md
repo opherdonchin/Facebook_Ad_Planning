@@ -1,3 +1,9 @@
+# Historical report note
+
+This report is a historical analysis created under an earlier version of the weekly decision process. It is not a current rule document. For current weekly planning rules, use `documents/weekly_prompt.md`, `documents/decision_heuristics.md`, `documents/decision_metrics.md`, and `documents/decision_log_format.md`.
+
+---
+
 # Weekly Facebook ads processing report
 
 ## Executive summary
@@ -321,4 +327,3 @@ Image–text semantic checks (planned set):
 | M | Mens Ad O | Keep | Shihonage_MF_Dojo_Photo [A] | ללמוד לשלוט ברגע | Everyday Pressure | Under-tested (run spend < 80) |
 | W | W 2026‑W06 2 | Keep | Outside_Sunset_MM_Kaitenage_photo [B] | ללמוד לשלוט ברגע | Time Out For You | Weekly CPL < 50 (early-positive, low sample) |
 | W | Womens Ad A | Replace | Dojo_Instruction_FemalePair [∅] | גוף חזק, ראש רגוע | Meaningful Movement | Exploit reliable historical winner; avoids women-campaign component overlap |
-

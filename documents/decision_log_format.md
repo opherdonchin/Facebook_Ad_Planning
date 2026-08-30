@@ -54,7 +54,7 @@ End of Plan for YYYY-WXX
 
 ## Required heading structure
 
-Every decision-log entry must begin with the following structure.
+Every weekly ad decision entry must begin with the following structure.
 
 ### Entry title
 
@@ -85,15 +85,15 @@ These values must match the title exactly.
 ### Ads active in assessed week (YYYY-WYY)
 - Men: 
 
-| Ad name | Spend | CPL | Lifetime spend | Lifteime CPL |
----------------------------------------------------------
-|          |       |     |              |               |
+| Ad name | Spend | CPL | Current-run spend | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|---:|
+|          |       |     |                   |                |              |
 
 - Women: <comma-separated ad names>
 
-| Ad name | Spend | CPL | Lifetime spend | Lifteime CPL |
----------------------------------------------------------
-|          |       |     |              |               |
+| Ad name | Spend | CPL | Current-run spend | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|---:|
+|          |       |     |                   |                |              |
 ```
 
 This section records what **actually ran** during the analyzed week, regardless of when the decision was made.
@@ -106,35 +106,41 @@ This section records what **actually ran** during the analyzed week, regardless 
 ### Ads planned for decision week (YYYY-WXX)
 - Men: 
 
-#### Reuse:
+#### Kept ads
 
-| Name      | Spend | CPL | Lifetime spend | Lifetime CPL |
------------------------------------------------------------
-| {Ad name} |       |     |                |              |
+| Name | Reason |
+|---|---|
+| {Ad name} | {Keep rule applied} |
 
-#### Reshuffle:
+#### Reuse ads
 
-[One table for each reshffuled ad]
+| Name | Most recent prior-run CPL | Lifetime CPL | Strength | Reason |
+|---|---:|---:|---|---|
+| {Ad name} |       |              | Strong/Weak |        |
+
+#### Complete new ads
 
 **{ New ad name }**
 
+| Component | New / existing | Notes |
+|---|---|---|
+| Media | New | |
+| Headline | New | |
+| Text | New | |
+
+#### Reshuffle fallbacks
+
+[One table for each reshuffled fallback ad]
+
+**{ Fallback ad name }**
+
 | Component       | Spend | CPL | Lifetime spend | Lifetime CPL |
------------------------------------------------------------
+|---|---:|---:|---:|---:|
 | {Media name}    |       |     |                |              |
 | {Headline name} |       |     |                |              |
 | {Text name}     |       |     |                |              |
 
-#### New content
-
-**{ New ad name }**
-
-| Component       | Spend | CPL | Lifetime spend | Lifetime CPL |
------------------------------------------------------------
-| {Media name}    |       |     |                |              |
-| {Headline name} |       |     |                |              |
-| {Text name}     |       |     |                |              |
-
-**Put new content in bold face and leave Spend / CPL blank**
+Each complete new ad must have one reshuffle fallback listed for the same gender.
 
 - Women: <comma-separated ad names>
 
@@ -151,9 +157,29 @@ Any of these may appear after the required heading, in any order:
 - Portfolio decision
 - Rationale (concise)
 - Constraints check
+- Reuse candidate list by gender
 - Data hygiene / learning notes
 - What would change this decision next week
 - Confidence level
+
+---
+
+## Process-rule notes
+
+Decision-log entries that update the process rather than plan a weekly portfolio may use this heading:
+
+```markdown
+# Process rule update - YYYY-MM-DD
+```
+
+Use process-rule notes only for changes to the decision process itself. Include:
+
+- reason for the rule change
+- evidence reviewed
+- rule changes adopted
+- when the new rules take effect
+
+Historical weekly decision entries should not be rewritten when the process changes.
 
 ---
 

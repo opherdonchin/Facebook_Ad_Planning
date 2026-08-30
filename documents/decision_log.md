@@ -1,5 +1,71 @@
 # Weekly Decision Log
 
+# Process rule update - 2026-08-31
+
+This entry records a process change, not a weekly ad plan. The new rules apply to weekly decisions made after this entry. Older entries remain historical records of the process and judgment used at the time.
+
+## Reason for the change
+
+The prior process asked whether decisions followed the documented rules. The revised process asks whether the rules produce the desired outcomes: low short-term CPL, useful lead quality when observable, and enough new week-one candidates to keep the weekly cycle productive.
+
+The review treated unimplemented recommendations, unchanged live ads, and unlogged continuations as outcome data rather than failures. If a recommendation was not implemented, the resulting live ad performance is useful control data for evaluating whether the recommendation would likely have helped.
+
+## Evidence reviewed
+
+The review compared the standalone `documents/decision_log.md` with `outputs/decision_log_evaluation.zip`, reconstructed historical decisions and actual runs, and examined post-decision outcomes, replacement timing, low-spend cases, full-ad reuse, component reshuffles, and complete-new-ad behavior.
+
+Key findings:
+
+- Explicit full-ad reuse performed well historically, but broad unscreened reuse was weaker.
+- Complete new ads produced useful short-term winners and should remain a regular part of the process.
+- Component reshuffles are useful as fallbacks, but the evidence does not support treating them as equal to strong full-ad reuse or complete new ads.
+- Low delivery after an ad has had at least 60 ILS of current-run spend is a practical replacement signal.
+- A forced rule to preserve at least one ad is unnecessary. Ads that are performing or still under-tested are already preserved by the keep rules.
+- Gendered campaign slots matter. Replacement choices must be made separately for the two men's slots and the two women's slots.
+
+## Rule changes adopted
+
+Keep decisions now use these rules for each active ad:
+
+1. If the ad spent more than 20 ILS in the assessed week and CPL was under 50, keep it.
+2. If the ad spent more than 20 ILS in the assessed week, CPL was 50 or higher, and total spend in the current run is under 60 ILS, keep it.
+3. If the ad spent more than 20 ILS in the assessed week, CPL was 50 or higher, and total spend in the current run is 60 ILS or higher, replace it.
+4. If the ad spent more than 20 ILS in the assessed week, produced no leads, and total spend in the current run is under 60 ILS, keep it.
+5. If the ad spent more than 20 ILS in the assessed week, produced no leads, and total spend in the current run is 60 ILS or higher, replace it.
+6. If the ad spent 20 ILS or less in the assessed week and total spend in the current run is under 60 ILS, keep it.
+7. If the ad spent 20 ILS or less in the assessed week and total spend in the current run is 60 ILS or higher, replace it.
+
+Replacement slots are now filled separately by gender.
+
+For each gender, build a reuse list from inactive same-gender ads that have produced at least one lead before. A reuse candidate is strong if its most recent prior-run CPL was under 60 or its lifetime CPL was under 50. A reuse candidate is weak if it has produced at least one lead before and is not strong.
+
+Sort strong candidates and weak candidates separately by:
+
+1. Lowest CPL across the ad's most recent prior run.
+2. Longest pause since the ad last ran.
+3. Highest lifetime leads.
+4. Lowest lifetime CPL.
+
+Fill each gender's replacement slots as follows:
+
+| Replacement slots for that gender | Rule |
+|---:|---|
+| 0 | Make no replacement for that gender. |
+| 1 | If no complete new ad launched for that gender in the assessed week or the completed week immediately before it, use a complete new ad. Otherwise use the top strong reuse candidate. If there is no strong reuse candidate, use a complete new ad. |
+| 2 | If no complete new ad launched for that gender in the assessed week or the completed week immediately before it, use one complete new ad and one reuse ad. Otherwise use two strong reuse ads if two are available. If fewer than two strong reuse ads are available, use one reuse ad and one complete new ad. If no reuse candidate exists, use two complete new ads. |
+
+When a rule calls for one reuse ad, use the top strong reuse candidate. If there is no strong reuse candidate, use the top weak reuse candidate.
+
+When a rule calls for two reuse ads, use the top two strong reuse candidates.
+
+Complete new ads now mean new media, a new headline, and new primary text designed together. Start with the media concept, then write headline and text to match it.
+
+For every complete-new-ad recommendation, provide one same-gender reshuffle fallback. The fallback is an alternative for the user.
+
+Use each media asset, headline, and primary text at most once in each campaign in the planned week.
+
+---
+
 # Plan for 2026-W35 (assessing 2026-W34)
 
 ### Weeks

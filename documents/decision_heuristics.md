@@ -7,8 +7,9 @@ This document records stable heuristics used when applying judgment in the weekl
 ## General principles
 
 1. These heuristics are secondary to anything written in the weekly prompt. Instructions or heuristics in the weekly prompt override these instructions and heuristics.
-2. Prefer **exploitation over exploration** unless there is no effective exploitation strategy available.
-3. Prefer **simplicity over novelty** unless data strongly supports change.
+2. The process is designed to pick short-term winners in a weekly cycle.
+3. Use historical reuse when it is strong enough to justify a replacement slot.
+4. Use complete new ads regularly enough that the system keeps creating week-one candidates.
 
 ---
 
@@ -17,18 +18,9 @@ This document records stable heuristics used when applying judgment in the weekl
 ### Primary rules (hard constraints)
 
 * Keep ads that meet explicit CPL or spend thresholds defined in the weekly prompt.
-* Always keep at least one ad active.
-
-### Fallback selection (when none meet criteria)
-
-When forced to keep a single ad despite poor performance, choose using the following priority order:
-
-1. Lowest lifetime CPL (if lifetime leads ≥ 3)
-2. Best recent CPL trend across the current run
-3. Strongest evidence for effective tags, headlines, or media
-4. Most stable delivery history (least suppression)
-
-If these conflict, prefer the criterion higher on the list.
+* Replace ads that meet the replacement thresholds defined in the weekly prompt.
+* If both ads in one gender meet the replacement rule, replace both ads in that gender.
+* Low delivery after at least 60 ILS of total current-run spend is a replacement signal.
 
 ---
 
@@ -46,28 +38,44 @@ Surprises should be highlighted even if no immediate decision follows.
 
 ---
 
-## Generating new ads
+## Reuse and new ads
 
-### Controlled variation rule
+### Reuse candidates
 
-* Never introduce **new text and new media** in the same ad unless explicitly instructed.
-* Successful weeks do not require any novelty
-* Moderately successful weeks will generally mean re-combination of known good components or re-introduction of ads that have not been used in a while
-* Weeks with poor performance should involve a mix of re-combination, re-use of old material, and novelty.
-* ## Choosing what to change
-* If recombining (in descending preference order but preference is weak. Make sure choices are varied with some randomness)
-  1. New combinations of individual elements that were historically strong
-  2. New combinations of tags where the combination has proven successful
-  3. New combinations of tags that are historically strong independently
-  4. Always respect gender designation. Do not use male adds in female campaigns or vice versa.
-* If re-using existing ads
-  * Strong historical performers
-  * Ads with insufficient evidence
-  * Weak historical performers with strong tag combinations or strong tags
-* If creating novelty
-  * Choose existing elements according to the hierarchy for recombination
-  * Choose suggested tags for the novel element that are likely to combine well withthe existing elements or that are strong tags indepedently
-  * Respect gender specifications. Do not put male ad components in female campaigns or vice versa.
+When the weekly prompt calls for reuse, use the same-gender candidate list and sorting rules in the weekly prompt.
+
+Strong reuse means:
+
+1. The ad's most recent prior-run CPL was under 60, or
+2. The ad's lifetime CPL was under 50.
+
+Weak reuse means:
+
+1. The ad has produced at least one lead before, and
+2. The ad is not strong.
+
+### Complete new ads
+
+Complete new ads contain new media, a new headline, and new primary text designed together.
+
+Build complete new ads in this order:
+
+1. Choose the media concept.
+2. Write the headline to match the media.
+3. Write the primary text to match the media and headline.
+4. Assign existing tags where they fit.
+5. Flag proposed new tags explicitly.
+
+### Reshuffle fallbacks
+
+For every complete-new-ad recommendation, provide one same-gender reshuffle fallback.
+
+Build reshuffle fallbacks from existing components that are not already planned for that campaign in the decision week. Select components for:
+
+1. Image-text fit.
+2. Prior component performance.
+3. Clear difference from the other planned ad in the same campaign.
+4. Interpretability of the result.
 
 ---
 

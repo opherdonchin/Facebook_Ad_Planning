@@ -41,6 +41,7 @@ PROJECT_CONTEXT_FILES = (
     "documents/decision_log.md",
     "documents/data_schema.md",
     "documents/decision_log_format.md",
+    "documents/decision_metrics.md",
     "documents/PROJECT_GUIDE.md",
     "documents/tag_taxonomy.md",
     "documents/decision_heuristics.md",

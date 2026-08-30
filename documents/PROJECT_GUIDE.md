@@ -45,6 +45,8 @@ Sponsored campaigns are designed to:
 
 Under these conditions, further micro‑segmentation is a poor use of attention and effort.
 
+Weekly sponsored-ad decisions use the men's and women's campaigns as separate two-slot systems. The process does not create separate rule sets inside each gender. It compares ads by observed performance, keeps short-term winners, replaces weak or non-delivering ads after enough current-run spend, reuses same-gender historical winners when they are strong enough, and creates complete new ads often enough to keep finding week-one winners.
+
 For organic posts, the audience cannot be controlled in any case. The page has a few hundred followers, and organic reach depends on platform dynamics rather than targeting choices. As a result, micro‑segmentation has no meaningful logic for organic content.
 
 ### Sponsored content audience
@@ -99,6 +101,8 @@ For organic posts, AIDA should be applied **mentally rather than mechanically**,
 * Low friction
 
 Sponsored posts are allowed—and expected—to be **formulaic**. Novelty is not a value in sponsored content and is not a goal.
+
+In the weekly paid-ad process, a complete new ad means new media, a new headline, and new primary text designed together. The media concept comes first; headline and text are written to match it.
 
 #### Sponsored structure
 

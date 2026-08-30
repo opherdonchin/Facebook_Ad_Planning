@@ -577,10 +577,10 @@ With all data updated, you can now:
    - Assess previous week's performance
    - Identify which ads to keep running
    - Decide which ads to replace
-   - Plan new creative combinations or generate new content
+   - Plan same-gender reuse ads, complete new ads, and reshuffle fallbacks
    - Update the decision log
 
-The weekly_prompt provides detailed guidance on making data-driven decisions while staying within creative constraints (e.g., max one new piece of content per week, no duplicate headlines/text within a campaign).
+The weekly_prompt provides detailed guidance on making data-driven decisions while staying within creative constraints, including gendered two-slot campaigns, no duplicate headlines/text/media within a campaign, complete-new-ad recommendations, and reshuffle fallbacks.
 
 **Why Structured Files?** The CSV/Parquet tables are pre-joined and optimized for AI analysis, eliminating the need for manual JSON parsing and table reconstruction. They provide clean, typed dataframes with proper relationships already established.
 
@@ -670,6 +670,7 @@ extractor.save_to_json(
    - `documents/decision_log.md`
    - `documents/data_schema.md`
    - `documents/decision_log_format.md`
+   - `documents/decision_metrics.md`
    - `documents/PROJECT_GUIDE.md`
    - `documents/tag_taxonomy.md`
    - `documents/decision_heuristics.md`
