@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-18T22:30:08+00:00",
+  "generated_at_utc": "2026-08-30T18:11:30+00:00",
   "purpose": "Weekly AI planning upload bundles for Facebook ad planning.",
   "upload_instruction": "Upload all zip files in one batch before analysis.",
   "bundles": [
@@ -10,26 +10,26 @@
         {
           "source": "outputs/performance_data.json",
           "archive_path": "data/performance_data.json",
-          "size_bytes": 580058,
-          "sha256": "6b99fcca803c93b4ddd93f9290521d39cf6538cf0111f185d36e7bd3ebc8f996"
+          "size_bytes": 587780,
+          "sha256": "c91bc4cd48fe6b4020a8f2b2bb4ac8092fdeea3d1128a5893eeed3f4cd269efd"
         },
         {
           "source": "outputs/ad_weekly_performance.csv",
           "archive_path": "data/structured/ad_weekly_performance.csv",
-          "size_bytes": 9996,
-          "sha256": "1761bf33dce3063a8ab340364b7f55da730976b5882cff5cd2bdb9d44c3acfea"
+          "size_bytes": 10425,
+          "sha256": "7f4326425c5ae9921eae46cfaf6bce4b421ae439f57bba40f6e7a3e8f55d22e2"
         },
         {
           "source": "outputs/ad_run_summary.csv",
           "archive_path": "data/structured/ad_run_summary.csv",
-          "size_bytes": 2729,
-          "sha256": "f71ff862f43a71390e577fd78db87c00aa88cdc6e6eb0def5969e2ecf897824f"
+          "size_bytes": 2748,
+          "sha256": "e6c7627c8fb55859d17b49214bc05bcda94fede45e608ce43f2cbbe7764f4f1b"
         },
         {
           "source": "outputs/ad_lifetime_summary.csv",
           "archive_path": "data/structured/ad_lifetime_summary.csv",
-          "size_bytes": 2847,
-          "sha256": "c52059a19f35047924ee44baf55754a49c9f6101fa652e28235f78a67c97ce39"
+          "size_bytes": 2841,
+          "sha256": "83ed56df4cdbfb360c2c64097e6a7b251c6d0a765ee9b64211f3cea8ab1019ed"
         },
         {
           "source": "outputs/ad_components.csv",
@@ -77,7 +77,7 @@
           "source": "outputs/attachments.tar",
           "archive_path": "assets/attachments.tar",
           "size_bytes": 96133120,
-          "sha256": "79a28dcce0b21e67ef6e90ecd3a39d15eb26dfa329794babd68f206ba4ea30e7"
+          "sha256": "4a1d80af476b00020d740832f016be3c529770bff50923798d5158c9c2583454"
         }
       ]
     },
@@ -88,14 +88,14 @@
         {
           "source": "documents/decision_log.md",
           "archive_path": "context/documents/decision_log.md",
-          "size_bytes": 121785,
-          "sha256": "e4e580e74df180d02a8b87082396b84510ad011e0d38645f96d1073b3e380946"
+          "size_bytes": 125726,
+          "sha256": "a3110455eb72411993921bd3f075352a122427823e4489b811426d2c3d42051e"
         },
         {
           "source": "documents/data_schema.md",
           "archive_path": "context/documents/data_schema.md",
-          "size_bytes": 17864,
-          "sha256": "4b5030373c4e1c8b819b4d8062d39396f42cfc16216444dcc00a8aba0819fbcb"
+          "size_bytes": 18010,
+          "sha256": "965fa29af2fa14408d8a25ea85310c2c91fcc93ba835802264205553244b2759"
         },
         {
           "source": "documents/decision_log_format.md",
@@ -124,8 +124,8 @@
         {
           "source": "documents/weekly_prompt.md",
           "archive_path": "context/documents/weekly_prompt.md",
-          "size_bytes": 14287,
-          "sha256": "5e6d55d6109b98e4e8329a4980207266e0ce700b876e43e38bddcbb053445ef5"
+          "size_bytes": 14398,
+          "sha256": "edcbe6491068c8fa22bab523c9af00ec33d5f6fd49ae2ac8f49624c6d597bae0"
         }
       ]
     }

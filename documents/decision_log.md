@@ -1,5 +1,100 @@
 # Weekly Decision Log
 
+# Plan for 2026-W35 (assessing 2026-W34)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W34
+- **Decision / planned week:** 2026-W35
+
+### Ads active in assessed week (2026-W34)
+
+- Men: Mens Ad B, Mens Ad J
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Mens Ad B | 139.41 | 34.85 | 1,575.08 | 46.33 |
+| Mens Ad J | 55.05 | 27.53 | 3,737.00 | 38.53 |
+
+- Women: W 2603_1, Womens Ad A
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2603_1 | 0.22 | - | 605.18 | 35.60 |
+| Womens Ad A | 207.86 | 51.97 | 1,726.81 | 43.17 |
+
+### Ads planned for decision week (2026-W35)
+
+- Men: Mens Ad B, Mens Ad J
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Mens Ad B | 139.41 | 34.85 | 1,575.08 | 46.33 |
+| Mens Ad J | 55.05 | 27.53 | 3,737.00 | 38.53 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+- Women: W 2603_1, Womens Ad D
+
+#### Reuse:
+
+| Name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| W 2603_1 | 0.22 | - | 605.18 | 35.60 |
+| Womens Ad D | - | - | 946.15 | 59.13 |
+
+#### Reshuffle:
+
+None.
+
+#### New content
+
+None.
+
+---
+
+## Portfolio decision
+
+Keep `Mens Ad B` and `Mens Ad J`; both passed the W34 weekly keep rule cleanly, with CPLs of 34.85 and 27.53. Keep `W 2603_1` because the W34 read was effectively non-delivery, while the current contiguous run through W34 remained strong at about 316.58 ILS, 12 leads, and 26.38 CPL.
+
+Replace `Womens Ad A` under the documented rule. It produced 4 W34 leads, but the W34 CPL was 51.97, the W33-W34 current run was 245.89 ILS for 4 leads at 61.47 CPL, and current-run spend was well above the 80 ILS low-spend protection threshold. The replacement is cooled full ad `Womens Ad D`.
+
+## Performance read
+
+The intended W34 portfolio produced 10 leads from 402.54 ILS, for a blended CPL of 40.25. The men's side was the strongest part of the week: `Mens Ad B` and `Mens Ad J` together produced 6 leads from 194.46 ILS at 32.41 CPL.
+
+The women's side was mixed. `W 2603_1` again received almost no delivery, so it remains hard to judge on W34 alone. `Womens Ad A` delivered real volume, but missed the keep threshold and no longer qualifies on current-run performance.
+
+## Constraints and learning notes
+
+No new material is introduced. `Womens Ad D` is eligible as a previously used ad because it has been out of rotation since 2026-W19 and does not duplicate the kept `W 2603_1` media or primary text. Its evidence is weaker than `Womens Ad A` historically, so this is a constrained replacement driven by the explicit keep/replace rules rather than a high-conviction upgrade.
+
+`W 2605_1` was considered because it is the best cooled women's ad by lifetime CPL after `Womens Ad A`, but it shares the `Quiet Space - Bullet Calm` primary text with `W 2603_1`, so using both in W35 would violate the no-duplicate-components rule. The actual images for `W 2603_1` and `Womens Ad D` were checked against their copy and are semantically coherent.
+
+Partial W35 data already exists as of 2026-08-30, but it is not treated as the assessed week in this entry. It should be treated only as an in-flight watch signal until 2026-W35 closes.
+
+## Implementation note
+
+The strict W35 decision from completed W34 data is: keep `Mens Ad B`, `Mens Ad J`, and `W 2603_1`; activate `Womens Ad D`; pause `Womens Ad A`. If Facebook remains set to `Womens Ad A`, the live switches no longer match this logged criteria-based decision.
+
+## Confidence level
+
+Moderate-high for keeping the two men's ads. Moderate for keeping `W 2603_1`, because the current-run CPL is strong but recent delivery is extremely low. Moderate-low for replacing `Womens Ad A` with `Womens Ad D`: the replacement follows the documented criteria and component constraints, but `Womens Ad D` is a fallback cooled ad rather than a clearly stronger lifetime performer.
+
+---
+
+End of Plan 2026-W35
+
+---
+
 # Plan for 2026-W34 (assessing 2026-W33)
 
 ### Weeks
