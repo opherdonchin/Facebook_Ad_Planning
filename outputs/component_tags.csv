@@ -57,6 +57,10 @@ media,30,Outside_Sunset_MM_Kaitenage_photo_v2,Media_Style,Photo - Outside
 media,30,Outside_Sunset_MM_Kaitenage_photo_v2,Media_Energy,Meditative / Inspirational
 media,31,Dojo_Instruction_FemalePair_v2,Media_Style,Illustration - Line Art
 media,31,Dojo_Instruction_FemalePair_v2,Media_Energy,Dynamic / Throw
+media,32,Sankyo_MalePair,Media_Style,Illustration - Line Art
+media,32,Sankyo_MalePair,Media_Energy,Instructional / Demonstration
+media,33,Kokynage_FemalePair,Media_Style,Illustration - Line Art
+media,33,Kokynage_FemalePair,Media_Energy,Instructional / Demonstration
 headline,2,ללמוד לשלוט ברגע,Tone,Reflective
 headline,2,ללמוד לשלוט ברגע,Promise,Focus / Clarity
 headline,2,ללמוד לשלוט ברגע,Hook,Meaning / Growth
@@ -126,6 +130,12 @@ headline,30,שקט במצבי לחץ,Hook,Stress / Mental Load
 headline,31,ללמוד לזוז אחרת,Tone,Direct
 headline,31,ללמוד לזוז אחרת,Promise,Body Capability
 headline,31,ללמוד לזוז אחרת,Hook,Strength Without Force
+headline,32,שליטה ברגע. לא בכוח.,Tone,Direct
+headline,32,שליטה ברגע. לא בכוח.,Promise,Non-violent Power
+headline,32,שליטה ברגע. לא בכוח.,Hook,Strength Without Force
+headline,33,עוצמה מתוך שליטה,Tone,Affirmative
+headline,33,עוצמה מתוך שליטה,Promise,Non-violent Power
+headline,33,עוצמה מתוך שליטה,Hook,Strength Without Force
 text,1,Stress Mental Load,Hook,Stress / Mental Load
 text,1,Stress Mental Load,Promise,Calm Under Pressure
 text,1,Stress Mental Load,Structure,Question Hook
@@ -204,3 +214,9 @@ text,25,Time Out For You,Structure,Checklist
 text,26,Meaningful Movement,Hook,Meaning / Growth
 text,26,Meaningful Movement,Promise,Body Capability
 text,26,Meaningful Movement,Structure,Checklist
+text,27,Resistance To Precision,Hook,Strength Without Force
+text,27,Resistance To Precision,Promise,Non-violent Power
+text,27,Resistance To Precision,Structure,Short lines
+text,28,More Than A Workout,Hook,Meaning / Growth
+text,28,More Than A Workout,Promise,Body Capability
+text,28,More Than A Workout,Structure,Checklist

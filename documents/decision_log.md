@@ -1,5 +1,240 @@
 # Weekly Decision Log
 
+# Plan for 2026-W36 (assessing 2026-W35)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W35
+- **Decision / planned week:** 2026-W36
+
+### Ads active in assessed week (2026-W35)
+
+- Men: Mens Ad B, Mens Ad J
+
+| Ad name | Spend | Leads | CPL | Current-run spend | Current-run CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Mens Ad B | 102.54 | 4 | 25.64 | 276.29 | 27.63 | 1,677.62 | 44.15 |
+| Mens Ad J | 86.61 | 0 | - | 157.56 | 39.39 | 3,823.61 | 39.42 |
+
+- Women: Womens Ad A, Womens Ad G, W 2603_1
+
+| Ad name | Spend | Leads | CPL | Current-run spend | Current-run CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Womens Ad A | 126.24 | 2 | 63.12 | 372.13 | 62.02 | 1,853.05 | 44.12 |
+| Womens Ad G | 87.41 | 2 | 43.71 | 87.41 | 43.71 | 476.31 | 59.54 |
+| W 2603_1 | 3.76 | 0 | - | 320.34 | 26.70 | 608.94 | 35.82 |
+
+Five ads were intentionally active at different points in 2026-W35 because the women's campaign changed in-week. `Womens Ad A` ran before its August 31 pause; `Womens Ad G` ran after activation; `W 2603_1` remained the second women's slot but received almost no delivery. This was a sequential transition, not a five-slot portfolio.
+
+### Ads planned for decision week (2026-W36)
+
+- Men: Mens Ad B, M 2609_1
+
+#### Kept ads
+
+| Name | Reason |
+|---|---|
+| Mens Ad B | Keep rule 1: 102.54 ILS spend, 4 leads, and 25.64 CPL in 2026-W35. |
+
+#### Reuse ads
+
+None. The one men's replacement slot requires a complete-new ad because no complete-new men's ad launched in 2026-W34 or 2026-W35.
+
+#### Complete new ads
+
+**M 2609_1**
+
+| Component | New / existing | Notes |
+|---|---|---|
+| Media | New | `Sankyo_MalePair` (attachment 89); male-pair line art showing wrist control and a clear balance break. Tags: Illustration - Line Art; Instructional / Demonstration. |
+| Headline | New | `שליטה ברגע. לא בכוח.` Tags: Strength Without Force; Non-violent Power; Direct. |
+| Text | New | `Resistance To Precision`; begins with the instinct to tense against resistance and reframes it around stability, movement direction, timing, coordination, and partner practice. Tags: Strength Without Force; Non-violent Power; Short lines; male grammar and target. |
+
+The actual creative and source media were inspected. The wrist control and off-balance posture directly support the control-without-force headline and the text's emphasis on timing rather than aggression.
+
+#### Reshuffle fallbacks
+
+**M 2609_1 fallback (not selected)**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Media: `Shihonage_MF_Dojo_Photo` | - | - | 824.41 | 39.26 |
+| Headline: `כוח שקט ללא מאבק` | - | - | 229.96 | 76.65 |
+| Text: `Stable Without Struggle` | - | - | 432.89 | 54.11 |
+
+This fallback is a previously unused combination, is gender-compatible, and does not duplicate any component in kept `Mens Ad B`.
+
+- Women: Womens Ad G, W 2609_1
+
+#### Kept ads
+
+| Name | Reason |
+|---|---|
+| Womens Ad G | Keep rule 1: 87.41 ILS spend, 2 leads, and 43.71 CPL in its partial 2026-W35 run; also explicitly committed for 2026-W36 in the August 31 mid-week decision. |
+
+#### Reuse ads
+
+None beyond the already committed `Womens Ad G`. The second women's slot requires a complete-new ad because no complete-new women's ad launched in 2026-W34 or 2026-W35.
+
+#### Complete new ads
+
+**W 2609_1**
+
+| Component | New / existing | Notes |
+|---|---|---|
+| Media | New | `Kokynage_FemalePair` (attachment 91); female-pair line art showing one partner guiding the other's wrist and balance. Tags: Illustration - Line Art; Instructional / Demonstration. |
+| Headline | New | `עוצמה מתוך שליטה`. Tags: Strength Without Force; Non-violent Power; Affirmative. |
+| Text | New | `More Than A Workout`; question-led copy with exactly three parallel benefits covering physical capability, progressive learning, and welcoming partner practice. Tags: Meaning / Growth; Body Capability; Checklist; female grammar and target. |
+
+The actual creative and source media were inspected. The paired technique visibly supports strength through coordination and control, while the copy explains the learning and belonging promised by the creative without merely repeating the headline.
+
+#### Reshuffle fallbacks
+
+**W 2609_1 fallback (not selected)**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Media: `Dojo_Instruction_FemalePair` | - | - | 1,040.67 | 41.63 |
+| Headline: `גוף חזק, ראש רגוע` | - | - | 855.23 | 38.87 |
+| Text: `Confident Movement Your Pace` | - | - | 287.05 | 71.76 |
+
+This fallback replaces the invalid draft fallback that duplicated `Womens Ad G`'s headline. The revised combination is gender-compatible, semantically coherent, previously unused as a complete combination, and shares no component with kept `Womens Ad G`.
+
+---
+
+## Portfolio decision
+
+- Keep `Mens Ad B` unchanged.
+- Pause `Mens Ad J` and activate complete-new `M 2609_1`.
+- Keep `Womens Ad G` unchanged.
+- Pause `W 2603_1` and activate complete-new `W 2609_1`.
+- `Womens Ad A` remains paused. Its replacement by `Womens Ad G` was already implemented on August 31 and does not create another 2026-W36 slot.
+
+The selected 2026-W36 portfolio is therefore:
+
+- Men: `Mens Ad B`, `M 2609_1`
+- Women: `Womens Ad G`, `W 2609_1`
+
+---
+
+## Performance read and rationale
+
+The sequentially intended 2026-W35 ads spent 406.56 ILS for 8 leads, a blended CPL of 50.82. In 2026-W34 the portfolio spent 402.54 ILS for 10 leads, a blended CPL of 40.25. Spend rose by 4.02 ILS, leads fell by 2, and blended CPL worsened by 10.57 ILS.
+
+`Mens Ad B` is the clear short-term winner and passes the keep rule directly. `Mens Ad J` remains the strongest men's ad historically, but 86.61 ILS with zero leads in 2026-W35 and 157.56 ILS of current-run spend trigger replacement under rule 5. The decision follows the current-run rule rather than allowing strong lifetime history to override a sufficiently funded zero-lead run.
+
+`Womens Ad G` produced 2 leads at 43.71 CPL in its partial first week back and remains the committed first women's slot. `W 2603_1` retains an excellent historical/current-run CPL but has persistent delivery failure; 3.76 ILS in 2026-W35 after 320.34 ILS of current-run spend triggers replacement under rule 7. This is an operational replacement signal, not evidence that its underlying lead efficiency was poor.
+
+---
+
+## Constraints check
+
+- Each campaign has exactly two planned ads.
+- All selected components match their campaign gender.
+- No media, headline, or primary text is duplicated within either 2026-W36 campaign.
+- `M 2609_1` and `W 2609_1` each use new media, a new headline, and new primary text designed as one coherent ad.
+- Both actual images were checked against their headlines and primary text.
+- Both complete-new ads have a same-gender reshuffle fallback using an unused complete combination.
+- All selected tags already exist in the project taxonomy; no new tag is introduced.
+
+---
+
+## Data readiness
+
+The 2026-W35 Meta and Grist preparation completed on September 2: final weekly spend/leads were synced, intended-run history was reconciled to the in-week switch, Leads/Sales Events and ad conversion rollups were updated, all derived tables were rebuilt, and the Grist data and attachments were exported. On September 3, the final `M 2609_1` and `W 2609_1` media, headlines, texts, creatives, and Ads rows were added to Grist with verified links and attachment hashes. The component-tag table and upload bundles were then refreshed.
+
+---
+
+## What would change this decision in 2026-W37
+
+- Evaluate `M 2609_1` and `W 2609_1` as genuinely new week-one tests; do not infer too much from very low delivery or a single lead.
+- Keep `Mens Ad B` and `Womens Ad G` only if their 2026-W36 weekly/current-run results continue to satisfy the explicit keep rules.
+- Check lead quality separately when trial, registration, and failed-contact counts become available; do not substitute sparse quality telemetry for the CPL rules prematurely.
+- If either new ad cannot be launched as specified, use only its documented same-gender fallback and re-check component uniqueness before activation.
+
+---
+
+## Confidence level
+
+High confidence in the keep/replace screening and slot mechanics. Moderate confidence in the two complete-new ads because their media-text alignment is strong and the concepts follow historically successful themes, but neither has performance evidence yet.
+
+---
+
+End of Plan 2026-W36
+
+---
+
+# Mid-week update - 2026-08-31 (2026-W35 in progress)
+
+This is not a weekly Plan for a new decision week. It documents a single in-flight correction to the still-open 2026-W35 portfolio, made mid-week rather than waiting for 2026-W35 to close on 2026-09-02. The full assessment of 2026-W35 and the resulting `Plan for 2026-W36` entry will follow at that close, per the usual process.
+
+### Reason for acting mid-week
+
+The `2026-W35` entry (assessing 2026-W34, logged 2026-08-30) called for replacing `Womens Ad A` with `Womens Ad D`. That replacement was never implemented on Facebook (see the implementation status update above), and `Womens Ad A` has now failed the same rule on two consecutive reads: CPL 51.97 on the 2026-08-30 read, CPL 62.46 on 2026-08-31 data, current-run spend risen to 370.80 ILS. Rather than let it keep spending for two more days awaiting the full close-out, this entry acts on that one already-doubly-confirmed call now.
+
+`Mens Ad J` and `W 2603_1` are left untouched. Both showed replacement signals in a same-day exploratory read (`Mens Ad J`'s rested on a single partial, zero-lead day; `W 2603_1`'s on a longer suppression pattern), but per the user's direction those are held for the full 2026-W35 close-out on 2026-09-02/03 rather than acted on with partial-week data.
+
+### Action taken
+
+- Pause `Womens Ad A`.
+- Activate `Womens Ad G` (existing creative, unchanged) in its place, instead of the `Womens Ad D` originally called for.
+
+`Mens Ad B`, `Mens Ad J`, and `W 2603_1` are unchanged.
+
+### Why `Womens Ad G` instead of `Womens Ad D`
+
+`Womens Ad D` was the reuse candidate available at the 2026-08-30 decision. A fresh reuse-candidate review on 2026-08-31 found `Womens Ad G` to be the stronger available strong candidate: most recent prior-run CPL 38.46 (1 week, 1 lead) vs. `Womens Ad D`'s 151.44 last-run CPL / 59.13 lifetime CPL. `Womens Ad G`'s recent-run evidence is thin (a single week), so treat this with somewhat lower confidence than the CPL number alone suggests, but it is still the better of the two available options.
+
+The slot-filling mechanics here are informal — a single women's replacement slot would normally call for a complete new ad, since no complete-new women's ad has launched in 2026-W34 or 2026-W35, and a new complete ad is being prepared (see below) but was not ready in time to stop `Womens Ad A`'s overspend today. `Womens Ad G` fills that gap immediately.
+
+### Commitment for 2026-W36
+
+`Womens Ad G` is the committed pick for this women's slot for 2026-W36, not a placeholder pending re-decision on 2026-09-02/03. It starts its run today (2026-08-31), so by the 2026-W35 close it will have had only a few days of current-run data — not enough to apply the keep/replace rules to it meaningfully, and re-opening the choice every few days would defeat the point of running the cycle weekly. The 2026-W35 close-out should treat `Womens Ad G` as already decided and evaluate only: the second women's slot (currently `W 2603_1`), the men's slots, and whether `M 2608_1` / `W 2608_1` are ready to launch into whatever slots open up. If the prepared complete-new women's ad (`W 2608_1`) is ready by the close, it is a candidate for the `W 2603_1` slot, not a challenger to `Womens Ad G`.
+
+### Constraints check
+
+`Womens Ad G` (media `SumoOtoshi_MF_AiArt`, text "Screens To Energy") does not duplicate any component in `W 2603_1` (media `Shihonage_MF_Dojo_Photo`, text "Quiet Space - Bullet Calm") or in the men's campaign.
+
+### Creative in preparation for the 2026-W35 close-out
+
+Two complete-new-ad concepts are being drafted ahead of the full close-out decision so they can launch immediately if the slot rules call for them. Design work only — not committed to any ad slot yet, and the media does not exist yet for either.
+
+**M 2608_1 (men, draft)**
+
+| Component | Notes |
+|---|---|
+| Media | Dojo photo, two men practicing a controlled pin (osae-waza), calm/focused expressions. Inspiration: `Shihonage_MF_Dojo_Photo` (lifetime CPL 39.26, 21 leads). Tags: Media_Style = Photo - Dojo, Media_Energy = Instructional / Demonstration (both existing). |
+| Headline | "פחות לחץ, יותר שליטה" (Less pressure, more control). Tags: Tone = Direct, Hook = Stress / Mental Load, Promise = Calm Under Pressure — the tag combination behind the two best-performing men's components on record (headline "גוף חזק, ראש רגוע", CPL 38.87; text "Everyday Pressure", CPL 39.26). |
+| Text | Question-hook open, 3 parallel bullets, low-pressure CTA: "לחץ מהעבודה עובר איתך הביתה? / ⚡️באייקידו לומדים לשחרר מתח דרך תנועה, לא דרך דיבור / ⚡️מתרגלים תגובה רגועה למצבי לחץ – גם מחוץ למזרן / ⚡️בונים שליטה בגוף שמתורגמת לשליטה ביום-יום / הדוג'ו במרכז באר שבע ידידותי ולא תחרותי. מתאים לכל גיל ולכל רמת ניסיון. / קליק על התמונה ובואו להתנסות בשיעור נסיון ללא התחייבות." Tags: Hook = Stress / Mental Load, Promise = Calm Under Pressure, Structure = Question Hook. |
+
+Reshuffle fallback if this concept isn't ready in time: `Shihonage_MF_Dojo_Photo` (media) + "כוח שקט ללא מאבק" (headline) + "Stable Without Struggle" (text) — combination not previously used; lifetime CPLs 39.26 / 76.65 / 54.11 respectively.
+
+**W 2608_1 (women, draft)**
+
+| Component | Notes |
+|---|---|
+| Media | Line-art illustration, two women practicing a dynamic technique together in the dojo. Inspiration: `Dojo_Instruction_FemalePair` (lifetime CPL 41.63, 25 leads, the best-performing women's media). Tags: Media_Style = Illustration - Line Art, Media_Energy = Dynamic / Throw (both existing). |
+| Headline | "הגוף שלך יכול יותר" (Your body can do more). Tags: Tone = Affirmative, Hook = Meaning / Growth, Promise = Body Capability — matches the tag profile of "Meaningful Movement," the best-performing women's text (CPL 38.87, 22 leads). |
+| Text | Checklist structure matching "Meaningful Movement": "מחפשת משהו שבאמת שלך באמצע השבוע? / ⚡️לומדים תנועה מדויקת: שיווי משקל, גמישות, ותיאום / ⚡️מתרגלות ליפול ולקום בבטחון – גם בגוף וגם בראש / ⚡️מגלות יכולות חדשות בתנועה יומיומית, לא רק על המזרן / הדוג'ו במרכז באר שבע ידידותי ולא תחרותי. אפשר להתחיל בכל גיל ובכל רמת נסיון. / לחצי על התמונה ובואי להתנסות בשיעור נסיון ללא התחייבות." Tags: Hook = Meaning / Growth, Promise = Body Capability, Structure = Checklist. |
+
+Reshuffle fallback if this concept isn't ready in time: `Dojo_Instruction_FemalePair` (media) + "עוצמה, רוגע, ובטחון עצמי" (headline) + "Confident Movement Your Pace" (text) — combination not previously used; lifetime CPLs 41.63 / 58.63 / 71.76 respectively.
+
+No new tags proposed for either concept. Image-text fit cannot be verified until the media is actually produced.
+
+### What the 2026-W35 close-out (due 2026-09-02/03) still needs to resolve
+
+- `Mens Ad J`: on the partial 2026-08-31 read it had spent 41.23 ILS with zero leads (current-run spend 112.18 ILS), which would trigger replacement under the documented rule — but this is the single best-performing men's ad on record (97 lifetime leads, 38.95 lifetime CPL), so a full week's data matters before deciding.
+- `W 2603_1`: near-zero weekly spend has persisted for most of the last two months despite an excellent current-run CPL (26.70 over 320.34 ILS) — worth confirming with the completed week whether this is continued suppression or a recovery.
+- Whether `M 2608_1` and/or `W 2608_1` are ready to launch by then, and how many slots are actually open once `Mens Ad J` and `W 2603_1` are resolved.
+
+`Womens Ad G` is not on this list — it is committed for 2026-W36 (see above) and should not be re-decided at the close-out.
+
+---
+
+End of mid-week update 2026-08-31
+
+---
+
 # Process rule update - 2026-08-31
 
 This entry records a process change, not a weekly ad plan. The new rules apply to weekly decisions made after this entry. Older entries remain historical records of the process and judgment used at the time.
@@ -154,6 +389,14 @@ The strict W35 decision from completed W34 data is: keep `Mens Ad B`, `Mens Ad J
 ## Confidence level
 
 Moderate-high for keeping the two men's ads. Moderate for keeping `W 2603_1`, because the current-run CPL is strong but recent delivery is extremely low. Moderate-low for replacing `Womens Ad A` with `Womens Ad D`: the replacement follows the documented criteria and component constraints, but `Womens Ad D` is a fallback cooled ad rather than a clearly stronger lifetime performer.
+
+---
+
+## Implementation status update (added 2026-08-31)
+
+This entry's Facebook switches were not made. Checked directly against the Meta Marketing API on 2026-08-31: `Womens Ad A` shows `effective_status = ACTIVE` and `Womens Ad D` shows `effective_status = PAUSED`. Grist `Weekly_runs` confirms the same picture — `Womens Ad A` is still flagged `Intended_run = true` in the 2026-W35 bucket, with spend continuing to accrue against it (124.91 ILS and 2 leads for 2026-08-27 through 2026-08-31 alone). `Mens Ad B`, `Mens Ad J`, and `W 2603_1` were correctly left unchanged, so those three legs of the decision were implemented by default (no switch was required).
+
+Net effect: the 2026-W35 portfolio that actually ran is identical to 2026-W34's (`Mens Ad B`, `Mens Ad J`, `W 2603_1`, `Womens Ad A`) — no replacement took effect. `Womens Ad A`'s current run has continued uninterrupted since 2026-W33 rather than ending as this entry intended. This is carried forward into the `2026-W36` entry's "Ads active in assessed week (2026-W35)" table as the accurate record of what ran, not what was planned.
 
 ---
 
@@ -563,7 +806,7 @@ The original ads and their original media, creative, and text records remain unc
 - **Media provenance:** the two new files must be stored as new canonical media records and linked to the source records through descriptions/notes; the historical media records must not be overwritten.
 - **Tag reuse discipline:** satisfied; no new taxonomy values are needed.
 - **New-material count:** the final implementation contains new material in **two** ads, rather than the maximum of one specified by the weekly planning rule.
-- **Controlled variation:** both media and text changed in each new ad. This is an explicit owner-directed implementation change, but it means any future performance difference can be attributed only to the complete ad variant, not separately to the media or the copy.
+- **Controlled variation:** both media and text changed in each new ad. This is an explicit human-directed implementation change, but it means any future performance difference can be attributed only to the complete ad variant, not separately to the media or the copy.
 - **New-material alternation:** the prior novelty was new media in `W 2606_1`; the final implementation does not follow the usual media/text alternation because both W31 variants contain new media and new text. Record this transparently rather than retroactively treating the variants as unchanged reuses.
 
 ---
