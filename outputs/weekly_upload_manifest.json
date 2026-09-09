@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-02T22:39:20+00:00",
+  "generated_at_utc": "2026-09-09T06:43:56+00:00",
   "purpose": "Weekly AI planning upload bundles for Facebook ad planning.",
   "upload_instruction": "Upload all zip files in one batch before analysis.",
   "bundles": [
@@ -10,56 +10,56 @@
         {
           "source": "outputs/performance_data.json",
           "archive_path": "data/performance_data.json",
-          "size_bytes": 602406,
-          "sha256": "3e46224036e6e3eafcdbbf15723491a7420c10741b0e31a779619a28df97550e"
+          "size_bytes": 585681,
+          "sha256": "8371217c3e21e32462d660d675a6c9b965458ccfb50f0dbae6147d34c814b771"
         },
         {
           "source": "outputs/ad_weekly_performance.csv",
           "archive_path": "data/structured/ad_weekly_performance.csv",
-          "size_bytes": 10478,
-          "sha256": "e902c52a245f3ad32cb89708828beccf1abdb90c6c62defdb35ba60d80e4600c"
+          "size_bytes": 10426,
+          "sha256": "b6a0300f935a88cf81327aedd0cc86dc50471f5933290a92460ee5593079d905"
         },
         {
           "source": "outputs/ad_run_summary.csv",
           "archive_path": "data/structured/ad_run_summary.csv",
-          "size_bytes": 2725,
-          "sha256": "1d54c1f37ac83c2c2b602d3c7ba3997671d0d29e8f0f99c53b7e0ef875bb06eb"
+          "size_bytes": 2775,
+          "sha256": "7e5f3f01ffa648a52f2876c1f496e3c9cc18815ddd448c04fb6b6e7d4b6f0810"
         },
         {
           "source": "outputs/ad_lifetime_summary.csv",
           "archive_path": "data/structured/ad_lifetime_summary.csv",
-          "size_bytes": 2859,
-          "sha256": "0e9e80c1f64a184d34500aba6d04861a0d674d2e314a0357a9d0749f49736eee"
+          "size_bytes": 2894,
+          "sha256": "bc28bb90ee93917f1dfb9069a6aa7684f51ce49eda3b095009c197999308fbee"
         },
         {
           "source": "outputs/ad_components.csv",
           "archive_path": "data/structured/ad_components.csv",
-          "size_bytes": 3818,
-          "sha256": "a1810d7be3fca9a242a004b98166f751d0c75ed0a72eeda32f2487f640b9176c"
+          "size_bytes": 3765,
+          "sha256": "66c63e47c0c61882f1db2d27c25980aa158f7e8f69fe5d417061cdd271c79ace"
         },
         {
           "source": "outputs/component_media_lifetime.csv",
           "archive_path": "data/structured/component_media_lifetime.csv",
-          "size_bytes": 1361,
-          "sha256": "4a2a89067372a15a8d674ae25e41031d352e2e12bc4e327b12b3a763bccad358"
+          "size_bytes": 1339,
+          "sha256": "23f47aebb02af935889c0c6bdab006c91f41cde03ce6f1d59a9ffd644ea18ee1"
         },
         {
           "source": "outputs/component_headline_lifetime.csv",
           "archive_path": "data/structured/component_headline_lifetime.csv",
-          "size_bytes": 1187,
-          "sha256": "d7fbbd8992faf0c7af50c7e78d68d3e07067ad51d7217f1f43db0d2448d7e66d"
+          "size_bytes": 1169,
+          "sha256": "151592596b3ad805298b2ee859c87f339eaa5a02e0ea077b02ef9cd01974c6e8"
         },
         {
           "source": "outputs/component_text_lifetime.csv",
           "archive_path": "data/structured/component_text_lifetime.csv",
-          "size_bytes": 11530,
-          "sha256": "f37398600885ede1b43f0919f7d3a89146798630d805534952945e13a228bd78"
+          "size_bytes": 11508,
+          "sha256": "bc6a4b3c0f93524dbe4e10e1ffd29b748ab7e4cae91be3f7e0c7912acfd3ee0d"
         },
         {
           "source": "outputs/component_tags.csv",
           "archive_path": "data/structured/component_tags.csv",
-          "size_bytes": 14219,
-          "sha256": "a38af452c501158382897af4cea5550ea44e76f79c8a4ccbfb807dbec7bd3841"
+          "size_bytes": 13997,
+          "sha256": "e0dfcaad3f415d1d7c9628b35b147f71e23f2381af3bd5564df7af8ed1322357"
         }
       ]
     },
@@ -70,14 +70,14 @@
         {
           "source": "outputs/attachments_manifest.json",
           "archive_path": "assets/attachments_manifest.json",
-          "size_bytes": 39154,
-          "sha256": "b3a578a374dc92048b0814d9b0755edcea668fc9f4070628b0465feac3549cde"
+          "size_bytes": 37868,
+          "sha256": "9852369e9f0593ce65f12b153cc3be8b44a9d8fc5b29e7765d40c733eaf84394"
         },
         {
           "source": "outputs/attachments.tar",
           "archive_path": "assets/attachments.tar",
-          "size_bytes": 99123200,
-          "sha256": "c1871bc9df728476d02f338da25da72eaabc658c3df3192cf033728cd0ed58dc"
+          "size_bytes": 57548800,
+          "sha256": "fe7bd87c965ae63b49b5555e1184b97f19827695d70db6ce17ce74df73e257e0"
         }
       ]
     },
@@ -94,8 +94,8 @@
         {
           "source": "documents/data_schema.md",
           "archive_path": "context/documents/data_schema.md",
-          "size_bytes": 18010,
-          "sha256": "965fa29af2fa14408d8a25ea85310c2c91fcc93ba835802264205553244b2759"
+          "size_bytes": 17586,
+          "sha256": "52d4c6f4d2dc758d2601b8d78655dbf8b95602f163516424a8e2cd346d24ff09"
         },
         {
           "source": "documents/decision_log_format.md",
@@ -106,32 +106,32 @@
         {
           "source": "documents/decision_metrics.md",
           "archive_path": "context/documents/decision_metrics.md",
-          "size_bytes": 4089,
-          "sha256": "70acb0fcc94aae36f3033be514f0b5786dc483f569f693d739a45ecceeef3a04"
+          "size_bytes": 3973,
+          "sha256": "4a5e3d6d9d391a7d8628cbb799d0bf8ebc8ec21c5564e6ddef0d887920b275c1"
         },
         {
           "source": "documents/PROJECT_GUIDE.md",
           "archive_path": "context/documents/PROJECT_GUIDE.md",
-          "size_bytes": 9892,
-          "sha256": "ee4d0289fb835f54717394bfcce268ebdcf52ff6f29562865b66200d3e88dc04"
+          "size_bytes": 9575,
+          "sha256": "eaa35f08b2b8002439019098be5728d770d07467b1f7cda36b01b5a84b14e17c"
         },
         {
           "source": "documents/tag_taxonomy.md",
           "archive_path": "context/documents/tag_taxonomy.md",
-          "size_bytes": 1891,
-          "sha256": "cdb25afb040fe4cd8e93280b6ee1e5e3e1e0c8ca517abe1d762365dd5da43f25"
+          "size_bytes": 1765,
+          "sha256": "ea0b96224fdcb830949d5a74284837cccd29142e546db128b5c4ed4598bfcbd2"
         },
         {
           "source": "documents/decision_heuristics.md",
           "archive_path": "context/documents/decision_heuristics.md",
-          "size_bytes": 3066,
-          "sha256": "25540368c45958e204b5284531de3c87adbb60cf3ad536a5aa5073ebb74d6873"
+          "size_bytes": 3028,
+          "sha256": "3f680875097a132b164aaed90186233f0b329401dd7164b09fe66229ec9a4704"
         },
         {
           "source": "documents/weekly_prompt.md",
           "archive_path": "context/documents/weekly_prompt.md",
-          "size_bytes": 15927,
-          "sha256": "dac2a9a54d54cdb2c6aed7325ba323a0b2927a8d548809af2750b3285e982d12"
+          "size_bytes": 15668,
+          "sha256": "4b2a427dd278389c863665d850a638593b4edbc7bbd6dce3a8c2573a9f60628f"
         }
       ]
     }
