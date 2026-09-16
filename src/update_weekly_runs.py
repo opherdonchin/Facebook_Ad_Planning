@@ -75,16 +75,16 @@ def main() -> None:
     args = ap.parse_args()
 
     # Load configuration
-    from utils import load_config
+    from utils import load_config, require_grist_profile
 
     cfg = load_config(args.config)
-    ad_cfg = cfg["ad_tracking"]
+    ad_cfg = require_grist_profile(cfg, "ad_tracking")
 
     # Initialize Grist client
     client = GristClient(
         ad_cfg["doc_id"],
         ad_cfg["api_key"],
-        ad_cfg.get("server", "https://docs.getgrist.com"),
+        ad_cfg["server"],
     )
 
     # Read CSV file

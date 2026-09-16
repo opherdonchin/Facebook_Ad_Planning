@@ -61,7 +61,7 @@ Correct frozen-snapshot totals are:
 - Future aggregation logic has a regression test and now treats the Meta action
   names as ordered fallbacks rather than additive events.
 - Test suite after the current safety changes: `pixi run pytest` on 2026-09-16,
-  76 passed (8 deprecation warnings).
+  86 passed (8 deprecation warnings).
 - Historical Grist rows have **not** yet been repaired.
 - Downstream exports and the W37 review have **not** yet been regenerated.
 

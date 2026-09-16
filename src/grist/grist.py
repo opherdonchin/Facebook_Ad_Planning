@@ -7,15 +7,20 @@ import hashlib
 import shutil
 from typing import Dict, List, Any, Optional
 from pathlib import Path
+from urllib.parse import urlsplit
 
 
 class GristClient:
-    def __init__(
-        self, doc_id: str, api_key: str, server: str = "https://docs.getgrist.com"
-    ):
+    def __init__(self, doc_id: str, api_key: str, server: str):
+        if not isinstance(server, str) or not server.strip():
+            raise ValueError("Grist server must be configured explicitly.")
+        normalized_server = server.strip().rstrip("/")
+        parsed_server = urlsplit(normalized_server)
+        if parsed_server.scheme not in {"http", "https"} or not parsed_server.netloc:
+            raise ValueError("Grist server must be an absolute HTTP(S) URL.")
         self.doc_id = doc_id
         self.api_key = api_key
-        self.server = server.rstrip("/")
+        self.server = normalized_server
         self.headers = {
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",

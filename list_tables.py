@@ -1,12 +1,18 @@
-from src.utils import load_config
-from src.grist.grist import GristClient
+import argparse
+
 import requests
 
+from src.utils import load_config, require_grist_profile
+
+parser = argparse.ArgumentParser(description="List tables for a configured Grist profile.")
+parser.add_argument("--profile", default="ad_tracking")
+args = parser.parse_args()
+
 config = load_config("config.json")
-test_config = config.get("test", {})
-doc_id = test_config.get("doc_id")
-api_key = test_config.get("api_key") or config.get("ad_tracking", {}).get("api_key")
-server = test_config.get("server", "https://docs.getgrist.com")
+profile = require_grist_profile(config, args.profile)
+doc_id = profile["doc_id"]
+api_key = profile["api_key"]
+server = profile["server"]
 
 print(f"Doc ID: {doc_id}")
 print(f"Server: {server}")

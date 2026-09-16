@@ -25,7 +25,7 @@ import pandas as pd
 from export_ads import fetch_full_database_dump
 from export_structured_data import extract_table_df, load_performance_data
 from grist.grist import GristClient
-from utils import load_config
+from utils import load_config, require_grist_profile
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -555,11 +555,15 @@ def main() -> int:
         tmp_path = Path(tmp)
         if args.refresh_grist:
             cfg = load_config(args.config)
-            ad_cfg = cfg["ad_tracking"]
+            try:
+                ad_cfg = require_grist_profile(cfg, "ad_tracking")
+            except ValueError as exc:
+                print(f"Configuration error: {exc}")
+                return 1
             client = GristClient(
                 ad_cfg["doc_id"],
                 ad_cfg["api_key"],
-                ad_cfg.get("server", "https://docs.getgrist.com"),
+                ad_cfg["server"],
             )
             data = fetch_full_database_dump(
                 client,

@@ -27,7 +27,7 @@ from lead_utils import (
     safe_get,
 )
 from meta_leads import MetaLeadsClient, parse_meta_lead
-from utils import load_config
+from utils import load_config, require_grist_profile
 
 
 # ---------------------------------------------------------------------------
@@ -574,19 +574,17 @@ def main() -> None:
     except FileNotFoundError as exc:
         raise SystemExit(exc)
 
-    leads_cfg = cfg.get("leads", {})
+    try:
+        leads_cfg = require_grist_profile(cfg, "leads")
+    except ValueError as exc:
+        raise SystemExit(f"[CONFIG ERROR] {exc}") from exc
     meta_cfg = cfg.get("meta", {})
 
     # Grist connection
-    doc_id = leads_cfg.get("doc_id", "")
-    api_key = leads_cfg.get("api_key", "")
-    server = leads_cfg.get("server", "https://docs.getgrist.com")
+    doc_id = leads_cfg["doc_id"]
+    api_key = leads_cfg["api_key"]
+    server = leads_cfg["server"]
     table_id = args.table or leads_cfg.get("table_id", "Leads")
-
-    if not doc_id or not api_key:
-        raise SystemExit(
-            "[CONFIG ERROR] config.json must include leads.doc_id and leads.api_key."
-        )
 
     # Column mapping — start with defaults, overlay config, overlay Meta-specific keys
     cols: Dict[str, str] = {

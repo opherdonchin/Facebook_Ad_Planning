@@ -3,6 +3,8 @@ import json
 import sys
 from typing import Any, Dict, List, Optional, Tuple
 
+import requests
+
 from grist.grist import GristClient
 
 
@@ -50,23 +52,23 @@ def main() -> None:
     )
     args = ap.parse_args()
 
-    from utils import load_config
+    from utils import load_config, require_grist_profile
 
     cfg = load_config(args.config)
 
-    leads_cfg = cfg["leads"]
+    leads_cfg = require_grist_profile(cfg, "leads")
     rollup_cfg = leads_cfg["rollup"]
-    ad_cfg = cfg["ad_tracking"]
+    ad_cfg = require_grist_profile(cfg, "ad_tracking")
 
     leads_client = GristClient(
         leads_cfg["doc_id"],
         leads_cfg["api_key"],
-        leads_cfg.get("server", "https://docs.getgrist.com"),
+        leads_cfg["server"],
     )
     ad_client = GristClient(
         ad_cfg["doc_id"],
         ad_cfg["api_key"],
-        ad_cfg.get("server", "https://docs.getgrist.com"),
+        ad_cfg["server"],
     )
 
     rollup_table_id = rollup_cfg["table_id"]

@@ -127,7 +127,7 @@ def save_export(
 
 # Example usage:
 if __name__ == "__main__":
-    from utils import load_config
+    from utils import load_config, require_grist_profile
 
     parser = argparse.ArgumentParser(description="Export Grist data")
     parser.add_argument(
@@ -143,19 +143,16 @@ if __name__ == "__main__":
         exit(1)
 
     # Read from ad_tracking section
-    ad_config = config.get("ad_tracking", {})
-    DOC_ID = ad_config.get("doc_id")
-    API_KEY = ad_config.get("api_key")
-    SERVER = ad_config.get("server", "https://docs.getgrist.com")
-
-    if not DOC_ID or not API_KEY:
-        print(
-            "Error: config.json must include ad_tracking.doc_id and ad_tracking.api_key"
-        )
+    try:
+        ad_config = require_grist_profile(config, "ad_tracking")
+    except ValueError as exc:
+        print(f"Error: {exc}")
         exit(1)
 
     # Create client
-    client = GristClient(DOC_ID, API_KEY, SERVER)
+    client = GristClient(
+        ad_config["doc_id"], ad_config["api_key"], ad_config["server"]
+    )
 
     # Ensure outputs directory exists
     os.makedirs("outputs", exist_ok=True)

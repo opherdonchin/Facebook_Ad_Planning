@@ -269,7 +269,7 @@ def run_transform(
 
 if __name__ == "__main__":
     import argparse
-    from utils import load_config
+    from utils import load_config, require_grist_profile
     from transforms import TRANSFORMS
 
     parser = argparse.ArgumentParser(description="Run Grist transforms.")
@@ -301,36 +301,24 @@ if __name__ == "__main__":
     output_profile_name = args.output_profile or args.profile
     
     # Get input profile config
-    input_profile_config = config.get(input_profile_name)
-    if not input_profile_config:
-        raise ValueError(f"Input profile '{input_profile_name}' not found in config.json")
-    
-    input_doc_id = input_profile_config.get("doc_id")
-    input_api_key = input_profile_config.get("api_key")
-    input_server = input_profile_config.get("server", "https://docs.getgrist.com")
-    
-    if not input_doc_id or not input_api_key:
-        raise ValueError(
-            f"Input profile '{input_profile_name}' must include doc_id and api_key"
-        )
-    
-    input_client = GristClient(doc_id=input_doc_id, api_key=input_api_key, server=input_server)
+    input_profile_config = require_grist_profile(config, input_profile_name)
+    input_doc_id = input_profile_config["doc_id"]
+    input_api_key = input_profile_config["api_key"]
+    input_server = input_profile_config["server"]
+
+    input_client = GristClient(
+        doc_id=input_doc_id, api_key=input_api_key, server=input_server
+    )
     
     # Get output profile config
-    output_profile_config = config.get(output_profile_name)
-    if not output_profile_config:
-        raise ValueError(f"Output profile '{output_profile_name}' not found in config.json")
-    
-    output_doc_id = output_profile_config.get("doc_id")
-    output_api_key = output_profile_config.get("api_key")
-    output_server = output_profile_config.get("server", "https://docs.getgrist.com")
-    
-    if not output_doc_id or not output_api_key:
-        raise ValueError(
-            f"Output profile '{output_profile_name}' must include doc_id and api_key"
-        )
-    
-    output_client = GristClient(doc_id=output_doc_id, api_key=output_api_key, server=output_server)
+    output_profile_config = require_grist_profile(config, output_profile_name)
+    output_doc_id = output_profile_config["doc_id"]
+    output_api_key = output_profile_config["api_key"]
+    output_server = output_profile_config["server"]
+
+    output_client = GristClient(
+        doc_id=output_doc_id, api_key=output_api_key, server=output_server
+    )
     
     # For backwards compatibility, still use single profile_config for input table overrides
     profile_config = input_profile_config

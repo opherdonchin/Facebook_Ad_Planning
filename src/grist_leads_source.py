@@ -96,23 +96,21 @@ def main() -> None:
     )
     args = ap.parse_args()
 
-    from utils import load_config
+    from utils import load_config, require_grist_profile
 
     try:
         cfg = load_config(args.config)
     except FileNotFoundError as e:
         raise SystemExit(e)
 
-    leads_config = cfg.get("leads", {})
-    doc_id = leads_config.get("doc_id")
-    api_key = leads_config.get("api_key")
-    server = leads_config.get("server", "https://docs.getgrist.com")
+    try:
+        leads_config = require_grist_profile(cfg, "leads")
+    except ValueError as exc:
+        raise SystemExit(f"Error: {exc}") from exc
+    doc_id = leads_config["doc_id"]
+    api_key = leads_config["api_key"]
+    server = leads_config["server"]
     table_id = args.table or leads_config.get("table_id") or "Leads"
-
-    if not doc_id or not api_key:
-        raise SystemExit(
-            "Error: config.json must include leads.doc_id and leads.api_key."
-        )
 
     cols = {
         "phone": "Phone",
