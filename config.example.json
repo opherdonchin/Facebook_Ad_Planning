@@ -8,6 +8,7 @@
     "doc_id": "your_leads_document_id_here",
     "api_key": "your_api_key_here",
     "server": "https://docs.getgrist.com",
+    "students_doc_id": "your_students_document_id_here",
     "table_id": "Leads",
     "columns": {
       "phone": "Phone",

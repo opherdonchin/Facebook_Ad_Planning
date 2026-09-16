@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 import tempfile
 import zipfile
@@ -46,14 +47,20 @@ PROJECT_CONTEXT_FILES = (
     "documents/tag_taxonomy.md",
     "documents/decision_heuristics.md",
     "documents/weekly_prompt.md",
+    "documents/weekly_update_runbook.md",
 )
 
 MANIFEST_NAME = "weekly_upload_manifest.json"
+SOURCE_VALIDATION_NAME = "weekly_source_validation.md"
 
 
 def build_bundles(repo_root: Path, outputs_dir: Path) -> tuple[Bundle, ...]:
     data_files = (
         BundleFile(outputs_dir / "performance_data.json", "data/performance_data.json"),
+        BundleFile(
+            outputs_dir / "weekly_source_validation.md",
+            "data/weekly_source_validation.md",
+        ),
         *(
             BundleFile(outputs_dir / filename, f"data/structured/{filename}")
             for filename in STRUCTURED_DATA_FILES
@@ -114,6 +121,18 @@ def validate_files(bundles: tuple[Bundle, ...]) -> list[Path]:
             if not bundle_file.source.is_file():
                 missing.append(bundle_file.source)
     return missing
+
+
+def read_source_validation_status(path: Path) -> str | None:
+    """Return the explicit PASSED/FAILED status from the validation note."""
+    if not path.is_file():
+        return None
+    match = re.search(
+        r"\*\*Status:\s*(PASSED|FAILED)\b",
+        path.read_text(encoding="utf-8"),
+        flags=re.IGNORECASE,
+    )
+    return match.group(1).upper() if match else None
 
 
 def build_manifest(bundles: tuple[Bundle, ...], repo_root: Path) -> dict:
@@ -223,6 +242,18 @@ def main() -> int:
         print("\nRun the weekly export pipeline first, then retry:")
         print("  pixi run export_ads")
         print("  pixi run package_uploads")
+        return 1
+
+    validation_path = outputs_dir / SOURCE_VALIDATION_NAME
+    validation_status = read_source_validation_status(validation_path)
+    if validation_status != "PASSED":
+        shown_status = validation_status or "MISSING OR UNPARSEABLE"
+        print(
+            "Weekly source validation did not pass; upload bundles were not "
+            f"created. Status: {shown_status}."
+        )
+        print(f"  - {display_path(validation_path, repo_root)}")
+        print("Resolve the source discrepancy and record **Status: PASSED** first.")
         return 1
 
     print("Weekly upload bundles:")

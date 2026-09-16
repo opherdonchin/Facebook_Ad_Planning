@@ -56,15 +56,16 @@ python export_ads.py
    
    ```json
    {
-     "ad_planning": {
-       "doc_id": "your_ad_planning_document_id",
+     "ad_tracking": {
+       "doc_id": "your_ad_tracking_document_id",
        "api_key": "your_api_key",
-       "server": "https://docs.getgrist.com"
+       "server": "https://your-team.getgrist.com"
      },
      "leads": {
        "doc_id": "your_leads_document_id",
        "api_key": "your_api_key",
-       "server": "https://docs.getgrist.com",
+       "server": "https://your-team.getgrist.com",
+       "students_doc_id": "your_students_document_id",
        "table_id": "Leads",
        "columns": {
          "phone": "Phone",
@@ -82,8 +83,16 @@ python export_ads.py
 
 **Finding your credentials:**
 
-- **Document ID**: Found in your Grist document URL: `https://docs.getgrist.com/doc/YOUR_DOC_ID`
+- **Document ID**: Found in the Grist document URL after `/doc/`.
 - **API Key**: Generate from your Grist profile settings → API section
+- **Server**: Use `https://docs.getgrist.com` for a personal site. For a team
+  site, including a Pro home, use that site's subdomain, such as
+  `https://your-team.getgrist.com`.
+
+An API key belongs to the user account and can access personal and team sites
+that the user may access. Moving or copying documents to a team site normally
+requires changing `server` and the document IDs, but not creating a separate key.
+Verify access with read-only table requests before any write.
 
 For self-hosted Grist instances, change the `server` field to your instance URL.
 
@@ -325,6 +334,10 @@ This workflow has two cadences:
 - **Daily / several times per day**: sync incoming leads from Facebook Instant Forms into the Leads database.
 - **Weekly planning cycle**: update manual summary tables, import weekly ad performance, validate metadata, then run transforms/exports.
 
+Agents must also follow `documents/weekly_update_runbook.md`. In particular,
+source metrics must be reconciled with an ad-level Ads Manager view before any
+Grist write or planning analysis.
+
 ### Quick Reference
 
 Complete sequence:
@@ -339,10 +352,15 @@ pixi run sync_meta_leads
 #   1) Update Sales Events
 #   2) Update Weekly Summary (including weekly CPL/cost fields from Ads Manager report)
 
-# Weekly: fetch ad performance from Meta API into ad_tracking.Weekly_runs
-pixi run fetch_weekly_runs
-# Optional safety check first:
-# pixi run fetch_weekly_runs --dry-run
+# Weekly: capture an exact, frozen Meta source snapshot for reconciliation
+pixi run fetch_weekly_runs --since 2026-09-10 --until 2026-09-16 \
+  --snapshot-out outputs/meta_source_2026-09-10_2026-09-16.json --dry-run
+# Compare that snapshot with Ads Manager. Only after it passes, replay the exact
+# same snapshot into ad_tracking.Weekly_runs:
+pixi run fetch_weekly_runs --since 2026-09-10 --until 2026-09-16 \
+  --snapshot-in outputs/meta_source_2026-09-10_2026-09-16.json
+# Mandatory read-back: in Grist, filter Weekly_runs to the affected Wednesday,
+# compare Ad/Week/Spend/Leads with the validated source, and check duplicates.
 # Manual CSV fallback (if token expired):
 # pixi run update_weekly_runs "facebook_exports/ads_manager_weekly.csv"
 
@@ -406,39 +424,51 @@ This step is currently manual and should be completed before `update_ads`, so ad
 
 ### Step 4 + 5: Sync Weekly Ad Performance (Automated)
 
-```bash
-pixi run fetch_weekly_runs
-```
+This replaces both the manual Ads Manager CSV download and the
+`update_weekly_runs` import, but it deliberately separates source capture from
+the Grist write.
 
-This replaces both the manual Ads Manager CSV download and the `update_weekly_runs` import.
 The script:
 
-1. Reads `Weekly_runs` from Grist to find the most recent week already stored.
-2. Re-fetches that week from its Thursday (picks up any mid-week updates from Meta).
-3. Queries the Meta Marketing API for daily ad-level spend and leads through today.
-4. Aggregates daily rows into Thu–Wed week buckets (same week definition as the rest
-   of the pipeline — see week formula below).
-5. Patches existing Grist records and inserts new ones. Partial weeks (run before
-   Wednesday) are stored against their eventual Wednesday end date and updated
-   automatically on the next run.
+1. Queries the Meta Marketing API for daily ad-level spend and leads for an
+   explicit Thursday-through-Wednesday range.
+2. Records the raw rows, account timezone, capture time, configuration, and a
+   checksum in a new immutable-by-convention snapshot.
+3. Aggregates daily rows into Thu–Wed week buckets (same week definition as the
+   rest of the pipeline — see week formula below) and prints the planned changes.
+4. Requires reconciliation of that frozen snapshot with Ads Manager.
+5. Replays only the same checksummed snapshot for the Grist write, then requires
+   a read-back of the affected `Weekly_runs` rows.
 
 **Week formula** (matches Grist): for a reporting end date, shift back 3 days then
 use the ISO week of the result — so a Thu–Wed window maps to one ISO week label.
 
-**Optional safety check first:**
+**Required safety check first:**
 
 ```bash
-pixi run fetch_weekly_runs --dry-run
+pixi run pytest
+pixi run fetch_weekly_runs --since 2026-09-10 --until 2026-09-16 \
+  --snapshot-out outputs/meta_source_2026-09-10_2026-09-16.json --dry-run
 ```
+
+Compare every delivered ad in the frozen snapshot with Ads Manager for the same
+inclusive Thursday-Wednesday dates, result metric, attribution setting, and Meta
+account timezone. Leads must match exactly. For a closed week, spend must match
+within currency rounding. For an open week, record both capture times and explain
+any additional spend before continuing. Then replay that exact snapshot with
+`--snapshot-in`; a live fetch is never accepted for a write. See
+`documents/weekly_update_runbook.md` for the full gate.
 
 **Other options:**
 
 ```bash
-# Backfill from a specific date
-pixi run fetch_weekly_runs --since 2026-01-01
+# Capture a multiweek backfill for reconciliation (dates must span whole Thu-Wed weeks)
+pixi run fetch_weekly_runs --since 2026-01-01 --until 2026-09-16 \
+  --snapshot-out outputs/meta_source_2026-01-01_2026-09-16.json --dry-run
 
-# Auto-create any new ad names found in Meta data (stub rows only — fill Campaign etc. manually)
-pixi run fetch_weekly_runs --auto-create-ads
+# After validation, replay it and auto-create missing ad names as stub rows
+pixi run fetch_weekly_runs --since 2026-01-01 --until 2026-09-16 \
+  --snapshot-in outputs/meta_source_2026-01-01_2026-09-16.json --auto-create-ads
 ```
 
 **Required config** (`config.json` → `meta` section):
@@ -450,8 +480,11 @@ pixi run fetch_weekly_runs --auto-create-ads
 ```
 
 - `ad_account_id`: found in Meta Business Manager → Ad accounts (format `act_XXXXXXXXX`).
-- `lead_action_types`: which Meta action type counts as a lead. For Instant Form campaigns
-  this is usually `onsite_conversion.lead_grouped`; `lead` is the fallback.
+- `lead_action_types`: ordered fallback priority for the Meta action representing
+  one lead. For Instant Form campaigns, `onsite_conversion.lead_grouped` is
+  normally preferred and `lead` is used only when the preferred action is
+  absent. These aliases are never added together. If both appear with different
+  values, the sync stops for investigation.
 - `lookback_weeks`: how far back to go when `Weekly_runs` is empty (default 8).
 
 The same `META_ACCESS_TOKEN` used for lead sync is re-used here; it must include
@@ -471,9 +504,14 @@ The same `META_ACCESS_TOKEN` used for lead sync is re-used here; it must include
 
 After importing weekly runs, manually validate in Grist:
 
-1. Set `Weekly_runs.Intended_run` for ads that were intentionally active.
-2. Confirm all ads in `Weekly_runs` exist in `Ads` with correct campaign assignment (`W`/`M`).
-3. Confirm each ad has complete creative linkage (media/headline/text) and that components match intended gender/campaign usage.
+1. Read the affected rows back and compare their dates, spend, and leads with the
+   source reconciliation used before the write.
+2. Confirm there is only one row per canonical Thursday-Wednesday week and ad.
+   A partial-date row and Wednesday-end row with the same computed week are a
+   duplicate, not two separate runs.
+3. Set `Weekly_runs.Intended_run` for ads that were intentionally active.
+4. Confirm all ads in `Weekly_runs` exist in `Ads` with correct campaign assignment (`W`/`M`).
+5. Confirm each ad has complete creative linkage (media/headline/text) and that components match intended gender/campaign usage.
 
 Important: auto-created `Ads` rows from Step 5 only contain ad names, so campaign/creative fields must be filled manually before transforms/exports.
 
@@ -590,13 +628,16 @@ Complete weekly workflow in order:
 
 1. Throughout the week: `pixi run sync_meta_leads` (or `pixi run sync_leads "facebook_exports/file.csv"` as fallback)
 2. Weekly in Leads DB: manually update Sales Events and Weekly Summary
-3. `pixi run fetch_weekly_runs` - Fetch weekly spend/leads from Meta API into `Weekly_runs` (or `pixi run update_weekly_runs "file.csv"` as manual fallback)
-5. In ad_tracking Grist: manually set `Intended_run` and fix any missing/incorrect ad campaign + creative/component metadata
-6. `pixi run update_ads` - Copy lead/conversion rollups from Leads to `ad_tracking.Ads`
-7. `pixi run transform_weekly` - Generate derived analytical metrics tables
-8. `pixi run export_ads` - Export Grist state to JSON + structured CSV/Parquet files
-9. `pixi run package_uploads` - Create upload-ready weekly zip bundles in `outputs/`
-10. Analyze data and plan next week's ads using AI + the generated bundles + `weekly_prompt.md`
+3. Capture an exact `fetch_weekly_runs --snapshot-out --dry-run`, reconcile it
+   with Ads Manager, then replay it with `--snapshot-in` and read the affected
+   `Weekly_runs` rows back (or use `pixi run update_weekly_runs "file.csv"` as
+   the documented manual fallback)
+4. In ad_tracking Grist: manually set `Intended_run` and fix any missing/incorrect ad campaign + creative/component metadata
+5. `pixi run update_ads` - Copy lead/conversion rollups from Leads to `ad_tracking.Ads`
+6. `pixi run transform_weekly` - Generate derived analytical metrics tables
+7. `pixi run export_ads` - Export Grist state to JSON + structured CSV/Parquet files
+8. `pixi run package_uploads` - Create upload-ready weekly zip bundles in `outputs/`
+9. Analyze data and plan next week's ads using AI + the generated bundles + `weekly_prompt.md`
 
 **See [documents/data_schema.md](documents/data_schema.md) for detailed schema documentation of all exported CSV files.**
 

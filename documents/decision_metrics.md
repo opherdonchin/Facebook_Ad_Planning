@@ -9,9 +9,11 @@ This document defines all performance metrics used in the weekly decision cycle.
 ### Week
 
 * A **week** is identified by the ISO week label present in `performance_data.json` (e.g., `2026-W01`).
-  * Weeks start and end on Thursday. The week definition used by Grist corrects the ISO label for this shift
-  * This definition is slightly vague as Thursday overlaps on each week. This can lead to some inconsistencies in reported numberings
-    * Try to flag these inconsistencies when you see them.
+  * Reporting weeks run from Thursday through Wednesday, inclusive, in the
+    Meta ad account timezone.
+  * Each ad must have exactly one source row for a computed reporting week. A
+    partial-date row and a Wednesday-end row with the same computed label are
+    duplicates and must be resolved before metrics are calculated.
 * Weekly metrics refer only to activity whose timestamps fall within that labeled week.
 
 ### This run
@@ -43,6 +45,12 @@ This document defines all performance metrics used in the weekly decision cycle.
 
 * **Leads** are counted as successful submissions of the Meta lead form associated with the ad.
 * Duplicate submissions by the same individual are counted as separate leads unless explicitly deduplicated upstream.
+* Meta action labels are not necessarily separate events. In particular,
+  `onsite_conversion.lead_grouped` is the preferred Instant Form result and
+  `lead` is its fallback when the preferred action is absent. If both represent
+  the same submissions, count one value only; never add the aliases.
+* Weekly lead counts must pass the primary-source reconciliation in
+  `weekly_update_runbook.md` before CPL or decision rules are applied.
 
 ### Cost per Lead (CPL)
 

@@ -91,7 +91,7 @@ def main() -> None:
     for label, start, end in WEEK_RANGES:
         rows = [
             row_for_export(label, start, end, ad_name, metrics)
-            for (ad_name, week_end), metrics in aggregated.items()
+            for (_meta_ad_id, ad_name, week_end), metrics in aggregated.items()
             if week_end == end
         ]
         rows.sort(key=lambda r: r["Ad name"])

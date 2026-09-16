@@ -22,8 +22,6 @@ from grist.grist import GristClient
 from utils import load_config
 
 
-STUDENTS_DOC_ID = "vS7JSAjtAG4pPXLAvUNwZe"
-
 # Reviewed, high-confidence identity links.  Keys are Student row IDs and values
 # are Lead row IDs.  This includes the user's approved transliteration matches.
 EXISTING_STUDENT_TO_LEAD: Dict[int, int] = {
@@ -433,14 +431,23 @@ def rebuild_sales_summaries(client: GristClient, apply: bool) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="config.json")
-    parser.add_argument("--students-doc-id", default=STUDENTS_DOC_ID)
+    parser.add_argument(
+        "--students-doc-id",
+        help="Override leads.students_doc_id from config.json.",
+    )
     parser.add_argument("--apply", action="store_true")
     args = parser.parse_args()
 
     cfg = load_config(args.config)["leads"]
+    students_doc_id = args.students_doc_id or cfg.get("students_doc_id")
+    if not students_doc_id:
+        raise SystemExit(
+            "[CONFIG ERROR] Set leads.students_doc_id in config.json or pass "
+            "--students-doc-id."
+        )
     leads_client = GristClient(cfg["doc_id"], cfg["api_key"], cfg["server"])
     students_client = GristClient(
-        args.students_doc_id, cfg["api_key"], cfg["server"]
+        students_doc_id, cfg["api_key"], cfg["server"]
     )
 
     apply = args.apply

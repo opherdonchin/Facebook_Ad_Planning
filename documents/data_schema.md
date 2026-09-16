@@ -51,6 +51,11 @@ Weekly performance metrics for each ad, aggregated by week.
 #### Notes
 
 - ISO weeks are sourced directly from Grist's formula column (column `A` in `Weekly_runs` table)
+- Each exported row must correspond to one canonical Thursday-Wednesday Meta
+  account-timezone week. Duplicate database rows that collapse to the same
+  `(iso_week, ad_name)` invalidate this and all downstream aggregate files.
+- `leads` counts form submissions, not the sum of Meta action aliases. The
+  source rows must pass `documents/weekly_update_runbook.md` before export.
 - Empty `cpl` values indicate weeks with no leads (divide by zero)
 - `intended_run` is sourced from `Weekly_runs.Intended_run`, so intended ads with zero delivery still remain marked
 - ~118 rows covering historical data from June 2025 through February 2026

@@ -1,5 +1,9 @@
 # Pending Grist refresh after the 2026-09-16 API quota limit
 
+> **INVALIDATED:** Do not apply the pending lead or CPL values below. The Meta
+> sync double-counted lead aliases. See `weekly_source_validation.md`; a W23+
+> audited backfill and complete downstream regeneration are required first.
+
 The Meta W37 sync completed successfully at approximately 12:17 IDT. Immediately afterward, Grist returned `429 Exceeded monthly API limit for this site` (`3,001 / 3,000` calls), so the remaining Grist-derived tables could not be refreshed through the API.
 
 ## Values to write when access resumes

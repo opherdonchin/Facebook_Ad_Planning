@@ -23,7 +23,8 @@ If any required zip or any required file inside a zip is missing or unreadable, 
 7. `data/structured/component_headline_lifetime.csv`
 8. `data/structured/component_text_lifetime.csv`
 9. `data/structured/component_tags.csv`
-10. `manifest/weekly_upload_manifest.json`
+10. `data/weekly_source_validation.md`
+11. `manifest/weekly_upload_manifest.json`
 
 **Bundle 2: `weekly_upload_assets.zip`**
 
@@ -41,9 +42,14 @@ If any required zip or any required file inside a zip is missing or unreadable, 
 6. `context/documents/tag_taxonomy.md`
 7. `context/documents/decision_heuristics.md`
 8. `context/documents/weekly_prompt.md`
-9. `manifest/weekly_upload_manifest.json`
+9. `context/documents/weekly_update_runbook.md`
+10. `manifest/weekly_upload_manifest.json`
 
 Do not perform analysis or draft outputs until all three bundles are fully opened, all required files are read, and the manifest has been checked against the uploaded contents.
+
+`weekly_source_validation.md` must explicitly say that validation passed. A
+missing, provisional-without-approval, or failed validation is a hard stop even
+when every other file is present.
 
 ## Project files required from the context bundle
 
@@ -56,6 +62,7 @@ The following project files must be available in `weekly_upload_context.zip` and
 5. `documents/tag_taxonomy.md`
 6. `documents/decision_heuristics.md`
 7. `documents/decision_log.md`
+8. `documents/weekly_update_runbook.md`
 
 If any of these files are missing or unreadable, **stop processing, notify the user, and wait for instructions**.
 
@@ -183,6 +190,21 @@ If anything is missing, do not continue to analysis.
       * ad-to-component mapping availability (prefer `ad_components.csv`; otherwise confirm it can be reconstructed reliably from `performance_data.json`)
       * component/campaign integrity for planned ads (no missing components, no cross-campaign gender mismatch)
       * complete-new-ad history by gender for the assessed week and the completed week immediately before the assessed week.
+
+11. **Primary-source validation is mandatory**
+
+    * Read `weekly_update_runbook.md` and confirm that its source-integrity gate
+      passed before trusting any spend, lead, CPL, run, lifetime, component, or
+      tag metric.
+    * Require a source-validation note with the reporting range, Meta account
+      timezone, capture time, closed/provisional status, per-ad Ads Manager
+      comparison, test result, and Grist read-back result.
+    * `lead` and `onsite_conversion.lead_grouped` may describe the same form
+      submission. They must never be summed. Treat an exact two-to-one pattern
+      between exported and Ads Manager lead counts as a hard failure signal.
+    * If the source-validation note is absent, incomplete, or failed, stop and
+      produce a Missing Information Report. Derived bundle files cannot validate
+      themselves.
 
 ---
 

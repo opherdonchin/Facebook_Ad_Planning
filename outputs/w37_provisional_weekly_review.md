@@ -1,3 +1,8 @@
+> **INVALIDATED 2026-09-16:** Do not use this draft for posting or ad changes.
+> The Meta sync doubled nonzero lead counts by adding two action aliases for the
+> same submissions. Historical W23+ rows and all downstream metrics require
+> repair and regeneration. See `weekly_source_validation.md`.
+
 ## Readiness confirmation
 
 Status: **ready for a complete provisional evaluation; not approval-ready for a final W38 switch or decision-log commit.**

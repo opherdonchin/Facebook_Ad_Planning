@@ -1,4 +1,7 @@
 {
+  "validation_status": "failed",
+  "do_not_replay": true,
+  "validation_failure": "Meta lead and onsite_conversion.lead_grouped aliases were added together, doubling nonzero lead counts.",
   "captured_at_local": "2026-09-16T12:17:00+03:00",
   "week": "2026-W37",
   "week_end": "2026-09-16",

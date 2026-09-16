@@ -1,10 +1,10 @@
 from src.grist.grist import GristClient
-import json
+from src.utils import load_config
 from datetime import datetime
 
-cfg = json.load(open('config.json'))
+cfg = load_config("config.json")
 ad_cfg = cfg['ad_tracking']
-client = GristClient(ad_cfg['doc_id'], ad_cfg['api_key'])
+client = GristClient(ad_cfg['doc_id'], ad_cfg['api_key'], ad_cfg['server'])
 records = client.fetch_records('Weekly_runs', flat=True)
 
 print('Last 6 records:')

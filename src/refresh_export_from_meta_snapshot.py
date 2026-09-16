@@ -34,6 +34,16 @@ REFRESH_TRANSFORMS = (
 )
 
 
+def require_passed_snapshot(snapshot: dict[str, Any]) -> None:
+    """Reject unvalidated snapshots before they can modify local exports."""
+    status = str(snapshot.get("validation_status") or "").strip().lower()
+    if status != "passed":
+        raise ValueError(
+            "Snapshot validation_status must be 'passed' before refresh. "
+            f"Found {status or 'missing'!r}."
+        )
+
+
 def flatten_table(data: dict[str, Any], table_id: str) -> pd.DataFrame:
     records = data["tables"][table_id]["records"]
     rows = []
@@ -186,6 +196,7 @@ def main() -> int:
     data = json.loads(args.json.read_text(encoding="utf-8"))
     snapshot = json.loads(args.snapshot.read_text(encoding="utf-8"))
 
+    require_passed_snapshot(snapshot)
     patch_weekly_runs(data, snapshot)
     patch_ads_rollups(data, snapshot)
     rebuild_derived_tables(data)
