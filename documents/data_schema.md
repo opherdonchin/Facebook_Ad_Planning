@@ -68,7 +68,7 @@ iso_week,campaign,ad_name,spend,leads,cpl,intended_run
 
 **Grain:** One row per ad (showing last contiguous run only)
 
-Metrics for the most recent contiguous run of each ad. A "run" is a sequence of consecutive weeks with spend, separated by gaps of more than 7 days.
+Metrics for the most recent contiguous run of each ad. A "run" is a sequence of consecutive weeks where `Weekly_runs.Intended_run` is true, separated by one or more weeks where the ad was not intentionally selected. Incidental delivery does not extend or bridge a run, while an intended week with zero delivery remains part of it.
 
 #### Columns
 
@@ -86,8 +86,8 @@ Metrics for the most recent contiguous run of each ad. A "run" is a sequence of 
 #### Notes
 
 - Only the **most recent** contiguous run is captured per ad
-- Run identification logic uses 7-day gap detection in `transforms.py`
-- ~31 rows (one per ad in the system)
+- Run identification filters to intended weeks before applying 7-day gap detection in `transforms.py`
+- One row per ad with at least one `Intended_run = true` week
 
 #### Example Row
 

@@ -107,13 +107,14 @@ def lifetime_ad_metrics_transform(
 def last_contiguous_run_ad_metrics_transform(
     tables: Dict[str, ibis.expr.types.Table],
 ) -> pd.DataFrame:
-    import re
     import pandas as pd
 
     t_runs = tables["perf"]
     t_ads = tables["ads"]
 
-    runs = t_runs.select("Week", "Ad_id", "Spend", "Leads").execute()
+    runs = t_runs.select(
+        "Week", "Ad_id", "Spend", "Leads", "Intended_run"
+    ).execute()
     ads = t_ads.select("id", "Name", "Campaign").execute()
 
     cols = [
@@ -126,6 +127,29 @@ def last_contiguous_run_ad_metrics_transform(
         "Leads_last_run",
         "CPL_last_run",
     ]
+    if runs.empty:
+        return pd.DataFrame(columns=cols)
+
+    # A run is defined by the weeks when the ad was intentionally selected,
+    # not merely by weeks when Meta happened to deliver it. Filter before gap
+    # detection so incidental delivery cannot bridge, extend, or displace the
+    # latest intended run. This deliberately retains intended weeks with zero
+    # spend/leads because the selection itself defines run continuity.
+    intended_values = runs["Intended_run"]
+    if pd.api.types.is_bool_dtype(intended_values.dtype):
+        intended_run = intended_values.fillna(False)
+    elif pd.api.types.is_numeric_dtype(intended_values.dtype):
+        intended_run = intended_values.fillna(0).eq(1)
+    else:
+        # The generic transform runner can stringify a nullable Grist Bool
+        # column while preparing it for DuckDB, so accept its textual form too.
+        intended_run = (
+            intended_values.astype("string")
+            .str.strip()
+            .str.lower()
+            .isin({"true", "1", "yes"})
+        )
+    runs = runs.loc[intended_run].copy()
     if runs.empty:
         return pd.DataFrame(columns=cols)
 
@@ -264,10 +288,16 @@ def lifetime_ad_conversions_transform(
         )
     )
 
-    # 3) Filter to leads that actually have attribution fields populated
-    # (prevents counting blank/unknown Campaign/Ad as a group)
+    # 3) Exclude non-lead records, then keep only rows with attribution.
+    # "Special event" rows are calendar/event placeholders rather than sales
+    # prospects and must not dilute ad conversion rates.  Return events remain
+    # deliberately excluded from Has_Registration above: a returning student is
+    # an active-membership start, not a new ad acquisition.
     attributed = (
-        leads_enriched.filter(lambda t: t.Campaign.notnull())
+        leads_enriched.filter(
+            lambda t: ibis.coalesce(t.Status != "Special event", True)
+        )
+        .filter(lambda t: t.Campaign.notnull())
         .filter(lambda t: t.Campaign != "")
         .filter(lambda t: t.Ad.notnull())
         .filter(lambda t: t.Ad != "")
@@ -724,7 +754,13 @@ TRANSFORMS: Dict[str, TransformSpec] = {
         output_table="Derived_Last_Run_Ad_Metrics",
         overwrite=True,
         select_rename={
-            "perf": {"A": "Week", "Ad": "Ad_id", "Spend": "Spend", "Leads": "Leads"},
+            "perf": {
+                "A": "Week",
+                "Ad": "Ad_id",
+                "Spend": "Spend",
+                "Leads": "Leads",
+                "Intended_run": "Intended_run",
+            },
             "ads": {"id": "id", "Name": "Name", "Campaign": "Campaign"},
         },
     ),
