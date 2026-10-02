@@ -47,9 +47,14 @@ If any required zip or any required file inside a zip is missing or unreadable, 
 
 Do not perform analysis or draft outputs until all three bundles are fully opened, all required files are read, and the manifest has been checked against the uploaded contents.
 
-`weekly_source_validation.md` must explicitly say that validation passed. A
-missing, provisional-without-approval, or failed validation is a hard stop even
-when every other file is present.
+`weekly_source_validation.md` must explicitly say that validation passed and
+classify the artifact as `decision report — early`, `decision report — late`,
+or `provisional`. For the Thursday update, a Wednesday report is authoritative
+and must be classified as `decision report — early`, even when the Meta account
+day was still open. An explicitly user-requested early report is classified the
+same way. A missing, unclassified, or failed validation is a hard stop even
+when every other file is present; an unrequested provisional artifact must not
+drive the ordinary decision analysis.
 
 ## Project files required from the context bundle
 
@@ -98,7 +103,8 @@ If anything is missing, do not continue to analysis.
    
    * Explicitly distinguish between:
      
-     * (a) the **latest completed data week** (being assessed)
+     * (a) the **assessed report week** (which may be closed or an explicitly
+       requested early Wednesday decision report)
      * (b) the **decision week** (being planned)
      * (c) the **current contiguous run** for each ad
    
@@ -183,7 +189,9 @@ If anything is missing, do not continue to analysis.
     
     * At minimum, validate:
       
-      * data freshness (latest completed week is unambiguous)
+      * data freshness (the assessed report week and decision week are
+        unambiguous; if the report is early, its capture time and open-day
+        status are explicit)
       * source-data preparation status (latest Leads/Sales updates and intended-run flags are already reflected in exports)
       * intentional-run identification when more than four ads show activity
       * ability to inspect actual media files from `attachments.tar`
@@ -197,14 +205,19 @@ If anything is missing, do not continue to analysis.
       passed before trusting any spend, lead, CPL, run, lifetime, component, or
       tag metric.
     * Require a source-validation note with the reporting range, Meta account
-      timezone, capture time, closed/provisional status, per-ad Ads Manager
-      comparison, test result, and Grist read-back result.
+      timezone, capture time, report classification, closed/open status,
+      per-ad Ads Manager comparison, test result, and Grist read-back result.
     * `lead` and `onsite_conversion.lead_grouped` may describe the same form
       submission. They must never be summed. Treat an exact two-to-one pattern
       between exported and Ads Manager lead counts as a hard failure signal.
     * If the source-validation note is absent, incomplete, or failed, stop and
       produce a Missing Information Report. Derived bundle files cannot validate
       themselves.
+    * If the validation note reports a historical source correction, read the
+      linked correction/re-evaluation note and all warning banners in the
+      decision log. Treat historical entries as records of past decisions, not
+      as corrected recommendations; use the regenerated metrics and current
+      correction note for present decisions.
 
 ---
 
@@ -224,7 +237,10 @@ Work sequentially. Use chat for reasoning and interim decisions; place finalized
 
 ## Assess performance from the previous week
 
-* Determine the latest completed week using `performance_data.json` and `decision_log.md`
+* Determine the assessed report week using `weekly_source_validation.md`,
+  `performance_data.json`, and `decision_log.md`. It may be a closed week or an
+  explicitly requested early Wednesday decision report; do not silently replace
+  an early requested report with the latest completed week.
 
 * Identify ads with spend or leads in that week
 

@@ -1,6 +1,508 @@
 # Weekly Decision Log
 
+# Plan for 2026-W40 (assessing 2026-W39)
+
+> **AUTHORITATIVE EARLY DECISION REPORT:** Captured Wednesday 2026-09-30 at
+> 10:15 IDT for the Thursday update. Under the reporting policy, this is an
+> authoritative decision report, not a provisional artifact. The final Meta
+> account day was open at capture time; a post-close refresh may correct
+> values or trigger a separate re-evaluation, but does not retroactively make
+> this report provisional. Full source validation, candidate ranking, copy,
+> media checks, and fallbacks are in `outputs/weekly_decision_report.md`.
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W39, 2026-09-24 through 2026-09-30
+- **Decision / planned week:** 2026-W40
+- **Meta account timezone:** `America/Los_Angeles`
+- **Validated early total:** ₪802.41 spend / 4 leads / ₪200.60 CPL
+- **Source:** Isshin Aikido team Grist documents plus independent Facebook
+  Graph API Insights reconciliation. The team-site preflight passed before
+  writing.
+
+### Ads active in assessed week (2026-W39)
+
+- Men: Mens Ad J, M 2609_2
+- Women: Womens Ad G, W 2603_1
+
+| Ad name | Spend | Leads | CPL | Decision |
+|---|---:|---:|---:|---|
+| Mens Ad J | ₪384.45 | 2 | ₪192.23 | Replace |
+| M 2609_2 | ₪51.64 | 0 | — | Replace |
+| Womens Ad G | ₪334.28 | 1 | ₪334.28 | Replace |
+| W 2603_1 | ₪32.04 | 1 | ₪32.04 | Keep |
+
+### Decision evidence
+
+- Men have two replacement slots. W38 included the complete-new launch
+  `M 2609_2`; W39 had no complete-new launch. There are no strong male reuse
+  candidates, so the two-slot rule selects one top weak reuse and one
+  complete-new.
+- Women have one replacement slot. There was no complete-new launch in W38
+  or W39, so the slot must be complete-new.
+- The ordered candidate lists are recorded in the linked report. The top male
+  reuse is `M 2603_1`. The strongest female reuse candidates are `Womens Ad O`
+  and `Womens Ad A`; they are not used because the female slot is required to
+  be complete-new.
+
+### Ads planned for decision week (2026-W40)
+
+- Men: keep neither incumbent; reuse `M 2603_1` and launch complete-new
+  `M 2609_3`.
+- Women: keep `W 2603_1` and launch complete-new `W 2609_2`.
+- Complete-new fallbacks are recorded in the report and are same-gender
+  component reshuffles only.
+- No Meta ad changes were made by this decision-log update.
+
+### Execution update — 2026-10-01
+
+The earlier W40 plan above recorded `M 2603_1` plus planned complete-new
+`M 2609_3`. The user subsequently published `M 2603_1` and a new October ad,
+`M 2610_1` (the user’s message called it `M 2010_1`; the uploaded filename and
+Grist record use `M 2610_1`). The live male implementation is therefore
+`M 2603_1` and `M 2610_1`; `M 2609_3` was not added as the live ad.
+
+The new ad was written to the Isshin Aikido team `ad_tracking` document and
+read back successfully:
+
+- `Media` 35 with attachments 95 and 96
+- `Headlines` 35: `יותר שליטה בגוף`
+- `Texts` 30: `Body Control And Precision`
+- `Creatives` 51: `M 2610_1`
+- `Ads` 54: `M 2610_1`, `Mens campaign`, first run 2026-10-01 / 2026-W40
+
+The supplied PNG was stored as both the canonical Media attachment and the
+Creative thumbnail because the supplied file is the finished text-overlaid
+creative. The two exported copies match the supplied file byte-for-byte.
+
+The user also retained `W 2603_1` as recommended and published the new
+complete women’s ad `W 2610_1`. This is the live women’s implementation for
+W40; the earlier planned `W 2609_2` was not added as the live ad.
+
+The new women’s ad was written to the same team document and read back
+successfully:
+
+- `Media` 36 with attachment 97 from the supplied JPEG
+- `Headlines` 36: `תנועה במקום כוח`
+- `Texts` 31: `Movement Instead Of Force`
+- `Creatives` 52: `W 2610_1` with attachment 98 from the supplied PNG
+- `Ads` 55: `W 2610_1`, `Womens Campaign`, first run 2026-10-01 / 2026-W40
+
+# Plan for 2026-W39 (assessing 2026-W38)
+
+> **RETROSPECTIVE — NOT IMPLEMENTED:** This entry was prepared on 2026-09-27,
+> after 2026-W39 had begun. It records the decision the current rules produce
+> from validated W38 data. It did not determine the live W39 portfolio. See
+> `outputs/w38_retrospective_weekly_review.md` for the full performance summary,
+> ordered candidate lists, copy, media checks, and fallbacks.
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W38
+- **Decision / planned week:** 2026-W39
+
+### Ads active in assessed week (2026-W38)
+
+- Men: Mens Ad J, M 2609_2
+
+| Ad name | Spend | CPL | Current-run spend | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|---:|
+| Mens Ad J | ₪141.25 | — | ₪267.22 | ₪3,852.56 | ₪56.66 |
+| M 2609_2 | ₪63.09 | — | ₪63.09 | ₪63.09 | — |
+
+- Women: Womens Ad G, W 2603_1
+
+| Ad name | Spend | CPL | Current-run spend | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|---:|
+| Womens Ad G | ₪147.84 | ₪147.84 | ₪559.03 | ₪947.93 | ₪63.20 |
+| W 2603_1 | ₪87.59 | — | ₪87.86 | ₪696.80 | ₪63.35 |
+
+### Ads planned for decision week (2026-W39)
+
+- Men: M 2603_1, M 2609_3
+
+#### Kept ads
+
+None. Both men’s ads met replacement rule 5.
+
+#### Reuse ads
+
+| Name | Most recent prior-run CPL | Lifetime CPL | Strength | Reason |
+|---|---:|---:|---|---|
+| M 2603_1 | ₪63.37 | ₪64.32 | Weak | Top ordered men’s reuse candidate; no strong men’s candidate exists. |
+
+#### Complete new ads
+
+**M 2609_3**
+
+| Component | New / existing | Notes |
+|---|---|---|
+| Media | New | `outputs/creative_generation/M_2609_3_beginner_balance_photo.png`; two adult men practicing an upright beginner balance exercise. Tags: Photo - Dojo; Instructional / Demonstration. |
+| Headline | New | `יציבות לומדים בתנועה`; Stability / Balance; Body Capability; Direct. |
+| Text | New | `Steady Movement`; three parallel learning/capability bullets and low-pressure CTA; masculine. |
+
+#### Reshuffle fallbacks
+
+**M 2609_3 fallback**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| `Outside_Sunset_MM_Kaitenage_photo__B.png` | — | — | ₪2,695.45 | ₪59.90 |
+| `כוח רגוע מבפנים` | — | — | ₪285.32 | ₪71.33 |
+| `Everyday Pressure` (Men) | — | — | ₪1,859.11 | ₪58.10 |
+
+- Women: Womens Ad O, W 2609_2
+
+#### Kept ads
+
+None. `Womens Ad G` met replacement rule 3 and `W 2603_1` met replacement rule 5.
+
+#### Reuse ads
+
+| Name | Most recent prior-run CPL | Lifetime CPL | Strength | Reason |
+|---|---:|---:|---|---|
+| Womens Ad O | ₪58.50 | ₪58.50 | Strong | Top ordered strong women’s reuse candidate. |
+
+#### Complete new ads
+
+**W 2609_2**
+
+| Component | New / existing | Notes |
+|---|---|---|
+| Media | New | `outputs/creative_generation/W_2609_2_guided_turn_photo.png`; two adult women learning a controlled stepping turn. Tags: Photo - Dojo; Instructional / Demonstration. |
+| Headline | New | `לגלות מה הגוף שלך יכול`; Meaning / Growth; Body Capability; Affirmative. |
+| Text | New | `Discover Capability`; three parallel learning/capability bullets and low-pressure CTA; feminine. |
+
+#### Reshuffle fallbacks
+
+**W 2609_2 fallback**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| `Dojo_Instruction_FemalePair.png` | — | — | ₪3,652.32 | ₪57.07 |
+| `תנועה. עוצמה. חיוך.` | — | — | ₪326.06 | ₪65.21 |
+| `Meaningful Movement` | — | — | ₪3,449.51 | ₪63.88 |
+
+---
+
+## Portfolio decision
+
+- Retrospectively replace all four W38 ads.
+- Men: reuse weak candidate `M 2603_1` and introduce complete-new `M 2609_3`.
+- Women: reuse strong candidate `Womens Ad O` and introduce complete-new `W 2609_2`.
+- The complete-new history used was: men — `M 2609_2` launched in W38;
+  women — no complete-new launch in W37 or W38.
+- This decision was not implemented and must not be treated as the actual W39 portfolio.
+
+---
+
+## Constraints check
+
+- Replacement slots were counted separately by gender.
+- No component repeats within either planned campaign.
+- Both new ads were designed media-first; the generated media were visually inspected.
+- Each complete-new recommendation has one same-gender reshuffle fallback.
+- No new tags are proposed.
+
+---
+
+End of Plan 2026-W39
+
+---
+
+# Plan for 2026-W38 (assessing 2026-W37)
+
+### Weeks
+
+- **Assessed (data) week:** 2026-W37
+- **Decision / planned week:** 2026-W38
+
+**Data status:** The figures below use the corrected, source-validated snapshot captured on 2026-09-16 at 10:37 PDT, while 2026-W37 remained open in the Meta account timezone. The portfolio and creative decisions were subsequently implemented for 2026-W38. Update the figures if the post-close refresh differs materially.
+
+### Ads active in assessed week (2026-W37)
+
+- Men: Mens Ad J, M 2609_1, Mens Ad B
+- Women: Womens Ad G, W 2603_1
+
+#### Men
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Mens Ad J | ₪125.97 | ₪41.99 | ₪3,711.31 | ₪54.58 |
+| M 2609_1 | ₪74.05 | — | ₪166.41 | ₪83.21 |
+| Mens Ad B | ₪7.23 | — | ₪1,808.13 | ₪54.79 |
+
+`Mens Ad B` received residual non-intended delivery and did not occupy a portfolio slot.
+
+#### Women
+
+| Ad name | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Womens Ad G | ₪193.94 | ₪48.49 | ₪800.09 | ₪57.15 |
+| W 2603_1 | ₪0.27 | — | ₪609.21 | ₪55.38 |
+
+### Ads planned for decision week (2026-W38)
+
+- Men: Mens Ad J, M 2609_2
+- Women: Womens Ad G, W 2603_1
+
+#### Men — kept ads
+
+| Name | Reason |
+|---|---|
+| Mens Ad J | Keep rule 1: 2026-W37 CPL was ₪41.99 after ₪125.97 spend. |
+
+#### Men — reuse
+
+None. The corrected data contained no strong inactive men’s reuse candidate.
+
+#### Men — new content
+
+**M 2609_2**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| **Media: `Dojo_Roll_Recovery_MM_StopMotion`** |  |  |  |  |
+| **Headline: `ללמוד ליפול ולהמשיך`** |  |  |  |  |
+| **Text: `Learning To Fall` (Men)** |  |  |  |  |
+
+The standard visual subhead is:
+
+`אייקידו באווירה טובה בלב באר שבע`
+
+Primary text:
+
+```text
+לא צריך לדעת לעשות גלגול לפני שמתחילים. באייקידו כולם מתחילים מההתחלה ולומדים לאט לאט.
+
+• לומדים ליפול, להתגלגל ולחזור לתנועה
+• מפתחים שיווי משקל, קואורדינציה וביטחון בתנועה
+• לומדים אחד מהשני, כל אחד מהמקום שלו
+
+האימונים למבוגרים בלב באר שבע.
+השאר פרטים לשיעור היכרות ללא התחייבות.
+```
+
+Tags:
+
+- Media style: `Video - Dojo`
+- Media energy: `Dynamic / Throw`
+- Headline tone: `Reflective`
+- Hook: `Confidence / Self-Trust`
+- Promise: `Body Capability`
+- Text structure: `Checklist`
+- Grammar and target: masculine; men
+
+#### Men — reshuffle fallback
+
+**M 2609_2 fallback**
+
+| Component | Spend | CPL | Lifetime spend | Lifetime CPL |
+|---|---:|---:|---:|---:|
+| Media: `Outside_Sunset_MM_Kaitenage_photo` | — | — | ₪2,695.45 | ₪59.90 |
+| Headline: `לנער את השגרה` | — | — | ₪3,115.07 | ₪56.64 |
+| Text: `Everyday Pressure` (Men) | — | — | ₪1,859.11 | ₪58.10 |
+
+The fallback was not activated.
+
+#### Women — kept ads
+
+| Name | Reason |
+|---|---|
+| Womens Ad G | Keep rule 1: 2026-W37 CPL was ₪48.49 after ₪193.94 spend. |
+| W 2603_1 | Keep rule 6: its new intended run received only ₪0.27. This was non-delivery rather than evidence of creative failure. |
+
+#### Women — reuse
+
+None; there was no women’s replacement slot.
+
+#### Women — new content
+
+None.
+
+#### Women — reshuffle fallback
+
+None required.
+
+---
+
+## Portfolio decision
+
+- Keep `Mens Ad J`, `Womens Ad G`, and `W 2603_1`.
+- Pause `M 2609_1`.
+- Activate the complete-new `M 2609_2`.
+- Retain the documented reshuffle only as an unused fallback.
+
+---
+
+## Final creative choice for M 2609_2
+
+The preliminary recommendation used a calm, static beginner-instruction image with the headline `לא צריך לדעת. רק להתחיל.`
+
+The final ad is substantially different. It uses a four-second stop-action sequence made from real dojo footage. Ten evenly spaced frames show a complete movement arc: entry, roll, landing and visible recovery while practice continues around the participants.
+
+The final headline, `ללמוד ליפול ולהמשיך`, is tied directly to that action. The primary text prevents the dynamic movement from becoming an entry barrier by explaining that rolling is learned gradually and that students learn from one another at their own level.
+
+The execution changed, but the strategic purpose did not: `M 2609_2` still tests beginner reassurance and physical capability rather than repeating the control and quiet-strength territory of `Mens Ad J`.
+
+---
+
+## Delivery allocation intervention
+
+For 2026-W38, Meta’s **Push budget to this ad** option was enabled for all four planned ads, with each ad set to receive at least 35% of its campaign budget.
+
+The purpose is to prevent an ad from receiving negligible delivery, as happened to `W 2603_1` in 2026-W37, and to ensure that both ads in each campaign accumulate enough spend to produce interpretable evidence.
+
+With two ads per campaign, the 35% floors reserve 70% of each campaign’s budget and leave 30% for Meta to allocate according to its optimization. This is a deliberate W38 delivery test, not evidence about creative performance.
+
+After 2026-W38, consider reducing the floor to 20% per ad if 35% appears to constrain efficient allocation unnecessarily. A 20% floor would still prevent complete starvation while leaving 60% of the campaign budget available for optimization.
+
+---
+
+## Rationale
+
+- `Mens Ad J` and `Womens Ad G` met keep rule 1 in 2026-W37.
+- `M 2609_1` met replacement rule 5 after spending ₪74.05 with no 2026-W37 leads and reaching ₪163.42 in its current run.
+- `W 2603_1` was retained under rule 6 because its new intended run received only ₪0.27.
+- No inactive men’s ad met the strong-reuse thresholds, so the men’s replacement slot was filled with a complete-new ad.
+- The final `M 2609_2` media, headline and text were designed together and share one coherent beginner-accessibility promise.
+
+---
+
+## Constraints check
+
+- Each campaign has exactly two planned ads.
+- No media, headline or primary text is duplicated within a campaign.
+- `M 2609_2` contains new media, a new headline and new primary text.
+- The actual final video was visually inspected.
+- The video, headline and text describe the same learnable roll-and-recovery sequence.
+- The established Canva header format will be applied to the media-only video.
+- All assigned tags already exist; no new tag is required.
+- The same 35% delivery intervention was applied to every planned ad.
+
+---
+
+## Data hygiene and learning notes
+
+- The plan uses the corrected 2026-W23–2026-W37 history rather than the invalidated doubled Results.
+- The 2026-W37 figures were still provisional at capture.
+- Delivery in 2026-W38 will not be directly comparable to earlier delivery patterns because the 35% per-ad budget intervention changes Meta’s allocation freedom.
+- Creative performance and the effect of the delivery floor should therefore be evaluated separately.
+
+---
+
+## What would change the decision for 2026-W39
+
+- Recalculate all performance metrics from the completed 2026-W38 data.
+- Confirm whether all four ads received meaningful spend under the 35% setting.
+- Evaluate `M 2609_2` only after it has accumulated sufficient spend.
+- Reassess `W 2603_1` once it has received a real delivery test.
+- Reduce the minimum allocation from 35% to 20% if 35% produces unnecessarily rigid or inefficient allocation.
+- Retain 35% if a lower floor would risk returning to near-zero delivery.
+- Apply the documented keep and replacement thresholds independently of the delivery-setting decision.
+
+---
+
+## Confidence level
+
+High confidence in the portfolio logic, the final creative’s internal coherence and the documented implementation. Moderate confidence in expected performance because `M 2609_2` is new and the 35% delivery intervention has not yet been evaluated.
+
+---
+
+End of Plan 2026-W38
+
+---
+
+<a id="data-correction-2026-w37"></a>
+
+# Data correction and re-evaluation — 2026-09-16 (2026-W37)
+
+This is a source-data correction and current re-evaluation, not a replacement
+for any historical weekly plan. All earlier entries remain the record of the
+information, reasoning, recommendations, and implementation status available at
+the time.
+
+## Defect, scope, and validation
+
+From 2026-W23 through the provisional 2026-W37 snapshot, the automated Meta
+sync added two action aliases—`onsite_conversion.lead_grouped` and `lead`—when
+both described the same Instant Form submission. This doubled nonzero weekly
+lead counts. W23 also contained four partial-date rows that duplicated canonical
+Wednesday rows. Three older duplicate groups in W04 and W06 were found during
+the guarded replay.
+
+The repair selected one ordered lead alias, removed seven redundant rows,
+replayed 72 W23-W37 ad/week rows from frozen Meta source data, read every row
+back, and regenerated all weekly, run, lifetime, component, tag, conversion,
+export, and package artifacts. The separate weekly-grain Meta query matched all
+closed-week source values exactly. The W37 snapshot remains provisional because
+Wednesday was still open in the Meta account timezone at capture.
+
+## Corrected weekly portfolio totals
+
+These totals use `Intended_run = true`; all-delivery totals are shown where
+residual delivery differs.
+
+| Assessed week | Intended spend | Correct leads | Correct CPL | All-delivery spend / leads |
+|---|---:|---:|---:|---:|
+| 2026-W23 | ₪405.08 | 9 | ₪45.01 | ₪422.98 / 9 |
+| 2026-W24 | ₪420.22 | 10 | ₪42.02 | ₪420.31 / 10 |
+| 2026-W25 | ₪419.39 | 2 | ₪209.70 | ₪419.39 / 2 |
+| 2026-W26 | ₪398.13 | 5 | ₪79.63 | ₪412.93 / 5 |
+| 2026-W27 | ₪416.87 | 4 | ₪104.22 | ₪416.87 / 4 |
+| 2026-W28 | ₪427.51 | 2 | ₪213.76 | ₪427.51 / 2 |
+| 2026-W29 | ₪418.65 | 4 | ₪104.66 | ₪418.65 / 4 |
+| 2026-W30 | ₪425.54 | 2 | ₪212.77 | ₪425.54 / 2 |
+| 2026-W31 | ₪354.35 | 4 | ₪88.59 | ₪400.69 / 4 |
+| 2026-W32 | ₪430.40 | 3 | ₪143.47 | ₪430.40 / 3 |
+| 2026-W33 | ₪352.15 | 1 | ₪352.15 | ₪440.42 / 3 |
+| 2026-W34 | ₪402.54 | 5 | ₪80.51 | ₪402.54 / 5 |
+| 2026-W35 | ₪421.27 | 4 | ₪105.32 | ₪424.26 / 4 |
+| 2026-W36 | ₪409.88 | 5 | ₪81.98 | ₪409.88 / 5 |
+| 2026-W37 | ₪394.23 | 7 | ₪56.32 | ₪401.46 / 7 |
+
+## Material historical reinterpretations
+
+These are counterfactuals, not rewritten historical decisions.
+
+- The 2026-W36 plan assessed doubled W35 results. Correctly, `Mens Ad B` was
+  ₪104.55 / 2 leads / ₪52.28 CPL and `Womens Ad G` was ₪92.74 / 1 lead /
+  ₪92.74 CPL—not ₪25.64 and ₪43.71 CPL. The corrected thresholds would have
+  opened an additional men's replacement slot; absent the explicit mid-week
+  commitment, they also would have opened the `Womens Ad G` slot.
+- The uncommitted W37 draft assessed doubled W36 results. `M 2609_1` was
+  ₪89.37 / 2 / ₪44.69 and `Womens Ad G` was ₪124.51 / 3 / ₪41.50. Both still
+  passed keep rule 1, while `Mens Ad B` and `W 2609_1` still required
+  replacement. However, corrected lifetime/run data left no strong inactive
+  men's reuse candidate, so the men's replacement should have been a complete
+  new ad rather than automatic recycling. `Mens Ad J` actually ran and its W37
+  result remains useful outcome evidence.
+- The August 31 process-rule conclusions are retained, but their quantitative
+  evidence must be re-studied from the corrected metrics before claiming that
+  the earlier effect sizes or candidate rankings were accurate.
+
+## Current provisional re-evaluation for 2026-W38
+
+- Keep `Mens Ad J`: provisional W37 ₪125.97 / 3 / ₪41.99, rule 1.
+- Replace `M 2609_1`: provisional W37 ₪74.05 / 0, current intended run
+  ₪163.42 / 2 / ₪81.71, rule 5.
+- Keep `Womens Ad G`: provisional W37 ₪193.94 / 4 / ₪48.49, rule 1.
+- Keep `W 2603_1`: provisional W37/current-run spend ₪0.27, rule 6; this is
+  non-delivery, not evidence of creative failure.
+- The one men's replacement slot requires a complete-new ad because no inactive
+  men's candidate is strong after correction. A complete-new men's ad and its
+  required reshuffle fallback are documented in
+  `outputs/w37_provisional_weekly_review.md`.
+
+This W38 recommendation is provisional until W37 closes in
+`America/Los_Angeles`, a post-close snapshot is replayed and read back, and the
+derived files are regenerated again.
+
+---
+
 # Plan for 2026-W36 (assessing 2026-W35)
+
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
 
 ### Weeks
 
@@ -166,6 +668,8 @@ End of Plan 2026-W36
 
 # Mid-week update - 2026-08-31 (2026-W35 in progress)
 
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
+
 This is not a weekly Plan for a new decision week. It documents a single in-flight correction to the still-open 2026-W35 portfolio, made mid-week rather than waiting for 2026-W35 to close on 2026-09-02. The full assessment of 2026-W35 and the resulting `Plan for 2026-W36` entry will follow at that close, per the usual process.
 
 ### Reason for acting mid-week
@@ -237,6 +741,8 @@ End of mid-week update 2026-08-31
 
 # Process rule update - 2026-08-31
 
+> **DATA CORRECTION NOTICE — 2026-09-16:** Some quantitative evidence reviewed for this process update used lead counts later found to be doubled. The adopted rule remains historical and in force; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) before interpreting effect sizes or candidate rankings.
+
 This entry records a process change, not a weekly ad plan. The new rules apply to weekly decisions made after this entry. Older entries remain historical records of the process and judgment used at the time.
 
 ## Reason for the change
@@ -302,6 +808,8 @@ Use each media asset, headline, and primary text at most once in each campaign i
 ---
 
 # Plan for 2026-W35 (assessing 2026-W34)
+
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
 
 ### Weeks
 
@@ -406,6 +914,8 @@ End of Plan 2026-W35
 
 # Plan for 2026-W34 (assessing 2026-W33)
 
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
+
 ### Weeks
 
 - **Assessed (data) week:** 2026-W33
@@ -497,6 +1007,8 @@ End of Plan 2026-W34
 
 # Plan for 2026-W33 (assessing 2026-W32)
 
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
+
 ### Weeks
 
 - **Assessed (data) week:** 2026-W32
@@ -580,6 +1092,8 @@ End of Plan 2026-W33
 
 # Plan for 2026-W32 (assessing 2026-W31)
 
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
+
 ### Weeks
 
 - **Assessed (data) week:** 2026-W31
@@ -658,6 +1172,8 @@ End of Plan 2026-W32
 ---
 
 # Plan for 2026-W31 (assessing 2026-W30)
+
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
 
 ### Weeks
 
@@ -841,6 +1357,8 @@ End of Plan 2026-W31
 
 # Plan for 2026-W30 (assessing 2026-W29)
 
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
+
 ### Weeks
 
 * **Assessed (data) week:** 2026-W29
@@ -927,6 +1445,8 @@ End of Plan 2026-W30
 ---
 
 # Plan for 2026-W29 (assessing 2026-W28)
+
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
 
 ### Weeks
 
@@ -1015,6 +1535,8 @@ End of Plan 2026-W29
 
 # Plan for 2026-W28 (assessing 2026-W27)
 
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
+
 ### Weeks
 
 * **Assessed (data) week:** 2026-W27
@@ -1101,6 +1623,8 @@ End of Plan 2026-W28
 ---
 
 # Plan for 2026-W27 (assessing 2026-W26)
+
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
 
 ### Weeks
 
@@ -1189,6 +1713,8 @@ End of Plan 2026-W27
 ---
 
 # Plan for 2026-W26 (assessing 2026-W25)
+
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
 
 ### Weeks
 
@@ -1337,6 +1863,8 @@ End of Plan 2026-W26
 
 # Plan for 2026-W25 (assessing 2026-W24)
 
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
+
 ### Weeks
 
 - **Assessed (data) week:** 2026-W24
@@ -1466,6 +1994,8 @@ End of Plan 2026-W25
 
 
 # Plan for 2026-W24 (assessing 2026-W23)
+
+> **DATA CORRECTION NOTICE — 2026-09-16:** Metrics in this historical entry were later found to be affected by Meta lead-alias double counting and duplicate W23 rows. Preserve this entry as originally decided; use [Data correction and re-evaluation — 2026-09-16 (2026-W37)](#data-correction-2026-w37) for corrected values and the current re-evaluation.
 
 ### Weeks
 

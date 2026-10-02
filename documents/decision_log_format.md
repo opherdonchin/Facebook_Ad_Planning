@@ -183,6 +183,38 @@ Historical weekly decision entries should not be rewritten when the process chan
 
 ---
 
+## Historical data-correction annotations
+
+When a later validated source repair changes metrics quoted in an existing
+weekly entry:
+
+1. Keep the entry's original tables, rationale, and recommendation unchanged.
+2. Add a concise warning banner immediately below the entry title.
+3. Name the affected source weeks and link to one current data-correction and
+   re-evaluation note in this decision log.
+4. In that current note, record the defect, validated corrected values,
+   historical scope, material counterfactual decision changes, and the current
+   operational decision.
+5. Label counterfactual conclusions explicitly. They explain how corrected
+   information would have changed the analysis; they do not replace the record
+   of what was known, decided, or implemented at the time.
+
+Use a stable banner marker so automated tooling can detect annotations without
+parsing prose:
+
+```markdown
+> **DATA CORRECTION NOTICE — YYYY-MM-DD:** Metrics in this historical entry were
+> later found to be affected by {brief defect}. Preserve this entry as originally
+> decided; use [{correction-note title}](#{anchor}) for corrected values and the
+> current re-evaluation.
+```
+
+Never scatter corrected replacements through multiple historical entries. The
+banner supplies provenance; the single current correction note supplies the
+corrected interpretation.
+
+---
+
 ## End of entry
 
 Finish entry with this easily identified end marker:

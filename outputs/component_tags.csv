@@ -61,6 +61,10 @@ media,32,Sankyo_MalePair,Media_Style,Illustration - Line Art
 media,32,Sankyo_MalePair,Media_Energy,Instructional / Demonstration
 media,33,Kokynage_FemalePair,Media_Style,Illustration - Line Art
 media,33,Kokynage_FemalePair,Media_Energy,Instructional / Demonstration
+media,35,M 2610_1,Media_Style,Photo - Dojo
+media,35,M 2610_1,Media_Energy,Dynamic / Throw
+media,36,W 2610_1,Media_Style,Photo - Dojo
+media,36,W 2610_1,Media_Energy,Dynamic / Throw
 headline,2,ללמוד לשלוט ברגע,Tone,Reflective
 headline,2,ללמוד לשלוט ברגע,Promise,Focus / Clarity
 headline,2,ללמוד לשלוט ברגע,Hook,Meaning / Growth
@@ -136,6 +140,12 @@ headline,32,שליטה ברגע. לא בכוח.,Hook,Strength Without Force
 headline,33,עוצמה מתוך שליטה,Tone,Affirmative
 headline,33,עוצמה מתוך שליטה,Promise,Non-violent Power
 headline,33,עוצמה מתוך שליטה,Hook,Strength Without Force
+headline,35,יותר שליטה בגוף,Tone,Direct
+headline,35,יותר שליטה בגוף,Promise,Body Capability
+headline,35,יותר שליטה בגוף,Hook,Strength Without Force
+headline,36,תנועה במקום כוח,Tone,Direct
+headline,36,תנועה במקום כוח,Promise,Non-violent Power
+headline,36,תנועה במקום כוח,Hook,Strength Without Force
 text,1,Stress Mental Load,Hook,Stress / Mental Load
 text,1,Stress Mental Load,Promise,Calm Under Pressure
 text,1,Stress Mental Load,Structure,Question Hook
@@ -220,3 +230,12 @@ text,27,Resistance To Precision,Structure,Short lines
 text,28,More Than A Workout,Hook,Meaning / Growth
 text,28,More Than A Workout,Promise,Body Capability
 text,28,More Than A Workout,Structure,Checklist
+text,29,Learning to fall,Hook,Confidence / Self-Trust
+text,29,Learning to fall,Promise,Body Capability
+text,29,Learning to fall,Structure,Short lines
+text,30,Body Control And Precision,Hook,Strength Without Force
+text,30,Body Control And Precision,Promise,Body Capability
+text,30,Body Control And Precision,Structure,Short lines
+text,31,Movement Instead Of Force,Hook,Strength Without Force
+text,31,Movement Instead Of Force,Promise,Non-violent Power
+text,31,Movement Instead Of Force,Structure,Checklist

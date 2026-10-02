@@ -1,0 +1,835 @@
+{
+  "schema_version": 1,
+  "source": "Meta Marketing API daily ad insights",
+  "ad_account_id": "act_318717175",
+  "account_timezone": "America/Los_Angeles",
+  "since": "2026-09-24",
+  "until": "2026-09-30",
+  "captured_at_utc": "2026-10-01T21:21:27Z",
+  "api_version": "v25.0",
+  "lead_action_types": [
+    "onsite_conversion.lead_grouped",
+    "lead"
+  ],
+  "daily_rows": [
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "21"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "22"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "1"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "22"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "1"
+        }
+      ],
+      "date_start": "2026-09-24",
+      "date_stop": "2026-09-24",
+      "spend": "67.27",
+      "ad_id": "6963149336864",
+      "ad_name": "Womens Ad G"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "offsite_complete_registration_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "link_click",
+          "value": "19"
+        },
+        {
+          "action_type": "offsite_search_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "87"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "87"
+        },
+        {
+          "action_type": "lead",
+          "value": "1"
+        },
+        {
+          "action_type": "offsite_content_view_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.lead_grouped",
+          "value": "1"
+        },
+        {
+          "action_type": "video_view",
+          "value": "68"
+        }
+      ],
+      "date_start": "2026-09-24",
+      "date_stop": "2026-09-24",
+      "spend": "84.26",
+      "ad_id": "6997707368064",
+      "ad_name": "Mens Ad J"
+    },
+    {
+      "date_start": "2026-09-24",
+      "date_stop": "2026-09-24",
+      "spend": "2.28",
+      "ad_id": "52540302039868",
+      "ad_name": "W 2603_1"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "post_engagement",
+          "value": "4"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "4"
+        },
+        {
+          "action_type": "video_view",
+          "value": "4"
+        }
+      ],
+      "date_start": "2026-09-24",
+      "date_stop": "2026-09-24",
+      "spend": "0.98",
+      "ad_id": "52682362107668",
+      "ad_name": "M 2609_2"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "6"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "6"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "6"
+        }
+      ],
+      "date_start": "2026-09-25",
+      "date_stop": "2026-09-25",
+      "spend": "64.28",
+      "ad_id": "6963149336864",
+      "ad_name": "Womens Ad G"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "7"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "2"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "88"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "3"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "88"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "3"
+        },
+        {
+          "action_type": "post",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "2"
+        },
+        {
+          "action_type": "video_view",
+          "value": "78"
+        }
+      ],
+      "date_start": "2026-09-25",
+      "date_stop": "2026-09-25",
+      "spend": "87.23",
+      "ad_id": "6997707368064",
+      "ad_name": "Mens Ad J"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "3"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "3"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "3"
+        }
+      ],
+      "date_start": "2026-09-25",
+      "date_stop": "2026-09-25",
+      "spend": "5.09",
+      "ad_id": "52540302039868",
+      "ad_name": "W 2603_1"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "offsite_complete_registration_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "link_click",
+          "value": "8"
+        },
+        {
+          "action_type": "offsite_search_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "2"
+        },
+        {
+          "action_type": "onsite_conversion.total_messaging_connection",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_unlike",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "10"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "2"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "10"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "3"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_first_reply",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "1"
+        },
+        {
+          "action_type": "lead",
+          "value": "1"
+        },
+        {
+          "action_type": "offsite_content_view_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_conversation_started_7d",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.lead_grouped",
+          "value": "1"
+        }
+      ],
+      "date_start": "2026-09-26",
+      "date_stop": "2026-09-26",
+      "spend": "66.75",
+      "ad_id": "6963149336864",
+      "ad_name": "Womens Ad G"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "17"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "2"
+        },
+        {
+          "action_type": "onsite_conversion.post_unlike",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "115"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "3"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "115"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "4"
+        },
+        {
+          "action_type": "post",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "1"
+        },
+        {
+          "action_type": "video_view",
+          "value": "95"
+        }
+      ],
+      "date_start": "2026-09-26",
+      "date_stop": "2026-09-26",
+      "spend": "91.98",
+      "ad_id": "6997707368064",
+      "ad_name": "Mens Ad J"
+    },
+    {
+      "date_start": "2026-09-26",
+      "date_stop": "2026-09-26",
+      "spend": "1.72",
+      "ad_id": "52540302039868",
+      "ad_name": "W 2603_1"
+    },
+    {
+      "date_start": "2026-09-26",
+      "date_stop": "2026-09-26",
+      "spend": "0.38",
+      "ad_id": "52682362107668",
+      "ad_name": "M 2609_2"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "14"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.total_messaging_connection",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "15"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "1"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "15"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_2_message_send",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_3_message_send",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_5_message_send",
+          "value": "3"
+        }
+      ],
+      "date_start": "2026-09-27",
+      "date_stop": "2026-09-27",
+      "spend": "40.88",
+      "ad_id": "6963149336864",
+      "ad_name": "Womens Ad G"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "12"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "74"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "74"
+        },
+        {
+          "action_type": "video_view",
+          "value": "62"
+        }
+      ],
+      "date_start": "2026-09-27",
+      "date_stop": "2026-09-27",
+      "spend": "64.8",
+      "ad_id": "6997707368064",
+      "ad_name": "Mens Ad J"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "offsite_complete_registration_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "link_click",
+          "value": "2"
+        },
+        {
+          "action_type": "offsite_search_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.total_messaging_connection",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "2"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "2"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_2_message_send",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_first_reply",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_3_message_send",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_5_message_send",
+          "value": "1"
+        },
+        {
+          "action_type": "lead",
+          "value": "1"
+        },
+        {
+          "action_type": "offsite_content_view_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_conversation_started_7d",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.lead_grouped",
+          "value": "1"
+        }
+      ],
+      "date_start": "2026-09-27",
+      "date_stop": "2026-09-27",
+      "spend": "19.96",
+      "ad_id": "52540302039868",
+      "ad_name": "W 2603_1"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "8"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "8"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "8"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_5_message_send",
+          "value": "1"
+        }
+      ],
+      "date_start": "2026-09-28",
+      "date_stop": "2026-09-28",
+      "spend": "40.24",
+      "ad_id": "6963149336864",
+      "ad_name": "Womens Ad G"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "offsite_complete_registration_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "link_click",
+          "value": "8"
+        },
+        {
+          "action_type": "offsite_search_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "35"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "35"
+        },
+        {
+          "action_type": "lead",
+          "value": "1"
+        },
+        {
+          "action_type": "offsite_content_view_add_meta_leads",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.lead_grouped",
+          "value": "1"
+        },
+        {
+          "action_type": "video_view",
+          "value": "27"
+        }
+      ],
+      "date_start": "2026-09-28",
+      "date_stop": "2026-09-28",
+      "spend": "32.27",
+      "ad_id": "6997707368064",
+      "ad_name": "Mens Ad J"
+    },
+    {
+      "date_start": "2026-09-28",
+      "date_stop": "2026-09-28",
+      "spend": "0.86",
+      "ad_id": "52540302039868",
+      "ad_name": "W 2603_1"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "2"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "91"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "1"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "91"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "1"
+        },
+        {
+          "action_type": "video_view",
+          "value": "88"
+        }
+      ],
+      "date_start": "2026-09-28",
+      "date_stop": "2026-09-28",
+      "spend": "23.93",
+      "ad_id": "52682362107668",
+      "ad_name": "M 2609_2"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "11"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "11"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "11"
+        },
+        {
+          "action_type": "onsite_conversion.messaging_user_depth_5_message_send",
+          "value": "1"
+        }
+      ],
+      "date_start": "2026-09-29",
+      "date_stop": "2026-09-29",
+      "spend": "54.84",
+      "ad_id": "6963149336864",
+      "ad_name": "Womens Ad G"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "2"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "12"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "12"
+        },
+        {
+          "action_type": "video_view",
+          "value": "10"
+        }
+      ],
+      "date_start": "2026-09-29",
+      "date_stop": "2026-09-29",
+      "spend": "24.26",
+      "ad_id": "6997707368064",
+      "ad_name": "Mens Ad J"
+    },
+    {
+      "date_start": "2026-09-29",
+      "date_stop": "2026-09-29",
+      "spend": "2.13",
+      "ad_id": "52540302039868",
+      "ad_name": "W 2603_1"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "5"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_unlike",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "106"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "2"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "106"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "3"
+        },
+        {
+          "action_type": "onsite_conversion.post_save",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_save",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "0"
+        },
+        {
+          "action_type": "video_view",
+          "value": "99"
+        }
+      ],
+      "date_start": "2026-09-29",
+      "date_stop": "2026-09-29",
+      "spend": "26.62",
+      "ad_id": "52682362107668",
+      "ad_name": "M 2609_2"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "17"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "18"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "1"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "18"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "1"
+        }
+      ],
+      "date_start": "2026-09-30",
+      "date_stop": "2026-09-30",
+      "spend": "68.7",
+      "ad_id": "6963149336864",
+      "ad_name": "Womens Ad G"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "4"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "11"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "11"
+        },
+        {
+          "action_type": "video_view",
+          "value": "7"
+        }
+      ],
+      "date_start": "2026-09-30",
+      "date_stop": "2026-09-30",
+      "spend": "17.26",
+      "ad_id": "6997707368064",
+      "ad_name": "Mens Ad J"
+    },
+    {
+      "date_start": "2026-09-30",
+      "date_stop": "2026-09-30",
+      "spend": "0.65",
+      "ad_id": "52540302039868",
+      "ad_name": "W 2603_1"
+    },
+    {
+      "actions": [
+        {
+          "action_type": "link_click",
+          "value": "4"
+        },
+        {
+          "action_type": "post_reaction",
+          "value": "1"
+        },
+        {
+          "action_type": "onsite_conversion.post_unlike",
+          "value": "1"
+        },
+        {
+          "action_type": "post_engagement",
+          "value": "124"
+        },
+        {
+          "action_type": "post_interaction_gross",
+          "value": "1"
+        },
+        {
+          "action_type": "page_engagement",
+          "value": "124"
+        },
+        {
+          "action_type": "post_interaction_net",
+          "value": "2"
+        },
+        {
+          "action_type": "onsite_conversion.post_net_like",
+          "value": "0"
+        },
+        {
+          "action_type": "video_view",
+          "value": "119"
+        }
+      ],
+      "date_start": "2026-09-30",
+      "date_stop": "2026-09-30",
+      "spend": "30.95",
+      "ad_id": "52682362107668",
+      "ad_name": "M 2609_2"
+    }
+  ],
+  "payload_sha256": "94c8301b32a112a7dd3e809686a55c78ae714983e53b2e74a839f88b3d8a109e"
+}

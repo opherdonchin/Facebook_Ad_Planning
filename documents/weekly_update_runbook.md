@@ -19,6 +19,9 @@ passed.
   replace Ads Manager's attributed weekly Results metric.
 - Grist exports and files under `outputs/` are downstream data. They cannot
   independently validate the source values from which they were made.
+- Report authority and Meta account-day closure are separate properties. An
+  authoritative decision report may be early or late; “early” describes when
+  it was captured, not a lower level of authority.
 
 ## 1. Establish the reporting window
 
@@ -26,8 +29,22 @@ passed.
    decision week.
 2. Fetch the Meta ad-account timezone and record it with the exact capture time.
 3. State whether Wednesday has ended in the account timezone.
-4. If the final account day is still open, label every artifact **provisional**.
-   A final report requires another refresh after the account day closes.
+4. Classify the report explicitly:
+   - A report generated on Wednesday for the Thursday update is an
+     authoritative **decision report — early**, even if the account day is
+     still open.
+   - A report explicitly requested by the user for early decision-making is
+     also an authoritative **decision report — early**, regardless of the
+     weekday.
+   - A report captured after the account day closes is an authoritative
+     **decision report — late**.
+   - Use **provisional** only for an unrequested open-week working artifact
+     that is not being treated as the decision report.
+
+   Early and late decision reports have the same authority. The report must
+   still state whether the account day was closed, and an early report may need
+   a later correction or re-evaluation if post-close source data changes
+   materially.
 
 The current Meta account uses `America/Los_Angeles`. Consequently, a Wednesday
 evening in Israel is still an open Meta reporting day. Verify the account value
@@ -59,7 +76,7 @@ on every run rather than assuming it never changes.
    reporting start, reporting end, ad ID/name, amount spent, Results, result
    indicator, and attribution setting.
 6. Capture the API and Ads Manager views within five minutes of each other when
-   the week is open.
+   the week is open or the report is an early decision report.
 
 Do not use `export_meta_weekly_csv.py` as the independent comparison: it shares
 the same API client and aggregation function as `fetch_weekly_runs`.
@@ -68,12 +85,16 @@ the same API client and aggregation function as `fetch_weekly_runs`.
 
 Compare every intended ad and every ad with residual delivery.
 
-| Check | Closed week | Open/provisional week |
+| Check | Decision report — late | Decision report — early or provisional |
 |---|---|---|
 | Leads/Results | Must match exactly | Must match exactly at the captured snapshot |
 | Spend | Must match within currency rounding | Record both timestamps and explain any accrued-spend difference |
 | Dates | Exact Thu-Wed account dates | Same, with the incomplete day identified |
 | Metric | Same Results definition and attribution setting | Same |
+
+The early column describes source completeness, not decision authority: an
+early decision report is authoritative even though it uses the same open-day
+reconciliation checks as a provisional working artifact.
 
 Also inspect raw API action rows for at least every ad with a nonzero lead count.
 If both `onsite_conversion.lead_grouped` and `lead` appear, confirm that the
@@ -136,7 +157,8 @@ Before applying `documents/weekly_prompt.md`, write
 `outputs/weekly_source_validation.md` containing:
 
 - reporting range and account timezone;
-- capture time and closed/provisional status;
+- capture time, report classification (`decision report — early`, `decision
+  report — late`, or `provisional`), and closed/open status;
 - the per-ad source spend and Results;
 - comparison outcome and any explained open-day spend drift;
 - tests run and their result;
@@ -146,9 +168,11 @@ Before applying `documents/weekly_prompt.md`, write
 The planning agent must read this note before evaluating CPL or choosing ads.
 `pixi run package_uploads` includes the note in the data bundle and should fail
 if it is missing.
-Do not append a provisional decision to `documents/decision_log.md`. If the
-business must act before Meta's Wednesday closes, clearly identify the decision
-as provisional and state what the post-close refresh could change.
+Do not silently turn an unrequested provisional working artifact into a
+decision. If the business acts from a Wednesday or explicitly user-requested
+early report, write it as an authoritative `decision report — early`, record
+what was open at capture time, and state what a post-close refresh could
+change. A post-close report is an authoritative `decision report — late`.
 
 ## 7. Failure handling
 
@@ -161,3 +185,9 @@ as provisional and state what the post-close refresh could change.
   and backfill from primary-source data before regenerating reports.
 - Manual correction: record the original value, corrected value, source,
   timestamp, affected weeks, and every downstream artifact regenerated.
+- If corrected source data changes metrics quoted in prior decision-log entries,
+  do not rewrite those entries. Add a warning banner under each affected entry
+  title and point every banner to one current correction/re-evaluation note.
+  That note must separate (a) the historical decision actually made, (b) the
+  counterfactual conclusion using corrected data and the rules then in force,
+  and (c) the current operational recommendation.

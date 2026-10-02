@@ -9,6 +9,27 @@ attachments.tar.gz
 attachments/
 facebook_exports/*.exe
 
+# Local scratch, generated documentation, and regenerable report caches
+.tmp/
+README.html
+README_files/
+facebook_exports/
+outputs/attachments/
+outputs/decision_log_evaluation.zip
+outputs/creative_critique/
+outputs/creative_generation/
+outputs/invalidated_*/
+outputs/weekly_upload_*.zip
+outputs/weekly_upload_manifest.json
+outputs/*_provisional_weekly_review.md
+outputs/*_retrospective_weekly_review.md
+outputs/*_attendance_report.md
+outputs/advertising_budget_assessment_*.md
+outputs/pending_grist_updates_*.md
+outputs/student_lead_reconciliation_*.md
+outputs/weekly_runs_duplicate_backup_*.json
+outputs/meta_source_*_early_*.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,14 +1,10 @@
 media_id,media_name,media_variant,media_format,spend,leads,ads,cpl
-17,SumoOtoshi_MF_AiArt,,Image,785.88,22,1,35.72181818181818
-21,Tenshinage_lineart_controlled,,Image,3949.71,101,1,39.1060396039604
-32,Sankyo_MalePair,,Image,166.4,4,1,41.6
-30,Outside_Sunset_MM_Kaitenage_photo_v2,B 2607 refresh,Image,522.1099999999999,12,1,43.50916666666666
-1,Shihonage_MF_Dojo_Photo,A,Image,2451.8999999999996,50,6,49.03799999999999
-27,Photo_Dojo_FF_HandContact_Static,,Image,310.68,6,1,51.78
-28,Dojo_ClassScene_Ikkyo_MF_Class_Scene,,Image,207.13,4,1,51.7825
-13,Dojo_Instruction_FemalePair,,Image,3654.0899999999997,68,5,53.73661764705882
-2,Outside_Sunset_MM_Kaitenage_photo,B,Image,2695.4799999999996,50,5,53.90959999999999
-29,Photo_Dojo_FF_ArmContact_Static,,Image,1019.6899999999999,16,1,63.730624999999996
+21,Tenshinage_lineart_controlled,,Image,3711.3099999999995,68,1,54.57808823529411
+1,Shihonage_MF_Dojo_Photo,A,Image,2450.9899999999993,44,6,55.70431818181817
+13,Dojo_Instruction_FemalePair,,Image,3652.3199999999997,64,5,57.067499999999995
+17,SumoOtoshi_MF_AiArt,,Image,800.0899999999999,14,1,57.14928571428571
+2,Outside_Sunset_MM_Kaitenage_photo,B,Image,2695.45,45,5,59.898888888888884
+27,Photo_Dojo_FF_HandContact_Static,,Image,246.5,4,1,61.625
 14,Dynamic_Throw_FF_LineArt,,Image,326.06,5,1,65.212
 15,Swariwaza_Kokyuho_Dojo_Photo,,Image,1405.8400000000001,21,3,66.94476190476192
 24,Munetsuki_F_Kyu,,Image,142.64,2,1,71.32
@@ -19,13 +15,17 @@ media_id,media_name,media_variant,media_format,spend,leads,ads,cpl
 19,Dojo_Instruction_MF_photo,,Image,229.95999999999998,3,1,76.65333333333332
 25,Photo_Dojo_MF_Ikkyo_Static,,Image,475.71,6,2,79.285
 5,Illustrated_Soft_Strength_Female,,Image,80.59,1,1,80.59
+32,Sankyo_MalePair,,Image,166.41,2,1,83.205
 11,Illustrated_Calm_Poster_Female,,Image,1028.1,12,5,85.675
+30,Outside_Sunset_MM_Kaitenage_photo_v2,B 2607 refresh,Image,522.1099999999999,6,1,87.01833333333332
 4,Highfall_photo_Opher_Arnon,,Image,95.37,1,1,95.37
+28,Dojo_ClassScene_Ikkyo_MF_Class_Scene,,Image,194.37,2,1,97.185
 18,Pin_Class_photo,,Image,216.45999999999998,2,1,108.22999999999999
 6,Ikyo_pin_2M_photo,,Image,125.13,1,1,125.13
-31,Dojo_Instruction_FemalePair_v2,2607 refresh,Image,540.6700000000001,4,1,135.16750000000002
+29,Photo_Dojo_FF_ArmContact_Static,,Image,1019.6899999999999,8,1,127.46124999999999
 12,Illustrated_Strength_Poster_Female,,Image,147.46,1,1,147.46
 26,Photo_Dojo_MM_HandContact_Static,,Image,232.02,1,1,232.02
+31,Dojo_Instruction_FemalePair_v2,2607 refresh,Image,540.6700000000001,2,1,270.33500000000004
 8,Iriminage_Dyamic_MM_Dojo_Photo,,Image,125.47999999999999,0,1,
 7,Dynamic_Throw_DoJo_Video,Landscape,Video,118.94,0,1,
 33,Kokynage_FemalePair,,Image,74.73,0,1,

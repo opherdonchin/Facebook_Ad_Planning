@@ -22,14 +22,53 @@ Before performing any weekly update, read and follow
   submission and must never be added together.
 - Record the exact reporting dates, Meta account timezone, capture time, result
   metric, and whether the final account day was closed at capture time.
+- Treat report authority and account-day closure as separate properties. A
+  report generated on Wednesday for the Thursday update is an authoritative
+  `decision report — early`, not a provisional report. If the user explicitly
+  requests an early report, classify it the same way. A report captured after
+  the account day closes is an authoritative `decision report — late`; early
+  and late decision reports have the same authority, and both must record the
+  exact capture time and closure status.
 - If an unexplained lead difference exists, or a closed-week spend difference
   exceeds ordinary currency rounding, stop. Do not write data, rebuild derived
   outputs, recommend ad changes, or append to the decision log.
 - After a successful write, read the affected rows back from Grist and compare
   them with the validated source before running transforms or packaging files.
-- Do not call an open week final. Keep provisional snapshots separate from the
-  post-close refresh and use one frozen snapshot consistently throughout a
-  provisional report.
+- Do not silently treat an unrequested open-week working artifact as an
+  authoritative decision report. Reserve `provisional` for such working
+  artifacts; use one frozen snapshot consistently throughout each report. An
+  authoritative early report may still require a later post-close correction
+  or re-evaluation if the source changes materially.
+
+## Weekly planning decisions
+
+Before preparing a weekly review or recommendation, read all of
+`documents/weekly_prompt.md`, `documents/decision_heuristics.md`, and the latest
+process-rule update in `documents/decision_log.md`. The weekly prompt is the
+canonical decision rule when wording differs.
+
+- Apply keep/replace thresholds to each active ad before selecting any
+  replacement. Do not preserve an ad merely to keep one incumbent running.
+- Count replacement slots separately for men and women; never use one gender's
+  recent-new-ad history or candidate list to fill the other gender's slot.
+- Historical reuse is not the default. For one replacement slot, recommend a
+  complete new ad when that gender had no complete-new launch in the assessed
+  week or the completed week immediately before it. Otherwise select the
+  highest-ranked strong same-gender reuse candidate; if none is strong,
+  recommend a complete new ad.
+- For two replacement slots, follow the exact table in `weekly_prompt.md`.
+  Depending on recent complete-new history and candidate strength, the result
+  may be one new plus one reuse, two strong reuses, one reuse plus one new, or
+  two complete new ads.
+- A complete new ad means new media, new headline, and new primary text designed
+  together, starting from the media concept. Every complete-new recommendation
+  must include one same-gender reshuffle fallback.
+- Use component reshuffles only as fallbacks for complete-new recommendations;
+  do not silently substitute a reshuffle or an old ad because it is easier to
+  prepare.
+- State the two-week complete-new history for each gender and show the ordered
+  reuse-candidate list before filling replacement slots. This evidence is
+  required even when the final recommendation is reuse.
 
 ## Data and code provenance
 
@@ -42,6 +81,15 @@ Before performing any weekly update, read and follow
   between aliases, date boundaries, and zero-lead rows.
 - Preserve unrelated user changes. In particular, do not alter workspace or
   editor settings as part of a weekly update.
+- When a validated source correction affects metrics quoted in prior decision
+  entries, preserve the original entry verbatim as historical evidence. Add a
+  short warning banner immediately below its title and point to one current
+  correction/re-evaluation note. Do not replace old values or rewrite old
+  reasoning as though the corrected information had been available then.
+- The current correction note must state the affected weeks, defect, corrected
+  source values, decisions whose interpretation materially changes, and the
+  current operational recommendation. Clearly distinguish counterfactual
+  re-evaluation from what was actually decided and run.
 
 ## Grist connections and secrets
 

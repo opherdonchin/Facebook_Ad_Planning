@@ -459,6 +459,12 @@ any additional spend before continuing. Then replay that exact snapshot with
 `--snapshot-in`; a live fetch is never accepted for a write. See
 `documents/weekly_update_runbook.md` for the full gate.
 
+For reporting status, a Wednesday report used for the Thursday update is an
+authoritative `decision report — early`, not a provisional report. An explicitly
+user-requested early report has the same status. A report captured after the
+Meta account day closes is an authoritative `decision report — late`; both
+statuses require the exact capture time and closed/open status to be recorded.
+
 **Other options:**
 
 ```bash
